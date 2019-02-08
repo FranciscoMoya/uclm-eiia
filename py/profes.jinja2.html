@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>UCLM - EII Toledo - Tutorías</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* { box-sizing: border-box; }
+body { 
+    font-family: Arial, Helvetica, sans-serif; 
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: left;
+    background-color: lightgray;
+    border-radius: 0 0 7px 7px;
+    overflow:hidden;
+    display: block;
+    margin-bottom: 16px;
+    width: 18cm;
+}
+.accordion {
+    background-color: #5d2e2e;
+    color: lightgray;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    border-radius: 7px 7px 0 0;
+    width: 18cm;
+    padding: 10px 16px 0px 16px;
+}
+.active, .accordion:hover {
+    background-color: #4d1e1e; 
+}
+.name { 
+    font-size: larger; 
+    padding-bottom: 10px; 
+    color: white;
+}
+.value {
+    float: left;
+    color:black;
+    width: 7.5cm;
+}
+.item {
+    padding-bottom: 4px;
+    display: inline-block;
+    float: left;
+    clear: left;
+}
+label {
+    width: 2.5cm;
+    font-weight: bold;
+    font-style: oblique;
+    float: left;
+    padding-bottom: 4px;
+}
+.value.tutorias, div.tutorias label {
+    width: 100%;
+    clear: both;
+    padding-bottom: 10px;
+}
+label::after {
+    content: ':';
+}
+.col1 {
+    width: 70%;
+    float: left;
+    display: inline-block;
+}
+.col2 {
+    width: 30%;
+    float: right;
+    display: inline-block;
+}
+.professor {
+    break-inside: avoid-column;
+}
+@media only screen and (min-width: 1400px) {
+    .content {
+        column-count: 2;
+        column-gap: 10px;
+    }
+}
+@media print {
+  .professor { page-break-inside: avoid; }
+}
+td { text-align: center; }
+</style>
+
+</head>
+<body>
+
+<img style="margin-right:1cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+<img src="EII_sym.png" height="100">
+
+<h1>Escuela de Ingeniería Industrial de Toledo</h1>
+<h2>Horarios de tutoría y datos de contacto</h2>
+
+<div class="content">
+
+{% macro label_div(i, name, desc, value) -%}
+<div class="item {{name}}">
+    <label for="{{ '{}_{}'.format(name, i) }}">{{ desc }}</label>
+    <div class="value {{name}}" id="{{ '{}_{}'.format(name, i) }}">{{ value }}</div>
+</div>
+{%- endmacro %}
+{% macro button(i, name, value) -%}
+    <button class="accordion {{name}}" id="{{ '{}_{}'.format(name, i) }}">{{ value }}</button>
+{%- endmacro %}
+
+{% for p in profes %}
+<div class="professor">
+    {{ button(loop.index, 'name', '{}, {}'.format(p['sn'], p['givenName'])) }}
+    <div class="card" id="card_{{loop.index}}">
+        <div class="col1">
+        {{ label_div(loop.index, 'title', 'Categoría', p['title']) }}
+        {{ label_div(loop.index, 'office', 'Despacho', p['office']) }}
+        {{ label_div(loop.index, 'phone', 'Teléfono', p['telephoneNumber']) }}
+        {{ label_div(loop.index, 'mail', 'Correo-e', p['mail']) }}
+        </div>
+        <div class="col2">
+        {{ label_div(loop.index, 'tutorias', 'Horario de Tutorías', '<br/>'.join(p['tutorias'].split('\n'))) }}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>
