@@ -120,8 +120,8 @@ if __name__ == '__main__':
 
     if args.upload:
         course = args.upload if args.upload != '-' else args.fetch
-    
-    if course:
+        if not course:
+            exit()
         print("Subiendo actas de", course)
         for i, fname in enumerate(args.actas):
             actas.upload_acta(course, i, args.out_prefix + fname)
