@@ -1,27 +1,31 @@
 from openpyxl import load_workbook
 from campusvirtual import CampusVirtual
 from actascalificacion import ActasCalificacion
-import argparse, os, requests
+import argparse, os, requests, re
 from selenium import webdriver
 
 grade_ceil = False
 
-def calificar_actas(notas, actas, out_prefix):
+def calificar_actas(notas, actas, prefijo, requisito, scale):
     wb = load_workbook(filename=notas, read_only=True)
     wba = [load_workbook(filename=fname) for fname in actas]
     clean_workbooks(wba)
     for wbi in wba:
         calificacion_por_defecto(wbi)
+    required_columns = calcular_columnas(wb.active, requisito)
     for row in wb.active:
         givenName, sn, nota = (cell.value for cell in (row[0], row[1], row[6]))
         if givenName == 'Nombre':
             continue
-        if nota != '-':
-            for wbi in wba:
-                poner_nota(wbi, '{}, {}'.format(sn,givenName), nota)
+        no_presentado = any(row[i].value == '-' for i in required_columns)
+        nota = 0. if nota == '-' else calificacion(nota, scale)
+        if no_presentado and nota < 5.:
+            continue
+        for wbi in wba:
+            poner_nota(wbi, '{}, {}'.format(sn,givenName), nota)
 
     for wbi, fname in zip(wba, actas):
-        wbi.save(out_prefix + fname)
+        wbi.save(prefijo + fname)
 
 def clean_workbooks(wbs):
     ''' Elimina estilos empotrados que incluyen las actas.
@@ -32,23 +36,37 @@ def clean_workbooks(wbs):
             for cell in row:
                 cell.style = 'Normal'
 
+def calcular_columnas(sheet, requisito):
+    header = [cell.value for cell in next(iter(sheet))]
+    return [posicion_actividad(header, r) for r in requisito]
+
+def posicion_actividad(L, e):
+    ra = re.compile(r'\w+:(?P<nombre>[\w\s]+)\s\(\w*\)')
+    for i,t in enumerate(L):
+        match = ra.match(t)
+        if not match:
+            continue
+        if match.group('nombre') == e:
+            return i
+
+
 def calificacion_por_defecto(wb):
     for row in wb.active:
         if row[0].value.startswith('Número'):
             continue
+        row[2].value = ''
         row[3].value = 'NP'
 
 def poner_nota(wb, nombre, nota):
-    v = calificacion(nota)
     for row in wb.active:
-        if row[1].value == nombre:
-            row[2].value = round(v,1)
+        if row[1].value.upper() == nombre:
+            row[2].value = round(nota,1)
             row[2].number_format = '0.0'
-            row[3].value = letra(v)
+            row[3].value = letra(nota)
             break
 
-def calificacion(nota):
-    v = float(nota)/10
+def calificacion(nota, scale):
+    v = float(nota)/scale
     if grade_ceil and v < 5. and v > 4.:
         return 5.
     return v
@@ -82,7 +100,7 @@ if __name__ == '__main__':
                         help='no produce salidas de ningún tipo')
     parser.add_argument('--fetch', action='store',
                         help='descarga la hoja de Campus Virtual')
-    parser.add_argument('--upload', nargs='?', default='-',
+    parser.add_argument('--upload', nargs='?', default=None, const='-',
                         help='sube las actas a ActasCalificacion')
     parser.add_argument('--cv', action='store', default='cv.xlsx',
                         help='ruta de la hoja de Campus Virtual')
@@ -90,6 +108,10 @@ if __name__ == '__main__':
                         help='renderiza los datos en archivo HTML')
     parser.add_argument('--out-prefix', action='store', default='',
                         help='prefijo de las hojas de salida')
+    parser.add_argument('--require', nargs='*',
+                        help='tareas requeridas para considerar presentado')
+    parser.add_argument('--scale', action='store', type=int, default=1,
+                        help='escalado de las notas (si en CV no son sobre 10)')
     args = parser.parse_args()
     
 
@@ -115,8 +137,12 @@ if __name__ == '__main__':
         grade_ceil = True
 
     if not args.noout:
-        print('Descargando calificaciones de', args.fetch)
-        calificar_actas(args.cv, args.actas, args.out_prefix)
+        print('Calculando calificaciones de', args.cv)
+        calificar_actas(notas = args.cv, 
+                        actas = args.actas, 
+                        prefijo = args.out_prefix, 
+                        requisito = args.require,
+                        scale = args.scale)
 
     if args.upload:
         course = args.upload if args.upload != '-' else args.fetch
