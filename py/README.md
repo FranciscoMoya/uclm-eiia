@@ -67,7 +67,7 @@ Esta invocación realiza las siguientes operaciones:
 Si necesitas cambiar alguna calificación, puedes hacerlo en los archivos resultado (p.ej. `inf-18-19-A.xlsx`) y posteriormente subir las actas con la orden siguiente:
 
 ```
-python actas.py --actas A.xlsx B.xlsx C.xlsx --out-prefix inf-18-19- --upload INFORMÁTICA
+python actas.py --noout --actas A.xlsx B.xlsx C.xlsx --out-prefix inf-18-19- --upload INFORMÁTICA
 ```
 
 Es muy importante utilizar el mismo nombre de la asignatura que aparece en Campus Virtual.  Si tienes algún problema habla conmigo.
