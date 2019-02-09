@@ -54,7 +54,7 @@ def calificacion_por_defecto(wb):
     for row in wb.active:
         if row[0].value.startswith('Número'):
             continue
-        row[2].value = ''
+        row[2].value = None
         row[3].value = 'NP'
 
 def poner_nota(wb, nombre, nota):
@@ -110,7 +110,7 @@ if __name__ == '__main__':
                         help='prefijo de las hojas de salida')
     parser.add_argument('--require', nargs='*',
                         help='tareas requeridas para considerar presentado')
-    parser.add_argument('--scale', action='store', type=int, default=1,
+    parser.add_argument('--scale', action='store', type=float, default=1.,
                         help='escalado de las notas (si en CV no son sobre 10)')
     args = parser.parse_args()
     
@@ -128,6 +128,7 @@ if __name__ == '__main__':
         print('Descargando actas vacías de', args.fetch)
         for i, f in enumerate(args.actas):
             with open(f, 'wb') as xls:
+                print('Descargando acta', args.fetch, i)
                 xls.write(actas.download_acta(args.fetch, i))
         print('Descargando calificaciones de', args.fetch)
         with open(args.cv, 'wb') as f:
@@ -150,4 +151,5 @@ if __name__ == '__main__':
             exit()
         print("Subiendo actas de", course)
         for i, fname in enumerate(args.actas):
+            print("Subiendo", args.out_prefix + fname)
             actas.upload_acta(course, i, args.out_prefix + fname)
