@@ -72,6 +72,14 @@ python actas.py --noout --actas A.xlsx B.xlsx C.xlsx --out-prefix inf-18-19- --u
 
 Es muy importante utilizar el mismo nombre de la asignatura que aparece en Campus Virtual.  Si tienes algún problema habla conmigo.
 
+### Más opciones
+
+El script permite otras opciones, como considerar *no presentado* al alumno que no se presenta a alguna actividad, escalar las calificaciones, si en el Campus Virtual se usa una escala diferente a 10, o redondear hacia arriba las calificaciones de más de un 4.0.  Por ejemplo, la invocación real en INFORMÁTICA sería:
+
+```
+python actas.py --fetch INFORMÁTICA --cv informatica-18-19.xlsx --actas A.xlsx B.xlsx C.xlsx --out-prefix inf-18-19- --upload --ceil --scale 10 --require "Examen ordinario"
+```
+
 ## Disclaimer
 
 En este corto periodo de tiempo en el que estoy intentando modernizar los procesos de la Escuela ya he tenido que aguantar a uno que entra insultándome en el despacho y que, encima, suelta sin ruborizarse una idiotez sin la más leve intención de que resulte útil (ni para él ni para la Escuela).  Yo sigo convencido de que la inmensa mayoría del PDI de la Escuela son excelentes personas y por eso sigo empeñado en evitar que dilapiden su tiempo con procesos mecánicos.
