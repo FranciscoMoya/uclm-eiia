@@ -54,7 +54,10 @@ class CampusVirtual(object):
 
     def calificaciones(self, course):
         driver = self.driver
-        driver.get('https://campusvirtual.uclm.es/grade/export/xls/index.php?id=' + course)
+        driver.get('https://campusvirtual.uclm.es/my/')
+        a = driver.find_element_by_xpath('//a[normalize-space(text())="{}"]'.format(course))
+        courseid = a.get_attribute('href').split('=')[1]
+        driver.get('https://campusvirtual.uclm.es/grade/export/xls/index.php?id=' + courseid)
         # recoger en diccionario todos los input, como name:value
         allinputs = driver.find_elements_by_xpath('//form//input')
         postdata = { i.get_attribute('name'):get_element_value(i) for i in allinputs if not i.get_attribute('name').startswith('nosubmit') }
