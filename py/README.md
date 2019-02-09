@@ -60,7 +60,7 @@ python actas.py --fetch INFORMÁTICA --cv informatica-18-19.xlsx --actas A.xlsx 
 Esta invocación realiza las siguientes operaciones:
 
 * Descarga las calificaciones de la asignatura `INFORMÁTICA` del [Campus Virtual](https://campusvirtual.uclm.es) y las guarda en el archivo `informatica-18-19.xlsx`.
-* Descarga las actas de la asignatura `INFORMÁTICA` de (actascalificacion.uclm.es](https://actascalificacion.uclm.es) en los archivos `A.xlsx`, `B.xlsx` y `C.xlsx`. Normalmente estas actas solo tendrán los nombres de los alumnos.
+* Descarga las actas de la asignatura `INFORMÁTICA` de [actascalificacion.uclm.es](https://actascalificacion.uclm.es) en los archivos `A.xlsx`, `B.xlsx` y `C.xlsx`. Normalmente estas actas solo tendrán los nombres de los alumnos.
 * Rellena de forma automática todas las actas y guarda el resultado en los archivos `inf-18-19-A.xlsx`, `inf-18-19-B.xlsx` y `inf-18-19-C.xlsx`.
 * Sube las actas rellenas a [actascalificacion.uclm.es](https://actascalificacion.uclm.es).
 
