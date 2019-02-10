@@ -43,23 +43,25 @@ class ActasCalificacion(object):
     def upload_acta(self, course, i, fname):
         postdata = self._get_postdata_excel(course, i)
         postdata['accion'] = 'U'
+        postdata['enviar'] = None
         with open(fname, 'rb') as fd:
             upload_post_file(
                 'https://actascalificacion.uclm.es/actas/calificacionExcel.do',
                 self.driver.get_cookies(),
                 postdata,
-                {'fichero': fd})        
+                {'fichero': ('data.xlsx', fd, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')})
 
     def _get_postdata_excel(self, course, i):        
         driver = self.driver
         driver.get('https://actascalificacion.uclm.es/actas/actas.do')
         actas = driver.find_elements_by_xpath('//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
         actas[i].click()
-        inputs = driver.find_elements_by_xpath('//form[@name="calificacionExcelAtionForm"]//input')
-        postdata = { i.get_attribute('name'): i.get_attribute('value') for i in inputs }
-        form = driver.find_element_by_name('generico')
+        driver.find_element_by_id('lbOn0').click()
+        formulario = driver.find_element_by_name('calificacionExcelAtionForm')
+        formPadre = driver.find_element_by_name('generico')
+        postdata = { i.get_attribute('name'): i.get_attribute('value') for i in formulario.find_elements_by_tag_name('input') }
         for a,b in zip(('anioAct', 'asignaturaAct', 'idAsignaturaAct', 'grupoAct', 'ordenAct', 'convAct'),
                         ('anyAnyaca','assCodnum','idAss','gasCodnum','actNumord','tcoCodalf')):
-            postdata[b] = form.find_element_by_name(a).get_attribute('value')
+            postdata[b] = formPadre.find_element_by_name(a).get_attribute('value')
         return postdata
 
