@@ -30,11 +30,20 @@ class DirectorioActivo(object):
                     attributes=['department','mail'])
         return self.conn.entries
 
+    def alumnos_displayNames(self, escuela):
+        self.conn.search('ou={},ou=Toledo,ou=Alumnos,dc=uclm,dc=es'.format(escuela), 
+                         '(objectclass=person)', 
+                         attributes=['sn', 'givenName', 'displayName'])
+        return { (str(p['sn']), str(p['givenName'])): str(p['displayName'])  for p in self.conn.entries }
+
 #conn.search('cn=francisco.moya,ou=Toledo,ou=PDI,dc=uclm,dc=es', '(objectclass=person)', attributes='*')
 #conn.search('cn=Grupo.PDI.TO.EII,ou=PDI,dc=uclm,dc=es', '(objectclass=*)', attributes='member')
 #conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', '(objectClass=person)', attributes='displayName')
 if __name__ == '__main__':
     with DirectorioActivo(USERNAME, PASSWORD) as da:
         #print(da.profesores('ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO'))
-        print(da.profesor('AMA ESPINOSA'))
+        #print(da.profesor('AMA ESPINOSA'))
         #print(da.correos_profesores('ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO'))
+        print(len(da.alumnos_displayNames('E.U. INGENIERIA TECNICA INDUSTRIAL')))
+        #print(da.conn.search('ou=E.U. INGENIERIA TECNICA INDUSTRIAL,ou=Toledo,ou=Alumnos,dc=uclm,dc=es', '(objectclass=person)', attributes=['sn', 'givenName', 'displayName']))
+        #print(da.conn.entries)

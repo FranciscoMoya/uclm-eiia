@@ -1,12 +1,11 @@
 from openpyxl import load_workbook
 from campusvirtual import CampusVirtual
 from actascalificacion import ActasCalificacion
+from ad import DirectorioActivo
 import argparse, os, requests, re
 from selenium import webdriver
 
-grade_ceil = False
-
-def calificar_actas(notas, actas, prefijo, requisito, scale):
+def calificar_actas(notas, actas, prefijo, requisito, scale, corte):
     wb = load_workbook(filename=notas, read_only=True)
     wba = [load_workbook(filename=fname) for fname in actas]
     clean_workbooks(wba)
@@ -18,11 +17,14 @@ def calificar_actas(notas, actas, prefijo, requisito, scale):
         if givenName == 'Nombre':
             continue
         no_presentado = any(row[i].value == '-' for i in required_columns)
-        nota = 0. if nota == '-' else calificacion(nota, scale)
+        nota = 0. if nota == '-' else calificacion(nota, scale, corte)
+        #print(sn, givenName, nota)
         if no_presentado and nota < 5.:
             continue
-        for wbi in wba:
-            poner_nota(wbi, '{}, {}'.format(sn,givenName), nota)
+        nombre = (sn,givenName)
+        if not any(poner_nota(wbi, nombre, nota) for wbi in wba):
+            print('No encontrado en actas', nombre)
+            
 
     for wbi, fname in zip(wba, actas):
         wbi.save(prefijo + fname)
@@ -59,15 +61,16 @@ def calificacion_por_defecto(wb):
 
 def poner_nota(wb, nombre, nota):
     for row in wb.active:
-        if row[1].value.upper() == nombre:
+        if igual_nombre(row[1].value, nombre):
             row[2].value = round(nota,1)
             row[2].number_format = '0.0'
             row[3].value = letra(nota)
-            break
+            return True
+    return False
 
-def calificacion(nota, scale):
+def calificacion(nota, scale, corte):
     v = float(nota)/scale
-    if grade_ceil and v < 5. and v > 4.:
+    if v < 5. and v > corte:
         return 5.
     return v
 
@@ -82,6 +85,16 @@ def letra(v):
         return 'SB'
     return 'M'
 
+def igual_nombre(s, n):
+    s = s.upper()
+    a,b = n
+    a, b = a.upper(), b.upper()
+    if s == a + ', ' + b:
+        return True
+    if s == a + ' , ' + b:
+        return True
+    return False
+
 try:
     from cv_cfg import USERNAME, PASSWORD 
 except:
@@ -94,8 +107,8 @@ if __name__ == '__main__':
     try: os.chdir(os.path.dirname(__file__))
     except: pass
     parser = argparse.ArgumentParser(description='Transfiere los datos de una hoja de CampusVirtual a las actas correspondientes')
-    parser.add_argument('--ceil', action='store_true',
-                        help='redondea por arriba notas > 4.0')
+    parser.add_argument('--ceil', nargs='?', type=float, default=5., const=4.,
+                        help='aprueba (5.0) notas por encima del corte especificado')
     parser.add_argument('--noout', action='store_true',
                         help='no produce salidas de ningún tipo')
     parser.add_argument('--fetch', action='store',
@@ -143,7 +156,8 @@ if __name__ == '__main__':
                         actas = args.actas, 
                         prefijo = args.out_prefix, 
                         requisito = args.require,
-                        scale = args.scale)
+                        scale = args.scale,
+                        corte = args.ceil)
 
     if args.upload:
         course = args.upload if args.upload != '-' else args.fetch
