@@ -60,7 +60,7 @@ class CampusVirtual(object):
         driver.get('https://campusvirtual.uclm.es/grade/export/xls/index.php?id=' + courseid)
         # recoger en diccionario todos los input, como name:value
         allinputs = driver.find_elements_by_xpath('//form//input')
-        postdata = { i.get_attribute('name'):get_element_value(i) for i in allinputs if not i.get_attribute('name').startswith('nosubmit') }
+        postdata = { str(i.get_attribute('name')):str(get_element_value(i)) for i in allinputs if not i.get_attribute('name').startswith('nosubmit') }
         return download_post_file(
             'https://campusvirtual.uclm.es/grade/export/xls/export.php',
             driver.get_cookies(),

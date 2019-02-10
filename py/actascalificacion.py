@@ -35,15 +35,19 @@ class ActasCalificacion(object):
     def download_acta(self, course, i):
         postdata = self._get_postdata_excel(course, i)
         postdata['accion'] = 'DX'
+        postdata['enviar'] = None
+        postdata['descargar'] = 'Descargar fichero xlsx'
         return download_post_file(
             'https://actascalificacion.uclm.es/actas/calificacionExcel.do',
             self.driver.get_cookies(),
-            postdata)
+            postdata,
+            {'fichero': ('', '', 'application/octet-stream')})
 
     def upload_acta(self, course, i, fname):
         postdata = self._get_postdata_excel(course, i)
         postdata['accion'] = 'U'
-        postdata['enviar'] = None
+        postdata['descargar'] = None
+        postdata['enviar'] = 'Calificar'
         with open(fname, 'rb') as fd:
             upload_post_file(
                 'https://actascalificacion.uclm.es/actas/calificacionExcel.do',
@@ -59,9 +63,9 @@ class ActasCalificacion(object):
         driver.find_element_by_id('lbOn0').click()
         formulario = driver.find_element_by_name('calificacionExcelAtionForm')
         formPadre = driver.find_element_by_name('generico')
-        postdata = { i.get_attribute('name'): i.get_attribute('value') for i in formulario.find_elements_by_tag_name('input') }
+        postdata = { str(i.get_attribute('name')): str(i.get_attribute('value')) for i in formulario.find_elements_by_tag_name('input') }
         for a,b in zip(('anioAct', 'asignaturaAct', 'idAsignaturaAct', 'grupoAct', 'ordenAct', 'convAct'),
                         ('anyAnyaca','assCodnum','idAss','gasCodnum','actNumord','tcoCodalf')):
-            postdata[b] = formPadre.find_element_by_name(a).get_attribute('value')
+            postdata[b] = str(formPadre.find_element_by_name(a).get_attribute('value'))
         return postdata
 

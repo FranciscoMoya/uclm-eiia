@@ -135,14 +135,15 @@ if __name__ == '__main__':
         actas.authenticate()
     
     if args.fetch:
+        print('Descargando actas vacías de', args.fetch)
+        for i, f in enumerate(args.actas):
+            with open(f, 'wb') as xlsx:
+                print('Descargando acta', args.fetch, i)
+                xlsx.write(actas.download_acta(args.fetch, i))
+
         cv = CampusVirtual(USERNAME, PASSWORD, driver)
         cv.authenticate()
 
-        print('Descargando actas vacías de', args.fetch)
-        for i, f in enumerate(args.actas):
-            with open(f, 'wb') as xls:
-                print('Descargando acta', args.fetch, i)
-                xls.write(actas.download_acta(args.fetch, i))
         print('Descargando calificaciones de', args.fetch)
         with open(args.cv, 'wb') as f:
             f.write(cv.calificaciones(args.fetch))
