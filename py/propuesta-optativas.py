@@ -11,7 +11,9 @@ def save_descriptions(csvfile, dir, tmpl, itmpl):
         render_html(tmpl, course_data)
         all_courses.append(course_data)
     all_courses.sort(key=lambda e: e['Denominación'])
-    render_index_html(itmpl, all_courses, dir)
+    por_grado = { g: [x for x in all_courses if g.upper() in x['Grado']] \
+                        for g in ('Ingeniería Eléctrica', 'Ingeniería en Electrónica Industrial y Automática') }
+    render_index_html(itmpl, por_grado, dir)
 
 def render_html(tmpl, data):
     with open(data['filename'], 'w', encoding='utf-8') as f:
@@ -28,6 +30,7 @@ def canonicalize(data, dir):
         if any(k.startswith(l) for l in ('Contenidos', 'Competencias', 'Justificación')):
             continue
         data[k] = data[k].upper()
+    data['doble'] = ';' in data['Grado']
     data['Denominación'] = data['Denominación'].upper()
     data['filename'] = get_filename(data, dir)
     data['Áreas de conocimiento proponentes'] = fix_area(data['Áreas de conocimiento proponentes'])

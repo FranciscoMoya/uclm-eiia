@@ -1,5 +1,7 @@
 "Marca temporal","Grado","Áreas de conocimiento proponentes","Profesores que la suscriben","Denominación","Contenidos","Competencias del módulo de formación básica","Competencias del módulo común a la rama industrial","Competencias del módulo de tecnología específica (Eléctrica)","Competencias del módulo de tecnología específica (Electrónica Industrial)","Justificación técnica"
-"2019/02/07 5:20:55 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS","OCTAVIO ARMAS VERGEL - MARÍA ARÁNTZAZU GÓMEZ ESTEBAN - MARÍA REYES GARCÍA CONTRERAS","TECNOLOGÍAS DE TRANSFORMACIÓN DE ENERGÍA","Contenidos teóricos:
+"2019/02/07 5:20:55 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS","OCTAVIO ARMAS VERGEL
+MARÍA ARÁNTZAZU GÓMEZ ESTEBAN
+MARÍA REYES GARCÍA CONTRERAS","TECNOLOGÍAS DE TRANSFORMACIÓN DE ENERGÍA","Contenidos teóricos:
 Tema 1. CONCEPTOS GENERALES SOBRE ENERGÍA Y SUS TRANSFORMACIONES  
 Visión de conjunto de las transformaciones y operaciones energéticas. Rendimiento de las transformaciones energéticas. Fuentes de energía primaria. Uso de la energía en la industria y el transporte.
 Tema 2. SISTEMAS DE RECUPERACIÓN DE ENERGÍA POR INTERCAMBIO  
@@ -482,7 +484,9 @@ CONTENIDOS PRÁCTICOS:
 Un Ingeniero Electrónico moderno no diseña circuitos físicos.  Es mucho más habitual que diseñe la lógica a sintetizar en las FPGA de las plataformas de desarrollo.  Para ello no se emplea captura de esquemas, sino lenguajes de modelado.  En Europa el lenguaje de modelado más ampliamente usado es VHDL.
 VHDL tiene ciertos parecidos con un lenguaje de programación, pero también tiene importantes diferencias que es preciso conocer.  La depuración es mucho más compleja que en un programa de ordenador. Se utilizan metodologías de desarrollo perfectamente definidas para reducir la incertidumbre en los resultados y se utilizan simuladores para determinar las características del sistema final antes de llegar a la implementación.
 VHDL es una de las destrezas que más demandan en los Ingenieros Industriales empresas como Tecnobit, Eurofighter, o Indra."
-"2019/02/11 7:14:42 a. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Química","María Teresa Baeza Romero, José Luis de la Peña Rubio, Vicente López-Arza","Gestión Medioambiental en Proyectos de Ingeniería","TEÓRICOS
+"2019/02/11 7:14:42 a. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Química","María Teresa Baeza Romero
+José Luis de la Peña Rubio
+Vicente López-Arza","Gestión Medioambiental en Proyectos de Ingeniería","TEÓRICOS
 -	Gestión de residuos. Gestión de RAEE (Residuos de Aparatos Eléctricos y Electrónicos)
 -	Contaminación lumínica.
 -	Contaminación por olores.
@@ -501,7 +505,17 @@ PRÁCTICOS
      Esta asignatura te permitirá poder adquirir conocimientos y capacidades no sólo teóricas sino también prácticas para poder desenvolverte con los trámites administrativos que se han de relacionar en temas relacionados con el medio ambiente con las administraciones y te permitirá saber cómo implantar y gestionar un sistema de gestión medioambiental en una empresa. Este tipo de formación es muy demandada por el sector industrial dado que el medioambiente es hoy en día un aspecto fundamental en la rentabilidad de las empresas. 
 
 "
-"2019/02/11 2:05:46 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Física Aplicada, Ingeniería Eléctrica, Máquinas y Motores Térmicos, Ingeniería de Sistemas y Automática","Alberto López, Miguel Carrión/Ruth Domínguez, Ismael Payo/Sergio Juárez, Mª Reyes García/Mª Arántzazu Gómez/Octavio Armas","Sistemas de Energía Solar","Teoría:
+"2019/02/11 2:05:46 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Física Aplicada
+Ingeniería Eléctrica
+Máquinas y Motores Térmicos
+Ingeniería de Sistemas y Automática","Alberto López
+Miguel Carrión
+Ruth Domínguez
+Ismael Payo
+Sergio Juárez
+Mª Reyes García
+Mª Arántzazu Gómez
+Octavio Armas","Sistemas de Energía Solar","Teoría:
 1.	LA ENERGÍA SOLAR.
 Conceptos físicos utilizados en energía solar. Energía radiante. Conversión de la energía solar. Legislación. 
 2.	ENERGÍA SOLAR FOTOVOLTAICA.
@@ -660,7 +674,9 @@ El desarrollo tecnológico en todos los campos de las instalaciones: suministro 
 En base al Anexo de la Orden CIN/321/2009, los estudiantes deben adquirir los conocimientos para la redacción, firma, desarrollo de proyectos y su dirección de obra, en el ámbito de la ingeniería industrial que tengan por objeto, la construcción, reforma, reparación, conservación, demolición, fabricación, instalación, montaje o explotación de: estructuras, equipos mecánicos, instalaciones energéticas, instalaciones eléctricas y electrónicas, instalaciones y plantas industriales y procesos de fabricación y automatización. 
 
 Puede considerarse por lo tanto que la gestión y el control de instalaciones cada vez más numerosas y sofisticadas, con una fuerte repercusión en la inversión y consumo de energía, es una capacidad más importante incluso que el diseño y dimensionado previo. Este desempeño solo es posible desde la gestión integrada de todos los sistemas, lo que hace imprescindible el manejo de programas con una componente gráfica que permita la conectividad e interrelación de implantaciones complejas (tecnología BIM, Project Manager, Start CCM+, etc.)."
-"2019/02/11 6:43:00 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS ","MARÍA ARÁNTZAZU GÓMEZ ESTEBAN – OCTAVIO ARMAS VERGEL – MARÍA REYES GARCÍA CONTRERAS","PREVENCIÓN DE RIESGOS LABORALES","Contenidos teóricos:
+"2019/02/11 6:43:00 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS ","MARÍA ARÁNTZAZU GÓMEZ ESTEBAN
+OCTAVIO ARMAS VERGEL
+MARÍA REYES GARCÍA CONTRERAS","PREVENCIÓN DE RIESGOS LABORALES","Contenidos teóricos:
 Tema 1 INTRODUCCIÓN A LA PREVENCIÓN DE RIESGOS LABORALES
 Conceptos básicos. Normativa. Organismos con competencias en materia de PRL. Disciplinas preventivas.
 Tema 2 EL SISTEMA DE PREVENCIÓN

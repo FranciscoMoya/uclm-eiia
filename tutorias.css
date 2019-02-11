@@ -82,3 +82,12 @@ label::after {
   .professor { page-break-inside: avoid; }
 }
 td { text-align: center; }
+.footnote {
+    font-size: small;
+    font-style: oblique;    
+}
+hr {
+    max-width: 100px;
+    margin-left: 0px;
+    margin-top: 20px;
+}
