@@ -4,94 +4,7 @@
     <title>UCLM - EII Toledo - Tutorías</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-* { box-sizing: border-box; }
-body { 
-    font-family: Arial, Helvetica, sans-serif; 
-}
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: left;
-    background-color: lightgray;
-    border-radius: 0 0 7px 7px;
-    overflow:hidden;
-    display: block;
-    margin-bottom: 16px;
-    width: 18cm;
-}
-.accordion {
-    background-color: #5d2e2e;
-    color: lightgray;
-    cursor: pointer;
-    border: none;
-    text-align: left;
-    outline: none;
-    transition: 0.4s;
-    border-radius: 7px 7px 0 0;
-    width: 18cm;
-    padding: 10px 16px 0px 16px;
-}
-.active, .accordion:hover {
-    background-color: #4d1e1e; 
-}
-.name { 
-    font-size: larger; 
-    padding-bottom: 10px; 
-    color: white;
-}
-.value {
-    float: left;
-    color:black;
-    width: 7.5cm;
-}
-.item {
-    padding-bottom: 4px;
-    display: inline-block;
-    float: left;
-    clear: left;
-}
-label {
-    width: 2.5cm;
-    font-weight: bold;
-    font-style: oblique;
-    float: left;
-    padding-bottom: 4px;
-}
-.value.tutorias, div.tutorias label {
-    width: 100%;
-    clear: both;
-    padding-bottom: 10px;
-}
-label::after {
-    content: ':';
-}
-.col1 {
-    width: 70%;
-    float: left;
-    display: inline-block;
-}
-.col2 {
-    width: 30%;
-    float: right;
-    display: inline-block;
-}
-.professor {
-    break-inside: avoid-column;
-}
-@media only screen and (min-width: 1400px) {
-    .content {
-        column-count: 2;
-        column-gap: 10px;
-    }
-}
-@media print {
-  .professor { page-break-inside: avoid; }
-}
-td { text-align: center; }
-</style>
-
+    <link rel="stylesheet" type="text/css" href="tutorias.css">
 </head>
 <body>
 
@@ -537,7 +450,7 @@ td { text-align: center; }
 </div>
         <div class="item office">
     <label for="office_15">Despacho</label>
-    <div class="value office" id="office_15"></div>
+    <div class="value office" id="office_15">Sabatini 1.51</div>
 </div>
         <div class="item phone">
     <label for="phone_15">Teléfono</label>
@@ -551,7 +464,7 @@ td { text-align: center; }
         <div class="col2">
         <div class="item tutorias">
     <label for="tutorias_15">Horario de Tutorías</label>
-    <div class="value tutorias" id="tutorias_15">No han sido especificadas por el profesor</div>
+    <div class="value tutorias" id="tutorias_15">Lunes: 8:30 a 9:30 y 10:30 a 11:30<br/>Martes: 10:30 a 12:30<br/>Miércoles: 8:30 a 9:30 y 11:30 a 12:30</div>
 </div>
         </div>
     </div>
@@ -1197,7 +1110,7 @@ td { text-align: center; }
 </div>
         <div class="item office">
     <label for="office_37">Despacho</label>
-    <div class="value office" id="office_37"></div>
+    <div class="value office" id="office_37">Sabatini 1.51</div>
 </div>
         <div class="item phone">
     <label for="phone_37">Teléfono</label>
@@ -1211,7 +1124,7 @@ td { text-align: center; }
         <div class="col2">
         <div class="item tutorias">
     <label for="tutorias_37">Horario de Tutorías</label>
-    <div class="value tutorias" id="tutorias_37">No han sido especificadas por el profesor</div>
+    <div class="value tutorias" id="tutorias_37">Martes: 10:30 a 11:30 y 13:30 a 14:30 y 16:00 a 18:00<br/>Viernes: 11:30 a 13:30</div>
 </div>
         </div>
     </div>
