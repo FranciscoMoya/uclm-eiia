@@ -38,7 +38,6 @@ def tutorias_dia(d, t):
     '''
     medias = [d in v for v in t]
     ant = [False] + medias
-    sig = medias[1:] + [False]
     comienzo = [l for l,i,j in zip(horas, medias, ant) if i and not j] 
     final = [l for l,i,j in zip(horas, medias, ant) if not i and j]
     return zip([d]*100, comienzo, final)
@@ -67,4 +66,5 @@ def office_normalize(despacho):
     return despacho
 
 if __name__ == '__main__':
-    update([])
+    import sys
+    update([], sys.stdout)

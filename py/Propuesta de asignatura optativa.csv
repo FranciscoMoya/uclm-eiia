@@ -1,0 +1,766 @@
+"Marca temporal","Grado","Áreas de conocimiento proponentes","Profesores que la suscriben","Denominación","Contenidos","Competencias del módulo de formación básica","Competencias del módulo común a la rama industrial","Competencias del módulo de tecnología específica (Eléctrica)","Competencias del módulo de tecnología específica (Electrónica Industrial)","Justificación técnica"
+"2019/02/07 5:20:55 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS","OCTAVIO ARMAS VERGEL - MARÍA ARÁNTZAZU GÓMEZ ESTEBAN - MARÍA REYES GARCÍA CONTRERAS","TECNOLOGÍAS DE TRANSFORMACIÓN DE ENERGÍA","Contenidos teóricos:
+Tema 1. CONCEPTOS GENERALES SOBRE ENERGÍA Y SUS TRANSFORMACIONES  
+Visión de conjunto de las transformaciones y operaciones energéticas. Rendimiento de las transformaciones energéticas. Fuentes de energía primaria. Uso de la energía en la industria y el transporte.
+Tema 2. SISTEMAS DE RECUPERACIÓN DE ENERGÍA POR INTERCAMBIO  
+Intercambiadores de calor. Definición y clasificación. Parámetros característicos de diseño.
+Tema 3. SISTEMAS DE ALMACENAMIENTO ENERGÉTICO  
+Justificación y concepto. Clasificación y criterios de elección. Algunos ejemplos de métodos de almacenamiento energético.   
+Tema 4. INSTALACIONES PARA LA PRODUCCIÓN DE ENERGÍA MECÁNICA. MOTORES DE COMBUSTIÓN
+ Definición y clasificación de los motores térmicos. Aspectos tecnológicos de los Motores de Combustión Interna (MCI).  Aspectos tecnológicos de los Motores de Combustión Externa (MCE). 
+Tema 5. SISTEMAS DE COGENERACIÓN  
+Definición. Tipos de sistemas. Parámetros de diseño y modos de operación. Marco legal.
+Tema 6. FUNDAMENTOS DE ANÁLISIS ENERGÉTICO Y EXERGÉTICO 
+Balances energéticos aplicados a sistemas convencionales de transformación energética. Definición de exergía. Ejemplos aplicados de balance exergético. 
+Tema 7. TECNOLOGÍAS EMERGENTES DE GENERACIÓN DE ENERGÍA ELÉCTRICA 
+Pilas de combustible. Fundamentos de generadors termoeléctricos y piezoeléctricos. Fusión nuclear.
+Tema 8. ENERGÍA Y MEDIOAMBIENTE
+Normativa medioambiental. Tecnologías de reducción de contaminantes.
+
+Contenidos prácticos:
+-	Balance energético y exergético de un Motor de Combustión Interna Alternativo (MCIA)
+-	Evaluación de la eficacia de un intercambiador de calor
+-	Almacenamiento de energía térmica procedente de un Motor de Combustión Interna Alternativo (MCIA) y de un freno dinamométrico
+-	Evaluación energética de un generador termoeléctrico comercial
+","","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos básicos y aplicación de tecnologías medioambientales y sostenibilidad.","Capacidad para el diseño de centrales eléctricas.;Conocimiento aplicado sobre energías renovables.","Conocimiento y capacidad para el modelado y simulación de sistemas.;Capacidad para diseñar sistemas de control y automatización industrial.","Esta asignatura permite al estudiante sentar las bases del conocimiento de diferentes tecnologías de transformación energética para la producción de energía mecánica y eléctrica, entre ellas, instalaciones tan utilizadas en las centrales térmicas convencionales y sistemas de cogeneración como los intercambiadores de calor o incluso los sistemas de almacenamiento energético (muy utilizados por ejemplo en centrales termosolares). 
+Asimismo, se introducen nuevas tecnologías de generación de energía eléctrica que es conveniente desde el punto de vista de la eficiencia energética. Entre estas nuevas tecnologías, se abordará el estudio de las pilas de combustible, sistemas generadores termoeléctricos o piezoeléctricos o la fusión nuclear.
+Con el conocimiento adquirido en la asignatura, el estudiante podrá, por un lado, abordar tareas de balances energéticos de diferentes esquemas tecnológicos con el objetivo de valorar y ahorrar energía y, por otro, modelar estos esquemas tecnológicos con la finalidad de, posteriormente, proceder al diseño de los reguladores y sistemas de control más apropiados a cada caso.
+"
+"2019/02/08 9:31:53 a. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José María Tirado Martín","Simulación de Sistemas Electrónicos","Tema 1 Circuitos de continua con resistencias
+Tema 1.1 Resistencias en serie
+Tema 1.2 Resistencias en paralelo
+Tema 2 Circuitos de alterna con componentes pasivos
+Tema 2.1 Resistencias en serie y paralelo
+Tema 2.2 Resistencia en serie con inductancia
+Tema 2.3 Resistencias en paralelo con condensador en paralelo
+Tema 3 El diodo
+Tema 3.1 Obtención de curvas I-V del diodo mediante circuito DC
+Tema 3.2 Rectificador monofásico no controlado de media onda
+Tema 4 El transistor bipolar
+Tema 4.1 Polarización básica de un transistor bipolar, obtención de curvas características.
+Tema 4.2 . Circuito amplificador de corriente con transistor NPN
+Tema 5 El transistor MOSFET
+Tema 5.1 . Circuito amplificador de corriente con transistor NPN
+Tema 5.2 Circuito con transistores CMOS. El transistor como interruptor
+Tema 6 El Transistor IGBT
+Tema 6.1 . Obtención de curvas características de un IGBT de canal N.
+Tema 6.2 Circuito Inversor monofásico de medio puente con transistor IGBT de canal N
+Tema 6.3 Circuito Inversor monofásico en puente con transistor IGBT de canal N
+Tema 6.4 Circuito Inversor trifásico de tres ramas en puente con transistor IGBT de canal N
+Tema 7 El tiristor
+Tema 7.1 Polarización de un Tiristor. Obtención de curvas características.
+Tema 7.2 Rectificador monofásico controlado de media onda con carga R y R-L.
+Tema 8 El amplifcador operacional
+Tema 8.1 Obtención de parámetros del amplificador operacional
+Tema 8.2 Configuración no inversora
+Tema 8.3 Configuración inversora
+Tema 8.4 Aplicaciones lineales
+Tema 8.5 Circuito integrador/diferenciador
+Tema 9 Osciladores
+Tema 9.1 Oscilador de cambio de fase basado en amplificador operacional
+Tema 9.2 Oscilador Colpitts basado en transistor bipolar
+Tema 9.3 Generador de onda cuadrada basado en amplificador operacional
+Tema 9.4 Oscilador Hartley
+Tema 10 Filtros
+Tema 11 Amplificador de instrumentación
+Tema 12 Procesos especiales
+Tema 12.1 Análisis de ruido
+Tema 12.2 Análisis de MonteCarlo
+Tema 12.3 Análisis de peor caso
+Tema 12.4 Análisis de rendimiento
+Tema 12.5 El histograma
+Tema 12.6 Modelado del comportamiento analógico
+Tema 13 Simulación de modelos con Simscape
+","Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","Conocimientos de los fundamentos de la electrónica.","","Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.;Conocimiento y capacidad para el modelado y simulación de sistemas.","A través de la asignatura de Simulación de Sistemas Electrónicos se pretende dotar a los alumnos de conocimientos y competencias básicas que todo Ingeniero Industrial en la especialidad de Electrónica industrial y Automática precisa en relación con Sistemas Electrónicos, a través del estudio de características , principio de funcionamiento y aplicaciones.
+Esta asignatura complementa la formación del alumno en Sistemas Electrónicos adquirida en asignaturas de cursos precedentes: Tecnología Electrónica de 2º Curso, Electrónica Analógica y Electrónica de Potencia de 3er curso, completando su formación y capacitándole para su futura actividad profesional.
+La finalidad de esta asignatura es que el alumno consiga realizar diseños de sistemas electrónicos, en base a sus  conocimientos de componentes electrónicos y adquiera destreza en la verificación de los mismos mediante simulación,  etapa previa a una posterior fase de fabricación de los sistemas diseñados.
+Durante el desarrollo de la asignatura se pretende que el alumno adquiera conciencia en:
+ 
+--  Dotar al alumno de unos ciertos conocimientos de índole experimental, que le capaciten para realizar o dirigir las pruebas o trabajos de laboratorio que precise para el ejercicio de su futura labor profesional.
+--  La adquisición del hábito de programar el trabajo, evitando tiempos muertos y completando el trabajo a tiempo.
+--  Aprender a trabajar en equipo, conociendo la responsabilidad de cada miembro de dicho equipo consigo mismo y con los demás.
+--  Inculcar al alumno un sentido crítico y realista de los métodos prácticos, para poder contrastar y juzgar los principios teóricos que ha estudiado.
+                                -- Aprender a preparar informes."
+"2019/02/08 9:45:18 a. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José María Tirado Martín","Modelado de Sistemas de Potencia","Tema 1 Introducción al modelado de Sistemas de potencia
+Tema 1.1 Bloques básicos
+Tema 2 Ejemplos con elementos de potencia
+Tema 2.1 Modelo con diodo
+Tema 3 Obtención de variables de estado e impedancia
+Tema 3.1 Especificando condiciones iniciales
+Tema 4 Transitorios
+Tema 4.1 Discretización de sistemas eléctricos
+Tema 4.2 Introducción al método de simulación por fasores
+Tema 5 Técnicas y componentes avanzados
+Tema 5.1 Rama TSC
+Tema 5.2 Control de velocidad de un motor
+Tema 5.3 Discretización de un motor PWM
+Tema 6 Sistemas trifásicos y máquinas
+Tema 6.1 Herramientas Load Flow
+Tema 6.2 Solución por fasores para estudios de estabilidad
+Tema 7 Modelos no lineales
+Tema 8 Rectificador de doble onda
+Tema 8.1 Sistemas eléctricos discretizados
+Tema 8.2 Motor DC
+Tema 8.3 Motor AC
+Tema 8.4 Acoplamiento de motores AC/DC
+Tema 9 Máquinas de devanados
+Tema 10 Diseño de motor
+Tema 11 Transistorios y electrónica de potencia
+Tema 12 Compensador basado en tiristores
+Tema 13 STATCOM basado en GTO
+Tema 14 Enlace HVDC basado en tiristor
+Tema 15 Estabilidad transitoria de sistemas de potencia empleando simulación por fasores
+Tema 16 Generador eólico
+Tema 17 Enlace basado en VCS HVDC
+Tema 18 Modificación de parámetros de un motor","Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","Conocimiento y utilización de los principios de teoría de circuitos y máquinas eléctricas.;Conocimiento de los principios de teoría de máquinas y mecanismos.","Capacidad para el cálculo y diseño de máquinas eléctricas.;Conocimientos sobre control de máquinas y accionamientos eléctricos y sus aplicaciones.;Conocimiento sobre sistemas eléctricos de potencia y sus aplicaciones.;Conocimiento aplicado de electrónica de potencia.","Conocimiento aplicado de electrotecnia.;Conocimiento aplicado de electrónica de potencia.;Conocimiento y capacidad para el modelado y simulación de sistemas.","La asignatura Modelado de Sistemas de Potencia  se centra en el estudio y modelado de sistemas de potencia y electromecánicos, así como sistemas trifásicos y máquinas eléctricas tales como motores DC y AC. En la asignatura se estudia la discretización de sistemas eléctricos y su análisis mediante fasores y acoplamiento de máquinas y características de las mismas.
+
+El alumno deberá poseer los conocimientos suficientes para resolver los problemas matemáticos que puedan plantearse en la ingeniería así como tener adquiridos los conceptos básicos de teoría de circuitos y de la electrónica de potencia.
+
+El alumno deberá haber adquirido previamente las destrezas y capacidades proporcionadas por las materias de Cálculo numérico (1er Curso),
+Tecnología Eléctrica (2º Curso), Tecnología Electrónica (2º Curso) y Electrónica de Potencia (3er Curso) se recomienda que dichas asignaturas
+estén aprobadas"
+"2019/02/08 10:01:35 a. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José María Tirado Martín","Optoelectrónica","Tema 1 Introduccion. Naturaleza y comportamiento de la luz
+Tema 1.1 Teorías ondulatoria, corpuscular y cuántica
+Tema 1.2 Efectos relativisticos
+Tema 1.3 La luz como portadora de información
+Tema 2 Óptica geométrica
+Tema 2.1 Leyes de la óptica. Principio de Fermat
+Tema 2.2 Ley de Snell
+Tema 2.3 Componentes ópticos elementales
+Tema 2.4 Dispersion cromática
+Tema 3 Óptica de ondas escalares y electromagnéticas
+Tema 3.1 Interacciones de las ondas
+Tema 3.2 Polarización de la luz
+Tema 3.3 Ecuación y tipos de ondas
+Tema 3.4 Fenómenos opticos electromagnéticos
+Tema 4 Teoría del color
+Tema 4.1 Sistema visual humano
+Tema 4.2 Teorías de la visión
+Tema 4.3 Diagrama de cromaticidad
+Tema 4.4 Teoría del color
+Tema 5 Dispositivos Optoelectrónicos. Emisores ópticos
+Tema 5.1 Magnitudes radiométricas y fotométricas
+Tema 5.2 Diodos LED
+Tema 5.3 Diodos LASER
+Tema 5.4 Emisores orgánicos flexibles OLED
+Tema 6 Dispositivos optoelectrónicos. Receptores ópticos
+Tema 6.1 Características de los receptores ópticos
+Tema 6.2 Unidades de luminosidad e iluminancia
+Tema 6.3 Propiedades fotoconductivas de los semiconductores
+Tema 6.4 Fotodiodos
+Tema 6.5 Eficiencia cuántica
+Tema 6.6 Fotodiodos PIN y APD
+Tema 6.7 Fototransistores
+Tema 6.8 Fotomultiplicadores y sensores de imagen CCD
+Tema 7 Fibra óptica
+Tema 7.1 Introducción
+Tema 7.2 Apertura numérica
+Tema 7.3 Tipos de fibra
+Tema 7.4 Dispersión y pérdidas
+Tema 7.5 Aplicaciones y especificaciones
+Tema 8 Holografía, impresión láser y lectores de códigos de barras
+Tema 8.1 Hologramas. Grabación y tipos
+Tema 8.2 Impresión LASER. Fundamentos
+Tema 8.3 Códigos de barras y QR
+Tema 9 Sensores de imagen CCDs y CMOS
+Tema 10 Almacenamiento de información por medios ópticos
+Tema 10.1 CDs y tipos
+Tema 11 Visualizadores y pantallas
+Tema 11.1 Características
+Tema 11.2 Tipos de pantallas
+Tema 12 Fotografía y video digitales
+Tema 12.1 Tecnologías para la digitalización de imágenes
+Tema 13 Proceso de información por medios ópticos
+Tema 13.1 Procesado óptico
+Tema 13.2 Lógica óptica","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.","Conocimientos de los fundamentos de ciencia, tecnología y química de materiales. Comprender la relación entre la microestructura, la síntesis o procesado y las propiedades de los materiales.;Conocimientos de los fundamentos de la electrónica.","","Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.","El principal objetivo de la asignatura de Optoelectrónica es introducir al alumno en los sistemas optoelectrónicos para la generación, transmisión, tratamiento, soporte, detección y presentación de señales, en lo concerniente al uso de la radiación óptica coherente.
+
+ El estudio de fibra óptica así como de los dispositivos encargados de la transmisión y recepción de señales ópticas, resultan de gran interés para la integración de redes basadas en fibra óptica en sistemas tanto de comunicaciones como de automatización industrial y robótica.
+
+Por otra parte se estudian técnicas de holografía que resultan de potencial interés para el diseño industrial así como para las TIC.
+
+El alumno adquirirá conocimientos de tecnología optoelectrónica relevante y sus aplicaciones. Se pretende que la materia impartida permita al
+alumno comprender y razonar acerca de los dispositivos optoelectrónicos que se encuentran presentes en la electrónica actual a nivel
+comercial, profundizando en aquellos aspectos útiles para su desarrollo como profesional.
+En el desarrollo de la asignatura se supondrán adquiridos por los alumnos conocimientos de asignaturas de electrónica estudiadas en cursos
+precedentes: Tecnología Electrónica, que se imparte en segundo curso, así como conocimientos de Electrónica analógica e Instrumentación
+electrónica de tercer curso, tanto a nivel teórico como de diseño hardware práctico."
+"2019/02/08 2:56:35 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Física Aplicada, Ciencia de materiales ","Alberto López, Ana Romero, Eva María Espíldora, Gabriel Rodríguez","Diseño y fabricación de sistemas micro y nanoelectrónicos","Teoría:
+1.	Sistemas micro y nanoestructurados.
+Conceptos físicos sobre micro y nanotecnología utilizados en el desarrollo, fabricación y escalabilidad de nuevos dispositivos electrónicos. 
+
+2.	Fundamentos sobre nuevos métodos de fabricación y diseño.
+Nuevos métodos de fabricación: Aproximación top-down y bottom-up a la fabricación de micro y nanosistemas.
+
+3.	Salas blancas y grandes centros de fabricación. 
+Escalabilidad en el diseño y fabricación de circuitos integrados micro y nanoestructurados.
+
+4.	Dispositivos micro y nanoelectrónicos actuales y perspectivas futuras.
+Sistemas micro y nanoelectrónicos en dispositivos de uso común. MEMS. Perspectivas para el desarrollo de nuevos materiales aplicativos. Conocimiento del mercado internacional en el desarrollo de sistemas micro y nanoelectrónicos.
+ 
+
+Prácticas: 
+1.	Propiedades eléctricas en sistemas nanoestructurados. Fabricación de láminas delgadas mediante evaporación o pulverización catódica y caracterización estructural y eléctrica en función de las dimensiones de la lámina. (Transmitancia óptica, Conductividad, efecto Hall)
+
+2.	Diseño de dispositivos electrónicos por litografía óptica. Fabricación de circuitos integrados mediante litografía óptica. ","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Capacidad para comprender y aplicar los principios de conocimientos básicos de la química general, química orgánica e inorgánica y sus aplicaciones en la ingeniería.;Capacidad de visión espacial y conocimiento de las técnicas de representación gráfica, tanto por métodos tradicionales de geometría métrica y geometría descriptiva, como mediante las aplicaciones de diseño asistido por ordenador.","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos de los fundamentos de ciencia, tecnología y química de materiales. Comprender la relación entre la microestructura, la síntesis o procesado y las propiedades de los materiales.;Conocimientos de los fundamentos de la electrónica.;Conocimientos básicos de los sistemas de producción y fabricación.","","Conocimiento aplicado de electrotecnia.;Conocimiento aplicado de instrumentación electrónica.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.","La progresiva reducción del tamaño de los componentes electrónicos, hace que podamos disfrutar de dispositivos tales como móviles u ordenadores portátiles, cada vez más pequeños, ligeros y con mayor capacidad. Sin embargo, esta reducción de tamaño conlleva, en ocasiones, la aparición de nuevos fenómenos físicos que permiten el desarrollo de nuevas aplicaciones/dispositivos con mucha mejor relación señal-ruido, mejorando notablemente tanto la velocidad como el consumo.
+A día de hoy, el tamaño de los componentes básicos de un chip es menor de 30 nm, lo cual ha requerido un desarrollo tecnológico importante en términos de miniaturización. Sin embargo, esta carrera hacia la obtención de sistemas cada vez más pequeños es cada vez más difícil. A escalas nanométricas, las interacciones electrón-electrón y electrón-fotón empiezan a ser muy importantes y es necesario repensar las estrategias de fabricación, en ocasiones para solventar nuevos problemas a esta escala, otras para sacar partido de las nuevas oportunidades que aparecen.
+Dentro de esta asignatura se quieren mostrar tanto los avances tecnológicos que se han llevado a cabo en los últimos 20 años gracias al control en la fabricación de sistemas micro y nanoelectrónicos así como los diferentes capacidades existentes hoy en día en su fabricación. En este último ámbito se quiere hacer especial hincapié en el desarrollo de las diferentes técnicas de fabricación y diseño de dichos materiales y dispositivos, así como su integración en circuitos electrónicos.
+En la asignatura se plantean varias prácticas relacionadas con el diseño, fabricación y caracterización de distintos tipos de materiales nanoestructurados y microcircuitos integrados correlacionado con el estudio de sus propiedades eléctricas. Finalmente, se quiere dar una visión global del mercado y de los distintos centros internacionales y empresas involucradas en el desarrollo de nuevos sistemas nanoelectrónicos. "
+"2019/02/08 7:17:47 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología electrónica","Antonio José del Ama Espinosa","Instrumentación Electrónica Avanzada"," Tema 1 	INTRODUCCIÓN
+ Tema 1.1 	 Sistemas electrónicos de instrumentación y control basados en ordenador. Constitución.
+ Tema 1.2 	 Instrumentación convencional y sistemas de instrumentación. Estándares actuales.
+ Tema 1.3 	 Modelo genérico de un sistema de instrumentación.
+ Tema 1.4 	 Compatibilidad Electromagnética (EMC)
+ Tema 2 	TARJETAS DE ADQUISICIÓN DE DATOS
+ Tema 2.1 	 Introducción.
+ Tema 2.2 	 Características y Tipos.
+ Tema 2.3 	 Ejemplos de tarjetas de adquisición.
+ Tema 3 	COMUNICACIÓN CON INSTRUMENTOS Y EQUIPOS
+ Tema 3.1 	 Introducción.
+ Tema 3.2 	 Instrumentación de Laboratorio con comunicación RS-232.
+ Tema 3.3 	 Comunicación RS-232 a través de LabVIEW.
+ Tema 3.4 	 Introducción al estándar de instrumentación IEEE-488. Especificaciones.
+ Tema 3.5 	 El lenguaje estándar de programación de instrumentos (SCPI) .
+ Tema 3.6 	 Comunicación GPIB-PC.
+ Tema 3.7 	 Instrumentación especí­fica de campo y de laboratorio: comunicaciones, industrial, energí­a, automoción, biomédica, etc.
+ Tema 3.8 	 Comunicación GPIB a través de LabVIEW.
+ Tema 4 	PROCESADO DIGITAL
+ Tema 4.1 	 Introducción.
+ Tema 4.2 	 Muestreo.
+ Tema 4.3 	 La transformada rápida de Fourier (FFT) .
+ Tema 4.4 	 Enventanado.
+ Tema 4.5 	 Filtrado.
+ Tema 4.6 	 Aplicaciones de procesado en instrumentación virtual.
+ Tema 5 	SOFTWARE PARA CONTROL DE INSTRUMENTACIÓN E INSTRUMENTOS VIRTUALES: LABVIEW
+ Tema 5.1 	 Programación.
+ Tema 5.2 	 Control de instrumentos.
+ Tema 5.3 	 Intrumentación virtual. ","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","Conocimientos de los fundamentos de la electrónica.;Conocimientos sobre los fundamentos de automatismos y métodos de control.","","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de instrumentación electrónica.;Conocimiento y capacidad para el modelado y simulación de sistemas.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Conocimientos de principios y aplicaciones de los sistemas robotizados.;Conocimiento aplicado de informática industrial y comunicaciones.;Capacidad para diseñar sistemas de control y automatización industrial.","El objeto de la asignatura de Instrumentación Electrónica Avanzada es el de ofrecer, en una primera aproximación, una visión global de diferentes aspectos que la instrumentación electrónica presenta en la actualidad: desde los sensores para aplicaciones industriales hasta los laboratorios de ensayo, pasando por los instrumentos de propósito general y los dedicados. Posteriormente se introducirá al alumno a las aplicaciones del ordenador como medio de control de instrumentación de medida, de la monitorización y control de procesos industriales."
+"2019/02/08 10:28:58 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","Antonio José del Ama Espinosa
+Julio Jiménez","Fundamentos de Telecomunicaciones","Tema 1 	Señales y sistemas en telecomunicaciones
+ Tema 2 	Comunicaciones digitales. Protocolos de comunicaciones y configuraciones de red.
+ Tema 2.1 	 Introducción. Arquitectura de Redes. Protocolos. Buses.
+ Tema 2.2 	 Niveles: Factoría, Planta, Célula, Campo y Proceso.
+ Tema 2.3 	 ETHERNET.
+ Tema 2.4 	 NMEA.
+ Tema 2.5 	 HOST LINK.
+ Tema 2.6 	 UNITELWAY.
+ Tema 2.7 	 GSM.
+ Tema 2.8 	 Programación LabView. ","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","Conocimientos de los fundamentos de la electrónica.","Conocimiento de los principios la regulación automática y su aplicación a la automatización industrial.","Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de instrumentación electrónica.;Conocimiento y capacidad para el modelado y simulación de sistemas.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Conocimiento aplicado de informática industrial y comunicaciones.","Hoy en día el papel que juegan las telecomunicaciones en la vida diaria de las personas y en el ámbito profesional de cualquier ingeniería es de una relevancia indudable. El graduado en ingeniería electrónica y automática no puede quedar al margen de ésta disciplina y se pretende con esta asignatura cubrir un conjunto de conocimientos fundamentales sobre los sistemas de comunicación analógicos y digitales."
+"2019/02/10 2:15:56 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Ingeniería Eléctrica","Gabriel Raúl Hernández Labrado / Manuel Santos Díez / Miguel Carrión Ruiz-Peinado","Fundamentos y Aplicaciones de las Máquinas Eléctricas","TEORÍA
+1. Introducción a las máquinas eléctricas. Conceptos generales. Magnitudes y circuitos magnéticos.
+2. Transformadores monofásicos. Ensayos y esquemas equivalentes. Acoplamiento en paralelo de transformadores. Autotransformadores. 
+3. Máquinas síncronas. Funcionamiento de la máquina síncrona como motor. Motor síncrono de polos salientes. Motor síncrono de polos lisos. Motor síncrono de imanes permanentes. Motores brushless. Motores paso a paso. Motores de reluctancia síncronos.
+4. Máquinas asíncronas. Funcionamiento de la máquina asíncrona como motor. Motor asíncrono de rotor en cortocircuito. Motor asíncrono de rotor bobinado.
+5. Máquinas de corriente continua. Funcionamiento de la máquina de c.c. como motor. Motor de c.c. de excitación independiente y excitación shunt.
+
+PRÁCTICAS:
+1.	Transformadores monofásicos. Ensayos en vacío y cortocircuito. Funcionamiento en carga.
+2.	Obtención de las curvas de vacío y de cortocircuito de la máquina síncrona. Característica reactiva. Funcionamiento como motor síncrono bajo diferentes cargas mecánicas.
+3.	Funcionamiento del motor asíncrono accionando diferentes cargas mecánicas. Obtención de las curvas características de par-velocidad.
+4.	Funcionamiento del motor de corriente continua accionando diferentes cargas mecánicas. Obtención de las curvas características de par-velocidad.
+","Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.","Conocimiento y utilización de los principios de teoría de circuitos y máquinas eléctricas.","","Conocimiento aplicado de electrotecnia.","En la Orden CIN 351/2009 de 9 de febrero, en lo relativo al conocimiento de máquinas eléctricas, se especifican las competencias a adquirir por el alumno en cuanto al cálculo y diseño de las máquinas eléctricas. En particular, común a la rama industrial, se hace referencia al conocimiento y utilización de las máquinas eléctricas, y en el módulo específico de Electrónica Industrial al conocimiento aplicado de electrotecnia. 
+
+El alumno del Grado en Ingeniería Electrónica Industrial y Automática debe cursar distintas asignaturas que guardan relación con el control de las máquinas eléctricas. Por este motivo, es transcendental que el estudiante adquiera unos conocimientos básicos de estas máquinas en cuanto a su constitución, funcionamiento y aplicaciones más comunes utilizadas a nivel industrial. 
+
+Su justificación en el plan de estudios, en sí misma y con la profesión, queda de manifiesto dado que la asignatura proporciona los conocimientos básicos en materia de máquinas eléctricas para el ejercicio de la Ingeniería Industrial. 
+
+La asignatura Fundamentos y Aplicaciones de las Máquinas Eléctricas proporciona al alumno los conocimientos necesarios de los distintos tipos de máquinas, incluyendo los transformadores, las máquinas síncronas, los motores brushless, los motores paso-a-paso, las máquinas asíncronas y los motores de corriente continua, entre otras.
+
+El estudio de las diversas máquinas, su análisis y el montaje práctico en las sesiones de laboratorio, hacen que esta asignatura sea de gran importancia para los futuros graduados.
+"
+"2019/02/10 3:12:34 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Ingeniería Biomédica","Antonio José del Ama","Fundamentos de la Ingeniería Biomédica","Tema 1. Introducción a la anatomía y fisiología humana
+Tema 2. Electrofisiología
+Tema 3. Análisis del movimiento humano
+Tema 4. Biomateriales
+Tema 5. Imagen médica
+Tema 6. Producto sanitario
+Tema 7. Investigación biomédica","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.;Capacidad para comprender y aplicar los principios de conocimientos básicos de la química general, química orgánica e inorgánica y sus aplicaciones en la ingeniería.","Conocimientos de los fundamentos de ciencia, tecnología y química de materiales. Comprender la relación entre la microestructura, la síntesis o procesado y las propiedades de los materiales.;Conocimiento y utilización de los principios de teoría de circuitos y máquinas eléctricas.;Conocimientos de los fundamentos de la electrónica.","","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de instrumentación electrónica.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.;Conocimiento y capacidad para el modelado y simulación de sistemas.","
+
+La Ingeniería Biomédica es una disciplina de reciente creación. Su definición más aceptada podría ser la aplicación de los principios de la ingeniería a las ciencias de la vida. Combina los criterios de diseño en ingeniería y las herramientas de análisis provenientes de las matemáticas, la física y la química a la resolución de problemas en medicina, biología, biotecnología, farmacia, etc.
+Debido al aumento de las innovaciones tecnológicas en las áreas de las ciencias médicas, está creciendo la necesidad de profesionales formados en este conjunto de especialidades para su participación en los procesos clínicos, de desarrollo tecnológico y de investigación.
+El objetivo de esta asignatura es proporcionar al alumno una introducción general del ámbito de la Bioingeniería a fin de que se familiarize con este ámbito en crecimiento."
+"2019/02/10 3:27:04 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Ingeniería Biomédica","Antonio J. del Ama Espinosa","Ingeniería de Rehabilitación","Tema 1. Introducción a la anatomía y fisiología humana
+Tema 2. Introducción a la discapacidad
+Tema 3. Técnicas electrofisiológicas
+Tema 4. Biomecánica
+Tema 5. Sistemas de movilidad y adaptación de entornos
+Tema 6. Introducción a la Robótica de rehabilitación
+Tema 7. Prótesis y exoesqueletos
+Tema 8. Aplicaciones de la realidad virtual
+Tema 9. Interfaces cerebro-ordenador","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.;Capacidad de visión espacial y conocimiento de las técnicas de representación gráfica, tanto por métodos tradicionales de geometría métrica y geometría descriptiva, como mediante las aplicaciones de diseño asistido por ordenador.","Conocimientos de los fundamentos de la electrónica.;Conocimientos sobre los fundamentos de automatismos y métodos de control.;Conocimiento de los principios de teoría de máquinas y mecanismos.;Conocimiento y utilización de los principios de la resistencia de materiales.;Conocimientos básicos de los sistemas de producción y fabricación.","","Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de instrumentación electrónica.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.;Conocimiento y capacidad para el modelado y simulación de sistemas.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Conocimientos de principios y aplicaciones de los sistemas robotizados.","La Ingeniería de Rehabilitación pretende el uso de los principios de ingeniería para 1) desarrollar soluciones tecnológicas y dispositivos para ayudar a las personas con discapacidades y 2) ayudar a la recuperación de las funciones físicas y cognitivas perdidas debido a una enfermedad o lesión.
+Los ingenieros de rehabilitación diseñan y construyen dispositivos y sistemas para satisfacer una amplia gama de necesidades que pueden ayudar a las personas con movilidad, comunicación, audición, visión y cognición. Estas herramientas ayudan a las personas con las actividades cotidianas relacionadas con el empleo, la vida independiente y la educación.
+La ingeniería de rehabilitación puede implicar observaciones relativamente simples de cómo los individuos realizan tareas y hacer adaptaciones para eliminar más lesiones e incomodidades. En el otro extremo del espectro, la ingeniería de rehabilitación incluye sofisticadas interfaces de computadora cerebral que permiten a una persona con discapacidades severas operar computadoras y otros dispositivos simplemente pensando en la tarea que desean realizar.
+Los ingenieros de rehabilitación también mejoran los métodos de rehabilitación estándar para recuperar las funciones perdidas debido a trastornos congénitos, enfermedades (como apoplejía o reemplazo de articulaciones) o lesiones (como la pérdida de una extremidad) para restaurar la movilidad."
+"2019/02/10 9:03:51 p. m. CET","Grado en Ingeniería Eléctrica","INGENIERÍA DE SISTEMAS Y AUTOMÁTICA","FERNANDO J. CASTILLO GARCÍA
+LUIS SÁNCHEZ RODRÍGUEZ
+DAVID RODRÍGUEZ ROSA
+ISMAEL PAYO GUTIÉRREZ
+SERGIO JUÁREZ PÉREZ
+GUILLERMO RUBIO GÓMEZ","AUTOMATIZACIÓN INDUSTRIAL ","CONTENIDOS TEÓRICOS:
+1.- Introducción a la Automatización Industrial
+2.- Automatismos Eléctricos
+3.- Automatismos Neumáticos
+4.- Automatismos Hidráulicos
+5.- Sensores y Actuadores 
+6.- Diseño de Automatismos Lógicos. Grafcet
+7.- Diseño de Automatismos Lógicos. Gemma 
+8.- Autómatas Programables Industriales. PLCs
+
+CONTENIDOS PRÁCTICOS:
+	Práctica 1: Diseño de Armarios de Control
+	Práctica 2: Automatismos Neumáticos
+	Práctica 3: Automatismos Hidráulicos
+	Práctica 4: Automatismos Eléctricos y Sensores
+	Práctica 5: Automatismos Lógicos. GRAFCET y GEMMA
+	Práctica 6 en adelante: Programación de PLCs. Casos Prácticos.","","","Capacidad para el cálculo y diseño de máquinas eléctricas.;Conocimientos sobre control de máquinas y accionamientos eléctricos y sus aplicaciones.;Conocimiento sobre sistemas eléctricos de potencia y sus aplicaciones.;Conocimiento de los principios la regulación automática y su aplicación a la automatización industrial.","","La Automatización Industrial es la rama de la ingeniería cuyo cometido es proporcionar cierto grado de inteligencia a las máquinas para dotarlas de autonomía, flexibilidad, capacidad de adaptarse a nuevas circunstancias de trabajo y capacidad para realizar trabajos de variada naturaleza.
+
+Es la asignatura actual de tercer curso del Grado en Ingeniería Electrónica Industrial y Automática y, desde un punto de vista práctico, proporcionaría a un graduado en Ingeniería Eléctrica conocimientos sobre automatismos eléctricos, neumáticos e hidráulicos y de cómo diseñar e implementar la lógica de control para programar su funcionamiento. En la última parte de la asignatura se resuelven diversos casos prácticos de automatismos empleando un PLC que, actualmente, es el equipo de gobierno por excelencia en la industria actual. La asignatura se desarrolla de manera casi íntegra en laboratorio."
+"2019/02/10 9:05:22 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","INGENIERÍA DE SISTEMAS Y AUTOMÁTICA","DAVID RODRÍGUEZ ROSA
+FERNANDO J. CASTILLO GARCÍA
+LUIS SÁNCHEZ RODRÍGUEZ
+ISMAEL PAYO GUTIÉRREZ
+SERGIO JUÁREZ PÉREZ
+GUILLERMO RUBIO GÓMEZ","AUTOMATIZACIÓN INDUSTRIAL II","CONTENIDOS TEÓRICOS:
+Diseño de automatismo lógicos, actuación y sensorización industrial, comunicaciones industriales sobre PLCs, interfaz hombre máquina y robótica industrial.
+
+CONTENIDOS PRÁCTICOS:
+	Práctica 1: Programación lógica de plataforma electroneumática I
+	Práctica 2: Programación lógica de plataforma electroneumática II
+	Práctica 3: Programación lógica de plataforma electro/electrónica
+	Práctica 4: Caso práctico: HMI (human machine interface)
+	Práctica 5: Caso práctico: Comunicaciones Industriales
+	Práctica 6: Caso práctico: manipuladores robóticos industriales
+	Práctica 7: Caso práctico: comportamiento colaborativo","","","","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de instrumentación electrónica.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Conocimientos de principios y aplicaciones de los sistemas robotizados.;Conocimiento aplicado de informática industrial y comunicaciones.;Capacidad para diseñar sistemas de control y automatización industrial.","Esta asignatura se considera la continuación de la asignatura de ‘Automatización Industrial’. La asignatura tiene un eminente carácter práctico y, en ella, los alumnos automatizan varias plataformas reales robóticas y electroneumáticas con un propósito común.
+
+Para ello deben programar autómatas programables, manejar robots industriales, conocer tecnología electrónica, neumática y sensores y realizar comunicaciones industriales entre ellos.
+
+La asignatura se desarrollará de manera íntegra en el laboratorio."
+"2019/02/10 9:07:27 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","INGENIERÍA DE SISTEMAS Y AUTOMÁTICA
+ARQUITECTURA Y TECNOLOGÍA DE LOS COMPUTADORES
+MATEMÁTICA APLICADA","DAVID RODRÍGUEZ ROSA
+FERNANDO J. CASTILLO GARCÍA
+ISMAEL PAYO GUTIÉRREZ
+LUIS SÁNCHEZ RODRÍGUEZ
+SERGIO JUÁREZ PÉREZ
+GUILLERMO RUBIO GÓMEZ
+FRANCISCO MOYA FERNÁNDEZ
+JESÚS ROSADO LINARES","PROYECTOS DIRIGIDOS DE MECATRÓNICA","CONTENIDOS TEÓRICOS:
+Metodología para el diseño de proyectos mecatrónicos.
+Diseño mecánico: análisis de mecanismos, modelos dinámicos, modelos cinemáticos
+Diseño electrónico: selección de elementos funcionales, acondicionamiento de señal, tratamiento de señales
+Diseño eléctrico: selección de elementos funcionales, diseño de etapas de potencia, protecciones y seguridad en máquinas
+Programación: implementación para el gobierno de dispositivos mecatrónicos
+
+CONTENIDOS PRÁCTICOS:
+Cada curso académico los alumnos resolverán uno o varios problemas prácticos de manera colaborativa o competitiva.
+Los problemas prácticos serán de muy distinta naturaleza (ej: diseño y control de una pata de un robot cuadrúpedo, estimación de circuitos equivalentes de sensores biológicos, control de movimiento, diseño, fabricación y puesta en marcha de manipuladores robóticos, diseño y fabricación de plataformas didácticas, …).","","","","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de electrónica de potencia.;Conocimiento aplicado de instrumentación electrónica.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.;Conocimiento y capacidad para el modelado y simulación de sistemas.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Conocimientos de principios y aplicaciones de los sistemas robotizados.;Conocimiento aplicado de informática industrial y comunicaciones.;Capacidad para diseñar sistemas de control y automatización industrial.","Esta asignatura pretende que el alumno sea capaz de afrontar problemas reales mediante la realización de proyectos complejos o partes de un proyecto con el fin de dar soluciones en el desarrollo y seguimiento de un proyecto de tipo industrial mecatrónico, utilizándose para ello una “Metodología de enseñanza-aprendizaje colaborativo”.
+
+En función del tipo de proyecto asignado, el alumno deberá utilizar los conocimientos adquiridos durante la realización del grado, e incluso conocimientos adicionales obtenidos a través de fuentes externas o expertos elegidos de distintas áreas de conocimiento. 
+
+Con todo ello, se pretende que el alumno adquiera y complemente distintas competencias, como la resolución de problemas reales, capacidad de análisis y síntesis, razonamiento crítico, organización y planificación, toma de decisiones, trabajo en equipo, trabajo interdisciplinar o creatividad.
+
+La asignatura se impartirá en su totalidad en el laboratorio, donde el alumno deberá presentar los proyectos desarrollados, evaluándose el resultado final, como la metodología para su desarrollo y las propuestas de resolución de los problemas
+"
+"2019/02/10 9:09:25 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","INGENIERÍA DE SISTEMAS Y AUTOMÁTICA
+ARQUITECTURA Y TECNOLOGÍA DE LOS COMPUTADORES","ISMAEL PAYO GUTIÉRREZ
+FERNANDO J. CASTILLO GARCÍA
+JUAN MORENO GARCÍA
+DAVID RODRÍGUEZ ROSA
+LUIS SÁNCHEZ RODRÍGUEZ
+FRANCISCO MOYA FERNÁNDEZ","INGENIERÍA DE CONTROL MODERNA","CONTENIDOS TEÓRICOS:
+	
+	PARTE I: CONTROL EN EL ESPACIO DE ESTADOS
+I.1.- Modelo de estado.
+I.2.- Solución de la ecuación de estado de sistemas lineales.
+I.3.- Controlabilidad y Observabilidad. 
+I.4.- Control por realimentación del estado. 
+I.5.- Observadores del estado.
+
+PARTE II: OTRAS TÉCNICAS DE CONTROL
+II.1.- Controladores Fuzzy
+II.2.- Redes Neuronales
+II.3.- Otras técnicas de control.
+
+CONTENIDOS PRÁCTICOS:
+
+	Práctica 1: Caso de Estudio. Controlabilidad y Observabilidad 
+	Práctica 2: Caso de Estudio. Linealización por realimentación de estados
+	Práctica 3: Caso de Estudio. Controlador Fuzzy
+	Práctica 4: Caso de Estudio. Redes Neuronales
+","","","","Conocimiento y capacidad para el modelado y simulación de sistemas.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Capacidad para diseñar sistemas de control y automatización industrial.","Esta asignatura es el complemento perfecto a las asignaturas de Regulación Automática y Control Discreto que se imparten actualmente como asignaturas obligatorias en el GIE y GIEIA. En las asignaturas mencionadas se analiza el control automático desde un punto de vista clásico, basado en lo que se llama “la representación externa”, donde los sistemas se modelan con funciones de transferencia. La asignatura de Control en el Espacio de Estado se basa en “la representación interna”, donde los sistemas se modelan en el espacio de estado. Esto permite contar con la máxima información posible del sistema, sea continuo o discreto, con objeto de utilizarla para controlarlo mejor. Esta visión moderna de control es, sin lugar a duda, uno de los recursos que cualquier especialista en control automático debe estudiar y, por supuesto, conocer. En la segunda parte de la asignatura se estudian otras técnicas de control aplicables a casi cualquier sistema."
+"2019/02/10 9:12:28 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","INGENIERÍA DE SISTEMAS Y AUTOMÁTICA
+ARQUITECTURA Y TECNOLOGÍA DE LOS COMPUTADORES","FERNANDO J. CASTILLO GARCÍA
+GUILLERMO RUBIO GÓMEZ
+LUIS SÁNCHEZ RODRÍGUEZ
+FRANCISCO MOYA FERNÁNDEZ
+JUAN MORENO GARCÍA","VISIÓN ARTIFICIAL","CONTENIDOS TEÓRICOS:
+1.- Introducción a la Visión por Computador
+2.- Elementos de un sistema de Visión por Computador
+3.- Imágenes digitales
+4.- Filtrado espacial 
+5.- Preprocesamiento de imágenes
+6.- Extracción de características
+7.- Segmentación de imágenes 
+8.- Transformaciones morfológicas y descripción de objetos
+9.- Reconocimiento de objetos
+10.- Redes neuronales para reconocimiento. Tipos de capas, arquitecturas, casos de estudio
+
+CONTENIDOS PRÁCTICOS:
+	Práctica 1: Captura y caracterización de imágenes
+	Práctica 2: Filtrado de imágenes
+	Práctica 3: Segmentación de imágenes
+	Práctica 4: Transformaciones morfológicas
+	Práctica 5: Reconocimiento de objetos
+	Práctica 6: Caso de Estudio Real I
+	Práctica 7: Caso de Estudio Real II
+","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","","","Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimientos de principios y aplicaciones de los sistemas robotizados.;Conocimiento aplicado de informática industrial y comunicaciones.;Capacidad para diseñar sistemas de control y automatización industrial.","El objetivo de esta asignatura es familiarizar al alumno con el análisis de imágenes a través de computadores, mediante el uso de aplicaciones específicas.
+
+Tradicionalmente, estos sistemas de percepción han estado implantados en el ámbito industrial principalmente con el objetivo de: a) incrementar la interactuación entre las máquinas y el entorno que las rodea; b) conseguir un control de calidad total de los productos fabricados. 
+
+Por otro lado, la aparición de nuevos algoritmos y cámaras ha propiciado que el ámbito de aplicación de la visión artificial se haya incrementado notablemente. Algunos ejemplos de estas nuevas aplicaciones podrían ser: el empleo de cámaras termográficas para tareas de inspección y mantenimiento, el reconocimiento automático para aplicaciones a seguridad o conducción autónoma o incluso aplicaciones 3D mediante visión estéreo.
+
+Dado el carácter aplicado de la asignatura, la mayoría de las clases se realizarán en el Aula de Informática empleando Matlab u OpenCV.
+"
+"2019/02/11 4:14:12 a. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","ARQUITECTURA Y TECNOLOGÍA DE LOS COMPUTADORES
+INGENIERÍA DE SISTEMAS Y AUTOMÁTICA","FRANCISCO MOYA FERNÁNDEZ
+JUAN MORENO GARCÍA
+LUIS SÁNCHEZ RODRÍGUEZ","SISTEMAS DE TIEMPO REAL","CONTENIDOS TEÓRICOS:
+1.- Sistemas concurrentes. 
+1.1.- Primitivas de sincronización. 
+1.2.- Interbloqueo y hambruna. 
+1.3.- Condiciones de carrera. 
+1.4.- Multiproceso
+1.4.- Primitivas de comunicación.
+2.- Sistemas de tiempo real estricto. 
+2.1.- Tareas periódicas y esporádicas
+2.2.- Interferencia. Jitter. Inversión de prioridad.
+2.3.- Planificación cíclica 
+2.4.- Planificación estática (rate monotonic, deadline monotonic)
+2.5.- Planificación dinámica (earliest deadline first)
+2.6.- Sistemas operativos de tiempo real
+
+CONTENIDOS PRÁCTICOS:
+	Práctica 1: Opciones para acceso a regiones críticas
+	Práctica 2: Depuración de sistemas concurrentes
+	Práctica 3: Multiproceso y comunicación entre tareas
+Práctica 4: Ejecutivo cíclico
+	Práctica 5: Planificación estática y análisis RMA
+	Práctica 6: Planificación dinámica, techo de prioridad
+	Práctica 7: Influencia de las tareas esporádicas","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","","","Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Capacidad para diseñar sistemas de control y automatización industrial.","En muchos sistemas electrónicos el tiempo es parte de la corrección del sistema. En un sistema inestable que emplea un sistema de control para estabilizarlo no nos podemos permitir que el sistema de control no tenga tiempo de hacer su trabajo. La consecuencia puede ser letal, una explosión, la caída de un helicóptero, una máquina herramienta fuera de control.
+No se trata de buscar algoritmos más rápidos, sino de diseñarlo de manera que, aún en el caso peor, el sistema tenga tiempo de hacer lo que debe.  La planificación y el análisis de planificabilidad de estos sistemas constituye la parte central del curso. Es fácil anticipar que planificar implica reservar recursos que no se van a utilizar normalmente.  A veces demasiados recursos… Se verán diversas estrategias para mejorar significativamente la utilización del sistema. Algunas técnicas, como la programación dirigida por interrupciones, deberán reconsiderarse con mucho cuidado y se deberá rediseñar la estrategia de reacción ante eventos esporádicos del sistema.  Lenguajes como Python, que disponen de gestión automática de memoria dinámica, no podrán ser empleados.
+Las prácticas se realizarán sobre un sistema empotrado que ejecuta un sistema operativo de tiempo real estricto. Los programas se realizarán en C o en C++."
+"2019/02/11 4:17:43 a. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","ARQUITECTURA Y TECNOLOGÍA DE LOS COMPUTADORES
+TECNOLOGÍA ELECTRÓNICA","FRANCISCO MOYA FERNÁNDEZ
+JUAN MORENO GARCÍA
+JOSÉ MANUEL GILPÉREZ AGUILAR","DISEÑO DIGITAL CON FPGA USANDO VHDL","1.- Introducción. Estilos de diseño
+2.- El lenguaje VHDL
+	- Conceptos básicos
+	- Flujo de datos
+	- Descripción algorítmica
+	- Descripción estructural
+	- Simulación
+3.- Síntesis de circuitos
+	- Estrategias de reloj
+	- Estimación de área y prestaciones
+	- Estrategias de optimización
+4.- Prueba de circuitos
+	- Diseño para test
+- Generación de patrones de test
+	- Análisis de testabilidad
+5.- Tolerancia a fallos
+	- Modelos de fallo
+	- Estrategias de tolerancia a fallos
+	- Técnicas de redundancia
+
+CONTENIDOS PRÁCTICOS:
+	Práctica 1: Familiarización con entorno y flujo de diseño
+	Práctica 2: Diseño lógico en VDL
+	Práctica 3: Testbench y patrones de test
+	Práctica 4: Sistemas secuenciales
+	Práctica 5: Flujo de datos
+	Práctica 6: Caso de estudio
+	Práctica 7: Modos de funcionamiento degradado","","Conocimientos de los fundamentos de la electrónica.","","Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Capacidad para diseñar sistemas de control y automatización industrial.","Los sistemas electrónicos actuales se diseñan en tiempos mucho más reducidos que en el pasado. En la mayoría de los casos se utilizan plataformas ya diseñadas, de características muy flexibles, que permiten adaptarlas a una amplia variedad de problemas.  Salvo en casos muy puntuales, ya no se utiliza lógica discreta, sino que las plataformas integran circuitos lógicos programables (típicamente Field Programmable Gate Arrays, o FPGA) y/o microprocesadores. 
+Un Ingeniero Electrónico moderno no diseña circuitos físicos.  Es mucho más habitual que diseñe la lógica a sintetizar en las FPGA de las plataformas de desarrollo.  Para ello no se emplea captura de esquemas, sino lenguajes de modelado.  En Europa el lenguaje de modelado más ampliamente usado es VHDL.
+VHDL tiene ciertos parecidos con un lenguaje de programación, pero también tiene importantes diferencias que es preciso conocer.  La depuración es mucho más compleja que en un programa de ordenador. Se utilizan metodologías de desarrollo perfectamente definidas para reducir la incertidumbre en los resultados y se utilizan simuladores para determinar las características del sistema final antes de llegar a la implementación.
+VHDL es una de las destrezas que más demandan en los Ingenieros Industriales empresas como Tecnobit, Eurofighter, o Indra."
+"2019/02/11 7:14:42 a. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Química","María Teresa Baeza Romero, José Luis de la Peña Rubio, Vicente López-Arza","Gestión Medioambiental en Proyectos de Ingeniería","TEÓRICOS
+-	Gestión de residuos. Gestión de RAEE (Residuos de Aparatos Eléctricos y Electrónicos)
+-	Contaminación lumínica.
+-	Contaminación por olores.
+-	Legislación medioambiental y trámites administrativos relacionados con la conservación del medioambiente.
+-	Equipos de protección ambiental. Métodos y equipos de medida y control de contaminantes.
+-	Gestión medioambiental en las empresas. Normas ISO14000.
+
+PRÁCTICOS
+-	Realización de un caso práctico sobre gestión de RAEE.
+-	Visita técnica a una planta de gestión de RAEE.
+-	Realización de un caso práctico sobre la solicitud de una autorización ambiental integrada.
+-	Realización de un caso práctico de Evaluación de Impacto Medioambiental.
+-	Realización de un caso práctico de gestión de residuos en una empresa.
+-	Realización de un caso práctico de aplicación de norma ISO14001.
+","Capacidad para comprender y aplicar los principios de conocimientos básicos de la química general, química orgánica e inorgánica y sus aplicaciones en la ingeniería.;Conocimiento adecuado del concepto de empresa, marco institucional y jurídico de la empresa. Organización y gestión de empresas.","Conocimientos básicos y aplicación de tecnologías medioambientales y sostenibilidad.;Conocimientos aplicados de organización de empresas.","","","    Los empresarios se ven obligados a adoptar conductas industriales que no perjudiquen el medio ambiente ya que las normas ambientales funcionan como barreras aduaneras. En este contexto la función del Ingeniero Industrial en la empresa resulta relevante ya que la economía, la dinámica organizacional y operativa (conocimientos específicos de su formación) son el núcleo de la metodología de funcionamiento de un sistema productivo. Estos generadores de impacto ambiental deben ser abordados conjuntamente con propuestas de prevención y mitigación.
+     Esta asignatura te permitirá poder adquirir conocimientos y capacidades no sólo teóricas sino también prácticas para poder desenvolverte con los trámites administrativos que se han de relacionar en temas relacionados con el medio ambiente con las administraciones y te permitirá saber cómo implantar y gestionar un sistema de gestión medioambiental en una empresa. Este tipo de formación es muy demandada por el sector industrial dado que el medioambiente es hoy en día un aspecto fundamental en la rentabilidad de las empresas. 
+
+"
+"2019/02/11 2:05:46 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Física Aplicada, Ingeniería Eléctrica, Máquinas y Motores Térmicos, Ingeniería de Sistemas y Automática","Alberto López, Miguel Carrión/Ruth Domínguez, Ismael Payo/Sergio Juárez, Mª Reyes García/Mª Arántzazu Gómez/Octavio Armas","Sistemas de Energía Solar","Teoría:
+1.	LA ENERGÍA SOLAR.
+Conceptos físicos utilizados en energía solar. Energía radiante. Conversión de la energía solar. Legislación. 
+2.	ENERGÍA SOLAR FOTOVOLTAICA.
+Panel solar fotovoltaico. Características y tipos de paneles. Sistemas de generación, regulación y conversión. Dimensionamiento de sistemas solares fotovoltaicos. Elaboración de proyectos de instalaciones fotovoltaicas aisladas y conectadas a red (autoconsumo y huertos solares).
+3.	ENERGÍA SOLAR TÉRMICA.
+Alta y media temperatura: Balance energético. Aplicaciones de generación de vapor. Métodos de concentración solar. Fluidos transportadores. Baja Temperatura: Aplicaciones de agua caliente sanitaria y Frio solar.
+4.	CONTROL Y AUTOMATIZACIÓN EN PLANTAS DE ENERGÍA SOLAR.
+Control automático para el seguimiento de trayectorias de paneles fotovoltaicos con dos grados de libertad, y control de la energía eléctrica generada por el sistema. 
+PRÁCTICAS:
+PRÁCTICA 1. Determinación de la característica I-V de paneles fotovoltaicos. Efecto de la posición relativa con la fuente de luz y Efecto del nublado.
+PRÁCTICA 2. Realización del proyecto de una instalación fotovoltaica. En esta práctica se elaborará el proyecto de una instalación fotovoltaica. Para ello, además del dimensionamiento del campo de generación, se proyectará la instalación eléctrica de todo el sistema fotovoltaico considerando la reglamentación vigente.  
+PRÁCTICA 3. Simulación con Matlab del seguimiento de trayectorias de paneles fotovoltaicos con dos grados de libertad. 
+PRÁCTICA 4. Regulación automática de la etapa inversora de una instalación solar para controlar la potencia entregada. Práctica realizada sobre maqueta experimental. 
+","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos sobre los fundamentos de automatismos y métodos de control.","Capacidad para el cálculo y diseño de instalaciones eléctricas de baja y media tensión.;Capacidad para el diseño de centrales eléctricas.;Conocimiento aplicado sobre energías renovables.","Conocimiento aplicado de electrónica de potencia.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.","La energía solar es, junto con le energía eólica, la principal energía renovable utilizada para la producción de energía eléctrica en España. A pesar de que España es el país de la UE con más hora de sol, no está entre los primeros en producción de energía eléctrica a partir de la energía solar debido, fundamentalmente, al continuo cambio en la legislación española respecto a esta energía. A pesar de esta incertidumbre legislativa, es claro el potencial que presenta nuestro país para el aprovechamiento energético del sol.  Por otro lado, también es necesario considerar que la Unión Europea ha establecido a través del Energy Roadmap 2050 el ambicioso objetivo de reducir las emisiones de gases de efecto invernadero un 80-95% para el año 2050 con respecto a los niveles del año 1990. Para conseguir este objetivo es inevitable una completa descarbonización del sector de producción de energía eléctrica, el cual conlleva incrementar significativamente los valores de potencia instalada de energía solar fotovoltaica y de concentración. 
+Es necesario destacar que, Castilla-La Mancha es, junto con Extremadura, la comunidad autónoma con más potencia solar fotovoltaica instalada por habitante, lo que supone una necesidad de conocimiento del funcionamiento y características de las centrales solares. Por ello, esta asignatura se considera básica para que los alumnos adquieran conocimientos de la captación y transformación de la energía solar en energía eléctrica y, en menor medida en energía térmica.
+Dentro de la energía solar, no solo se imparten conocimientos teóricos sobre el funcionamiento de los distintos dispositivos de transformación solar-térmica, sino que además en parte de la asignatura se imparten conocimientos sobre el diseño y control del funcionamiento de los distintos dispositivos, de manera que los alumnos obtengan una información completa para su posible futuro laboral en este sector. Además, se plantearán distintas prácticas experimentales para que los alumnos pongan en práctica los conocimientos adquiridos a la utilización y al empleo de sistemas automáticos y de control de distintos dispositivos de una central solar.
+Existen otras razones de tipo político-social, formativas y de investigación que hacen que la puesta en marcha de esta asignatura sea algo ineludible para la formación del estudiante:
+i) En el documento de Estrategia de Desarrollo Regional (RIS3) de Castilla-La Mancha el sector Energía y Medioambiente es un sector estratégico de desarrollo socio-económico.
+ii) La Universidad de Castilla – La Mancha (UCLM) es Campus de Excelencia Internacional en Energía y Medioambiente.
+iii) En los Campus de Albacete y Ciudad Real, la UCLM posee los Institutos de investigación en Energías Renovables (IER) y en aplicaciones Energéticas e Industriales (INEI) respectivamente. Ambos concentran y lideran la mayor parte de la investigación que se hace en la universidad relacionada con las energías renovables.
+iv) Para el curso 2019-2020, la Universidad de Castilla-La Mancha, pondrá en marcha el Master Universitario Internacional en Eficiencia Energética y Sistemas Energéticos Sostenibles.   
+
+"
+"2019/02/11 2:18:56 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Área de Ingeniería Eléctrica
+Área de Expresión Gráfica en la Ingeniería ","Gabriel Raul Hernández Labrado
+Antonio Rafael Elvira Gutiérrez
+Antonio José Carpio de los Pinos
+","DISEÑO Y CALCULO DE INSTALACIONES EN EDIFICIOS","Contenidos Teóricos
+1.- SISTEMAS DE INSTALACIONES EN EL EDIFICIO. DISEÑO, CALCULO, INTEGRACIÓN, REGULACIÓN Y CONTROL.
+2.- CARACTERÍSTICAS DE LA ENVOLVENTE TERMICA, INSTALACIONES DE CLIMATIZACIÓN Y EFICIENCIA ENERGÉTICA.
+3.- INSTALACIONES DE ELECTRICIDAD Y ALUMBRADO. TOMA DE TIERRA Y PROTECCIÓN CONTRA EL RAYO.
+4.- INSTALACIONES DE SEGURIDAD Y PROTECCIÓN CONTRAINCENDIOS.
+5.- INSTALACIONES MECÁNICAS, SANEAMIENTO Y FONTANERÍA.
+6.- NORMATIVAS Y REGLAMENTOS DE APLICACIÓN. LA REALIZACIÓN DEL PROYECTO DE INSTALACIONES. REDACCIÓN, DIRECCIÓN DE OBRA, CONTROL DE CALIDAD, USO Y MANTENIMIENTO.
+
+Contenidos Prácticos
+APLICACIÓN A UN EDIFICIO REAL DEL DISEÑO Y CALCULO DE LAS INSTALACIONES MENCIONADAS CON LA INTRODUCCIÓN A LA TECNOLOGÍA BIM EN LA INGENIERÍA INDUSTRIAL PARA LA FORMALIZACIÓN DEL PROYECTO DE EJECUCIÓN.
+USO DE HERRAMIENTAS INFORMÁTICAS, PROGRAMAS DE CÁLCULO GRÁFICO DE INSTALACIONES (CYPE INGENIEROS, DIALux, REVIT DE AUTODESK, ETC.) EN EL MARCO DEL PROYECTO.
+","Capacidad de visión espacial y conocimiento de las técnicas de representación gráfica, tanto por métodos tradicionales de geometría métrica y geometría descriptiva, como mediante las aplicaciones de diseño asistido por ordenador.","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos de los principios básicos de la mecánica de fluidos y su aplicación a la resolución de problemas en el campo de la ingeniería. Cálculo de tuberías, canales y sistemas de fluidos.;Conocimiento y utilización de los principios de teoría de circuitos y máquinas eléctricas.;Conocimientos de los fundamentos de la electrónica.;Conocimientos y capacidades para organizar y gestionar proyectos. Conocer la estructura organizativa y las funciones de una oficina de proyectos.","Capacidad para el cálculo y diseño de instalaciones eléctricas de baja y media tensión.;Capacidad para el diseño de centrales eléctricas.","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.","Se plantea la adquisición de destrezas para la realización integral del proyecto de las instalaciones del edificio, sumando a las instalaciones incluidas en el plan de estudios: electricidad, tomas de tierra, pararrayos, etc. otras que forman un conjunto integrado con las anteriores, tanto desde el suministro energético como desde la regulación y control para la mejora de su eficiencia energética: iluminación, envolvente térmica, climatización, protección, salubridad, etc.
+El campo de implementación de la ingeniería eléctrica se está desarrollando con nuevos procesos de generación y distribución de la energía. Es determinante que el alumno incorpore a su desarrollo académico las bases fundamentales de los procesos de diseño y cálculo de los proyectos de ingeniería eléctrica. A este proceso se tiene que aportar la necesaria gestión en todas sus fases, desde la concepción hasta la entrega a los usuarios. La tecnología BIM (Building Information Modeling) tiene que formar parte del desarrollo académico del estudiante, implementando los procedimientos de Project Management y diseño asistido por ordenador.
+
+Este título de Grado confiere las atribuciones profesionales y habilita para el ejercicio de la profesión de Ingeniero Técnico Industrial, y por lo tanto para la realización de proyectos y dirección de obra no solo de todo tipo de instalaciones sino también de edificaciones relacionadas con su especialidad.
+En particular, según el Anexo de la Orden CIN/321/2009, las competencias que los estudiantes deben adquirir, son entre otras: 
+ 
+Capacidad para la redacción, firma y desarrollo de proyectos en el ámbito de la ingeniería industrial que tengan por objeto, de acuerdo con los conocimientos adquiridos según lo establecido en el apartado 5 de esta orden, la construcción, reforma, reparación, conservación, demolición, fabricación, instalación, montaje o explotación de: estructuras, equipos mecánicos, instalaciones energéticas, instalaciones eléctricas y electrónicas, instalaciones y plantas industriales y procesos de fabricación y automatización.
+Capacidad para la dirección, de las actividades objeto de los proyectos de ingeniería descritos en el epígrafe anterior.
+
+Por lo tanto, los conocimientos relacionados con la construcción, instalación o montaje de estructuras, instalaciones energéticas, eléctricas y electrónicas, son muy recomendables para el eficaz ejercicio profesional. 
+"
+"2019/02/11 5:03:11 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Ingeniería Eléctrica","Miguel Carrión/Ruth Domínguez","Energías Renovables","Teoría 40%, práctica 60%.
+Contenidos:
+Teoría:
+Tema 1. Introducción
+Tema 2. Energía hidráulica
+Tema 3. Energía eólica
+Tema 4. Energía solar
+Tema 5. Biomasa
+Tema 6. Sistemas de almacenamiento
+
+PRÁCTICAS:
+Las prácticas a realizar estarán basadas en las que se han estado realizando en la asignatura Energías Renovables contenida en el Grado de Ingeniería Eléctrica. Estas prácticas son las siguientes:
+-	Práctica 1. Elaboración de un trabajo relacionado con la operación de sistemas eléctricos con alto porcentaje de energías renovables. Esta práctica es transversal a todos los temas de la asignatura. Ejemplos de estos trabajos son Diseño de un sistema eléctrico de Lanzarote-Fuerteventura 100% renovable o Estudio técnico-económico de la sustitución de los vehículos de combustión interna por vehículos eléctricos en la ciudad de Toledo.
+-	Práctica 2. Elaboración del anteproyecto de una central hidráulica.
+-	Práctica 3. Elaboración del anteproyecto de un parque eólico.
+-	Práctica 4. Elaboración del anteproyecto de una instalación fotovoltaica aislada.
+-	Práctica 5. Simulación de centrales solares térmicas a través del software SAM.
+
+","","","Conocimiento aplicado sobre energías renovables.","Conocimiento aplicado de electrónica de potencia.","El objetivo de esta propuesta es ofertar la asignatura obligatoria Energías Renovables incluida en el grado de Ingeniería Eléctrica como asignatura optativa en el Grado en Ingeniería Electrónica Industrial y Automática. Dado que Energías Renovables se encontrará situada en el primer cuatrimestre del tercer curso del Grado en Ingeniería Eléctrica, los conocimientos adquiridos por los estudiantes en Ingeniería Eléctrica y en Ingeniería Electrónica Industrial y Automática Industrial en el momento de comenzar a cursar dicha asignatura serán idénticos.
+
+La motivación de ofertar esta asignatura a los estudiantes del Grado en Ingeniería Electrónica Industria y Automática es doble. En primer lugar, las energías renovables juegan actualmente un papel muy importante en el mix de generación del sistema eléctrico español y se espera que su peso se incremente aún mucho más en el futuro. El Energy Roadmap 2050 trazado por la Unión Europea establece que en el año 2050 las emisiones de gases de efecto invernadero se reduzcan un 80-95% con respecto a los valores del año 1990. Este objetivo implica la total descarbonización del sistema eléctrico de los países miembros. De esta manera, debe considerarse lo siguiente:
+
+i)	las horas equivalentes de funcionamiento de las centrales fotovoltaicas y eólicas son mucho menores que las centrales térmicas convencionales (aproximadamente 1800 y 2500 horas por año, respectivamente);
+ii)	las centrales de energía renovable instaladas en la década 2000-2010 no estarán en funcionamiento en el año 2050 debido a la finalización de su vida útil;
+iii)	los cerca de 7 GW instalados actualmente de centrales de energía nuclear no serán reemplazados por esta misma tecnología debido a la moratoria nuclear vigente en nuestro país;
+iv)	los aproximadamente 35 GW instalados de centrales de combustibles fósiles deberán ser necesariamente reemplazados por centrales de energía renovable para alcanzar los objetivos de emisiones de efecto invernadero;
+v)	no existe un potencial significativo para ampliar los recursos hidráulicos para la producción de electricidad en España.
+
+Considerando lo anterior, se prevé que sea necesario al menos multiplicar por 5 la potencia actual instalada de centrales de origen renovable. Es por ello, que el sector de las energías renovables será primordial desde el punto de vista laboral en los próximos años.  
+En segundo lugar, el gran crecimiento de las energías renovables en los últimos años ha sido motivado principalmente por el desarrollo de la electrónica en general y de la electrónica de potencia en particular. El desarrollo de sistemas electrónicos de potencia más fiables, baratos y capaces de transmitir grandes cantidades de potencia ha permitido la implantación práctica de la energía eólica y de la energía solar fotovoltaica. Es por ello que los ingenieros electrónicos que trabajen en este sector deberán conocer los principios de funcionamiento y las particularidades de las centrales de energías renovables desarrolladas. Por otro lado, la monitorización y control de los sistemas de energía renovable son también campos de trabajo idóneos para futuros graduados en Ingeniería Electrónica Industrial y Automática.
+"
+"2019/02/11 5:50:57 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Área de Expresión Gráfica en la Ingeniería ","Antonio Rafael Elvira Gutiérrez
+Antonio José Carpio de los Pinos","I+D+I PROCESOS SOSTENIBLES DEL SECTOR INDUSTRIAL.","Contenidos Teóricos
+1.- I+D+i PRINCIPIOS GENERALES DE LA SOSTENIBILIDAD EN LA CONSTRUCCIÓN 
+2.- CICLO DE VIDA DE EDIFICIOS E INFRAESTRUCTURAS: PLANEAMIENTO, PROYECTO, EJECUCIÓN, EXPLOTACIÓN Y DECONSTRUCCIÓN.
+3.- INTRODUCCIÓN AL DISEÑO SOSTENIBLE 
+4.- CALIDAD EN LOS PROYECTOS DE INSTALACIONES, DECLARACIÓN MEDIOAMBIENTAL
+5.- CONSTRUCCIÓN SOSTENIBLE
+6.- GESTIÓN DE LA SEGURIDAD Y SALUD EN EL CICLO DE VIDA DE LAS INSTALACIONES
+7.- PROCESOS SOSTENIBLES PARA LA ACTIVIDAD PREVENTIVA EN INSTALACIONES  
+8.- MATERIALES, SISTEMAS Y TECNOLOGÍAS: GESTIÓN DE RESIDUOS 
+9.- GESTIÓN DEL CONTROL Y MANTENIMIENTO DE LAS INSTALACIONES
+
+Contenidos Prácticos
+ESTUDIO DE UN CASO CONCRETO QUE SE PUEDA VISITAR Y ESTUDIAR PARA ESTABLECER MODELOS DE EFICIENCIA ENTRE EL CASO REAL Y LOS CÁLCULOS TEÓRICOS EN ASPECTOS COMO LOS CONSUMOS, LA INNOVACIÓN, LOS ASPECTOS DE PREVENCIÓN DE RIESGOS Y ERGONOMÍA, SU SOSTENIBILIDAD E IMPACTO MEDIOAMBIENTAL.
+ANÁLISIS DE ESTOS ASPECTOS REALIZANDO UN MODELO TEÓRICO CON LA IMPLEMENTACIÓN DE LA TECNOLOGÍA BIM PARA SU COMPARACIÓN CON LOS DATOS REALES.
+USO DE HERRAMIENTAS INFORMÁTICAS, PROGRAMAS DE CÁLCULO GRÁFICO (PROYECT MANAGER DE MICROSOFT, REVIT DE AUTODESK, ETC.) 
+","Capacidad de visión espacial y conocimiento de las técnicas de representación gráfica, tanto por métodos tradicionales de geometría métrica y geometría descriptiva, como mediante las aplicaciones de diseño asistido por ordenador.","Conocimientos aplicados de organización de empresas.;Conocimientos y capacidades para organizar y gestionar proyectos. Conocer la estructura organizativa y las funciones de una oficina de proyectos.","Capacidad para el cálculo y diseño de instalaciones eléctricas de baja y media tensión.;Capacidad para el cálculo y diseño de instalaciones eléctricas de alta tensión.;Capacidad para el cálculo y diseño de líneas eléctricas y transporte de energía eléctrica.;Capacidad para el diseño de centrales eléctricas.","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.","En la materialización de las instalaciones industriales, tanto en sus aspectos productivos como en la necesaria construcción de los edificios que los albergan, a parte de los conocimientos necesarios para la realización integral del proyecto; es altamente recomendable que el alumno incorpore a su desarrollo académico tanto los criterios de innovación, calidad, eficiencia energética, medio ambiente, seguridad y salud, como conocer métodos y herramientas para la evaluación medioambiental y sostenible de los edificios e infraestructuras. Es determinante dar a conocer las herramientas necesarias para adquirir los conocimientos sobre los principios generales de la sostenibilidad durante los procesos de construcción abarcando el aspecto fundamental del ciclo de vida: planeamiento inicial, desarrollo del proyecto, ejecución material del edificio, explotación de la actividad y, finalmente, diseño de la deconstrucción; para pasar nuevamente al inicio del ciclo de vida del material y su sistema constructivo.
+
+Las nuevas tecnologías de la información y control de los procesos de fabricación y funcionamiento de las instalaciones, así como la construcción de los equipamientos; deben formar parte del desarrollo académico del estudiante; y dada la complejidad de estos procesos, introduciendo los procedimientos de Project Management y tecnología BIM (programa REVIT de AutoDesk).
+
+En base al Anexo de la Orden CIN/321/2009, los estudiantes deben adquirir los conocimientos para la redacción, firma, desarrollo de proyectos y su dirección de obra, en el ámbito de la ingeniería industrial que tengan por objeto, la construcción, reforma, reparación, conservación, demolición, fabricación, instalación, montaje o explotación de: estructuras, equipos mecánicos, instalaciones energéticas, instalaciones eléctricas y electrónicas, instalaciones y plantas industriales y procesos de fabricación y automatización. 
+
+Por lo tanto, los conocimientos relacionados con la calidad del material, la eficiencia energética, la prevención de riesgos laborales, la evaluación medioambiental y la gestión de residuos, son claramente necesarios para la implementación de la sostenibilidad en todos los procesos relacionados con el diseño, la construcción, el uso, el mantenimiento y la deconstrucción de instalación o montaje de estructuras, instalaciones energéticas, eléctricas y electrónicas. Los conocimientos de Investigación, Desarrollo e Innovación para la implementación de los procesos sostenibles de los proyectos de instalaciones, son altamente recomendables para el eficaz ejercicio profesional. "
+"2019/02/11 5:55:39 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José Manuel Gilpérez Aguilar","Nanotecnología para las TICs","1. Introducción y fundamentos de nanotecnología
+1.1. Antecedentes y revisión histórica.
+1.2. Leyes de escalado
+
+2. Fundamentos físicos de los dispositivos nanoelectrónicos
+2.1 Conceptos básicos de Física Cuántica
+2.2. Electrones libres y confinados
+2.3. Electrones en sólidos
+2.4. Efectos cuánticos en los dispositivos nanoelectrónicos
+
+3. Nanomateriales y nanoestructuras 
+3.1 Enlaces y cristales
+3.2 Semiconductores inorgánicos
+3.3 Estructuras de carbono
+3.4 Nanopartículas y composites
+3.5 Compuestos orgánicos y biomateriales
+
+4. Nanotecnología para la fabricación y la caracterización de dispositivos
+4.1. Técnicas de fabricación y manipulación: litografía, deposición química, crecimiento epitaxial.
+4.2 Técnicas de caracterización: eléctrica, óptica, y estructural (SEM y TEM, STM y AFM).
+
+5. Nanodispositivos 
+5.1 Nanoelectrónica
+5.2 Nanooptoelectrónica y nanofotónica 
+5.3 Nanobiotecnología
+","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.","Conocimientos de los fundamentos de ciencia, tecnología y química de materiales. Comprender la relación entre la microestructura, la síntesis o procesado y las propiedades de los materiales.;Conocimientos de los fundamentos de la electrónica.;Conocimientos básicos de los sistemas de producción y fabricación.","","Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.;Conocimiento de los fundamentos y aplicaciones de la electrónica digital y microprocesadores.;Conocimiento aplicado de electrónica de potencia.;Capacidad para diseñar sistemas electrónicos analógicos, digitales y de potencia.;Conocimiento y capacidad para el modelado y simulación de sistemas.","Esta asignatura tiene como objetivo ofrecer a los estudiantes los fundamentos de la nanociencia y la nanotecnología, en especial en su aplicación en las Tecnologías de la la Información y la Comunicación (TIC). En este sentido, se describirá su empleo en las áreas de la nanoelectrónica y la nanofotónica, fundamentalmente. 
+
+Los contenidos de la asignatura se pueden dividir en dos bloques. En primer lugar, se describirán la naturaleza y propiedades físicas de las nanoestructuras, desde los materiales empleados hasta los dispositivos. Y en segundo lugar, se presentarán las técnicas empleadas para la fabricación y caracterización de dichos dispositivos, así como su aplicación en distintos campos, como las TICs, la tecnología aeroespacial o la medicina, entre otros. 
+
+Como objetivos transversales de la asignatura, esta pretende proporcionar una visión interdisciplinar de los avances científico-tecnológicos, despertando 
+en el alumno el interés por la ciencia y la investigación, orientadas a la innovación en las tecnologías del futuro. Así mismo, el seguimiento de este curso debe mejorar la capacidad para la búsqueda, elaboración y presentación de información, así como la reflexión y la capacidad de síntesis.
+"
+"2019/02/11 6:01:59 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Área de Expresión Gráfica en la Ingeniería ","Antonio Rafael Elvira Gutiérrez
+Antonio José Carpio de los Pinos","TECNOLOGÍA PARA LA EFICIENCIA ENERGÉTICA.","Contenidos Teóricos
+1.- EFICIENCIA ENERGÉTICA EN EDIFICIOS E INSTALACIONES
+2.- CRITERIOS DE MEJORA Y SISTEMAS DE CONTROL ELECTRÓNICOS APLICADOS
+3.- INTRODUCCIÓN A LA TECNOLOGÍA DEL CONFORT 
+4.- INTRODUCCIÓN A LA TECNOLOGÍA BIM
+5.- GESTIÓN Y CONTROL DE LAS INSTALACIONES ELÉCTRICAS
+6.- GESTIÓN Y CONTROL DE LAS INSTALACIONES FOTOVOLTAICAS
+7.- GESTIÓN Y CONTROL DE LAS INSTALACIONES DE CLIMATIZACIÓN 
+8.- GESTIÓN Y CONTROL DE LAS INSTALACIONES DOMÓTICA E INMÓTICA 
+9.- GESTIÓN DE PROGRAMACIÓN Y MANTENIMIENTO DEL SISTEMA DE CONTROL
+
+Contenidos Prácticos
+PARTIENDO DEL FUNCIONAMIENTO DE UN EDIFICIO SELECCIONADO POR SUS CARACTERÍSTICAS I+D+i SE PROPONE LA MEJORA DEL DISEÑO Y SISTEMAS DE CONTROL DE LAS INSTALACIONES DEL MISMO CON CRITERIOS DE EFICIENCIA ENERGÉTICA.
+PARA ABORDAR ESTE TRABAJO SERÁ PRECISO CONTAR CON PROGRAMAS INFORMÁTICOS QUE PERMITAN ESPECIFICAR LA GEOMETRÍA DEL EDIFICIO Y LAS UBICACIONES DE LOS ELEMENTOS DE PRODUCCIÓN Y CONTROL, Y LAS TRAYECTORIAS DE LAS LÍNEAS DE DISTRIBUCIÓN. 
+EN PARTICULAR LA TECNOLOGÍA BIM (BUILDING INFORMATION MODELING) ES, EN EL MOMENTO ACTUAL, LA HERRAMIENTA INFORMÁTICA MÁS ADECUADA PARA EL DISEÑO Y LA GESTIÓN DE SISTEMAS DE REDES EN UN ENTORNO GEOMÉTRICO COMPLEJO (PROGRAMA DE DISEÑO GRÁFICO REVIT DE AUTODESK).
+PARA EL CÁLCULO DE LOS ÍNDICES DE CONFORT INTERIOR EN UN EDIFICIO, SE PRESENTA LA HERRAMIENTA DE DISEÑO GRÁFICO START-CCM+. HERRAMIENTA IMPRECINDIBLE PARA LA SIMULACIÓN DEL COMPORTAMIENTO DINÁMICO Y TÉRMICO DEL AIRE.","Capacidad de visión espacial y conocimiento de las técnicas de representación gráfica, tanto por métodos tradicionales de geometría métrica y geometría descriptiva, como mediante las aplicaciones de diseño asistido por ordenador.","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos de los fundamentos de la electrónica.;Conocimientos básicos y aplicación de tecnologías medioambientales y sostenibilidad.;Conocimientos y capacidades para organizar y gestionar proyectos. Conocer la estructura organizativa y las funciones de una oficina de proyectos.","Capacidad para el cálculo y diseño de instalaciones eléctricas de baja y media tensión.;Conocimiento aplicado sobre energías renovables.","Conocimiento aplicado de electrotecnia.;Conocimiento de los fundamentos y aplicaciones de la electrónica analógica.","El funcionamiento de las instalaciones de suministro y de producción de un edificio o actividad industrial tiene que estar hoy en día complementado con unos sistemas de gestión y control que hagan sostenible no solo su mantenimiento sino también su eficiencia energética.
+
+El desarrollo tecnológico en todos los campos de las instalaciones: suministro de energía, iluminación, climatización, Inmótica, etc. ha llevado a que los edificios se hayan convertido en máquinas complejas donde la gestión de estos sistemas ha pasado a un primer plano. No solo se ha invertido el porcentaje de intervención en el coste de la primera instalación o construcción, sino que en este momento la repercusión de las características de su uso, tales como el mantenimiento y el consumo, son factores decisivos a la hora de promover una nueva actividad industrial o en cualquier otro ámbito.
+
+En base al Anexo de la Orden CIN/321/2009, los estudiantes deben adquirir los conocimientos para la redacción, firma, desarrollo de proyectos y su dirección de obra, en el ámbito de la ingeniería industrial que tengan por objeto, la construcción, reforma, reparación, conservación, demolición, fabricación, instalación, montaje o explotación de: estructuras, equipos mecánicos, instalaciones energéticas, instalaciones eléctricas y electrónicas, instalaciones y plantas industriales y procesos de fabricación y automatización. 
+
+Puede considerarse por lo tanto que la gestión y el control de instalaciones cada vez más numerosas y sofisticadas, con una fuerte repercusión en la inversión y consumo de energía, es una capacidad más importante incluso que el diseño y dimensionado previo. Este desempeño solo es posible desde la gestión integrada de todos los sistemas, lo que hace imprescindible el manejo de programas con una componente gráfica que permita la conectividad e interrelación de implantaciones complejas (tecnología BIM, Project Manager, Start CCM+, etc.)."
+"2019/02/11 6:43:00 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS ","MARÍA ARÁNTZAZU GÓMEZ ESTEBAN – OCTAVIO ARMAS VERGEL – MARÍA REYES GARCÍA CONTRERAS","PREVENCIÓN DE RIESGOS LABORALES","Contenidos teóricos:
+Tema 1 INTRODUCCIÓN A LA PREVENCIÓN DE RIESGOS LABORALES
+Conceptos básicos. Normativa. Organismos con competencias en materia de PRL. Disciplinas preventivas.
+Tema 2 EL SISTEMA DE PREVENCIÓN
+Sujetos implicados en la prevención. Modalidades preventivas. Niveles formativos.
+Tema 3 EL PLAN DE PREVENCIÓN DE RIESGOS EN LA EMPRESA
+Evaluación de riesgos laborales. Método INSHT. Planificación de la actividad preventiva.
+Tema 4 CONDICIONES GENERALES DE SEGURIDAD. LUGARES DE TRABAJO
+Espacios de trabajo. Vías de circulación y evacuación. Instalaciones de protección contra incendios e instalaciones eléctricas.
+Tema 5 LA SEÑALIZACIÓN DE SEGURIDAD
+Clasificación y requisitos.
+Tema 6 EL AMBIENTE LABORAL
+Confort térmico y estrés térmico. Iluminación y radiaciones. Ruido ambiental y vibraciones.
+Tema 7 EL RIESGO ELÉCTRICO
+Efectos de la electricidad sobre el cuerpo. Factores determinantes de los efectos de la electricidad. Protección contra contactos directos e indirectos.
+Tema 8 MÁQUINAS Y EQUIPOS DE TRABAJO
+Definición y marco normativo. Declaración de conformidad CE. Evaluación de la conformidad de máquinas. Medidas de seguridad aplicables a máquinas.
+Contenidos prácticos:
+-	Análisis estadístico de la siniestralidad de una empresa.
+-	Evaluación y planificación de la actividad preventiva de dos puestos de trabajo de una nave industrial por el método FINE.
+-	Evaluación de riesgos debidos a la falta de equipos de protección individual y al uso indebido de escaleras de mano.
+-	Medición de las condiciones termohigrométricas, iluminación y ruido de un laboratorio de motores térmicos.
+-	Actuación en caso de emergencia o evacuación. Primeros auxilios.
+","Conocimiento adecuado del concepto de empresa, marco institucional y jurídico de la empresa. Organización y gestión de empresas.","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos aplicados de organización de empresas.;Conocimientos y capacidades para organizar y gestionar proyectos. Conocer la estructura organizativa y las funciones de una oficina de proyectos.","Capacidad para el cálculo y diseño de máquinas eléctricas.;Conocimientos sobre control de máquinas y accionamientos eléctricos y sus aplicaciones.;Conocimiento de los principios la regulación automática y su aplicación a la automatización industrial.","Conocimiento aplicado de electrotecnia.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.","La Organización Internacional del Trabajo (OIT) calcula que cada año se producen 337 millones de accidentes y 2,3 millones de muertes en el lugar de trabajo, es decir, alrededor de 6.300 muertes diarias a nivel mundial. El director de la OIT ha comentado que los accidentes y muertes se pueden evitar, si se aplican las adecuadas medidas preventivas. En este contexto, un ingeniero debe poder estar en disposición de aplicar los principios de la ingeniería y tecnología para prevenir o corregir condiciones de trabajo que supongan un factor de riesgo para su seguridad y salud y la de sus compañeros. 
+Por tanto, la asignatura “Prevención de Riesgos Laborales” va a permitir introducir al alumno en las técnicas generales de la prevención de riesgos, proporcionando conceptos básicos que permiten la promoción de comportamientos seguros (tales como por ejemplo la correcta utilización de equipos), la realización de evaluaciones elementales de riesgos o la actuación en situaciones de emergencia y primeros auxilios en cualquier ámbito empresarial, independientemente de la titulación que se curse. Estos conceptos, aunque básicos, resultan imprescindibles en la formación integral de cualquier profesional técnico que sienta inquietud por la seguridad y salud laboral o pretenda tener objetivos profesionales en este campo.
+"
+"2019/02/11 7:01:33 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS
+INGENIERÍA DE SISTEMAS
+INGENIERÍA ELÉCTRICA","Octavio Armas Vergel
+María Arántzazu Gómez
+María Reyes García Contreras
+Ismael Payo Gutiérrez
+Sergio Juárez Pérez
+Miguel Carrión Ruiz Peinado
+María Ruth Domínguez Martín","Sistemas de Energía Eólica","Contenidos teóricos:
+
+Tema 1 LA ENERGÍA DEL VIENTO 
+1.1	Potencial del viento. 
+1.2	Variabilidad del viento. 
+1.3	La potencia eólica. Potencia disponible y potencia aprovechable. 
+Tema 2 AEROGENERADORES 
+2.1 Tipos de turbinas eólicas. Funcionamiento. 
+2.2 Criterios de selección. 
+2.3 Estimación de la potencia y energía extraíble con las turbinas eólicas. 
+2.4 Parques eólicos marinos (off-shore). 
+Tema 3 SELECCIÓN DE EMPLAZAMIENTOS 
+3.1 Factores influyentes en el funcionamiento de un sistema eólico. 
+3.2 Criterios de selección de emplazamientos. 
+3.3 Distribución de un parque eólico.
+Tema 4 SITUACIÓN ACTUAL 
+4.1 El contexto internacional de desarrollo de la energía eólica. 
+4.2 La energía eólica en España. 
+Tema 5 MANTENIMIENTO DE AEROGERADORES
+Tema 6 CONTROL DE ENERGÍA ENTRE UN AEROGENERADOR Y LA RED ELÉCTRICA 
+6.1 Modelado del sistema 
+6.2 Sistema de control 
+6.3 Circuito de continua 
+6.4 Modulación vectorial 
+6.5 Modulación senoidal
+(Aunque este tema está como contenido teórico, se imparte de forma práctica y de forma individualizada)
+Tema 7 INSTALACIÓN ELÉCTRICA DE UN PARQUE EÓLICO
+7.1. Componentes del sistema eléctrico de un parque eólico
+7.2. Sistema unifilar de un parque eólico.
+7.3. Diseño de la instalación eléctrica de un parque eólico.
+
+Contenidos prácticos:
+
+1. Clase de problemas. 
+(Asociada a Tema 1) 
+Estimación de potencia de aerogeneradores y parques eólicos.
+2. Clase de problemas. 
+(Asociada a Tema 2) 
+Estimación de potencia mecánica producida por el aerogenerador. 
+Triángulos de fuerza incidente en las palas.
+2. Práctica de laboratorio sobre ensayo de un micro-aerogenerador. 
+(Asociada a Tema 2) 
+Efecto sobre la producción eléctrica de:
+Velocidad del viento
+Número de palas.
+Posición de las palas  
+3. Ensayo simulando de un aerogenerador real.
+4. Visita al laboratorio de energía eólica del Inst. Energías Renovables (Albacete). 
+Tienen la posibilidad de ver diferentes equipos de medida de velocidad de viento, multiplicadora in situ, aerogenerador in situ, etc.
+5. Visita a parque eólico “El Romeral”.
+Los estudiantes ven, entre otras cosas, maniobras de parada y arranque de un aerogenerador, subestación asociada, etc. 
+6 Realización de trabajo independiente para luego exponerlo.
+Posibles temas:
+- Caracterización de la generación eólica-eléctrica en España y Castilla - La Mancha. 
+- Tipos de aerogeneradores. Descripción detallada. Subsistemas. Aplicaciones. 
+- Desarrollos (proyectos en marcha o futuros) Eólica en el mar, Eólica combinada. 
+- Instalaciones eólicas de pequeña escala. 
+- Estrategias de control de aerogeneradores. Potencias intercambiadas con la red
+7. Diseño de la instalación eléctrica de un parque eólico.
+","","Conocimientos de los principios básicos de la mecánica de fluidos y su aplicación a la resolución de problemas en el campo de la ingeniería. Cálculo de tuberías, canales y sistemas de fluidos.;Conocimiento y utilización de los principios de teoría de circuitos y máquinas eléctricas.;Conocimientos de los fundamentos de la electrónica.;Conocimientos sobre los fundamentos de automatismos y métodos de control.","Capacidad para el cálculo y diseño de líneas eléctricas y transporte de energía eléctrica.;Conocimiento sobre sistemas eléctricos de potencia y sus aplicaciones.;Conocimiento aplicado de electrónica de potencia.;Conocimiento de los principios la regulación automática y su aplicación a la automatización industrial.;Conocimiento aplicado sobre energías renovables.","Conocimiento aplicado de electrónica de potencia.;Conocimientos de regulación automática y técnicas de control y su aplicación a la automatización industrial.;Capacidad para diseñar sistemas de control y automatización industrial.","Razones Técnicas:
+i) España es 5ª potencia mundial en producción de energía eléctrica con eólica a pesar de que ha habido un frenazo en la instalación por razones políticas.
+ii) España es exportadora de tecnología de producción eléctrica con energía eólica.
+iii) La Comunidad de Castilla-La Mancha es la segunda comunidad en España en potencia instalada de energía eólica (sólo superada por Castilla León).
+
+Razones socio-políticas, formativas de y de investigación:
+i) En el documento de Estrategia de Desarrollo Regional (RIS3) de Castilla-La Mancha el sector Energía y Medioambiente es un sector estratégico de desarrollo socio-económico.
+ii) La Universidad de Castilla – La Mancha (UCLM) es Campus de Excelencia Internacional en Energía y Medioambiente.
+iii) En los Campus de Albacete y Ciudad Real, la UCLM posee los Institutos de investigación en Energías Renovables (IER) y en aplicaciones Energéticas e Industriales (INEI) respectivamente. Ambos concentran y lideran la mayor parte de la investigación que se hace en la universidad relacionada con las energías renovables.
+iv) Para el curso 2019-2020, la Universidad de Castilla-La Mancha, pondrá en marcha el Master Universitario Internacional en Eficiencia Energética y Sistemas Energéticos Sostenibles.   
+"
