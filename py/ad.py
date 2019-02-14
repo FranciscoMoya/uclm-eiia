@@ -40,24 +40,38 @@ class DirectorioActivo(object):
         return { (str(p['sn']), str(p['givenName'])): str(p['displayName'])  for p in self.conn.entries }
 
 
-def display_data(data):
+def display_data(data, out):
     for e in data:
-        display_entry(e)
+        display_entry(e, out)
 
-def display_entry(e):
-    print(e['displayName'])
+def display_entry(e, out):
+    print(e['displayName'], file=out)
     for key in e.entry_attributes:
-        print("   {}: {}".format(key, e[str(key)]))
-    print()
+        print("   {}: {}".format(key, e[str(key)]), file=out)
+    print(file=out)
+
+def display_summary(data, out):
+    dep = set(str(e['department']) for e in data)
+    cat = set(str(e['title']) for e in data )
+    por_dep  = { d: len([p for p in data if p['department'] == d]) for d in dep }
+    print('RESUMEN POR DEPARTAMENTO:', file=out)
+    display_counters(por_dep, out)
+    por_cat  = { d: len([p for p in data if p['title'] == d]) for d in cat }
+    print('\nRESUMEN POR CATEGORÍA:', file=out)
+    display_counters(por_cat, out)
+
+def display_counters(d, out):
+    for k in d:
+        print('  {}: {}'.format(k, d[k]), file=out)
 
 #conn.search('cn=francisco.moya,ou=Toledo,ou=PDI,dc=uclm,dc=es', '(objectclass=person)', attributes='*')
 #conn.search('cn=Grupo.PDI.TO.EII,ou=PDI,dc=uclm,dc=es', '(objectclass=*)', attributes='member')
 #conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', '(objectClass=person)', attributes='displayName')
 if __name__ == '__main__':
-    import argparse
+    import argparse, sys
 
     parser = argparse.ArgumentParser(description='Consulta el directorio activo.')
-    parser.add_argument('--centro', nargs='?', const='ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO', default=None,
+    parser.add_argument('--school', nargs='?', const='ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO', default=None,
                         help='Extrae datos de todos el PDI de un centro')
     parser.add_argument('--name', action='store', 
                         help='Extrae datos de un profesor por nombre')
@@ -65,14 +79,21 @@ if __name__ == '__main__':
                         help='Extrae datos de un profesor por DNI')
     parser.add_argument('--attr', nargs='*', default='*',
                         help='Atributos a consultar')
+    parser.add_argument('--summary', action='store_true',
+                        help='Muestra resumen')
+    parser.add_argument('--out', action='store', type=argparse.FileType('w', encoding='utf-8'), default=sys.stdout,
+                        help='Archivo de salida')
     args = parser.parse_args()
 
     with DirectorioActivo(USERNAME, PASSWORD) as da:
         if args.nif or args.name:
-            display_data(da.profesor(name=args.name, nif=args.nif, attr=args.attr))
+            display_data(da.profesor(name=args.name, nif=args.nif, attr=args.attr), args.out)
 
-        if args.centro:
-            display_data(da.profesores(args.centro, args.attr))
+        if args.school:
+            prof = da.profesores(args.school, args.attr)
+            display_data(prof, args.out)
+            if args.summary:
+                display_summary(prof, args.out)
 
         #print(da.correos_profesores('ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO'))
         #print(len(da.alumnos_displayNames('E.U. INGENIERIA TECNICA INDUSTRIAL')))

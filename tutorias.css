@@ -60,12 +60,12 @@ label::after {
     content: ':';
 }
 .col1 {
-    width: 70%;
+    width: 65%;
     float: left;
     display: inline-block;
 }
 .col2 {
-    width: 30%;
+    width: 35%;
     float: right;
     display: inline-block;
 }
