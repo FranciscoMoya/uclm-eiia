@@ -16,7 +16,7 @@ class DirectorioActivo(object):
         self.conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', 
                     '(&(objectClass=person)(physicalDeliveryOfficeName={}))'.format(escuela), 
                     attributes=attr)
-        return self.conn.entries
+        return [e for e in self.conn.entries if 'PERSONAL' not in str(e['title'])]
 
     def profesor(self, name=None, nif=None, attr='*'):
         filter=''
