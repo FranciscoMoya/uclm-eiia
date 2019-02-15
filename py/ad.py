@@ -27,6 +27,15 @@ class DirectorioActivo(object):
                          attributes = attr)
         return self.conn.entries
 
+    def alumno(self, name=None, nif=None, attr='*'):
+        filter=''
+        if nif: filter += '(UCLMnif={})'.format(nif)
+        if name: filter += '(displayName=*{}*)'.format(name)
+        self.conn.search('ou=Toledo,ou=Alumnos,dc=uclm,dc=es', 
+                         '(&(objectclass=person){})'.format(filter), 
+                         attributes = attr)
+        return self.conn.entries
+
     def correos_profesores(self, escuela):
         self.conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', 
                     '(&(objectClass=person)(physicalDeliveryOfficeName={}))'.format(escuela), 
@@ -88,6 +97,7 @@ if __name__ == '__main__':
     with DirectorioActivo(USERNAME, PASSWORD) as da:
         if args.nif or args.name:
             display_data(da.profesor(name=args.name, nif=args.nif, attr=args.attr), args.out)
+            display_data(da.alumno(name=args.name, nif=args.nif, attr=args.attr), args.out)
 
         if args.school:
             prof = da.profesores(args.school, args.attr)

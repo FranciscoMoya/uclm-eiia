@@ -3,9 +3,10 @@ from cv_cfg import USERNAME, PASSWORD
 import tuto_gform as gform
 import json, argparse, jinja2
 
+ad_keys = ('sn','givenName','department','mail','title','telephoneNumber', 'displayName')
+
 def entry_to_dict(p):
-    keys = ('sn','givenName','department','mail','title','telephoneNumber', 'displayName')
-    return { k: str(p[k] if p[k] else '') for k in keys }
+    return { k: str(p[k] if p[k] else '') for k in ad_keys }
 
 def merge_into(A, B):
     for p in B:
@@ -18,7 +19,8 @@ def merge_into(A, B):
 
 def merge_profe(A,B):
     for k in B:
-        A[k] = B[k]
+        if k not in ad_keys:
+            A[k] = B[k]
 
             
 
