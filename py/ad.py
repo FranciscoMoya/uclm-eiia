@@ -4,7 +4,10 @@ from cv_cfg import USERNAME, PASSWORD
 class DirectorioActivo(object):
     def __init__(self, user, passwd):
         self.server = Server('dcto03.uclm.es', get_info=ALL)
-        self.conn = Connection(self.server, 'cn={},ou=Toledo,ou=PDI,dc=uclm,dc=es'.format(user), passwd, auto_bind=True)
+        try:
+            self.conn = Connection(self.server, 'cn={},ou=Toledo,ou=PDI,dc=uclm,dc=es'.format(user), passwd, auto_bind=True)
+        except Exception:
+            raise SystemError('Servidor de dominio no accesible. Establece la VPN si estás fuera de la UCLM.')
 
     def __enter__(self):
         return self
