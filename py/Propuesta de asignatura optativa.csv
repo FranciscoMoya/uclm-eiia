@@ -1,7 +1,5 @@
 "Marca temporal","Grado","Áreas de conocimiento proponentes","Profesores que la suscriben","Denominación","Contenidos","Competencias del módulo de formación básica","Competencias del módulo común a la rama industrial","Competencias del módulo de tecnología específica (Eléctrica)","Competencias del módulo de tecnología específica (Electrónica Industrial)","Justificación técnica"
-"2019/02/07 5:20:55 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS","OCTAVIO ARMAS VERGEL
-MARÍA ARÁNTZAZU GÓMEZ ESTEBAN
-MARÍA REYES GARCÍA CONTRERAS","TECNOLOGÍAS DE TRANSFORMACIÓN DE ENERGÍA","Contenidos teóricos:
+"2019/02/07 5:20:55 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS","OCTAVIO ARMAS VERGEL - MARÍA ARÁNTZAZU GÓMEZ ESTEBAN - MARÍA REYES GARCÍA CONTRERAS","TECNOLOGÍAS DE TRANSFORMACIÓN DE ENERGÍA","Contenidos teóricos:
 Tema 1. CONCEPTOS GENERALES SOBRE ENERGÍA Y SUS TRANSFORMACIONES  
 Visión de conjunto de las transformaciones y operaciones energéticas. Rendimiento de las transformaciones energéticas. Fuentes de energía primaria. Uso de la energía en la industria y el transporte.
 Tema 2. SISTEMAS DE RECUPERACIÓN DE ENERGÍA POR INTERCAMBIO  
@@ -121,8 +119,7 @@ El alumno deberá poseer los conocimientos suficientes para resolver los problem
 El alumno deberá haber adquirido previamente las destrezas y capacidades proporcionadas por las materias de Cálculo numérico (1er Curso),
 Tecnología Eléctrica (2º Curso), Tecnología Electrónica (2º Curso) y Electrónica de Potencia (3er Curso) se recomienda que dichas asignaturas
 estén aprobadas"
-"2019/02/08 10:01:35 a. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José María Tirado Martín
-José Manuel Gilpérez Aguilar","Optoelectrónica","Tema 1 Introduccion. Naturaleza y comportamiento de la luz
+"2019/02/08 10:01:35 a. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José María Tirado Martín","Optoelectrónica","Tema 1 Introduccion. Naturaleza y comportamiento de la luz
 Tema 1.1 Teorías ondulatoria, corpuscular y cuántica
 Tema 1.2 Efectos relativisticos
 Tema 1.3 La luz como portadora de información
@@ -393,9 +390,8 @@ CONTENIDOS PRÁCTICOS:
 "2019/02/10 9:12:28 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","INGENIERÍA DE SISTEMAS Y AUTOMÁTICA
 ARQUITECTURA Y TECNOLOGÍA DE LOS COMPUTADORES","FERNANDO J. CASTILLO GARCÍA
 GUILLERMO RUBIO GÓMEZ
-LUIS SÁNCHEZ RODRÍGUEZ
 FRANCISCO MOYA FERNÁNDEZ
-JUAN MORENO GARCÍA","VISIÓN ARTIFICIAL","CONTENIDOS TEÓRICOS:
+LUIS SÁNCHEZ RODRÍGUEZ","VISIÓN ARTIFICIAL","CONTENIDOS TEÓRICOS:
 1.- Introducción a la Visión por Computador
 2.- Elementos de un sistema de Visión por Computador
 3.- Imágenes digitales
@@ -405,7 +401,6 @@ JUAN MORENO GARCÍA","VISIÓN ARTIFICIAL","CONTENIDOS TEÓRICOS:
 7.- Segmentación de imágenes 
 8.- Transformaciones morfológicas y descripción de objetos
 9.- Reconocimiento de objetos
-10.- Redes neuronales para reconocimiento. Tipos de capas, arquitecturas, casos de estudio
 
 CONTENIDOS PRÁCTICOS:
 	Práctica 1: Captura y caracterización de imágenes
@@ -485,9 +480,7 @@ CONTENIDOS PRÁCTICOS:
 Un Ingeniero Electrónico moderno no diseña circuitos físicos.  Es mucho más habitual que diseñe la lógica a sintetizar en las FPGA de las plataformas de desarrollo.  Para ello no se emplea captura de esquemas, sino lenguajes de modelado.  En Europa el lenguaje de modelado más ampliamente usado es VHDL.
 VHDL tiene ciertos parecidos con un lenguaje de programación, pero también tiene importantes diferencias que es preciso conocer.  La depuración es mucho más compleja que en un programa de ordenador. Se utilizan metodologías de desarrollo perfectamente definidas para reducir la incertidumbre en los resultados y se utilizan simuladores para determinar las características del sistema final antes de llegar a la implementación.
 VHDL es una de las destrezas que más demandan en los Ingenieros Industriales empresas como Tecnobit, Eurofighter, o Indra."
-"2019/02/11 7:14:42 a. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Química","María Teresa Baeza Romero
-José Luis de la Peña Rubio
-Vicente López-Arza","Gestión Medioambiental en Proyectos de Ingeniería","TEÓRICOS
+"2019/02/11 7:14:42 a. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Química","María Teresa Baeza Romero, José Luis de la Peña Rubio, Vicente López-Arza","Gestión Medioambiental en Proyectos de Ingeniería","TEÓRICOS
 -	Gestión de residuos. Gestión de RAEE (Residuos de Aparatos Eléctricos y Electrónicos)
 -	Contaminación lumínica.
 -	Contaminación por olores.
@@ -506,17 +499,7 @@ PRÁCTICOS
      Esta asignatura te permitirá poder adquirir conocimientos y capacidades no sólo teóricas sino también prácticas para poder desenvolverte con los trámites administrativos que se han de relacionar en temas relacionados con el medio ambiente con las administraciones y te permitirá saber cómo implantar y gestionar un sistema de gestión medioambiental en una empresa. Este tipo de formación es muy demandada por el sector industrial dado que el medioambiente es hoy en día un aspecto fundamental en la rentabilidad de las empresas. 
 
 "
-"2019/02/11 2:05:46 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Física Aplicada
-Ingeniería Eléctrica
-Máquinas y Motores Térmicos
-Ingeniería de Sistemas y Automática","Alberto López
-Miguel Carrión
-Ruth Domínguez
-Ismael Payo
-Sergio Juárez
-Mª Reyes García
-Mª Arántzazu Gómez
-Octavio Armas","Sistemas de Energía Solar","Teoría:
+"2019/02/11 2:05:46 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Física Aplicada, Ingeniería Eléctrica, Máquinas y Motores Térmicos, Ingeniería de Sistemas y Automática","Alberto López, Miguel Carrión/Ruth Domínguez, Ismael Payo/Sergio Juárez, Mª Reyes García/Mª Arántzazu Gómez/Octavio Armas","Sistemas de Energía Solar","Teoría:
 1.	LA ENERGÍA SOLAR.
 Conceptos físicos utilizados en energía solar. Energía radiante. Conversión de la energía solar. Legislación. 
 2.	ENERGÍA SOLAR FOTOVOLTAICA.
@@ -620,8 +603,7 @@ Las nuevas tecnologías de la información y control de los procesos de fabricac
 En base al Anexo de la Orden CIN/321/2009, los estudiantes deben adquirir los conocimientos para la redacción, firma, desarrollo de proyectos y su dirección de obra, en el ámbito de la ingeniería industrial que tengan por objeto, la construcción, reforma, reparación, conservación, demolición, fabricación, instalación, montaje o explotación de: estructuras, equipos mecánicos, instalaciones energéticas, instalaciones eléctricas y electrónicas, instalaciones y plantas industriales y procesos de fabricación y automatización. 
 
 Por lo tanto, los conocimientos relacionados con la calidad del material, la eficiencia energética, la prevención de riesgos laborales, la evaluación medioambiental y la gestión de residuos, son claramente necesarios para la implementación de la sostenibilidad en todos los procesos relacionados con el diseño, la construcción, el uso, el mantenimiento y la deconstrucción de instalación o montaje de estructuras, instalaciones energéticas, eléctricas y electrónicas. Los conocimientos de Investigación, Desarrollo e Innovación para la implementación de los procesos sostenibles de los proyectos de instalaciones, son altamente recomendables para el eficaz ejercicio profesional. "
-"2019/02/11 5:55:39 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José Manuel Gilpérez Aguilar
-José María Tirado Martín","Nanotecnología para las TICs","1. Introducción y fundamentos de nanotecnología
+"2019/02/11 5:55:39 p. m. CET","Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José Manuel Gilpérez Aguilar","Nanotecnología para las TICs","1. Introducción y fundamentos de nanotecnología
 1.1. Antecedentes y revisión histórica.
 1.2. Leyes de escalado
 
@@ -676,9 +658,7 @@ El desarrollo tecnológico en todos los campos de las instalaciones: suministro 
 En base al Anexo de la Orden CIN/321/2009, los estudiantes deben adquirir los conocimientos para la redacción, firma, desarrollo de proyectos y su dirección de obra, en el ámbito de la ingeniería industrial que tengan por objeto, la construcción, reforma, reparación, conservación, demolición, fabricación, instalación, montaje o explotación de: estructuras, equipos mecánicos, instalaciones energéticas, instalaciones eléctricas y electrónicas, instalaciones y plantas industriales y procesos de fabricación y automatización. 
 
 Puede considerarse por lo tanto que la gestión y el control de instalaciones cada vez más numerosas y sofisticadas, con una fuerte repercusión en la inversión y consumo de energía, es una capacidad más importante incluso que el diseño y dimensionado previo. Este desempeño solo es posible desde la gestión integrada de todos los sistemas, lo que hace imprescindible el manejo de programas con una componente gráfica que permita la conectividad e interrelación de implantaciones complejas (tecnología BIM, Project Manager, Start CCM+, etc.)."
-"2019/02/11 6:43:00 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS ","MARÍA ARÁNTZAZU GÓMEZ ESTEBAN
-OCTAVIO ARMAS VERGEL
-MARÍA REYES GARCÍA CONTRERAS","PREVENCIÓN DE RIESGOS LABORALES","Contenidos teóricos:
+"2019/02/11 6:43:00 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","MÁQUINAS Y MOTORES TÉRMICOS ","MARÍA ARÁNTZAZU GÓMEZ ESTEBAN – OCTAVIO ARMAS VERGEL – MARÍA REYES GARCÍA CONTRERAS","PREVENCIÓN DE RIESGOS LABORALES","Contenidos teóricos:
 Tema 1 INTRODUCCIÓN A LA PREVENCIÓN DE RIESGOS LABORALES
 Conceptos básicos. Normativa. Organismos con competencias en materia de PRL. Disciplinas preventivas.
 Tema 2 EL SISTEMA DE PREVENCIÓN
@@ -875,3 +855,53 @@ Los ingenieros necesitan ser capaces de diseñar series de pruebas experimentale
 Uno de los ámbitos de trabajo de los ingenieros implica modelar y conocer el comportamiento de fenómenos de espera, en los que los servidores pueden hacer esperar a las unidades que demandan su atención, generándose así una cola o línea de espera. 
 Es importante destacar también la importancia para un ingeniero de poder aplicar mecanismos y herramientas que permitan detectar errores y medir la permanencia de la calidad de los productos o servicios a lo largo del tiempo. 
 Todas estas técnicas tienen como objetivo acercar al alumno a la práctica real de la Ingeniería en las empresas."
+"2019/02/12 11:28:12 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Tecnología Electrónica","José Manuel Gilpérez Aguilar","Introducción al Aprendizaje Automático y su aplicación en la Ingeniería","1. Introducción al Aprendizaje Automático (AA) o Machine Learning (ML)
+1.1 Fundamentos de ML
+1.2 Fundamentos de aprendizaje supervisado
+1.3 Fundamentos de aprendizaje no supervisado
+1.4 Ejemplos de uso en el mundo real
+
+2. Flujo de trabajo en ML
+2.1 Carga de datos
+2.2 Preparación de datos.
+2.3 Extracción de características
+2.4 Construcción y entrenamiento del modelo
+2.5 Análisis y mejora del modelo
+2.6 Aplicación del modelo en producción
+
+3. Aprendizaje no supervisado
+3.1 Algoritmos de agrupamiento “duro”: k-Means, k-Medoids, agrupación jerárquica, mapas autoorganizados
+3.2 Algoritmos de agrupamiento “blando”: c-Means difuso, mezcla gaussiana
+3.3. Técnicas de mejora del modelo: reducción de la dimensionalidad, análisis del componente principal, factorización
+3.4 Ejemplos de aplicación mediante MATLAB
+
+4. Aprendizaje supervisado
+4.1 Algoritmos de clasificación: regresión, kNN, SVM, redes neuronales (CNN, RNN), naive Bayes, análisis discriminante, árboles de decisión.
+4.2 Algoritmos de regresión: regresión lineal, regresión no -lineal, GPR, regresión SVM, modelo lineal generalizado, árbol de regresión
+4.3 Técnicas de mejora del modelo: selección de características, transformación de características, ajuste de hiperparámetros
+4.4 Ejemplos de aplicación mediante MATLAB
+
+5. Introducción a TensorFlow
+5.1 Keras API
+5.2 Clasificación básica
+5.3 Clasificación de textos
+5.4 Regresión
+5.5.Ajuste de datos
+
+6. Creación de modelos en Tensorflow
+6.1 Eager API
+6.2 Optimización de modelos
+6.3 Ejemplos prácticos
+
+7. Redes neuronales en TensorFlow
+7.1 Redes neuronales convolucionales (CNN) en Tensorflow
+7.2 Redes neuronales recurrentes (RNN) en Tensorflow
+7.3 Ejemplos prácticos: reconocimiento de imágenes, reconocimiento de audio, reconocimiento de textos.
+7.4 Ejemplos prácticos en el entorno industrial
+7.5 Ejemplos prácticos en el sector agrícola
+","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","Conocimientos sobre los fundamentos de automatismos y métodos de control.","Conocimiento de los principios la regulación automática y su aplicación a la automatización industrial.","Conocimiento y capacidad para el modelado y simulación de sistemas.;Conocimiento aplicado de informática industrial y comunicaciones.;Capacidad para diseñar sistemas de control y automatización industrial.","Imaginemos la gran cantidad de datos que somos capaces extraer de cualquier entorno industrial, médico o financiero; o la información que es compartida diariamente en Internet. La estructura, patrones e interrelaciones entre dichos datos no son a menudo evidentes. Descubrirlos nos permitiría tomar decisiones más acertadas, prevenir eventos o mejorar nuestros procesos. 
+
+Esta asignatura tiene como objetivo introducir a los estudiantes en el área de la Inteligencia Artificial que soluciona los problemas mencionados anteriormente. Nos referimos al Aprendizaje Automático (Machine Learning), disciplina de aplicación en multitud de campos y de una creciente demanda por parte de las empresas. 
+
+La asignatura es fundamentalmente práctica, y en ella el estudiante aprenderá a manejar el entorno de desarrollo Tensorflow, aunque también se familiziará con los modelos matemáticos en MATLAB. Los modelos generados en Tensorflow utilizan redes neuronales de aprendizaje profundo (Deep Learning), siendo Python el lenguaje de programación empleado. Con todo ello, el estudiante aprenderá a resolver problemas del mundo real y sobre todo desarrollará la capacidad de aplicar dichos métodos a nuevos problemas y situaciones.
+"
