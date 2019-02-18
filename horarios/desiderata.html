@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Desiderata para confeccionar horarios</title>
+        <meta charset="UTF-8">
+        <style>
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+table, th, td {
+  border: 1px solid black;
+}
+table {
+    border-collapse: collapse;
+}
+th {
+    padding: 5px;
+    background-color: lightgray;
+}
+button {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: large;
+    display: block;
+}
+.menu {
+  width: 30px;
+  z-index: 1;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: none;
+  transition: 0.2s display ease-in;
+  background-color: white;
+}
+.menu .menu-options {
+  list-style: none;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+.menu .menu-options .menu-option {
+  z-index: 1;
+  cursor: pointer;
+  min-height: 25px;
+}
+.m3 { background-color: red; }
+.m2 { background-color: orange; }
+.m1 { background-color: orange; }
+.zr { background-color: white; }
+.p1 { background-color: lime; }
+.p2 { background-color: lime; }
+.p3 { background-color: green; }
+        </style>
+    </head>
+    <body>
+<div class="menu">
+    <ul class="menu-options">
+        <li class="menu-option m3"></li>
+        <li class="menu-option m1"></li>
+        <li class="menu-option zr"></li>
+        <li class="menu-option p1"></li>
+        <li class="menu-option p3"></li>
+    </ul>
+</div>
+<div class="container">
+<table class="timetable">
+    <tr>
+        <th></th>
+        <th>8:30</th>
+        <th>9:30</th>
+        <th>10:30</th>
+        <th>11:30</th>
+        <th>12:30</th>
+        <th>13:30</th>
+        <th>14:30</th>
+        <th>15:30</th>
+        <th>16:30</th>
+        <th>17:30</th>
+        <th>18:30</th>
+        <th>19:30</th>
+    </tr>
+</table>
+<button>Enviar</button>
+</div>
+
+<script>
+const menu = document.querySelector(".menu");
+let menuVisible = false;
+
+const toggleMenu = command => {
+  menu.style.display = command === "show" ? "block" : "none";
+  menuVisible = !menuVisible;
+};
+
+const setPosition = ({ top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu("show");
+};
+
+window.addEventListener("click", e => {
+  console.log(e);
+  if (e.path.length < 3) return;
+  const menu = e.path[2];
+  if (menu.className != "menu") {
+    toggleMenu("hide");
+    return;
+  }
+
+  const top = parseInt(menu.style.top);
+  const left = parseInt(menu.style.left);
+  const cl = e.path[0].classList;
+  const weight = cl[cl.length-1];
+
+  if (!menuVisible) return;
+  toggleMenu("hide");
+  td = document.elementFromPoint(left,top)
+  if (td.tagName != "TD") return;
+  td.className = weight;
+});
+
+window.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  const origin = {
+    left: e.pageX,
+    top: e.pageY };
+
+  setPosition(origin);
+  return false;
+});
+
+function appendTimetable(table, tt) {
+    for (var k in tt) {
+        var row = table.insertRow(-1);
+        var th = document.createElement('TH');
+        th.innerHTML = k;
+        row.appendChild(th);
+        for (var i=0; i<tt[k].length; ++i) {
+            var cell = row.insertCell(-1);
+            cell.className = value2class(tt[k][i]);
+        }
+    }
+}
+
+function value2class(v) {
+    return v==0? 'zr': v>0? 'p' + v.toString() : 'm' + (-v).toString();
+}
+
+tt = {
+    'Lunes':     [0,0,0,0,0,0,-3,0,0,0,0,0],
+    'Martes':    [0,0,0,0,0,0,-3,0,0,0,0,0],
+    'Miércoles': [0,0,0,0,0,0,-3,0,0,0,0,0],
+    'Jueves':    [0,0,0,0,0,0,-3,0,0,0,0,0],
+    'Viernes':   [0,0,0,0,0,0,-3,0,0,0,0,0],
+};
+
+const table = document.querySelector(".timetable");
+appendTimetable(table, tt);
+</script>
+    </body>
+</html>
