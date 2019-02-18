@@ -91,6 +91,24 @@ label {
         </style>
     </head>
     <body>
+
+<h1>Desiderata de horarios</h1>
+
+<p> La EII dispone de licencia para usar un software de confección de horarios muy flexible.  
+    En la medida de lo posible lo utilizaremos para facilitar la planificación de cursos y,
+    gradualmente, lo utilizaremos también para las tutorías. 
+</p>
+<p> Como parte de este proceso, creemos conveniente recoger las restricciones temporales del
+    personal del centro.  Debe entenderse como solicitudes que se atenderán solamente si es
+    posible, salvo en los casos debidamente justificados.
+</p>
+<p> Rellena el horario con los colores que se muestran en la paleta bajo la tabla.  Normalmente
+    las casillas deberán estar en blanco. En naranja las horas en las que se prefiere no tener clases, 
+    por cualquier motivo.  En verde claro las horas en las que se prefiere tener clase.  Las
+    casillas rojas indican el horario donde no se puede tener clase, y las verde oscuro aquellas
+    en las que necesariamente se debe tener clase.
+</p>
+
 <div class="container">
 <table class="timetable">
     <tr>
@@ -125,8 +143,17 @@ label {
 <button>Enviar</button>
 </div>
 
-<script>
+<h2>Criterios generales</h2>
 
+<ul>
+    <li>Las desideratas en rojo (<em>Seguro que no</em>) deberán ser justificadas ante la dirección.  En caso contrario se 
+        considerarán desideratas en naranja (<em>Mejor no</em>).
+    </li>
+    <li>No se garantiza el resto de desideratas en ningún caso, ni siquiera las verdees (<em>Seguro que sí</em>).
+    </li>
+</ul>
+
+<script>
 function appendTimetable(table, tt) {
     for (var dia=0; dia<tt.length; ++dia) {
         var row = table.insertRow(-1);
