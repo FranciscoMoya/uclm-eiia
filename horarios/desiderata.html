@@ -4,7 +4,7 @@
         <title>Desiderata para confeccionar horarios</title>
         <meta charset="UTF-8">
         <style>
-* {
+body {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
@@ -19,7 +19,7 @@ th {
     background-color: lightgray;
 }
 button {
-    margin: 10px 0;
+    margin: 15px 0;
     padding: 5px;
     font-size: large;
     display: block;
@@ -44,25 +44,53 @@ button {
   cursor: pointer;
   min-height: 25px;
 }
-.m3 { background-color: red; }
+
+.form-radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    position: relative;
+    background-color: #f1f1f1;
+    color: #444;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    border: 0;
+    cursor: pointer;
+    margin-right: 7px;
+    outline-style: solid;
+    outline-width: 1px;
+}
+.form-radio:checked::before {
+     position: absolute;
+     font: 13px/1 'Open Sans', sans-serif;
+     font-weight: bold;
+     left: 11px;
+     top: 7px;
+     content: '\02143';
+     transform: rotate(40deg);
+}
+.form-radio:hover {
+     background-color: #f7f7f7;
+}
+label {
+    cursor: pointer;
+    margin-right: 15px;
+    font-weight: normal;
+} 
+
+.m3 { background-color: red;    }
 .m2 { background-color: orange; }
 .m1 { background-color: orange; }
-.zr { background-color: white; }
-.p1 { background-color: lime; }
-.p2 { background-color: lime; }
-.p3 { background-color: green; }
+.zr { background-color: white;  }
+.p1 { background-color: lime;   }
+.p2 { background-color: lime;   }
+.p3 { background-color: green;  }
+
         </style>
     </head>
     <body>
-<div class="menu">
-    <ul class="menu-options">
-        <li class="menu-option m3"></li>
-        <li class="menu-option m1"></li>
-        <li class="menu-option zr"></li>
-        <li class="menu-option p1"></li>
-        <li class="menu-option p3"></li>
-    </ul>
-</div>
 <div class="container">
 <table class="timetable">
     <tr>
@@ -81,65 +109,59 @@ button {
         <th>19:30</th>
     </tr>
 </table>
+
+<input type="radio" name="demo" value="p3" id="radio-p3" class="form-radio p3">
+<label for="radio-p3">Seguro que sí</label>
+<input type="radio" name="demo" value="p1" id="radio-p1" class="form-radio p1">
+<label for="radio-p1">Mejor sí</label>
+<input type="radio" name="demo" value="zr" id="radio-zr" class="form-radio zr" checked>
+<label for="radio-zr">Indiferente</label>
+<input type="radio" name="demo" value="m1" id="radio-m1" class="form-radio m1">
+<label for="radio-m1">Mejor no</label>
+<input type="radio" name="demo" value="m3" id="radio-m3" class="form-radio m3">
+<label for="radio-m3">Seguro que no</label>
+
+
 <button>Enviar</button>
 </div>
 
 <script>
-const menu = document.querySelector(".menu");
-let menuVisible = false;
-
-const toggleMenu = command => {
-  menu.style.display = command === "show" ? "block" : "none";
-  menuVisible = !menuVisible;
-};
-
-const setPosition = ({ top, left }) => {
-  menu.style.left = `${left}px`;
-  menu.style.top = `${top}px`;
-  toggleMenu("show");
-};
-
-window.addEventListener("click", e => {
-  console.log(e);
-  if (e.path.length < 3) return;
-  const menu = e.path[2];
-  if (menu.className != "menu") {
-    toggleMenu("hide");
-    return;
-  }
-
-  const top = parseInt(menu.style.top);
-  const left = parseInt(menu.style.left);
-  const cl = e.path[0].classList;
-  const weight = cl[cl.length-1];
-
-  if (!menuVisible) return;
-  toggleMenu("hide");
-  td = document.elementFromPoint(left,top)
-  if (td.tagName != "TD") return;
-  td.className = weight;
-});
-
-window.addEventListener("contextmenu", e => {
-  e.preventDefault();
-  const origin = {
-    left: e.pageX,
-    top: e.pageY };
-
-  setPosition(origin);
-  return false;
-});
 
 function appendTimetable(table, tt) {
-    for (var k in tt) {
+    for (var dia=0; dia<tt.length; ++dia) {
         var row = table.insertRow(-1);
         var th = document.createElement('TH');
-        th.innerHTML = k;
+        th.innerHTML = tt[dia][0];
         row.appendChild(th);
-        for (var i=0; i<tt[k].length; ++i) {
+        for (var i=1; i<tt[dia].length; ++i) {
             var cell = row.insertCell(-1);
-            cell.className = value2class(tt[k][i]);
+            cell.className = value2class(tt[dia][i]);
+            cell.onclick = fillWithSelectedColor(cell);
         }
+    }
+}
+
+function fillWithSelectedColor(cell) {
+    return function() {
+        selected = document.querySelector('input[type=radio]:checked').classList[1];
+        cell.className = selected;
+    }
+}
+
+function sendTable(table) {
+    return function() {
+        var tt = [];
+        var tr = table.querySelectorAll('tr');
+        for (var dia=1; dia<tr.length; ++dia) {
+            var values = [];
+            values[0] = tr[dia].querySelector('th').textContent;
+            var td = tr[dia].querySelectorAll('td');
+            for (var i=0; i < td.length; ++i) {
+                values[i+1] = class2value(td[i].className);
+            }
+            tt[dia-1] = values;
+        }
+        console.log(tt);
     }
 }
 
@@ -147,16 +169,23 @@ function value2class(v) {
     return v==0? 'zr': v>0? 'p' + v.toString() : 'm' + (-v).toString();
 }
 
-tt = {
-    'Lunes':     [0,0,0,0,0,0,-3,0,0,0,0,0],
-    'Martes':    [0,0,0,0,0,0,-3,0,0,0,0,0],
-    'Miércoles': [0,0,0,0,0,0,-3,0,0,0,0,0],
-    'Jueves':    [0,0,0,0,0,0,-3,0,0,0,0,0],
-    'Viernes':   [0,0,0,0,0,0,-3,0,0,0,0,0],
-};
+function class2value(v) {
+    return v[0]=='z'? 0: v[0]=='p'? parseInt(v.substr(1)) : - parseInt(v.substr(1));
+}
+
+tt = [
+    ['Lunes',    0,0,0,0,0,0,-3,0,0,0,0,0],
+    ['Martes',   0,0,0,0,0,0,-3,0,0,0,0,0],
+    ['Miércoles',0,0,0,0,0,0,-3,0,0,0,0,0],
+    ['Jueves',   0,0,0,0,0,0,-3,0,0,0,0,0],
+    ['Viernes',  0,0,0,0,0,0,-3,0,0,0,0,0],
+];
 
 const table = document.querySelector(".timetable");
 appendTimetable(table, tt);
+
+const button = document.querySelector("button");
+button.onclick = sendTable(table);
 </script>
     </body>
 </html>
