@@ -825,7 +825,14 @@ Contenidos prácticos:
 ","","Conocimiento y utilización de los principios de teoría de circuitos y máquinas eléctricas.","","Conocimiento aplicado de electrotecnia.;Conocimiento aplicado de instrumentación electrónica.","El objetivo de esta asignatura es complementar la formación de los estudiantes del Grado en Ingeniería Eléctrica y del Grado en Ingeniería Electrónica Industrial y Automática en la utilización de la instrumentación relacionada con la medición de magnitudes eléctricas. Por ello, esta asignatura se plantea de una manera eminentemente práctica y se desarrollará íntegramente en los laboratorios del Área de Ingeniería Eléctrica. La asignatura se apoya en los conocimientos teóricos adquiridos previamente en las materias de Tecnología Eléctrica, Teoría de Circuitos y Análisis de Redes.
 
 Además del manejo práctico de los instrumentos de medida, análisis de sus principios de funcionamiento, características específicas y limitaciones, los alumnos estudiarán diferentes alternativas para la realización de una medida eléctrica determinada utilizando instrumentos habituales de medición."
-"2019/02/11 9:35:35 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Matemáticas, Ingeniería de Sistemas y Aplicada, Ingeniería Eléctrica","Fuensanta Andrés, Damián Castaño, Fernando Castillo, Gabriel R. Hernández, Julio Muñoz, Jesús Rosado, David Rodriguez, David Ruiz","MODELADO Y SIMULACIÓN DE SISTEMAS EN INGENIERÍA","CONTENIDOS TEÓRICOS:
+"2019/02/11 9:35:35 p. m. CET","Grado en Ingeniería Eléctrica;Grado en Ingeniería en Electrónica Industrial y Automática","Matemáticas, Ingeniería de Sistemas y Aplicada, Ingeniería Eléctrica","Fuensanta Andrés
+Damián Castaño
+Fernando Castillo
+Gabriel R. Hernández
+Julio Muñoz
+Jesús Rosado
+David Rodriguez
+David Ruiz","MODELADO Y SIMULACIÓN DE SISTEMAS EN INGENIERÍA","CONTENIDOS TEÓRICOS:
 		Formulación euleriana y lagrangiana de sistemas dinámicos.
 Algoritmos basados en diferencias finitas para resolver ecuaciones parabólicas, elípticas e hiperbólicas. 
 Formulación débil de ecuaciones en derivadas parciales.
@@ -845,7 +852,14 @@ Modelado y análisis mediante software de elementos finitos.
 ","Capacidad para la resolución de los problemas matemáticos que puedan plantearse en la ingeniería. Aptitud para aplicar los conocimientos sobre: álgebra lineal; geometría; geometría diferencial; cálculo diferencial e integral; ecuaciones diferenciales y en derivadas parciales; métodos numéricos; algorítmica numérica; estadística y optimización.;Comprensión y dominio de los conceptos básicos sobre las leyes generales de la mecánica, termodinámica, campos y ondas y electromagnetismo y su aplicación para la resolución de problemas propios de la ingeniería.;Conocimientos básicos sobre el uso y programación de los ordenadores, sistemas operativos, bases de datos y programas informáticos con aplicación en ingeniería.","Conocimientos de termodinámica aplicada y transmisión de calor. Principios básicos y su aplicación a la resolución de problemas de ingeniería.;Conocimientos de los principios básicos de la mecánica de fluidos y su aplicación a la resolución de problemas en el campo de la ingeniería. Cálculo de tuberías, canales y sistemas de fluidos.;Conocimiento y utilización de los principios de la resistencia de materiales.","","Conocimiento y capacidad para el modelado y simulación de sistemas.","El objetivo de esta asignatura es doble. Por un lado, proporcionar al estudiante una mejor comprensión de una variedad de sistemas físicos con los que es probable que se encuentre durante su desempeño profesional. Se profundizará en el estudio de los principales tipos de ecuaciones en derivadas parciales haciendo hincapié en la interpretación física de sus elementos y como hacer uso de ellas para describir y estudiar fenómenos de muy diferente índole. A través de los diferentes casos de estudio, se pondrá en contexto el formalismo de las ecuaciones en derivadas parciales.
 Por otro lado, se busca facilitar la familiarización de los estudiantes con diferentes programas de simulación que es probable que encuentren en la empresa, como MatLab, Ansys, Fluent, Adams, FreeFem++, etc. Así mismo, se reforzará la habilidad programadora del alumnado.
 "
-"2019/02/11 10:05:28 p. m. CET","Grado en Ingeniería Eléctrica","Matemáticas, Ingeniería Eléctrica","Fuensanta Andrés, Miguel Carrión, Damián Castaño, Ruth Domínguez, Julio Muñoz, Jesús Rosado,  David Ruiz","Modelización y optimización aplicadas a la energía eléctrica","CONTENIDOS TEÓRICOS:
+"2019/02/11 10:05:28 p. m. CET","Grado en Ingeniería Eléctrica","Matemáticas
+Ingeniería Eléctrica","Fuensanta Andrés
+Miguel Carrión
+Damián Castaño
+Ruth Domínguez
+Julio Muñoz
+Jesús Rosado
+David Ruiz","Modelización y optimización aplicadas a la energía eléctrica","CONTENIDOS TEÓRICOS:
 -	Programación Lineal: Linealización y formulación de problemas de programación lineal, símplex, análisis sensibilidad, dualidad.
 -	Programación Entera. 
 -	Modelado basado en Grafos: caminos mínimos, coloraciones, flujos.

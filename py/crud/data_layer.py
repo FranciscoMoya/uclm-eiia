@@ -1,16 +1,11 @@
-import sqlite3
+import sqlite3, json
 from flask import g
 
 DATABASE = 'eii.db'
-NUM_HORAS = 12
-
-def cross(A,B):
-    return ((a,b) for a in A for b in B)
-
 
 class DataLayer(object):
     def __init__(self):
-        self.db = sqlite3.connect(DATABASE)
+        self.db = sqlite3.connect(DATABASE, detect_types = sqlite3.PARSE_DECLTYPES)
         self.db.row_factory = sqlite3.Row
         self.autoCreateTables()
 
@@ -18,35 +13,60 @@ class DataLayer(object):
         self.db.close()
 
     def autoCreateTables(self):
-        c = self.db.cursor()
-        dias = 'LMXJV'
-        horas = range(NUM_HORAS)
-        pref_columns = ','.join('[{}{}] TINYINT DEFAULT 0 NOT NULL'.format(*t) for t in cross(dias,horas))
-        c.execute('''CREATE TABLE IF NOT EXISTS "desiderata" (
-            [userid] TEXT PRIMARY KEY NOT NULL, {})'''.format(pref_columns))
-        c.close()
-        self.db.commit()
+        with self.db as c:
+            c.execute('''
+                CREATE TABLE IF NOT EXISTS "desiderata" (
+                    [userid] TEXT PRIMARY KEY NOT NULL, 
+                    [desideratum] JSON
+                )''')
+            c.execute('''
+                CREATE TABLE IF NOT EXISTS "tutorias" (
+                    [userid] TEXT PRIMARY KEY NOT NULL, 
+                    [tutoria] TEXT
+                )''')
+            c.execute('''
+                CREATE TABLE IF NOT EXISTS "despachos" (
+                    [userid] TEXT PRIMARY KEY NOT NULL, 
+                    [despacho] TEXT
+                )''')
 
-    def insert(self, userid, *args):
-        c = self.db.cursor()
-        pref_columns = ''.join(',{}'.format(i) for i in args)
-        c.execute("REPLACE INTO desiderata VALUES ('{}'{})".format(userid, pref_columns))
-        c.close()
-        self.db.commit()
+    def tset(self, table, userid, value):
+        _check(table)
+        with self.db as c:
+            c.execute("REPLACE INTO {} VALUES (?, ?)".format(table), (userid, value))
 
-    def lookup(self, userid):
-        c = self.db.cursor()
-        c.execute("SELECT * FROM desiderata WHERE userid = '{}'".format(userid))
-        ret = c.fetchone()
-        c.close()
-        return ret
+    def tget(self, table, userid):
+        _check(table)
+        with self.db as c:
+            for row in c.execute("SELECT * FROM {} WHERE userid = ?".format(table), (userid,)):
+                return row[1]
+        return None
 
-    def delete(self, userid):
-        c = self.db.cursor()
-        c.execute("DELETE FROM desiderata WHERE userid = '{}'".format(userid))
-        c.commit()
-        c.close()
+    def tdel(self, table, userid):
+        _check(table)
+        with self.db as c:
+            c.execute("DELETE FROM {} WHERE userid = ?".format(table), (userid,))
 
+    def list(self, table):
+        _check(table)
+        with self.db as c:
+            return [ tuple(row) for row in c.execute("SELECT * FROM {}".format(table)) ]
+
+def _check(table):
+    assert table in ('desiderata', 'tutorias', 'despachos')
+
+# Custom JSON type
+
+def adapt_json(data):
+    return (json.dumps(data, sort_keys=True)).encode()
+
+def convert_json(blob):
+    return json.loads(blob.decode())
+
+sqlite3.register_adapter(dict, adapt_json)
+sqlite3.register_adapter(list, adapt_json)
+sqlite3.register_adapter(tuple, adapt_json)
+sqlite3.register_converter('JSON', convert_json)
 
 # DataLayer singleton
 

@@ -4,13 +4,14 @@ from flask_cors import CORS
 import json
 from crud.data_layer import close_db
 from crud.desiderata import Desideratum
+from crud.despachos import Despacho
+from crud.tutorias import Tutoria
 from crud.session import get_sp, SAML2_SETUP
 
 app = Flask(__name__, static_url_path='')
-# Enable CORS for cached static content
-# CORS(app)
+CORS(app)
 # Enable SAML for authenticated sessions
-#SAML2_SETUP(app)
+SAML2_SETUP(app)
 api = Api(app)
 
 @app.teardown_appcontext
@@ -50,4 +51,6 @@ def index():
 
 
 api.add_resource(Desideratum, "/desiderata/<string:userid>")
+api.add_resource(Despacho, "/despachos/<string:userid>")
+api.add_resource(Tutoria, "/tutorias/<string:userid>")
 app.run(debug=True)
