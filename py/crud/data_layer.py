@@ -30,7 +30,6 @@ class DataLayer(object):
     def insert(self, userid, *args):
         c = self.db.cursor()
         pref_columns = ''.join(',{}'.format(i) for i in args)
-        print('userid={}\ndesideratum={}\n'.format(userid,pref_columns))
         c.execute("REPLACE INTO desiderata VALUES ('{}'{})".format(userid, pref_columns))
         c.close()
         self.db.commit()

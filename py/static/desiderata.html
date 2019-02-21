@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Desiderata para confeccionar horarios</title>
+        <meta charset="UTF-8">
+        <link href="desiderata.css">
+        <script src="desiderata.js"></script>
+    </head>
+    <body>
+
+<img style="margin-right:2cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+<img src="EII.png" height="100">
+
+<h1>Desiderata de horarios</h1>
+
+<p> La EII dispone de licencia para usar un software de confección de horarios muy flexible.  
+    En la medida de lo posible lo utilizaremos para facilitar la planificación de cursos y,
+    gradualmente, lo utilizaremos también para las tutorías. 
+</p>
+<p> Como parte de este proceso, creemos conveniente recoger las restricciones temporales del
+    personal del centro.  Debe entenderse como solicitudes que se atenderán solamente si es
+    posible, salvo en los casos debidamente justificados.
+</p>
+<p> Rellena el horario con los colores que se muestran en la paleta bajo la tabla.  Normalmente
+    las casillas deberán estar en blanco. En naranja las horas en las que se prefiere no tener clases, 
+    por cualquier motivo.  En verde claro las horas en las que se prefiere tener clase.  Las
+    casillas rojas indican el horario donde no se puede tener clase, y las verde oscuro aquellas
+    en las que necesariamente se debe tener clase.
+</p>
+
+<div class="container">
+<table class="timetable">
+    <tr>
+        <th></th>
+        <th>8:30</th>
+        <th>9:30</th>
+        <th>10:30</th>
+        <th>11:30</th>
+        <th>12:30</th>
+        <th>13:30</th>
+        <th>14:30</th>
+        <th>15:30</th>
+        <th>16:30</th>
+        <th>17:30</th>
+        <th>18:30</th>
+        <th>19:30</th>
+    </tr>
+</table>
+
+<input type="radio" name="demo" value="p3" id="radio-p3" class="form-radio p3">
+<label for="radio-p3">Seguro que sí</label>
+<input type="radio" name="demo" value="p1" id="radio-p1" class="form-radio p1">
+<label for="radio-p1">Mejor sí</label>
+<input type="radio" name="demo" value="zr" id="radio-zr" class="form-radio zr" checked>
+<label for="radio-zr">Indiferente</label>
+<input type="radio" name="demo" value="m1" id="radio-m1" class="form-radio m1">
+<label for="radio-m1">Mejor no</label>
+<input type="radio" name="demo" value="m3" id="radio-m3" class="form-radio m3">
+<label for="radio-m3">Seguro que no</label>
+
+
+<button>Enviar</button>
+</div>
+
+<h2>Criterios generales</h2>
+
+<ul>
+    <li>Las desideratas en rojo (<em>Seguro que no</em>) deberán ser justificadas ante la dirección.  En caso contrario se 
+        considerarán desideratas en naranja (<em>Mejor no</em>).
+    </li>
+    <li>No se garantiza el resto de desideratas en ningún caso, ni siquiera las verdes (<em>Seguro que sí</em>).
+    </li>
+</ul>
+
+<script>
+getDesiderataForCurrentUser();
+</script>
+
+    </body>
+</html>

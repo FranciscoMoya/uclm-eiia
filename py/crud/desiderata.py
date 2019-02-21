@@ -1,7 +1,21 @@
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api, Resource, reqparse, abort
+from functools import wraps
 from .data_layer import get_db, NUM_HORAS
 
+
+def auth_profesor(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if not getattr(func, 'authenticated', True):
+            return func(*args, **kwargs)
+        # Asegurar que es profesor
+        abort(401)
+    return wrapper
+
+
 class Desideratum(Resource):
+    # method_decorators = [auth_profesor] 
+
     def get(self, userid):
         ret = get_db().lookup(userid)
         if ret:
@@ -28,7 +42,7 @@ class Desideratum(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("desideratum", type=list, location='json')
         args = parser.parse_args()
-
+        
         desideratum = {
             "userid": userid,
             "desideratum": args["desideratum"]
