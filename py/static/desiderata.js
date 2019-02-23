@@ -1,18 +1,45 @@
 SERVICE_ENDPOINT = "/desiderata/";
 var args = getUrlVars();
+var dirty = true;
+
+function pending(v) {
+    dirty = v;
+    const img = document.querySelector("#pending");
+    img.style.display = (dirty ? "block": "none");
+}
+
 
 function getDesiderataForCurrentUser() {
     var userid = args['userid'];
     var req = new XMLHttpRequest();
     req.onload  = function() {
+        if (req.status >= 400) return;
         var resp = JSON.parse(req.responseText);
         const table = document.querySelector(".timetable");
         appendTimetable(table, resp);
-        const button = document.querySelector("button");
-        button.onclick = setDesiderataForCurrentUser;
+        pending(false);
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     req.send();
+}
+
+function updateDesiderataForCurrentUser() {
+    if (dirty) setDesiderataForCurrentUser();
+}
+
+function setDesiderataForCurrentUser() {
+    var userid = args['userid'];
+    var req = new XMLHttpRequest();
+    req.open('PUT', SERVICE_ENDPOINT + userid, true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.onload  = function() {
+        if (req.status < 300)
+            pending(false);
+        dirty = false;
+    };
+    const table = document.querySelector(".timetable");
+    const payload = JSON.stringify(getDataFromTable(table));
+    req.send(payload);
 }
 
 function appendTimetable(table, tt) {
@@ -34,6 +61,7 @@ function fillWithSelectedColor(cell) {
     return function() {
         selected = document.querySelector('input[type=radio]:checked').classList[1];
         cell.className = selected;
+        pending(true);
     }
 }
 
@@ -60,17 +88,6 @@ function value2class(v) {
 
 function class2value(v) {
     return v[0]=='z'? 0: v[0]=='p'? parseInt(v.substr(1)) : - parseInt(v.substr(1));
-}
-
-function setDesiderataForCurrentUser() {
-    var userid = args['userid'];
-    var req = new XMLHttpRequest();
-    req.open('PUT', SERVICE_ENDPOINT + userid, true);
-    req.setRequestHeader("Content-Type", "application/json");
-    const table = document.querySelector(".timetable");
-    const payload = JSON.stringify(getDataFromTable(table));
-    console.log(payload)
-    req.send(payload);
 }
 
 function getUrlVars() {

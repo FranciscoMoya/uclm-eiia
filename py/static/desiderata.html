@@ -31,7 +31,7 @@
 <div class="container">
 <table class="timetable">
     <tr>
-        <th></th>
+        <th><div id="pending">&#8987;</div></th>
         <th>8:30</th>
         <th>9:30</th>
         <th>10:30</th>
@@ -57,12 +57,7 @@
 <label for="radio-m1">Mejor no</label>
 <input type="radio" name="demo" value="m3" id="radio-m3" class="form-radio m3">
 <label for="radio-m3">Seguro que no</label>
-
-
-<button>Enviar</button>
 </div>
-
-<h2>Criterios generales</h2>
 
 <ul>
     <li>Las desideratas en rojo (<em>Seguro que no</em>) deberán ser justificadas ante la dirección.  En caso contrario se 
@@ -74,6 +69,7 @@
 
 <script>
 getDesiderataForCurrentUser();
+setInterval(updateDesiderataForCurrentUser, 1000);
 </script>
 
     </body>

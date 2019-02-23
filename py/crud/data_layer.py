@@ -33,24 +33,24 @@ class DataLayer(object):
     def tset(self, table, userid, value):
         _check(table)
         with self.db as c:
-            c.execute("REPLACE INTO {} VALUES (?, ?)".format(table), (userid, value))
+            c.execute(f"REPLACE INTO {table} VALUES (?, ?)", (userid, value))
 
     def tget(self, table, userid):
         _check(table)
         with self.db as c:
-            for row in c.execute("SELECT * FROM {} WHERE userid = ?".format(table), (userid,)):
+            for row in c.execute(f"SELECT * FROM {table} WHERE userid = ?", (userid,)):
                 return row[1]
         return None
 
     def tdel(self, table, userid):
         _check(table)
         with self.db as c:
-            c.execute("DELETE FROM {} WHERE userid = ?".format(table), (userid,))
+            c.execute(f"DELETE FROM {table} WHERE userid = ?", (userid,))
 
     def list(self, table):
         _check(table)
         with self.db as c:
-            return [ tuple(row) for row in c.execute("SELECT * FROM {}".format(table)) ]
+            return [ tuple(row) for row in c.execute(f"SELECT * FROM {table}") ]
 
 def _check(table):
     assert table in ('desiderata', 'tutorias', 'despachos')

@@ -8,19 +8,11 @@ from crud.despachos import Despacho
 from crud.tutorias import Tutoria
 from crud.session import get_sp, SAML2_SETUP
 
+
 app = Flask(__name__, static_url_path='')
 CORS(app)
-# Enable SAML for authenticated sessions
-SAML2_SETUP(app)
 api = Api(app)
-
-@app.teardown_appcontext
-def close_connection(exception):
-    close_db()
-
-@app.route('/static/<path:path>')
-def send_static(path):
-    return send_from_directory('static', path)
+SAML2_SETUP(app)
 
 @app.route('/')
 def index():
@@ -50,7 +42,17 @@ def index():
         return message + link
 
 
+@app.teardown_appcontext
+def close_connection(exception):
+    close_db()
+
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
+
 api.add_resource(Desideratum, "/desiderata/<string:userid>")
 api.add_resource(Despacho, "/despachos/<string:userid>")
 api.add_resource(Tutoria, "/tutorias/<string:userid>")
-app.run(debug=True)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)

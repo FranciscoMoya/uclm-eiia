@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>UCLM - EII Toledo - Propuestas optativas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../tutorias.css">
+</head>
+<body>
+
+<img style="margin-right:2cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+<img src="EII_propuesta.png" height="100">
+
+<h1>Propuestas de asignaturas optativas</h1>
+
+
+<div class="content">
+
+{% for g in opt %}
+
+<h2>{{g}}</h2>
+<ol>
+{% for o in opt[g] %}
+    <li><a href="{{ o.filename }}">{{ o['Denominación'] }}</a> {{ '[*]' if o.doble else '' }}</li>
+{% endfor %}
+</ol>
+
+{% endfor %}
+     
+</div>
+<hr/>
+<p class="footnote">[*] Asignatura ofertada en los dos grados.</p>
+
+</body>
+</html>

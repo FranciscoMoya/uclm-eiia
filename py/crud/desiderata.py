@@ -1,20 +1,10 @@
 from flask_restful import Api, Resource, reqparse, abort
-from functools import wraps
 from .data_layer import get_db
-
-
-def auth_profesor(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if not getattr(func, 'authenticated', True):
-            return func(*args, **kwargs)
-        # Asegurar que es profesor
-        abort(401)
-    return wrapper
+from .session import auth_profesor
 
 
 class Desideratum(Resource):
-    # method_decorators = [auth_profesor] 
+    method_decorators = [auth_profesor] 
 
     def get(self, userid):
         return get_db().tget('desiderata', userid) \

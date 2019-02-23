@@ -1,6 +1,24 @@
 from flask_saml2.sp import ServiceProvider, create_blueprint
-from flask import g, url_for
+from flask import g, url_for, abort
+from functools import wraps
 from .saml import *
+
+
+def auth_profesor(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(func.__name__, args, kwargs)
+        if func.__name__ != 'get':
+            sp = get_sp()
+            if not sp.is_user_logged_in():
+                return abort(401)
+            auth = sp.get_auth_data_in_session()
+            if kwargs['userid'] != auth.nameid:
+                print('auth', auth)
+                return abort(401)
+        return func(*args, **kwargs)
+    return wrapper
+
 
 class EIIServiceProvider(ServiceProvider):
     def get_logout_return_url(self):
@@ -13,9 +31,19 @@ def get_sp():
         sp = g._service_provider = EIIServiceProvider()
     return sp
 
+'''
+SAML2_SETUP no puede llamar a get_sp() sin un contexto de aplicación,
+pero lo que pone en el contexto de aplicación no llega al index.
 
-# Imitating CORS
+Debe generarse otro contexto de aplicación. No influye desde el punto
+de vista funcional pero merece la pena revisarlo.
+'''
+
+
 def SAML2_SETUP(app):
+    with app.app_context():
+        sp = get_sp()
+
     app.secret_key = APP_SECRET_KEY
 
     app.config['SAML2_SP'] = {
@@ -28,7 +56,7 @@ def SAML2_SETUP(app):
         'uclm-test-idp': {
             'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
             'OPTIONS': {
-                'display_name': 'UCLM SSO',
+                'display_name': 'My Identity Provider',
                 'sso_url':     IDP_SSO_URL,
                 'slo_url':     IDP_SLO_URL,
                 'certificate': IDP_CERTIFICATE,
@@ -36,4 +64,4 @@ def SAML2_SETUP(app):
         },
     }
 
-    app.register_blueprint(create_blueprint(get_sp()), url_prefix='/saml/')
+    app.register_blueprint(create_blueprint(sp), url_prefix='/saml/')

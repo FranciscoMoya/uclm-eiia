@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Despachos de profesores</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="desiderata.css">
+        <script src="despacho.js"></script>
+    </head>
+    <body>
+
+<img style="margin-right:2cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+<img src="EII.png" height="100">
+
+<h1>Actualización de datos</h1>
+
+<label for="despacho">Despacho actual:</label>
+<input name="despacho" id="despacho" class="textinput">
+<div id="pending">&#8987;</div>
+
+<script>
+getDespachoForCurrentUser();
+setInterval(updateDespachoForCurrentUser, 1000);
+</script>
+
+    </body>
+</html>

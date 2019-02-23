@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>UCLM - EII Toledo - Propuesta optativa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../tutorias.css">
+</head>
+<body>
+
+<img style="margin-right:2cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+<img src="EII_propuesta.png" height="100">
+
+
+<h1>Propuesta de optativa</h1>
+
+
+{% macro campo(id, name, sep='\n') -%}
+<div class="{{ name.replace(' ','_') }}">
+    <h2>{{id}}. {{name}}</h2>
+    <p>
+    {% for a in asig[name].split(sep) %}
+    {{ a }}<br/>
+    {% endfor %}
+    </p>
+    </div>
+{%- endmacro %}
+
+{{ campo(1,'Grado', ';') }}
+{{ campo(2,'Áreas de conocimiento proponentes') }}
+{{ campo(3,'Profesores que la suscriben') }}
+{{ campo(4,'Denominación') }}
+{{ campo(5,'Contenidos') }}
+{{ campo(6,'Competencias del módulo de formación básica', '.;') }}
+{{ campo(7,'Competencias del módulo común a la rama industrial', ';') }}
+{{ campo(8,'Competencias del módulo de tecnología específica (Eléctrica)', ';') }}
+{{ campo(9,'Competencias del módulo de tecnología específica (Electrónica Industrial)', ';') }}
+{{ campo(10,'Justificación técnica') }}
+
+</body>
+</html>

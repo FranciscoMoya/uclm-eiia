@@ -10,35 +10,9 @@ table {
 }
 th {
     padding: 5px;
+    height: 23px;
     background-color: lightgray;
 }
-button {
-    margin: 15px 0;
-    padding: 5px;
-    font-size: large;
-    display: block;
-}
-.menu {
-  width: 30px;
-  z-index: 1;
-  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
-  position: fixed;
-  display: none;
-  transition: 0.2s display ease-in;
-  background-color: white;
-}
-.menu .menu-options {
-  list-style: none;
-  z-index: 1;
-  padding: 0;
-  margin: 0;
-}
-.menu .menu-options .menu-option {
-  z-index: 1;
-  cursor: pointer;
-  min-height: 25px;
-}
-
 .form-radio {
     -webkit-appearance: none;
     -moz-appearance: none;

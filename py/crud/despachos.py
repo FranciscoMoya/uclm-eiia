@@ -1,10 +1,11 @@
 from flask_restful import Api, Resource, reqparse, abort
 from functools import wraps
 from .data_layer import get_db
+from .session import auth_profesor
 
 
 class Despacho(Resource):
-    # method_decorators = [auth_profesor] 
+    method_decorators = [auth_profesor] 
 
     def get(self, userid):
         return get_db().tget('despachos', userid) \
