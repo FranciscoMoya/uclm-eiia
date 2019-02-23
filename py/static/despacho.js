@@ -11,6 +11,10 @@ function pending(v) {
 
 function getDespachoForCurrentUser() {
     var userid = args['userid'];
+    return getDespachoForUser(userid);
+}
+
+function getDespachoForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
         if (req.status >= 400) return;
@@ -25,11 +29,17 @@ function getDespachoForCurrentUser() {
 }
 
 function updateDespachoForCurrentUser() {
-    if (dirty) setDespachoForCurrentUser();
+    var userid = args['userid'];
+    return updateDespachoForUser(userid)();
 }
 
-function setDespachoForCurrentUser() {
-    var userid = args['userid'];
+function updateDespachoForUser(userid) {
+    return function() {
+        if (dirty) setDespachoForUser(userid);
+    }
+}
+
+function setDespachoForUser(userid) {
     var req = new XMLHttpRequest();
     req.open('PUT', SERVICE_ENDPOINT + userid, true);
     req.setRequestHeader("Content-Type", "application/json");

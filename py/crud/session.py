@@ -1,17 +1,17 @@
 from flask_saml2.sp import ServiceProvider, create_blueprint
-from flask import g, url_for, abort
+from flask import g, url_for, abort, redirect
 from functools import wraps
 from .saml import *
 
 
-def auth_profesor(func):
+def auth_profesor(func, unrestricted=('get',)):
     @wraps(func)
     def wrapper(*args, **kwargs):
         print(func.__name__, args, kwargs)
-        if func.__name__ != 'get':
+        if func.__name__ not in unrestricted:
             sp = get_sp()
             if not sp.is_user_logged_in():
-                return abort(401)
+                return redirect('/')
             auth = sp.get_auth_data_in_session()
             if kwargs['userid'] != auth.nameid:
                 print('auth', auth)

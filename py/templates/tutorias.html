@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Despachos de profesores</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/static/tutorias.css">
+        {% if auth %}
+        <script src="/static/tutorias.js"></script>
+        {% else %}
+        <meta http-equiv="refresh" content="0; URL=/">
+        {% endif %}
+    </head>
+    <body>
+
+<img style="margin-right:2cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+<img src="/static/EII.png" height="100">
+
+{% if auth %}
+
+<h1>Actualización de datos para {{auth.nameid}}</h1>
+
+<label for="tutoria">Tutorías:</label>
+<textarea name="tutoria" id="tutoria" class="textinput"></textarea>
+<div id="pending">&#8987;</div>
+
+<script>
+getTutoriaForUser("{{auth.nameid}}");
+setInterval(updateTutoriaForUser("{{auth.nameid}}"), 1000);
+</script>
+
+{% endif %}
+
+    </body>
+</html>

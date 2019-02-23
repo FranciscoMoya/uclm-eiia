@@ -11,11 +11,14 @@ function pending(v) {
 
 function getDesiderataForCurrentUser() {
     var userid = args['userid'];
+    return getDesiderataForUser(userid);
+}
+
+function getDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
-        if (req.status >= 400) return;
-        var resp = JSON.parse(req.responseText);
         const table = document.querySelector(".timetable");
+        var resp = (req.status < 300 ? JSON.parse(req.responseText) : getDefaultDesiderata(table));
         appendTimetable(table, resp);
         pending(false);
     };
@@ -24,22 +27,36 @@ function getDesiderataForCurrentUser() {
 }
 
 function updateDesiderataForCurrentUser() {
-    if (dirty) setDesiderataForCurrentUser();
+    var userid = args['userid'];
+    return updateDesiderataForUser(userid)();
 }
 
-function setDesiderataForCurrentUser() {
-    var userid = args['userid'];
+function updateDesiderataForUser(userid) {
+    return function() {
+        if (dirty) setDesiderataForUser(userid);
+    }
+}
+
+function setDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
     req.open('PUT', SERVICE_ENDPOINT + userid, true);
     req.setRequestHeader("Content-Type", "application/json");
     req.onload  = function() {
         if (req.status < 300)
             pending(false);
-        dirty = false;
+        dirty = false; // prevent retries if not authorized
     };
     const table = document.querySelector(".timetable");
     const payload = JSON.stringify(getDataFromTable(table));
     req.send(payload);
+}
+
+function getDefaultDesiderata(table) {
+    var tr = table.querySelector('tr');
+    var td = tr.querySelectorAll('th')
+    return ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'].map(function(d){ 
+        return [d].concat(Array.apply(null, new Array(td.length - 1)).map(Number.prototype.valueOf, 0));
+    });
 }
 
 function appendTimetable(table, tt) {

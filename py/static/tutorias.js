@@ -11,6 +11,10 @@ function pending(v) {
 
 function getTutoriaForCurrentUser() {
     var userid = args['userid'];
+    return getTutoriaForUser(userid);
+}
+
+function getTutoriaForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
         if (req.status >= 400) return;
@@ -26,11 +30,17 @@ function getTutoriaForCurrentUser() {
 }
 
 function updateTutoriaForCurrentUser() {
-    if (dirty) setTutoriaForCurrentUser();
+    var userid = args['userid'];
+    return updateDesiderataForUser(userid)();
 }
 
-function setTutoriaForCurrentUser() {
-    var userid = args['userid'];
+function updateTutoriaForUser(userid) {
+    return function() {
+        if (dirty) setTutoriaForUser(userid);
+    }
+}
+
+function setTutoriaForUser(userid) {
     var req = new XMLHttpRequest();
     req.open('PUT', SERVICE_ENDPOINT + userid, true);
     req.setRequestHeader("Content-Type", "application/json");
