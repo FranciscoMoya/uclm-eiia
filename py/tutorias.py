@@ -36,7 +36,7 @@ if __name__ == '__main__':
                         help='renderiza los datos en archivo HTML')
     parser.add_argument('--js', nargs='?', type=argparse.FileType('w', encoding='utf-8'), const='data.js', default=None,
                         help='renderiza los datos en archivo JavaScript')
-    parser.add_argument('--tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='profes.jinja2.html', default='profes.jinja2.html',
+    parser.add_argument('--tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='templates/profes.html', default='templates/profes.html',
                         help='plantilla Jinja2 empleada para renderizar los datos')
     args = parser.parse_args()
     

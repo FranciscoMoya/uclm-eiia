@@ -3,16 +3,16 @@ from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS
 import json
 from crud.data_layer import close_db
-from crud.desiderata import Desideratum
-from crud.despachos import Despacho
-from crud.tutorias import Tutoria
+from crud.desiderata import Desideratum, DesiderataList
+from crud.despachos import Despacho, DespachosList
+from crud.tutorias import Tutoria, TutoriasList
 from crud.session import get_sp, SAML2_SETUP
 
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
 SAML2_SETUP(app)
-api = Api(app)
+api = Api(app, prefix='/v1')
 
 @app.route('/')
 def index():
@@ -36,6 +36,9 @@ def close_connection(exception):
 def send_static(path):
     return send_from_directory('static', path)
 
+api.add_resource(DesiderataList, "/desiderata/")
+api.add_resource(DespachosList, "/despachos/")
+api.add_resource(TutoriasList, "/tutorias/")
 
 api.add_resource(Desideratum, "/desiderata/<string:userid>")
 api.add_resource(Despacho, "/despachos/<string:userid>")

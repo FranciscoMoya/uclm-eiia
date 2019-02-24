@@ -50,9 +50,9 @@ if __name__ == '__main__':
                         help='recoge los datos de de formulario Google')
     parser.add_argument('--html', nargs='?', default='../optativas', const=None,
                         help='renderiza los datos en HTML en la carpeta indicada')
-    parser.add_argument('--tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='optativa.jinja2.html', default='optativa.jinja2.html',
+    parser.add_argument('--tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='templates/optativa.html', default='templates/optativa.html',
                         help='plantilla Jinja2 empleada para renderizar los datos')
-    parser.add_argument('--index-tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='index.jinja2.html', default='index.jinja2.html',
+    parser.add_argument('--index-tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='templates/optativa-index.html', default='templates/optativa-index.html',
                         help='plantilla Jinja2 empleada para renderizar los datos')
     args = parser.parse_args()
 

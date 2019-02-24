@@ -2,6 +2,9 @@ from flask_restful import Api, Resource, reqparse, abort
 from .data_layer import get_db
 from .session import auth_profesor
 
+class DesiderataList(Resource):
+    def get(self):
+        return get_db().aget('desiderata')
 
 class Desideratum(Resource):
     method_decorators = [auth_profesor] 

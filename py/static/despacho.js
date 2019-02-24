@@ -1,4 +1,4 @@
-SERVICE_ENDPOINT = "/despachos/";
+SERVICE_ENDPOINT = "/v1/despachos/";
 var args = getUrlVars();
 var dirty = true;
 

@@ -42,6 +42,11 @@ class DataLayer(object):
                 return row[1]
         return None
 
+    def aget(self, table):
+        _check(table)
+        with self.db as c:
+            return { user: value for user, value in c.execute(f"SELECT * FROM {table}") }
+
     def tdel(self, table, userid):
         _check(table)
         with self.db as c:

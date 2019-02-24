@@ -47,6 +47,9 @@ label {
     margin-right: 15px;
     font-weight: normal;
 } 
+.container {
+    margin-bottom: 30px;
+}
 
 .m3 { background-color: red;    }
 .m2 { background-color: orange; }

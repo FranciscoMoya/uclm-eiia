@@ -3,6 +3,9 @@ from functools import wraps
 from .data_layer import get_db
 from .session import auth_profesor
 
+class DespachosList(Resource):
+    def get(self):
+        return get_db().aget('despachos')
 
 class Despacho(Resource):
     method_decorators = [auth_profesor] 
