@@ -33,7 +33,9 @@
         </nav>
         
         <div class="container">
-            {% set attr = auth.attributes %}
+            {% if auth %}
+            {% set aa = auth.attributes %}
+            {% endif %}
             {% block content %}{% endblock %}
         </div>
 

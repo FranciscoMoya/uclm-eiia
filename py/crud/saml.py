@@ -6,8 +6,8 @@ SP_ISSUER='Test SP'
 SP_CERTIFICATE = certificate_from_file('cert/sp-certificate.pem')
 SP_PRIVATE_KEY = private_key_from_file('cert/sp-private-key.pem')
 
-host='localhost'
-#host='bestia.uclm.es'
+#host='localhost'
+host='bestia.uclm.es'
 
 
 # Fake IdP

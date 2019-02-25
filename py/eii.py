@@ -9,7 +9,7 @@ from crud.tutorias import Tutoria, TutoriasList
 from crud.session import get_sp, SAML2_SETUP
 
 import subprocess
-subprocess.Popen(["python","idp.py"])
+subprocess.Popen(["python3","idp.py"])
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
