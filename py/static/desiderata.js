@@ -18,7 +18,7 @@ function getDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
         const table = document.querySelector(".timetable");
-        var resp = (req.status < 300 ? JSON.parse(req.responseText) : getDefaultDesiderata(document.querySelector("thead")));
+        var resp = (req.status < 300 ? JSON.parse(req.responseText) : getDefaultDesiderata(document.querySelector(".headings")));
         appendTimetable(table, resp);
         pending(false);
     };
