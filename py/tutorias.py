@@ -2,6 +2,7 @@ from ad import DirectorioActivo
 from cv_cfg import USERNAME, PASSWORD
 import tuto_gform as gform
 import json, argparse, jinja2
+from crud.data_layer import DataLayer
 
 ad_keys = ('sn','givenName','department','mail','title','telephoneNumber', 'displayName')
 
@@ -38,6 +39,8 @@ if __name__ == '__main__':
                         help='renderiza los datos en archivo JavaScript')
     parser.add_argument('--tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='templates/profes.html', default='templates/profes.html',
                         help='plantilla Jinja2 empleada para renderizar los datos')
+    parser.add_argument('--db', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='eii.db', default=None,
+                        help='Inyecta datos en DB')
     args = parser.parse_args()
     
     profes = []
@@ -47,6 +50,7 @@ if __name__ == '__main__':
 
     for p in profes:
         p['tutorias'] = 'No han sido especificadas por el profesor'
+        p['office'] = ''
 
     if args.json:
         profes_prev = json.load(args.json)
@@ -67,3 +71,9 @@ if __name__ == '__main__':
         args.json.write(json.dumps(profes))
         args.json.truncate()
 
+    if args.db:
+        db = DataLayer()
+        for p in profes:
+            uid = p['mail'].lower().split('@')[0]
+            db.tset('tutorias', uid, p['tutorias'])
+            db.tset('despachos', uid, p['office'])

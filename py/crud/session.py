@@ -8,12 +8,13 @@ def auth_profesor(func, unrestricted=('get',)):
     @wraps(func)
     def wrapper(*args, **kwargs):
         print(func.__name__, args, kwargs)
-        if False and func.__name__ not in unrestricted:
+        if func.__name__ not in unrestricted:
             sp = get_sp()
             if not sp.is_user_logged_in():
                 return redirect('/')
             auth = sp.get_auth_data_in_session()
-            if kwargs['userid'] != auth.uid or 'faculty' != auth.eduPersonAffiliation:
+            attr = auth.attributes
+            if kwargs['userid'] != attr['uid'] or 'faculty' != attr['eduPersonAffiliation']:
                 print('auth', auth)
                 return abort(401)
         return func(*args, **kwargs)
