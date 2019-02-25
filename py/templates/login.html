@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="refresh" content="0; URL={{login_url}}">
-        <title>Gestión interna EII - UCLM</title>
-    </head>
-    <body>
-        <p>Estás siendo redirigido a la página de autenticación de la UCLM.</p>
-        <p>Pincha <a href="{{login_url}}">aquí</a> si no se redirige automáticamente.</p>
-    </body>
-</html>
+{% extends "base.html" %}
+{% set active_sec = 'Home' %}
+{% block head %}
+<meta http-equiv="refresh" content="0; URL={{login_url}}">
+{% endblock %}
+{% block content %}
+    <h1>Autenticación de usuario</h1>
+    <p>Estás siendo redirigido a la página de autenticación de la UCLM.</p>
+    <p>Pincha <a href="{{login_url}}">aquí</a> si no se redirige automáticamente.</p>
+{% endblock %}

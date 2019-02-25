@@ -60,10 +60,11 @@ function getDefaultDesiderata(table) {
 }
 
 function appendTimetable(table, tt) {
-    console.log(tt);
+    //console.log(tt);
     for (var dia=0; dia<tt.length; ++dia) {
         var row = table.insertRow(-1);
         var th = document.createElement('TH');
+        th.scope = "row";
         th.innerHTML = tt[dia][0];
         row.appendChild(th);
         for (var i=1; i<tt[dia].length; ++i) {
@@ -85,14 +86,14 @@ function fillWithSelectedColor(cell) {
 function getDataFromTable(table) {
     var tt = [];
     var tr = table.querySelectorAll('tr');
-    for (var dia=1; dia<tr.length; ++dia) {
+    for (var dia=0; dia<tr.length; ++dia) {
         var values = [];
         values[0] = tr[dia].querySelector('th').textContent;
         var td = tr[dia].querySelectorAll('td');
         for (var i=0; i < td.length; ++i) {
             values[i+1] = class2value(td[i].className);
         }
-        tt[dia-1] = values;
+        tt[dia] = values;
     }
     return {
         desideratum: tt

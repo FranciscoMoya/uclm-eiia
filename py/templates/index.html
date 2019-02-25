@@ -1,35 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>Gestión interna EII - UCLM</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="/static/desiderata.css">
-        {% if auth %}
-        <script src="/static/despacho.js"></script>
-        {% else %}
-        <meta http-equiv="refresh" content="0; URL=/">
-        {% endif %}
-    </head>
-    <body>
+{% extends "base.html" %}
+{% set active_sec = 'Home' %}
+{% block content %}
 
-        <img style="margin-right:2cm" src="http://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
-        <img src="/static/EII.png" height="100">
+    <h1>Gestión interna</h1>
 
-        <p>Bienvenido, <strong>{{auth.nameid}}</strong>.</p>
+    <p>Bienvenido, <strong>{{auth.nameid}}</strong>. Utiliza el menú superior para acceder a las opciones que ofrece este servicio.</p>
 
-        <ul>
-            <li><a href="/app/desiderata.html">Desiderata de horarios</a></li>
-            <li><a href="/app/despacho.html">Cambio de despacho</a></li>
-            <li><a href="/app/tutorias.html">Tutorías</a></li>
-        </ul>
+    <p>Contacta con <a href="mailto:francisco.moya@uclm.es">Francisco Moya</a> si surge algún problema con esta aplicación.</p>
 
-        {% if False %}
-        <dl>
-            {% for attr, value in auth.attributes.items() %}
-            <dt>{{attr}}</dt><dd>{{value}}</dd>
-            {% endfor %}
-        </dl>
-        {% endif %}
-        <form action="{{logout_url}}" method="POST"><input type="submit" value="Cerrar sesión"></form>
-    </body>
-</html>
+    {% if False %}
+    <dl>
+        {% for attr, value in auth.attributes.items() %}
+        <dt>{{attr}}</dt><dd>{{value}}</dd>
+        {% endfor %}
+    </dl>
+    {% endif %}
+ 
+{% endblock %}
