@@ -4,16 +4,12 @@
 
     <h1>Gestión interna</h1>
 
-    <p>Bienvenido, <strong>{{auth.nameid}}</strong>. Utiliza el menú superior para acceder a las opciones que ofrece este servicio.</p>
+    <p>Bienvenido, <strong>{{attr.givenName}} {{attr.sn}}</strong>. Utiliza el menú superior para acceder a las opciones que ofrece este servicio.</p>
 
     <p>Contacta con <a href="mailto:francisco.moya@uclm.es">Francisco Moya</a> si surge algún problema con esta aplicación.</p>
 
     {% if False %}
-    <dl>
-        {% for attr, value in auth.attributes.items() %}
-        <dt>{{attr}}</dt><dd>{{value}}</dd>
-        {% endfor %}
-    </dl>
+    {{auth.attributes}}
     {% endif %}
  
 {% endblock %}

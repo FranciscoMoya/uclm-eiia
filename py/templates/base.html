@@ -28,11 +28,12 @@
                 </ul>
             </div>
             <form class="form-inline" action="{{logout_url}}" method="POST">
-                <button class="btn btn-sm btn-outline-secondary" type="submit">Cerrar sesión</button>
+                <button class="btn btn-sm btn-primary" type="submit">Cerrar sesión</button>
             </form>
         </nav>
         
         <div class="container">
+            {% set attr = auth.attributes %}
             {% block content %}{% endblock %}
         </div>
 

@@ -8,8 +8,11 @@ from crud.saml import *
 
 @attr.s
 class User:
-    username = attr.ib()
-    email = attr.ib()
+    uid = attr.ib()
+    eduPersonAffiliation = attr.ib()
+    givenName = attr.ib()
+    sn = attr.ib()
+    email = attr.ib() # required by idp
 
 class IdentityProvider(idp.IdentityProvider):
     def login_required(self):
@@ -28,10 +31,11 @@ class IdentityProvider(idp.IdentityProvider):
         return users[session['user']]
 
 
-users = {user.username: user for user in [
-    User('francisco.moya', 'francisco.moya'),
-    User('alex', 'alex'),
-    User('jordan', 'jordan'),
+users = {user.uid: user for user in [
+    User('francisco.moya', 'faculty', 'FRANCISCO', 'MOYA FERNÁNDEZ', 'francisco.moya'),
+    User('fernando.castillo', 'faculty', 'FERNANDO JOSÉ', 'CASTILLO GARCÍA', 'fernando.castillo'),
+    User('ismael.payo', 'faculty', 'ISMAEL', 'PAYO GUTIERREZ', 'ismael.payo'),
+    User('gema.lominchar', 'staff', 'GEMA', 'LOMINCHAR DIAZ', 'gema.lominchar'),
 ]}
 
 
@@ -40,7 +44,7 @@ idp = IdentityProvider()
 
 class Login(MethodView):
     def get(self):
-        options = ''.join(f'<option value="{user.username}">{user.email}</option>'
+        options = ''.join(f'<option value="{user.uid}">{user.sn}, {user.givenName}</option>'
                           for user in users.values())
         select = f'<div><label>Select a user: <select name="user">{options}</select></label></div>'
 
@@ -76,7 +80,7 @@ app.config['SAML2_IDP'] = {
 }
 app.config['SAML2_SERVICE_PROVIDERS'] = {
     'my-test-sp': {
-        'CLASS': 'flask_saml2.idp.sp.demo.AttributeSPHandler',
+        'CLASS': 'demo.AttributeSPHandler',
         'OPTIONS': {
             'acs_url': IDP_ACS_URL,
             'certificate': SP_CERTIFICATE,

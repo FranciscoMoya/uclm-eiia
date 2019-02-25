@@ -13,7 +13,7 @@ def auth_profesor(func, unrestricted=('get',)):
             if not sp.is_user_logged_in():
                 return redirect('/')
             auth = sp.get_auth_data_in_session()
-            if kwargs['userid'] != auth.nameid:
+            if kwargs['userid'] != auth.uid or 'faculty' != auth.eduPersonAffiliation:
                 print('auth', auth)
                 return abort(401)
         return func(*args, **kwargs)
