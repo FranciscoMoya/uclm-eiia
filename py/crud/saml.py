@@ -7,7 +7,7 @@ SP_CERTIFICATE = certificate_from_file('cert/sp-certificate.pem')
 SP_PRIVATE_KEY = private_key_from_file('cert/sp-private-key.pem')
 
 import platform
-host = 'localhost'if platform.system() == 'Windows' else 'bestia.uclm.es'
+host = 'localhost'if platform.system() == 'Windows' else 'eii-to.uclm.es'
 
 # Fake IdP
 
