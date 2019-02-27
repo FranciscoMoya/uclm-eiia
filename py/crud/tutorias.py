@@ -12,7 +12,7 @@ class Tutoria(Resource):
 
     def get(self, userid):
         return get_db().tget('tutorias', userid) \
-            or ("tutoria no encontrada", 404)
+            or ({"message":"Tutoria no encontrada"}, 404)
 
     def post(self, userid):
         parser = reqparse.RequestParser()
@@ -21,7 +21,7 @@ class Tutoria(Resource):
 
         db = get_db()
         if db.tget('tutorias', userid):
-            return "User {} already has tutoria".format(userid), 400
+            return {"message":f"User {userid} already has tutoria"}, 400
 
         db.insert(userid, args['tutoria'])
         return {
@@ -42,5 +42,5 @@ class Tutoria(Resource):
 
     def delete(self, userid):
         get_db().tdel('tutorias', userid)
-        return "{} is deleted.".format(userid), 200
+        return {"message":f"{userid} is deleted."}, 200
 

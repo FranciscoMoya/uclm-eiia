@@ -4,8 +4,8 @@ from flask import g
 DATABASE = 'eii.db'
 
 class DataLayer(object):
-    def __init__(self):
-        self.db = sqlite3.connect(DATABASE, detect_types = sqlite3.PARSE_DECLTYPES)
+    def __init__(self, path = DATABASE):
+        self.db = sqlite3.connect(path, detect_types = sqlite3.PARSE_DECLTYPES)
         self.db.row_factory = sqlite3.Row
         self.autoCreateTables()
 

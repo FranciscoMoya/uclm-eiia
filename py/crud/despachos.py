@@ -12,7 +12,7 @@ class Despacho(Resource):
 
     def get(self, userid):
         return get_db().tget('despachos', userid) \
-            or ("despacho no encontrado", 404)
+            or ({"message": f"Despacho de {userid} no encontrado"}, 404)
 
     def post(self, userid):
         parser = reqparse.RequestParser()
@@ -21,7 +21,7 @@ class Despacho(Resource):
 
         db = get_db()
         if db.tget('despachos', userid):
-            return "User {} already has despacho".format(userid), 400
+            return {"message": f"User {userid} already has despacho"}, 400
 
         db.insert(userid, args['despacho'])
         return {
@@ -42,5 +42,5 @@ class Despacho(Resource):
 
     def delete(self, userid):
         get_db().tdel('despachos', userid)
-        return "{} is deleted.".format(userid), 200
+        return {"message": f"Record for {userid} is deleted."}, 200
 

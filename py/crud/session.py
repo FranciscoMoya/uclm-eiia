@@ -54,9 +54,11 @@ def SAML2_SETUP(app):
     }
 
     app.config['SAML2_IDENTITY_PROVIDERS'] = {
-        'uclm-test-idp': {
+        'eii-to': {
             'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
             'OPTIONS': {
+                # FIXME: Aqui basta definir metadata_url:
+                #'metadata_url': IDP_METADATA_URL,
                 'display_name': 'My Identity Provider',
                 'sso_url':     IDP_SSO_URL,
                 'slo_url':     IDP_SLO_URL,

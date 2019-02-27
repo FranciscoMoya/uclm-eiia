@@ -44,6 +44,8 @@ function setDesiderataForUser(userid) {
     req.onload  = function() {
         if (req.status < 300)
             pending(false);
+        else
+            showError(req.responseText);
         dirty = false; // prevent retries if not authorized
     };
     const table = document.querySelector(".timetable");
@@ -114,4 +116,11 @@ function getUrlVars() {
         vars[key] = value;
     });
     return vars;
+}
+
+function showError(msg) {
+    obj = JSON.parse(msg);
+    var err = document.querySelector("#errors");
+    if (err)
+        err.innerHTML = obj.message;
 }

@@ -11,7 +11,7 @@ class Desideratum(Resource):
 
     def get(self, userid):
         return get_db().tget('desiderata', userid) \
-            or ("Desideratum no encontrado", 404)
+            or ({"message":"Desideratum no encontrado"}, 404)
 
     def post(self, userid):
         parser = reqparse.RequestParser()
@@ -20,7 +20,7 @@ class Desideratum(Resource):
 
         db = get_db()
         if db.tget('desiderata', userid):
-            return "User {} already has desideratum".format(userid), 400
+            return {"message":f"User {userid} already has desideratum"}, 400
 
         db.insert(userid, args['desideratum'])
         return {
@@ -41,5 +41,5 @@ class Desideratum(Resource):
 
     def delete(self, userid):
         get_db().tdel('desiderata', userid)
-        return "{} is deleted.".format(userid), 200
+        return {"message":"Record for {userid} is deleted."}, 200
 

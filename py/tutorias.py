@@ -52,6 +52,9 @@ if __name__ == '__main__':
         p['tutorias'] = 'No han sido especificadas por el profesor'
         p['office'] = ''
 
+    if args.db:
+
+
     if args.json:
         profes_prev = json.load(args.json)
         merge_into(profes, profes_prev)
@@ -72,7 +75,7 @@ if __name__ == '__main__':
         args.json.truncate()
 
     if args.db:
-        db = DataLayer()
+        db = DataLayer(args.db)
         for p in profes:
             uid = p['mail'].lower().split('@')[0]
             db.tset('tutorias', uid, p['tutorias'])

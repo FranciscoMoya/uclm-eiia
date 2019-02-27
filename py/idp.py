@@ -79,7 +79,7 @@ app.config['SAML2_IDP'] = {
     'private_key': IDP_PRIVATE_KEY,
 }
 app.config['SAML2_SERVICE_PROVIDERS'] = {
-    'my-test-sp': {
+    'eii-to': {
         'CLASS': 'demo.AttributeSPHandler',
         'OPTIONS': {
             'acs_url': IDP_ACS_URL,
