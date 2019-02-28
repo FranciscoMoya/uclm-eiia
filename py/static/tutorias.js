@@ -20,7 +20,7 @@ function getTutoriaForUser(userid) {
         if (req.status >= 400) return;
         var resp = JSON.parse(req.responseText);
         const input = document.querySelector("#tutoria");
-        input.onkeyup = function(){pending(true);};
+        input.onkeyup = function(){ pending(true); };
         input.value = resp;
         pending(false);
     };
@@ -44,7 +44,11 @@ function setTutoriaForUser(userid) {
     var req = new XMLHttpRequest();
     req.open('PUT', SERVICE_ENDPOINT + userid, true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.onload  = function() { pending(false) };
+    req.onload  = function() { 
+        if (req.status >= 300)
+            showError(req.responseText);
+        pending(false); 
+    };
     const input = document.querySelector("#tutoria");
     req.send(JSON.stringify({ "tutoria": input.value }));
 }
@@ -55,4 +59,11 @@ function getUrlVars() {
         vars[key] = value;
     });
     return vars;
+}
+
+function showError(msg) {
+    obj = JSON.parse(msg);
+    var err = document.querySelector("#errors");
+    if (err)
+        err.innerHTML = obj ? obj.message : msg;
 }

@@ -16,4 +16,4 @@ IDP_PRIVATE_KEY = private_key_from_file('cert/idp-private-key.pem')
 IDP_METADATA_URL=f'http://{host}:8000/saml/metadata.xml'
 IDP_SSO_URL=f'http://{host}:8000/saml/login/'
 IDP_SLO_URL=f'http://{host}:8000/saml/logout/'
-IDP_ACS_URL=f'http://{host}:5000/saml/acs/eii-to-idp/'
+IDP_ACS_URL=f'http://{host}:5000/saml/acs/eii-to/'
