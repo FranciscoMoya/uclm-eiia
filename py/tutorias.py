@@ -52,7 +52,6 @@ if __name__ == '__main__':
         p['tutorias'] = 'No han sido especificadas por el profesor'
         p['office'] = ''
 
-    if args.db:
 
 
     if args.json:
