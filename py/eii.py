@@ -8,8 +8,8 @@ from crud.despachos import Despacho, DespachosList
 from crud.tutorias import Tutoria, TutoriasList
 from crud.session import get_sp, SAML2_SETUP
 
-import subprocess, sys
-subprocess.Popen([sys.executable,"idp.py"])
+#import subprocess, sys
+#subprocess.Popen([sys.executable,"idp.py"])
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
