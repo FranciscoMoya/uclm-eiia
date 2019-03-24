@@ -10,8 +10,8 @@ from crud.session import get_sp, SAML2_SETUP
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
-SAML2_SETUP(app)
 api = Api(app, prefix='/v1')
+SAML2_SETUP(app)
 
 @app.route('/')
 def index():
