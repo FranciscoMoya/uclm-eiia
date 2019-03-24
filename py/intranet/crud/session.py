@@ -26,28 +26,19 @@ class EIIServiceProvider(ServiceProvider):
         return url_for('index', _external=True)
 
 # SAML Session singleton
+sp_ = None
 def get_sp():
-    sp = getattr(g, '_service_provider', None)
-    if sp is None:
-        sp = g._service_provider = EIIServiceProvider()
-    return sp
-
-'''
-SAML2_SETUP no puede llamar a get_sp() sin un contexto de aplicación,
-pero lo que pone en el contexto de aplicación no llega al index.
-
-Debe generarse otro contexto de aplicación. No influye desde el punto
-de vista funcional pero merece la pena revisarlo.
-'''
-
+    global sp_
+    if sp_ is None:
+        sp_ = EIIServiceProvider()
+    return sp_
 
 def SAML2_SETUP(app):
-    with app.app_context():
-        sp = get_sp()
+    sp = get_sp()
 
     app.secret_key = APP_SECRET_KEY
 
-    app.config['SERVER_NAME'] = 'intranet.eii-to.uclm.es'
+    app.config['SERVER_NAME'] = SERVER_NAME
     app.config['SAML2_SP'] = {
         'issuer':      SP_ISSUER,
         'certificate': SP_CERTIFICATE,

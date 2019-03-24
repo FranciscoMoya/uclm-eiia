@@ -22,8 +22,8 @@ class AttributeSPHandler(SPHandler):
     Demo Response Handler SPHandler for testing against django-saml2-sp;
     Adds SAML attributes to the assertion.
     """
-    def build_assertion(self, request):
+    def build_assertion(self, request, *args, **kwargs):
         return {
-            **super().build_assertion(request),
+            **super().build_assertion(request, *args, **kwargs),
             'ATTRIBUTES': dict(self.idp.get_current_user().__dict__),
         }
