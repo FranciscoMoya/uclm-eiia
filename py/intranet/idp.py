@@ -75,8 +75,8 @@ app.secret_key = 'not a secret'
 app.config['SAML2_IDP'] = {
     'issuer': 'Test IdP',
     'autosubmit': True,
-    'certificate': IDP_CERTIFICATE,
-    'private_key': IDP_PRIVATE_KEY,
+    'certificate': 'cert/idp-certificate.pem',
+    'private_key': 'cert/idp-private-key.pem',
 }
 app.config['SAML2_SERVICE_PROVIDERS'] = {
     'eii-to': {
