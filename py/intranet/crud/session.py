@@ -47,24 +47,25 @@ def SAML2_SETUP(app):
 
     app.secret_key = APP_SECRET_KEY
 
+    app.config['SERVER_NAME'] = 'intranet.eii-to.uclm.es'
     app.config['SAML2_SP'] = {
         'issuer':      SP_ISSUER,
         'certificate': SP_CERTIFICATE,
         'private_key': SP_PRIVATE_KEY,
     }
 
-    app.config['SAML2_IDENTITY_PROVIDERS'] = {
-        'eii-to': {
+    app.config['SAML2_IDENTITY_PROVIDERS'] = [
+        {
             'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
             'OPTIONS': {
-                # FIXME: Aqui basta definir metadata_url:
-                #'metadata_url': IDP_METADATA_URL,
                 'display_name': 'My Identity Provider',
-                'sso_url':     IDP_SSO_URL,
-                'slo_url':     IDP_SLO_URL,
+                'entity_id': IDP_METADATA_URL,
+                'sso_url': IDP_SSO_URL,
+                'slo_url': IDP_SLO_URL,
                 'certificate': IDP_CERTIFICATE,
             },
         },
-    }
+    ]
 
     app.register_blueprint(create_blueprint(sp), url_prefix='/saml/')
+

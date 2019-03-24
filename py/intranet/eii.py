@@ -8,9 +8,6 @@ from crud.despachos import Despacho, DespachosList
 from crud.tutorias import Tutoria, TutoriasList
 from crud.session import get_sp, SAML2_SETUP
 
-#import subprocess, sys
-#subprocess.Popen([sys.executable,"idp.py"])
-
 app = Flask(__name__, static_url_path='')
 CORS(app)
 SAML2_SETUP(app)
@@ -36,7 +33,7 @@ def close_connection(exception):
 
 @app.route('/static/<path:path>')
 def send_static(path):
-    return send_from_directory('static', path)
+    return send_from_directory('html/static', path)
 
 api.add_resource(DesiderataList, "/desiderata/")
 api.add_resource(DespachosList, "/despachos/")
@@ -45,6 +42,7 @@ api.add_resource(TutoriasList, "/tutorias/")
 api.add_resource(Desideratum, "/desiderata/<string:userid>")
 api.add_resource(Despacho, "/despachos/<string:userid>")
 api.add_resource(Tutoria, "/tutorias/<string:userid>")
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
