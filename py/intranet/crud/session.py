@@ -36,11 +36,15 @@ def get_sp():
 def SAML2_SETUP(app):
     sp = get_sp()
 
+    sp_host = '161.67.1.33:9000'
+    idp_host = 'eii-to.uclm.es:8000'
+
     app.secret_key = APP_SECRET_KEY
 
-    app.config['SERVER_NAME'] = SERVER_NAME
+    app.config['SERVER_NAME'] = sp_host
+
     app.config['SAML2_SP'] = {
-        'issuer':      SP_ISSUER,
+        'issuer': 'Test SP',
         'certificate': SP_CERTIFICATE,
         'private_key': SP_PRIVATE_KEY,
     }
@@ -50,9 +54,9 @@ def SAML2_SETUP(app):
             'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
             'OPTIONS': {
                 'display_name': 'My Identity Provider',
-                'entity_id': IDP_METADATA_URL,
-                'sso_url': IDP_SSO_URL,
-                'slo_url': IDP_SLO_URL,
+                'entity_id': f'http://{idp_host}/saml/metadata.xml',
+                'sso_url': f'http://{idp_host}/saml/login/',
+                'slo_url': f'http://{idp_host}/saml/logout/',
                 'certificate': IDP_CERTIFICATE,
             },
         },

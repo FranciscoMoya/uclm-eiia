@@ -10,13 +10,17 @@ class ServiceProvider(ServiceProvider):
         return url_for('index', _external=True)
 
 
+import platform
+sp_host = 'localhost:9000' if platform.system() == 'Windows' else 'intranet.eii-to.uclm.es'
+idp_host = 'localhost:8000' if platform.system() == 'Windows' else 'eii-to.uclm.es:8000'
+
 sp = ServiceProvider()
 
 app = Flask(__name__)
 app.debug = True
 app.secret_key = 'not a secret'
 
-app.config['SERVER_NAME'] = 'intranet.eii-to.uclm.es'
+app.config['SERVER_NAME'] = sp_host
 app.config['SAML2_SP'] = {
     'issuer': 'Test SP',
     'certificate': SP_CERTIFICATE,
@@ -28,9 +32,9 @@ app.config['SAML2_IDENTITY_PROVIDERS'] = [
         'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
         'OPTIONS': {
             'display_name': 'My Identity Provider',
-            'entity_id': 'http://eii-to.uclm.es:8000/saml/metadata.xml',
-            'sso_url': 'http://eii-to.uclm.es:8000/saml/login/',
-            'slo_url': 'http://eii-to.uclm.es:8000/saml/logout/',
+            'entity_id': f'http://{idp_host}/saml/metadata.xml',
+            'sso_url': f'http://{idp_host}/saml/login/',
+            'slo_url': f'http://{idp_host}/saml/logout/',
             'certificate': IDP_CERTIFICATE,
         },
     },
