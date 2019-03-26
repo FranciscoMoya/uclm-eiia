@@ -12,7 +12,7 @@ class ServiceProvider(ServiceProvider):
 
 import platform
 sp_host = 'localhost:9000' if platform.system() == 'Windows' else 'intranet.eii-to.uclm.es'
-idp_host = 'localhost:8000' if platform.system() == 'Windows' else 'eii-to.uclm.es:8000'
+idp_host = 'localhost:8000' if platform.system() == 'Windows' else 'adas.uclm.es'
 
 sp = ServiceProvider()
 
@@ -32,9 +32,9 @@ app.config['SAML2_IDENTITY_PROVIDERS'] = [
         'CLASS': 'flask_saml2.sp.idphandler.IdPHandler',
         'OPTIONS': {
             'display_name': 'My Identity Provider',
-            'entity_id': f'http://{idp_host}/saml/metadata.xml',
-            'sso_url': f'http://{idp_host}/saml/login/',
-            'slo_url': f'http://{idp_host}/saml/logout/',
+            'entity_id': f'http://{idp_host}/metadata/index.php/saml2',
+            'sso_url': f'http://{idp_host}/SAML2/SSOService.php',
+            'slo_url': f'http://{idp_host}/SAML2/SSOService.php',
             'certificate': IDP_CERTIFICATE,
         },
     },

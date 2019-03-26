@@ -11,8 +11,10 @@ class Despacho(Resource):
     method_decorators = [auth_profesor] 
 
     def get(self, userid):
-        return get_db().tget('despachos', userid) \
-            or ({"message": f"Despacho de {userid} no encontrado"}, 404)
+        ret = get_db().tget('despachos', userid) 
+        if ret is None:
+            return ({"message": f"Despacho de {userid} no encontrado"}, 404)
+        return ret
 
     def post(self, userid):
         parser = reqparse.RequestParser()

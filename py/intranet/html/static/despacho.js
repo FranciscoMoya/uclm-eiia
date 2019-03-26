@@ -1,17 +1,10 @@
 SERVICE_ENDPOINT = "/v1/despachos/";
-var args = getUrlVars();
 var dirty = true;
 
 function pending(v) {
     dirty = v;
     const img = document.querySelector("#pending");
     img.style.display = (dirty ? "block": "none");
-}
-
-
-function getDespachoForCurrentUser() {
-    var userid = args['userid'];
-    return getDespachoForUser(userid);
 }
 
 function getDespachoForUser(userid) {
@@ -31,11 +24,6 @@ function getDespachoForUser(userid) {
     req.send();
 }
 
-function updateDespachoForCurrentUser() {
-    var userid = args['userid'];
-    return updateDespachoForUser(userid)();
-}
-
 function updateDespachoForUser(userid) {
     return function() {
         if (dirty) setDespachoForUser(userid);
@@ -53,14 +41,6 @@ function setDespachoForUser(userid) {
     };
     const input = document.querySelector("#despacho");
     req.send(JSON.stringify({ "despacho": input.value }));
-}
-
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
 }
 
 function showError(msg) {

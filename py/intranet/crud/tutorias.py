@@ -11,8 +11,10 @@ class Tutoria(Resource):
     method_decorators = [auth_profesor] 
 
     def get(self, userid):
-        return get_db().tget('tutorias', userid) \
-            or ({"message":"Tutoria no encontrada"}, 404)
+        ret = get_db().tget('tutorias', userid)
+        if ret is None:
+            return ({"message":"Tutoria no encontrada"}, 404)
+        return ret
 
     def post(self, userid):
         parser = reqparse.RequestParser()
