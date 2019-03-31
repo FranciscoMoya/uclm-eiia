@@ -18,7 +18,7 @@ class ProfesoresQuery(Resource):
     method_decorators = [auth_profesor] 
 
     def get(self, userid, password):
-        from ad import DirectorioActivo
+        from .ad import DirectorioActivo
 
         with DirectorioActivo(userid, password) as da:
             profes = [ entry_to_dict(p) for p in da.profesores('ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO') ]

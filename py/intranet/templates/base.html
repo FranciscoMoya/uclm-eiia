@@ -20,7 +20,8 @@
                     {% for sec,url in ( ('Home',       '/'),
                                         ('Desiderata', '/app/desiderata.html'),
                                         ('Despacho',   '/app/despacho.html'),
-                                        ('Tutorías',   '/app/tutorias.html') ) %}
+                                        ('Tutorías',   '/app/tutorias.html'),
+                                        ('Documentación',   'https://pruebasaluuclm.sharepoint.com/sites/IntranetEII') ) %}
                         <li class="nav-item{{' active' if sec == active_sec else None}}">
                             <a class="nav-link" href="{{url}}">{{sec}}</a>
                         </li>

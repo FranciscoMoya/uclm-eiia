@@ -39,7 +39,7 @@ if __name__ == '__main__':
                         help='renderiza los datos en archivo JavaScript')
     parser.add_argument('--tmpl', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='templates/profes.html', default='templates/profes.html',
                         help='plantilla Jinja2 empleada para renderizar los datos')
-    parser.add_argument('--db', nargs='?', type=argparse.FileType('r', encoding='utf-8'), const='eii.db', default=None,
+    parser.add_argument('--db', nargs='?', const='eii.db', default=None,
                         help='Inyecta datos en DB')
     args = parser.parse_args()
     

@@ -1,5 +1,4 @@
 from ldap3 import Server, Connection, ALL
-from cv_cfg import USERNAME, PASSWORD
 
 class DirectorioActivo(object):
     def __init__(self, user, passwd):
@@ -80,6 +79,7 @@ def display_counters(d, out):
 #conn.search('cn=Grupo.PDI.TO.EII,ou=PDI,dc=uclm,dc=es', '(objectclass=*)', attributes='member')
 #conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', '(objectClass=person)', attributes='displayName')
 if __name__ == '__main__':
+    from cv_cfg import USERNAME, PASSWORD
     import argparse, sys
 
     parser = argparse.ArgumentParser(description='Consulta el directorio activo.')
