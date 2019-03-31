@@ -31,17 +31,8 @@ PASSWORD = 'Tu contraseña de la UCLM'
 
 ## Tutorías
 
-Esta aplicación es de gestión interna, para generar la página de tutorías.  Como de momento me encargo yo no he visto necesidad de documentarla en exceso.  Las siguientes notas son para recordarme a mi mismo el procedimiento.
-
-Desactivar el formulario de Google y descargar las respuestas como CSV.
-
-Ejecutar el script así:
-
-```
-python tutorias.py --json --gform --html ../tutorias.html
-```
-
-De esta forma graba y usa `data.json` como almacén de datos disponibles hasta ahora.  Esto permite borrar las respuestas dadas hasta ahora en el formulario.
+Esta aplicación ya es obsoleta.  Su funcionalidad se ha sustituido por la página dinámica
+`intranet/html/static/tutorias.html` que se construye con los datos extraídos de la Intranet.
 
 ## Actas
 
