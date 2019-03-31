@@ -2,7 +2,7 @@ from ad import DirectorioActivo
 from cv_cfg import USERNAME, PASSWORD
 import tuto_gform as gform
 import json, argparse, jinja2
-from crud.data_layer import DataLayer
+from intranet.crud.data_layer import DataLayer
 
 ad_keys = ('sn','givenName','department','mail','title','telephoneNumber', 'displayName')
 
@@ -48,11 +48,10 @@ if __name__ == '__main__':
         profes = [ entry_to_dict(p) for p in da.profesores('ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO') ]
     profes.sort(key=lambda p: (p['sn'],p['givenName']))
 
-    for p in profes:
-        p['tutorias'] = 'No han sido especificadas por el profesor'
-        p['office'] = ''
-
-
+    if args.gform:
+        for p in profes:
+            p['tutorias'] = 'No han sido especificadas por el profesor'
+            p['office'] = ''
 
     if args.json:
         profes_prev = json.load(args.json)

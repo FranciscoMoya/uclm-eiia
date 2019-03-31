@@ -1,7 +1,7 @@
 from flask_saml2.sp import ServiceProvider, create_blueprint
 from flask import g, url_for, abort, redirect
 from functools import wraps
-from .saml import *
+from flask_saml2.utils import certificate_from_file, private_key_from_file
 
 
 def auth_profesor(func, unrestricted=('get',)):
@@ -33,14 +33,20 @@ def get_sp():
         sp_ = EIIServiceProvider()
     return sp_
 
+
+SP_ISSUER='eii-to-sp'
+SP_CERTIFICATE = certificate_from_file('cert/sp-certificate.pem')
+SP_PRIVATE_KEY = private_key_from_file('/home/UCLM/francisco.moya/key.pem')
+IDP_CERTIFICATE=certificate_from_file('cert/idp-certificate.pem')
+
+import platform
+sp_host = 'localhost:9000' if platform.system() == 'Windows' else 'intranet.eii-to.uclm.es'
+idp_host = 'localhost:8000' if platform.system() == 'Windows' else 'adas.uclm.es'
+
 def SAML2_SETUP(app):
     sp = get_sp()
 
-    # for testing
-    #sp_host = '161.67.1.33:9000'
-    #idp_host = 'eii-to.uclm.es:8000'
-
-    app.secret_key = APP_SECRET_KEY
+    app.secret_key = 'not a secret'
 
     app.config['SERVER_NAME'] = sp_host
 
