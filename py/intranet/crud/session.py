@@ -15,8 +15,8 @@ def auth_profesor(func, unrestricted=('get',)):
             auth = sp.get_auth_data_in_session()
             attr = auth.attributes
             if kwargs['userid'] != attr['uid'] or 'faculty' != attr['eduPersonAffiliation']:
-                print('Error auth', auth)
-                #return abort(401)
+                #print('Error auth', auth)
+                return abort(401)
         return func(*args, **kwargs)
     return wrapper
 
