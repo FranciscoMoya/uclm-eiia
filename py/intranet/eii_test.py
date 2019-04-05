@@ -7,24 +7,20 @@ from crud.profesores import Profesor, ProfesoresList, ProfesoresQuery
 from crud.desiderata import Desideratum, DesiderataList
 from crud.despachos import Despacho, DespachosList
 from crud.tutorias import Tutoria, TutoriasList
-from crud.session import get_sp, SAML2_SETUP
+from crud.session_dummy import get_sp, SAML2_SETUP
 from forms.datos_personales import DatosPersonalesForm
 
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
-api = Api(app, prefix='/v1')
+api = Api(app, prefix='/v2')
 SAML2_SETUP(app)
 
-@app.route('/')
+@app.route('/dev/')
 def index():
-    sp = get_sp()
-    if sp.is_user_logged_in():
-        return render_template('index.html', auth = sp.get_auth_data_in_session(), logout_url = url_for('flask_saml2_sp.logout'))
-    else:
-        return render_template('login.html', login_url = url_for('flask_saml2_sp.login'))
+    return render_template('index.html', auth = sp.get_auth_data_in_session(), logout_url = url_for('flask_saml2_sp.logout'))
 
-@app.route('/app/<path:path>')
+@app.route('/dev/app/<path:path>')
 def app_path(path):
     sp = get_sp()
     auth = sp.get_auth_data_in_session() if sp.is_user_logged_in() else None        

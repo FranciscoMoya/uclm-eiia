@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+    {% if auth %}
+    {% set aa = auth.attributes %}
+    {% endif %}
     <head>
         <title>{% block title %}Intranet UCLM - EII{% endblock %}</title>
         <meta charset="utf-8">
@@ -21,11 +24,20 @@
                                         ('Desiderata', '/app/desiderata.html'),
                                         ('Despacho',   '/app/despacho.html'),
                                         ('Tutorías',   '/app/tutorias.html'),
-                                        ('Documentación',   'https://pruebasaluuclm.sharepoint.com/sites/IntranetEII') ) %}
+                                        ('Blog',        'https://pruebasaluuclm.sharepoint.com/sites/IntranetEII') ) 
+		    %}
                         <li class="nav-item{{' active' if sec == active_sec else None}}">
                             <a class="nav-link" href="{{url}}">{{sec}}</a>
                         </li>
                     {% endfor %}
+		    {% if auth and aa.uid == 'francisco.moya' %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="testDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Devel</a>
+			    <div class="dropdown-menu" aria-labelledby="testDropdown">
+			      <a class="dropdown-item" href="/form/datos_personales.html">Datos personales</a>
+			    </div>
+                        </li>
+		    {% endif %}
                 </ul>
             </div>
             <form class="form-inline" action="{{logout_url}}" method="POST">
@@ -34,9 +46,6 @@
         </nav>
         
         <div class="container">
-            {% if auth %}
-            {% set aa = auth.attributes %}
-            {% endif %}
             {% block content %}{% endblock %}
         </div>
 
