@@ -19,7 +19,7 @@ function getDespachoForUser(userid) {
 }
 
 // AD Data
-DESPACHO_ENDPOINT = "/v1/profesor/";
+PROFESOR_ENDPOINT = "/v1/profesor/";
 function getADDataForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
@@ -32,7 +32,7 @@ function getADDataForUser(userid) {
             fillValue(key, resp[key]);
         }
     };
-    req.open('GET', DESPACHO_ENDPOINT + userid, true);
+    req.open('GET', PROFESOR_ENDPOINT + userid, true);
     req.send();
 }
 

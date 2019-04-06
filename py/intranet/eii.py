@@ -58,6 +58,7 @@ def send_static(path):
 api.add_resource(ProfesoresQuery, "/buscar_profesores/<string:userid>:<string:password>")
 api.add_resource(ProfesoresList, "/profesores/")
 api.add_resource(DesiderataList, "/desiderata/")
+api.add_resource(DespachosList, "/despachos/")
 api.add_resource(DatosProfesionalesList, "/datos_profesionales/")
 api.add_resource(TutoriasList, "/tutorias/")
 
