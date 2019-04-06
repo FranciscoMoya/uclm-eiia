@@ -37,12 +37,15 @@ def form_path(path):
     sp = get_sp()
     auth = sp.get_auth_data_in_session() if sp.is_user_logged_in() else None
     form = all_forms[path]()
-    if auth and form.validate_on_submit():
-        get_db().mset(path, auth.attributes.uid, form.to_list())
+    if not auth:
+        return redirect(url_for('flask_saml2_sp.login'))
+    if form.validate_on_submit():
+        aa = auth.attributes
+        get_db().mset(path, aa['uid'], form.to_list())
     return render_template(path + ".html", 
                            auth = auth, 
                            form = form,
-                           logout_url = '/')
+                           logout_url = url_for('flask_saml2_sp.logout'))
 
 @app.teardown_appcontext
 def close_connection(exception):
