@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% set active_sec = 'Test' %}
+{% block head %}
+
+    {% if not auth %}
+    <meta http-equiv="refresh" content="0; URL={{login_url}}">
+    {% endif %}
+
+{% endblock %}
+{% block content %}
+  <h1>Datos profesionales</h1>
+
+  <div class="text-danger" id="errors"></div>
+  <form action="" method="post" novalidate>
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <label for="nombre">Nombre</label> 
+        <input id="nombre" class="form-control" value="{{ '{} {}'.format(aa.givenName, aa.sn) }}" 
+               type="text" disabled>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="department">Departamento</label> 
+            <input id="department" class="form-control" type="text" disabled>
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.area.label(for='area') }} 
+            {{ form.area(class='form-control', id='area') }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="title">Categoría</label> 
+            <input id="title" class="form-control" type="text" disabled>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="mail">Correo-e</label> 
+            <input id="mail" class="form-control" type="text" disabled>
+        </div>
+    </div>    
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.telefono.label(for='telefono') }} 
+            {{ form.telefono(class='form-control', id='telefono') }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.despacho.label(for='depacho') }} 
+            {{ form.despacho(class='form-control', id='despacho') }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            {{ form.sexenios.label(for='sexenios') }} 
+            {{ form.sexenios(class='form-control', id='sexenios', value='0') }}
+            <div class="form-check">
+                {{ form.sexenio_vivo(class='form-check-input', id='sexenio_vivo') }}
+                {{ form.sexenio_vivo.label(for='sexenio_vivo', class='form-check-label') }}
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.quinquenios.label(for='quinquenios') }} 
+            {{ form.quinquenios(class='form-control', id='quinquenios', value='0') }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.acreditacion.label(for='acreditacion') }} 
+            {{ form.acreditacion(class='form-control', id='acreditacion') }}
+        </div>
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+
+  </form>
+  <script src="/static/datos_profesionales.js"></script>
+  <script>
+    getDespachoForUser("{{aa.uid}}");
+    getADDataForUser("{{aa.uid}}");
+    getDatosProfesionalesForUser("{{aa.uid}}");
+  </script>
+{% endblock %}

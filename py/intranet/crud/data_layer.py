@@ -25,9 +25,15 @@ class DataLayer(object):
                     [tutoria] TEXT
                 )''')
             c.execute('''
-                CREATE TABLE IF NOT EXISTS "despachos" (
+                CREATE TABLE IF NOT EXISTS "datos_profesionales" (
                     [userid] TEXT PRIMARY KEY NOT NULL, 
-                    [despacho] TEXT
+                    [area] TEXT,
+                    [telefono] TEXT,
+                    [despacho] TEXT,
+                    [quinquenios] INTEGER,
+                    [sexenios] INTEGER,
+                    [sexenio_vivo] BOOLEAN,
+                    [acreditacion] JSON
                 )''')
 
     def tset(self, table, userid, value):
@@ -35,33 +41,45 @@ class DataLayer(object):
         with self.db as c:
             c.execute(f"REPLACE INTO {table} VALUES (?, ?)", (userid, value))
 
+    def mset(self, table, userid, value):
+        _check(table)
+        row = (userid, *value)
+        fmt = ','.join('?'*len(row))
+        with self.db as c:
+            c.execute(f"REPLACE INTO {table} VALUES ({fmt})", row)
+
     def tget(self, table, userid):
         _check(table)
         with self.db as c:
             for row in c.execute(f"SELECT * FROM {table} WHERE userid = ?", (userid,)):
-                return row[1]
+                return _get_value(row)
         return None
 
     def aget(self, table):
         _check(table)
         with self.db as c:
-            return { user: value for user, value in c.execute(f"SELECT * FROM {table}") }
+            return { row[0]: _get_value(row) for row in c.execute(f"SELECT * FROM {table}") }
 
     def tdel(self, table, userid):
         _check(table)
         with self.db as c:
             c.execute(f"DELETE FROM {table} WHERE userid = ?", (userid,))
 
-    def list(self, table):
+    def tlist(self, table):
         _check(table)
         with self.db as c:
             return [ tuple(row) for row in c.execute(f"SELECT * FROM {table}") ]
 
 def _check(table):
-    assert table in ('desiderata', 'tutorias', 'despachos')
+    assert table in ('desiderata', 'tutorias', 'despachos', 'datos_profesionales')
+
+def _get_value(row):
+    if len(row) == 2:
+        return row[1]
+    return row[1:]
+
 
 # Custom JSON type
-
 def adapt_json(data):
     return (json.dumps(data, sort_keys=True)).encode()
 
@@ -74,7 +92,6 @@ sqlite3.register_adapter(tuple, adapt_json)
 sqlite3.register_converter('JSON', convert_json)
 
 # DataLayer singleton
-
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:

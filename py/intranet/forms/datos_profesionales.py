@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SelectMultipleField, BooleanField, SubmitField
 
-class DatosPersonalesForm(FlaskForm):
+class DatosProfesionalesForm(FlaskForm):
     despacho = StringField('Despacho')
     telefono = StringField('Teléfono')
     area = StringField('Área de conocimiento')
@@ -12,7 +12,15 @@ class DatosPersonalesForm(FlaskForm):
                                            ('tu', 'Titular de Universidad'),
                                            ('cu', 'Catedrático de Universidad')
                                        ])
-    quinquenios = IntegerField('Número de quinquenios')
-    sexenios = IntegerField('Número de sexenios')
+    quinquenios = IntegerField('Quinquenios')
+    sexenios = IntegerField('Sexenios')
     sexenio_vivo = BooleanField('Sexenio vivo')
     submit = SubmitField('Actualizar')
+
+    columns = ("area","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion")
+        
+    def to_dict(self):
+        return { k: getattr(self, k).data for k in self.columns }
+
+    def to_list(self):
+        return [ getattr(self, k).data for k in self.columns ]

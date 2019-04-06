@@ -1,5 +1,4 @@
 from flask_restful import Api, Resource, reqparse, abort
-from functools import wraps
 from .session import auth_profesor
 import json
 
@@ -32,5 +31,5 @@ class Profesor(Resource):
 
     def get(self, userid):
         with open(JSON_DB) as js:
-            profe = [p for p in json.load(js) if p['mail'].split('@')[0] == userid]
+            profe = [p for p in json.load(js) if p['mail'].split('@')[0].lower() == userid]
             return profe[0] if len(profe) > 0 else ({"message": f"User {userid} not found"}, 400)

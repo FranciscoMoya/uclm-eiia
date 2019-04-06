@@ -7,12 +7,24 @@
         <title>{% block title %}Intranet UCLM - EII{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         {% block head %}{% endblock %}
     </head>
     <body>
-        <img style="margin-right:2cm" src="https://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
-        <img src="/static/EII.png" height="80">
+        <div class="row">
+            <div class="col">
+                <img src="https://blog.uclm.es/identidadvisualcorporativa/files/2015/05/UCLM_todo_Color.png">
+            </div>
+            <div class="col">
+                <h1 class="mt-3">Intranet EII Toledo</h1>
+            </div>
+                <div class="col">
+                <img src="/static/EII.png" height="80">        
+            </div>
+        </div>
 
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,24 +32,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    {% for sec,url in ( ('Home',       '/'),
-                                        ('Desiderata', '/app/desiderata.html'),
-                                        ('Despacho',   '/app/despacho.html'),
+                    {% for sec,url in ( ('Inicio',     '/form/datos_profesionales'),
                                         ('Tutorías',   '/app/tutorias.html'),
+                                        ('Desiderata', '/app/desiderata.html'),
                                         ('Blog',        'https://pruebasaluuclm.sharepoint.com/sites/IntranetEII') ) 
-		    %}
+		            %}
                         <li class="nav-item{{' active' if sec == active_sec else None}}">
                             <a class="nav-link" href="{{url}}">{{sec}}</a>
                         </li>
                     {% endfor %}
-		    {% if auth and aa.uid == 'francisco.moya' %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="testDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Devel</a>
-			    <div class="dropdown-menu" aria-labelledby="testDropdown">
-			      <a class="dropdown-item" href="/form/datos_personales.html">Datos personales</a>
-			    </div>
-                        </li>
-		    {% endif %}
                 </ul>
             </div>
             <form class="form-inline" action="{{logout_url}}" method="POST">
