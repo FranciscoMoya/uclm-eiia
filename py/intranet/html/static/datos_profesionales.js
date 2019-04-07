@@ -1,23 +1,5 @@
 SERVICE_ENDPOINT = "/v1/datos_profesionales/";
 
-// Backwards compatibility
-DESPACHO_ENDPOINT = "/v1/despachos/";
-function getDespachoForUser(userid) {
-    var req = new XMLHttpRequest();
-    req.onload  = function() {
-        if (req.status >= 300) {
-            showError(req.responseText);
-            return;
-        }
-        var resp = JSON.parse(req.responseText);
-        const input = document.querySelector("#despacho");
-        if (!input.value)
-            input.value = resp;
-    };
-    req.open('GET', DESPACHO_ENDPOINT + userid, true);
-    req.send();
-}
-
 // AD Data
 PROFESOR_ENDPOINT = "/v1/profesor/";
 function getADDataForUser(userid) {
