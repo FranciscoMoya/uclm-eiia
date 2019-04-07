@@ -5,44 +5,17 @@ from .session import auth_profesor
 
 class DespachosList(Resource):
     def get(self):
-        return get_db().aget('despachos')
+        data = get_db().aget('datos_profesionales')
+        return { k: data[k][3] for k in data }
 
 class Despacho(Resource):
     method_decorators = [auth_profesor] 
 
     def get(self, userid):
-        ret = get_db().tget('despachos', userid) 
-        if ret is None:
-            return ({"message": f"Despacho de {userid} no encontrado"}, 404)
-        return ret
-
-    def post(self, userid):
-        parser = reqparse.RequestParser()
-        parser.add_argument("despacho")
-        args = parser.parse_args()
-
-        db = get_db()
-        if db.tget('despachos', userid):
-            return {"message": f"User {userid} already has despacho"}, 400
-
-        db.insert(userid, args['despacho'])
-        return {
-            'userid': userid,
-            'despacho': args['despacho']
-        }, 201
-
-    def put(self, userid):
-        parser = reqparse.RequestParser()
-        parser.add_argument("despacho")
-        args = parser.parse_args()
-        
-        get_db().tset('despachos', userid, args['despacho'])
-        return  {
-            'userid': userid,
-            'despacho': args['despacho']
-        }, 201
-
-    def delete(self, userid):
-        get_db().tdel('despachos', userid)
-        return {"message": f"Record for {userid} is deleted."}, 200
-
+        ret = get_db().tget('datos_profesionales', userid) 
+        if ret is not None and ret[3]:
+            return ret[3]
+        ret = get_db().tget('despachos', userid)
+        if ret is not None:
+            return ret
+        return ({"message": f"Datos Profesionales de {userid} no encontrados"}, 404)

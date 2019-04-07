@@ -9,12 +9,19 @@ class DatosProfesionalesList(Resource):
 class DatosProfesionales(Resource):
     method_decorators = [auth_profesor]
     columns = ("area","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion")
+    defaults = ("","","",0,0,False,[])
 
     def get(self, userid):
-        ret = get_db().tget('datos_profesionales', userid) 
-        if ret is None:
-            return ({"message": f"Datos Profesionales de {userid} no encontrados"}, 404)
-        return {k:v for k,v in zip(self.columns, ret)}
+        ret = get_db().tget('datos_profesionales', userid)
+        if ret:
+            return {k:v for k,v in zip(self.columns, ret)}
+        # Backwards compatibility
+        despacho = get_db().tget('despachos', userid)
+        if despacho is not None:
+            ret = { k:v for k,v in zip(self.columns, self.defaults) }
+            ret['despacho'] = despacho
+            return ret
+        return ({"message": f"Datos Profesionales de {userid} no encontrados"}, 404)
 
     def post(self, userid):
         parser = reqparse.RequestParser()
