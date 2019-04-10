@@ -10,7 +10,7 @@ from crud.datos_profesionales import DatosProfesionales, DatosProfesionalesList
 from crud.tutorias import Tutoria, TutoriasList
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
-from crud.data_layer import get_db
+from forms.justificantes import JustificantesForm
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
@@ -29,7 +29,8 @@ def app_path(path):
 
 
 all_forms = {
-    'datos_profesionales': DatosProfesionalesForm
+    'datos_profesionales': DatosProfesionalesForm,
+    'justificantes': JustificantesForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])
@@ -38,10 +39,9 @@ def form_path(path):
     auth = sp.get_auth_data_in_session() if sp.is_user_logged_in() else None
     form = all_forms[path]()
     if not auth:
-        return redirect(url_for('flask_saml2_sp.login'))
+        return redirect('/')
     if form.validate_on_submit():
-        aa = auth.attributes
-        get_db().mset(path, aa['uid'], form.to_list())
+        form.store(auth.attributes['uid'])
     return render_template(path + ".html", 
                            auth = auth, 
                            form = form,

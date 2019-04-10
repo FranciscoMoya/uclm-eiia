@@ -40,8 +40,7 @@ def form_path(path):
     if not auth:
         return redirect(url_for('flask_saml2_sp.login'))
     if form.validate_on_submit():
-        aa = auth.attributes
-        get_db().mset(path, aa['uid'], form.to_list())
+        form.store(auth.attributes)
     return render_template(path + ".html", 
                            auth = auth, 
                            form = form,

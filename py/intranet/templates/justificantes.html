@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% set active_sec = 'Test' %}
+{% block head %}
+
+  {% if not auth %}
+  <meta http-equiv="refresh" content="0; URL={{login_url}}">
+  {% endif %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+{% block content %}
+  <h1>Justificantes</h1>
+
+  <div class="text-danger" id="errors"></div>
+  <form action="" method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <div class="form-row">
+        <div class="form-group">
+            {{ form.justificante.label(for='justificante') }} 
+            {{ form.justificante(class='form-control', id='justificante') }}
+        </div>
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+
+{% if auth %}
+<table class="table table-hover mt-4">
+  <thead>
+    <tr>
+      <th>Justificante</th>
+      <th>Fecha</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for filename,date in form.list_files_for(aa.uid) %}
+      <tr>
+        <td>
+          <i class="fa fa-file mr-1"></i>
+          <a href="/static/{{aa.uid}}/{{filename}}">
+            {{filename}}
+          </a>
+        </td>
+        <td>{{date}}</td>
+        <td><a class="fa fa-trash text-dark" href="/v1/justificantes/{{aa.uid}}/{{filename}}"></a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+  
+  <!--
+  <script src="/static/datos_profesionales.js"></script>
+  <script>
+    getADDataForUser("{{aa.uid}}");
+    getDatosProfesionalesForUser("{{aa.uid}}");
+  </script>
+-->
+{% endblock %}

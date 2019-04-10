@@ -29,6 +29,10 @@ function getDatosProfesionalesForUser(userid) {
         for (var key in resp) {
             fillValue(key, resp[key]);
         }
+        const tel = document.getElementById('telefono');
+        const telAD = document.getElementById('telephoneNumber');
+        if (!tel.value)
+            tel.value = telAD.value;
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     req.send();
@@ -38,10 +42,12 @@ function fillValue(name, val) {
     const input = document.querySelector('#' + name);
     if (!input) return;
     if (input.tagName == 'INPUT') {
-        if (input.type == 'checkbox')
+        if (input.type == 'checkbox') {
            input.checked = val != 0;
-        else
+        }
+        else {
             input.value = val;
+        }
     }
     else if (input.tagName == 'SELECT') {
         for (var i = 0; i < input.length; ++i) {

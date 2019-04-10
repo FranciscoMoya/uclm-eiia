@@ -12,7 +12,7 @@
 
   <div class="text-danger" id="errors"></div>
   <form action="" method="post" novalidate>
-    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
     <div class="form-group">
         <label for="nombre">Nombre</label> 
         <input id="nombre" class="form-control" value="{{ '{} {}'.format(aa.givenName, aa.sn) }}" 

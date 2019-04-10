@@ -9,17 +9,15 @@ if platform.system() == 'Windows':
         return wrapper
 
 
-    class FakeUserData(object):
-        def __init__(self):
-            self.uid = 'francisco.moya'
-            self.sn = 'MOYA FERNÁNDEZ'
-            self.givenName = 'FRANCISCO'
-            self.eduPersonAffiliation = 'faculty'
-
     class FakeAuthData(object):
         def __init__(self):
-            self.attributes = FakeUserData()
-
+            self.attributes = {
+                'uid': 'francisco.moya',
+                'sn':  'MOYA FERNÁNDEZ',
+                'givenName': 'FRANCISCO',
+                'eduPersonAffiliation': 'faculty'
+            }
+            
     class EIIServiceProvider(object):
         def get_logout_return_url(self):
             return url_for('index', _external=True)

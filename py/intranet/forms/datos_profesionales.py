@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SelectMultipleField, BooleanField, SubmitField
+from wtforms import StringField, IntegerField, SelectMultipleField, BooleanField, SubmitField, HiddenField
+from crud.data_layer import get_db
 
 class DatosProfesionalesForm(FlaskForm):
     despacho = StringField('Despacho')
@@ -17,8 +18,17 @@ class DatosProfesionalesForm(FlaskForm):
     sexenio_vivo = BooleanField('Sexenio vivo')
     submit = SubmitField('Actualizar')
 
+    # AD fields
+    telephoneNumber = HiddenField()
+    sn = HiddenField()
+    givenName = HiddenField()
+    displayName = HiddenField()
+
     columns = ("area","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion")
-        
+
+    def store(self, uid):
+        get_db().mset('datos_profesionales', uid, self.to_list())
+
     def to_dict(self):
         return { k: getattr(self, k).data for k in self.columns }
 
