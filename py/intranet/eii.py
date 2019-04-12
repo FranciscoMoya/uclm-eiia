@@ -11,12 +11,14 @@ from crud.tutorias import Tutoria, TutoriasList
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
 from crud.data_layer import get_db
+from forms.justificantes import JustificantesForm
 
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
 api = Api(app, prefix='/v1')
 SAML2_SETUP(app)
+
 
 @app.route('/')
 def index():
@@ -29,7 +31,8 @@ def app_path(path):
     return render_template(path, auth = auth, logout_url = url_for('flask_saml2_sp.logout'))
 
 all_forms = {
-    'datos_profesionales': DatosProfesionalesForm
+    'datos_profesionales': DatosProfesionalesForm,
+    'justificantes': JustificantesForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])
@@ -40,7 +43,7 @@ def form_path(path):
     if not auth:
         return redirect(url_for('flask_saml2_sp.login'))
     if form.validate_on_submit():
-        form.store(auth.attributes)
+        form.store(auth.attributes['uid'])
     return render_template(path + ".html", 
                            auth = auth, 
                            form = form,
@@ -67,6 +70,12 @@ api.add_resource(Despacho, "/despachos/<string:userid>")
 api.add_resource(DatosProfesionales, "/datos_profesionales/<string:userid>")
 api.add_resource(Tutoria, "/tutorias/<string:userid>")
 
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000, debug=True)
