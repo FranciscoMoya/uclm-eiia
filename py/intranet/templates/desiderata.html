@@ -5,6 +5,7 @@
     {% if not auth %}
         <meta http-equiv="refresh" content="0; URL=/">
     {% endif %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
 
@@ -56,10 +57,31 @@
         </details>
     </div>
 
+    <div id="evidenceUI" style="display:none;">
+
+        <h2 class="mt-5">Justificantes</h2>
+        <p> Hay horas marcadas con verde oscuro (<em>seguro que sí</em>) o rojo (<em>seguro que no</em>).  
+            Para respetar estas desiderata es necesario aportar justificantes.
+        </p>
+        <form id="justificanteForm" action="javascript:;" method="POST" enctype="multipart/form-data" onsubmit="postJustificantesForUser('francisco.moya', this)">
+            <input type="hidden" id="userid" value="{{aa.uid}}">
+            <div class="form-row form-inline">
+                    <input class="form-control" id="justificante" name="justificante" type="file" required>
+                    <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Añadir">
+            </div>
+        </form>
+        <table class="table table-hover mt-4">
+            <thead><tr><th>Justificante</th><th>Fecha</th><th></th></tr></thead>
+            <tbody id="justificantesTab"></tbody>
+        </table>
+        
+    </div>
+
     <script src="/static/desiderata.js"></script>
     <script>
-    getDesiderataForUser("{{aa.uid}}");
-    setInterval(updateDesiderataForUser("{{aa.uid}}"), 1000);
+    getDesiderataForUser('{{aa.uid}}');
+    getJustificantesForUser('{{aa.uid}}');
+    setInterval(updateDesiderataForUser('{{aa.uid}}'), 1000);
     </script>
 
     {% endif %}
