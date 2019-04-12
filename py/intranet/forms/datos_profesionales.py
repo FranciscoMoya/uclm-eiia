@@ -27,10 +27,10 @@ class DatosProfesionalesForm(FlaskForm):
     columns = ("area","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion")
 
     def store(self, uid):
-        get_db().mset('datos_profesionales', uid, self.to_list())
+        ret = self.to_dict()
+        data = [ ret[k] for k in self.columns ]
+        get_db().mset('datos_profesionales', uid, data)
+        return ret
 
     def to_dict(self):
         return { k: getattr(self, k).data for k in self.columns }
-
-    def to_list(self):
-        return [ getattr(self, k).data for k in self.columns ]

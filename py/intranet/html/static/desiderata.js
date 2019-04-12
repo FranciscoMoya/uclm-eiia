@@ -49,7 +49,8 @@ function setDesiderataForUser(userid) {
         dirty = false; // prevent retries if not authorized
     };
     const table = document.querySelector(".timetable");
-    const payload = JSON.stringify(getDataFromTable(table));
+    const data = getDataFromTable(table);
+    const payload = JSON.stringify(data);
     req.send(payload);
 }
 
@@ -62,7 +63,7 @@ function getDefaultDesiderata(table) {
 }
 
 function appendTimetable(table, tt) {
-    //console.log(tt);
+    var needEvidence = false;
     for (var dia=0; dia<tt.length; ++dia) {
         var row = table.insertRow(-1);
         var th = document.createElement('TH');
@@ -71,10 +72,12 @@ function appendTimetable(table, tt) {
         row.appendChild(th);
         for (var i=1; i<tt[dia].length; ++i) {
             var cell = row.insertCell(-1);
+            needEvidence |= (tt[dia][i] == 3 || tt[dia][i] == -3);
             cell.className = value2class(tt[dia][i]);
             cell.onclick = fillWithSelectedColor(cell);
         }
     }
+    showEvidence(needEvidence);
 }
 
 function fillWithSelectedColor(cell) {
@@ -88,15 +91,19 @@ function fillWithSelectedColor(cell) {
 function getDataFromTable(table) {
     var tt = [];
     var tr = table.querySelectorAll('tr');
+    var needEvidence = false;
     for (var dia=0; dia<tr.length; ++dia) {
         var values = [];
         values[0] = tr[dia].querySelector('th').textContent;
         var td = tr[dia].querySelectorAll('td');
         for (var i=0; i < td.length; ++i) {
-            values[i+1] = class2value(td[i].className);
+            const v = class2value(td[i].className);
+            values[i+1] = v;
+            needEvidence |= (v == 3 || v == -3);
         }
         tt[dia] = values;
     }
+    showEvidence(needEvidence);
     return {
         desideratum: tt
     }
@@ -118,9 +125,63 @@ function getUrlVars() {
     return vars;
 }
 
+function showEvidence(needEvidence) {
+    document.getElementById('evidenceUI').style.display = (needEvidence? 'block': 'none');
+}
+
 function showError(msg) {
     obj = JSON.parse(msg);
     var err = document.querySelector("#errors");
     if (err)
         err.innerHTML = obj.message;
+}
+
+function fillJustificantes(uid, data) {
+    const tab = document.querySelector("#justificantesTab");
+    tab.innerHTML = '';
+    const just = data.justificantes;
+    for (i in just) {
+      const f = just[i];
+      var tr = document.createElement('TR');
+      tr.innerHTML = '<td><i class="fa fa-file mr-1"></i>' +
+        '<a href="/static/' + uid + '/' + f[0]  + '">' + f[0] + 
+        '</a></td><td>' + f[1] + '</td><td>' + 
+        '<i class="fa fa-trash text-dark" onclick="deleteJustificanteForUser(\'' + 
+        uid + '\', \'' + f[0] + '\')"></i></td>';
+      tab.appendChild(tr);
+    }
+  }
+
+function getJustificantesForUser(userid) {
+    var req = new XMLHttpRequest();
+    req.onload  = function() {
+        var data = (req.status < 300 ? JSON.parse(req.responseText) : { 'justificantes': [] });
+        fillJustificantes(userid, data);
+    };
+    req.open('GET', '/v1/justificantes/' + userid, true);
+    req.send();
+}
+
+function postJustificantesForUser(userid, form) {
+    var req = new XMLHttpRequest();
+    req.onload  = function() {
+        if (req.status < 300)
+            fillJustificantes(userid, JSON.parse(req.responseText));
+    };
+    var formData = new FormData(form);
+    req.open('POST', '/v1/justificantes/' + userid, true);
+    req.send(formData);
+    return false;
+}
+
+function deleteJustificanteForUser(userid, filename) {
+    var req = new XMLHttpRequest();
+    req.onload  = function() {
+        if (req.status < 300)
+            fillJustificantes(userid, JSON.parse(req.responseText));
+    };
+    var formData = new FormData();
+    formData.append("justificante", filename);
+    req.open('DELETE', '/v1/justificantes/' + userid, true);
+    req.send(formData);
 }

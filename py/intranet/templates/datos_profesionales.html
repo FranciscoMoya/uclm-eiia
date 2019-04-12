@@ -66,12 +66,16 @@
             {{ form.acreditacion(class='form-control', id='acreditacion') }}
         </div>
     </div>
-    {{ form.submit(class="btn btn-primary") }}
+    <button id="actualizar" class="btn btn-primary" type="submit" disabled>
+        Actualizar
+        <span id="pending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
 
   </form>
   <script src="/static/datos_profesionales.js"></script>
   <script>
     getADDataForUser("{{aa.uid}}");
     getDatosProfesionalesForUser("{{aa.uid}}");
+    pending(false);
   </script>
 {% endblock %}

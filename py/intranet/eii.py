@@ -8,10 +8,10 @@ from crud.desiderata import Desideratum, DesiderataList
 from crud.despachos import Despacho, DespachosList
 from crud.datos_profesionales import DatosProfesionales, DatosProfesionalesList
 from crud.tutorias import Tutoria, TutoriasList
+from crud.justificantes import Justificantes
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
 from crud.data_layer import get_db
-from forms.justificantes import JustificantesForm
 
 
 app = Flask(__name__, static_url_path='')
@@ -31,8 +31,7 @@ def app_path(path):
     return render_template(path, auth = auth, logout_url = url_for('flask_saml2_sp.logout'))
 
 all_forms = {
-    'datos_profesionales': DatosProfesionalesForm,
-    'justificantes': JustificantesForm
+    'datos_profesionales': DatosProfesionalesForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])
@@ -69,6 +68,7 @@ api.add_resource(Desideratum, "/desiderata/<string:userid>")
 api.add_resource(Despacho, "/despachos/<string:userid>")
 api.add_resource(DatosProfesionales, "/datos_profesionales/<string:userid>")
 api.add_resource(Tutoria, "/tutorias/<string:userid>")
+api.add_resource(Justificantes, "/justificantes/<string:userid>")
 
 @app.after_request
 def after_request(response):
