@@ -1,5 +1,12 @@
 SERVICE_ENDPOINT = "/v1/datos_profesionales/";
 
+function pending(v) {
+    const img = document.querySelector("#pending");
+    img.style.display = (v ? "block": "none");
+    const b = document.querySelector('#actualizar');
+    b.disabled = false;
+}
+
 // AD Data
 PROFESOR_ENDPOINT = "/v1/profesor/";
 function getADDataForUser(userid) {
@@ -26,9 +33,7 @@ function getDatosProfesionalesForUser(userid) {
             return;
         }
         var resp = JSON.parse(req.responseText);
-        for (var key in resp) {
-            fillValue(key, resp[key]);
-        }
+        fillValues(resp);
         const tel = document.getElementById('telefono');
         const telAD = document.getElementById('telephoneNumber');
         if (!tel.value)
@@ -36,6 +41,12 @@ function getDatosProfesionalesForUser(userid) {
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     req.send();
+}
+
+function fillValues(data) {
+    for (var key in data) {
+        fillValue(key, data[key]);
+    }
 }
 
 function fillValue(name, val) {

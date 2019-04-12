@@ -49,7 +49,10 @@ function setDesiderataForUser(userid) {
         dirty = false; // prevent retries if not authorized
     };
     const table = document.querySelector(".timetable");
-    const payload = JSON.stringify(getDataFromTable(table));
+    const data = getDataFromTable(table);
+    const needEvidence = find3InDesiderata(data.desideratum);
+    console.log("Need evicence:", needEvidence);
+    const payload = JSON.stringify(data);
     req.send(payload);
 }
 

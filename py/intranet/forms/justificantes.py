@@ -8,16 +8,17 @@ import os, datetime
 class JustificantesForm(FlaskForm):
     justificante = FileField('Nuevo justificante',
                              validators = [
+                                 FileRequired,
                                  FileAllowed(['pdf','txt'], 'Solo archivos PDF')
                              ])
     submit = SubmitField('Añadir')
 
     def store(self, uid):
+        if not self.justificante.data: return
         filename = secure_filename(os.path.basename(self.justificante.data.filename))
-        filename = f'html/static/justificantes/{uid}/{filename}'
-        filename = filename_fix_existing(filename)
-        os.makedirs(os.path.dirname(filename), exist_ok = True)
-        print('justificantes', filename)
+        dirname = f'html/static/justificantes/{uid}'
+        os.makedirs(dirname, exist_ok = True)
+        filename = filename_fix_existing(f'{dirname}/{filename}')
         self.justificante.data.save(filename)
 
     def to_list(self):
@@ -36,6 +37,7 @@ def filename_fix_existing(filename):
     """Expands name portion of filename with numeric ' (x)' suffix to
     return filename that doesn't exist already.
     """
+    if not os.path.exists(filename): return filename
     dirname = os.path.dirname(filename)
     filename = os.path.basename(filename)
     name, ext = filename.rsplit('.', 1)
