@@ -8,6 +8,7 @@ from crud.desiderata import Desideratum, DesiderataList
 from crud.despachos import Despacho, DespachosList
 from crud.datos_profesionales import DatosProfesionales, DatosProfesionalesList
 from crud.tutorias import Tutoria, TutoriasList
+from crud.justificantes import Justificantes
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
 from crud.data_layer import get_db
@@ -66,7 +67,7 @@ api.add_resource(Desideratum, "/desiderata/<string:userid>")
 api.add_resource(Despacho, "/despachos/<string:userid>")
 api.add_resource(DatosProfesionales, "/datos_profesionales/<string:userid>")
 api.add_resource(Tutoria, "/tutorias/<string:userid>")
-
+api.add_resource(Justificantes, "/justificantes/<string:userid>")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000, debug=True)
