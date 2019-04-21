@@ -16,10 +16,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="userid">Usuario</label> 
-            <select id="userid" class="form-control">
-                <option value="francisco.moya" selected>francisco.moya</option>
-                <option value="fernando.castillo">fernando.castillo</option>
-            </select>
+            <select id="userid" class="form-control"></select>
         </div>
         <div class="form-group col-md-6">
             <label for="nombre">Nombre</label> 
@@ -88,12 +85,29 @@
             getDatosProfesionalesForUser(user);
             pending(false);
         }
+
         function postUI(form) {
             const user = uid.options[uid.selectedIndex].value;
             setDatosProfesionalesForUser(user, form);
         }
+
+        function getUsers(uid) {
+            pending(true);
+            var req = new XMLHttpRequest();
+            req.onload  = function() {
+                var resp = JSON.parse(req.responseText);
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid) );
+                }
+                uid.onchange = updateUI;
+                updateUI();
+            };
+            req.open('GET', '/v1/profesores/', true);
+            req.send();
+        }
+
         const uid = document.getElementById('userid');
-        uid.onchange = updateUI;
-        updateUI();
+        getUsers(uid);
   </script>
 {% endblock %}
