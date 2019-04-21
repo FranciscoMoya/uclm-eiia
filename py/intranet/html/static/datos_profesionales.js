@@ -38,9 +38,29 @@ function getDatosProfesionalesForUser(userid) {
         const telAD = document.getElementById('telephoneNumber');
         if (!tel.value)
             tel.value = telAD.value;
+        // displayName es inconsistente
+        const nombre = document.getElementById('nombre');
+        const givenName = document.getElementById('givenName');
+        const sn = document.getElementById('sn');
+        nombre.value = givenName.value + ' ' + sn.value;    
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     req.send();
+}
+
+
+function setDatosProfesionalesForUser(userid, form) {
+    pending(true);
+    var req = new XMLHttpRequest();
+    req.onload  = function() {
+        if (req.status >= 300) {
+            showError(req.responseText);
+        }
+        pending(false);
+    };
+    req.open('PUT', SERVICE_ENDPOINT + userid, true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(serializeUserData(form));
 }
 
 function fillValues(data) {
@@ -68,6 +88,8 @@ function fillValue(name, val) {
 }
 
 function valueInArray(v, arr) {
+    if (!arr)
+        return false;
     for (var vv = 0; vv < arr.length; ++vv)
         if (v == arr[vv])
             return true;
@@ -79,4 +101,38 @@ function showError(msg) {
     var err = document.querySelector("#errors");
     if (err)
         err.innerHTML = obj ? obj.message : msg;
+}
+
+function serializeUserData(form) {
+    const columns = ["area","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion"];
+    var ret = {};
+    for (var i=0; i<columns.length; ++i) {
+        key = columns[i];
+        ret[key] = getValue(form, key);
+    }
+    ret.quinquenios = parseInt(ret.quinquenios);
+    ret.sexenios = parseInt(ret.sexenios);
+    console.log('formData', JSON.stringify(ret));
+    return JSON.stringify(ret);
+}
+
+function getValue(form, name) {
+    const input = document.querySelector('#' + name);
+    if (!input) return;
+    if (input.tagName == 'INPUT') {
+        if (input.type == 'checkbox') {
+           return input.checked ? 1 : 0;
+        }
+        else {
+            return input.value;
+        }
+    }
+    else if (input.tagName == 'SELECT') {
+        var ret = [];
+        for (var i = 0; i < input.length; ++i) {
+            if (input.options[i].selected)
+                ret.push(input.options[i].value);
+        }
+        return ret;
+    }
 }

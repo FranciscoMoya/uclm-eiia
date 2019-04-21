@@ -5,8 +5,14 @@ import os, werkzeug
 from flask import request
 from datetime import datetime
 
+def justificantes_parser():
+    parser = reqparse.RequestParser(bundle_errors=True, trim=True)
+    parser.add_argument('justificante')
+    return parser
+
 class Justificantes(Resource):
-    method_decorators = [auth_profesor] 
+    method_decorators = [auth_profesor]
+    _parser = justificantes_parser()
 
     def get(self, userid):
         try:
@@ -25,7 +31,6 @@ class Justificantes(Resource):
 
     def post(self, userid):
         f = request.files['justificante']
-        print('POST', f)
         if f:
             filename = werkzeug.secure_filename(f.filename)
             dirname = f'html/static/justificantes/{userid}'
@@ -35,12 +40,9 @@ class Justificantes(Resource):
         return self.get(userid), 201
 
     def delete(self, userid):
-        parser = reqparse.RequestParser()
-        parser.add_argument("justificante")
-        args = parser.parse_args()
-        filename = args['justificante']
+        args = self._parser.parse_args()
+        filename = werkzeug.secure_filename(args['justificante'])
         filepath = f"html/static/justificantes/{userid}/{filename}"
-        print('delete', filepath)
         if os.path.exists(filepath):
             os.remove(filepath)
             return self.get(userid), 200

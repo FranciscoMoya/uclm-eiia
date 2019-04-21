@@ -11,7 +11,6 @@ from crud.tutorias import Tutoria, TutoriasList
 from crud.justificantes import Justificantes
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
-from crud.data_layer import get_db
 
 
 app = Flask(__name__, static_url_path='')
@@ -31,7 +30,8 @@ def app_path(path):
     return render_template(path, auth = auth, logout_url = url_for('flask_saml2_sp.logout'))
 
 all_forms = {
-    'datos_profesionales': DatosProfesionalesForm
+    'datos_profesionales': DatosProfesionalesForm,
+    'admin_datos': DatosProfesionalesForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])
@@ -70,12 +70,14 @@ api.add_resource(DatosProfesionales, "/datos_profesionales/<string:userid>")
 api.add_resource(Tutoria, "/tutorias/<string:userid>")
 api.add_resource(Justificantes, "/justificantes/<string:userid>")
 
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
+# Impedir cache es una mala práctica. Parece que explorer no actualiza
+# los resultados JSON.  Debería funcionar ahora que no borra lo cambiado
+# pero para evitar problema se puede no cachear
+#@app.after_request
+#def after_request(response):
+#    response.cache_control.max_age = 0
+#    response.cache_control.public = True
+#    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000, debug=True)

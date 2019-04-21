@@ -31,7 +31,7 @@ def app_path(path):
 
 all_forms = {
     'datos_profesionales': DatosProfesionalesForm,
-    'justificantes': JustificantesForm
+    'admin_datos': DatosProfesionalesForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])

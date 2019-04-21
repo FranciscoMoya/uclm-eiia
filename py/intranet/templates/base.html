@@ -41,6 +41,7 @@
                             <a class="nav-link" href="{{url}}">{{sec}}</a>
                         </li>
                     {% endfor %}
+                    {% block navbar %}{% endblock %}
                 </ul>
             </div>
             <form class="form-inline" action="{{logout_url}}" method="POST">

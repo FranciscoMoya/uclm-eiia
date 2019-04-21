@@ -7,8 +7,14 @@ class TutoriasList(Resource):
     def get(self):
         return get_db().aget('tutorias')
 
+def tutorias_parser():
+    parser = reqparse.RequestParser(bundle_errors=True, trim=True)
+    parser.add_argument('tutoria', required=True, default='')
+    return parser
+
 class Tutoria(Resource):
     method_decorators = [auth_profesor] 
+    _parser = tutorias_parser()
 
     def get(self, userid):
         ret = get_db().tget('tutorias', userid)
@@ -17,30 +23,21 @@ class Tutoria(Resource):
         return ret
 
     def post(self, userid):
-        parser = reqparse.RequestParser()
-        parser.add_argument("tutoria")
-        args = parser.parse_args()
-
         db = get_db()
         if db.tget('tutorias', userid):
             return {"message":f"User {userid} already has tutoria"}, 400
 
-        db.insert(userid, args['tutoria'])
-        return {
-            'userid': userid,
-            'tutoria': args['tutoria']
-        }, 201
+        ret, code = self.put(userid)
+        return ret, 201 if code < 300 else code
 
     def put(self, userid):
-        parser = reqparse.RequestParser()
-        parser.add_argument("tutoria")
-        args = parser.parse_args()
+        args = self._parser.parse_args()
         
         get_db().tset('tutorias', userid, args['tutoria'])
         return  {
             'userid': userid,
             'tutoria': args['tutoria']
-        }, 201
+        }, 202
 
     def delete(self, userid):
         get_db().tdel('tutorias', userid)

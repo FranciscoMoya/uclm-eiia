@@ -1,22 +1,30 @@
 {% extends "base.html" %}
-{% set active_sec = 'Inicio' %}
+{% set active_sec = 'Test' %}
 {% block head %}
 
-    {% if not auth %}
+    {% if not auth or aa.uid != 'francisco.moya' %}
     <meta http-equiv="refresh" content="0; URL={{login_url}}">
     {% endif %}
 
 {% endblock %}
 {% block content %}
-  <h1>Datos profesionales</h1>
 
   <div class="text-danger" id="errors"></div>
-  <form action="javascript:;" 
-        onsubmit="setDatosProfesionalesForUser('{{aa.uid}}', this); return false;">
+  <form onsubmit="postUI(this); return false;">
+
     {{ form.hidden_tag() }}
-    <div class="form-group">
-        <label for="nombre">Nombre</label> 
-        <input id="nombre" class="form-control" type="text" disabled>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="userid">Usuario</label> 
+            <select id="userid" class="form-control">
+                <option value="francisco.moya" selected>francisco.moya</option>
+                <option value="fernando.castillo">fernando.castillo</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="nombre">Nombre</label> 
+            <input id="nombre" class="form-control" type="text" disabled>
+        </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -74,8 +82,18 @@
   </form>
   <script src="/static/datos_profesionales.js"></script>
   <script>
-    getADDataForUser("{{aa.uid}}");
-    getDatosProfesionalesForUser("{{aa.uid}}");
-    pending(false);
+        function updateUI() {
+            const user = uid.options[uid.selectedIndex].value;
+            getADDataForUser(user);
+            getDatosProfesionalesForUser(user);
+            pending(false);
+        }
+        function postUI(form) {
+            const user = uid.options[uid.selectedIndex].value;
+            setDatosProfesionalesForUser(user, form);
+        }
+        const uid = document.getElementById('userid');
+        uid.onchange = updateUI;
+        updateUI();
   </script>
 {% endblock %}

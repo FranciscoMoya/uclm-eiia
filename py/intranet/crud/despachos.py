@@ -3,6 +3,8 @@ from functools import wraps
 from .data_layer import get_db
 from .session import auth_profesor
 
+# Deprecated interface
+
 class DespachosList(Resource):
     def get(self):
         ret = get_db().aget('despachos')
