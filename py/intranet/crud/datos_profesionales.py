@@ -14,7 +14,7 @@ def datos_profesionales_parser():
     parser.add_argument('quinquenios', type=int, required=True, default=0)
     parser.add_argument('sexenios', type=int, required=True, default=0)
     parser.add_argument('sexenio_vivo', type=int, required=True, default=0)
-    parser.add_argument('acreditacion', action='append', required=True, default=[])
+    parser.add_argument('acreditacion', action='append', default=[])
     return parser
 
 class DatosProfesionales(Resource):

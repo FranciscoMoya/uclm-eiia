@@ -73,11 +73,11 @@ api.add_resource(Justificantes, "/justificantes/<string:userid>")
 # Impedir cache es una mala práctica. Parece que explorer no actualiza
 # los resultados JSON.  Debería funcionar ahora que no borra lo cambiado
 # pero para evitar problema se puede no cachear
-#@app.after_request
-#def after_request(response):
-#    response.cache_control.max_age = 0
-#    response.cache_control.public = True
-#    return response
+@app.after_request
+def after_request(response):
+    response.cache_control.max_age = 0
+    response.cache_control.public = True
+    return response
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000, debug=True)
