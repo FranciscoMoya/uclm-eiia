@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% set active_sec = 'Desiderata' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/desiderata.css">
+    {% if not auth %}
+        <meta http-equiv="refresh" content="0; URL=/">
+    {% endif %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+.m1 { background-color: gold; }
+.p1 { background-color: yellow; }
+    </style>
+{% endblock %}
+{% block content %}
+
+    {% if auth %}
+
+    <h1>Admin desiderata</h1>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <select id="userid" class="form-control"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <button class="btn btn-primary" onclick="updateDB()">Update</button>
+        </div>
+    </div>
+
+    <div class="text-danger" id="errors"></div>
+    <div class="table-responsive-xl">
+        <table class="table table-bordered table-dark table-sm">
+            <thead class="headings">
+                <tr height="45">
+                    <th>
+                        <div id="pending" class="spinner-grow" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </th>
+                    {% for h in range(8,20) %}
+                    <th scope="col" class="text-center">{{h}}:30</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody class="timetable" id="timetable"></tbody>
+
+            <caption>
+                {% for v, lbl in (('p3','+3'), 
+                                  ('p2','+2'), 
+                                  ('p1','+1'), 
+                                  ('zr','0'), 
+                                  ('m1','-1'), 
+                                  ('m2','-2'), 
+                                  ('m3','-3')) %}
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="demo" value="{{v}}" id="radio-{{v}}" class="form-radio {{v}}" {{'checked' if v=='zr' else None}}>
+                    <label for="radio-{{v}}" class="form-check-label">{{lbl}}</label>
+                </div>
+                {% endfor %}
+            </caption>
+        </table>
+    </div>
+
+    <div id="evidenceUI"></div>
+    <h2 class="mt-5">Justificantes</h2>
+    <form id="justificanteForm" action="javascript:;" method="POST" enctype="multipart/form-data" onsubmit="postJustificantesForUser('{{aa.uid}}', this)">
+        <input type="hidden" id="userid" value="{{aa.uid}}">
+        <div class="form-row form-inline">
+                <input class="form-control" id="justificante" name="justificante" type="file" required>
+                <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Añadir">
+        </div>
+    </form>
+    <table class="table table-hover mt-4">
+        <thead><tr><th>Justificante</th><th>Fecha</th><th></th></tr></thead>
+        <tbody id="justificantesTab"></tbody>
+    </table>
+        
+    <script src="/static/desiderata.js"></script>
+    <script>
+        function updateUI() {
+            const user = uid.options[uid.selectedIndex].value;
+            document.getElementById('timetable').innerHTML='';
+            document.getElementById('justificantesTab').innerHTML='';
+            getDesiderataForUser(user);
+            getJustificantesForUser(user);
+        }
+
+        function updateDB() {
+            const user = uid.options[uid.selectedIndex].value;
+            setDesiderataForUser(user);
+        }
+
+        function getUsers(uid) {
+            pending(true);
+            var req = new XMLHttpRequest();
+            req.onload  = function() {
+                var resp = JSON.parse(req.responseText);
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid) );
+                }
+                uid.onchange = updateUI;
+                updateUI();
+            };
+            req.open('GET', '/v1/profesores/', true);
+            req.send();
+        }
+
+        const uid = document.getElementById('userid');
+        getUsers(uid);
+    </script>
+
+    {% endif %}
+
+{% endblock %}
