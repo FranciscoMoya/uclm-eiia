@@ -63,7 +63,7 @@
         <p> Hay horas marcadas con verde oscuro (<em>seguro que sí</em>) o rojo (<em>seguro que no</em>).  
             Para respetar estas desiderata es necesario aportar justificantes.
         </p>
-        <form id="justificanteForm" action="javascript:;" method="POST" enctype="multipart/form-data" onsubmit="postJustificantesForUser('francisco.moya', this)">
+        <form id="justificanteForm" action="javascript:;" method="POST" enctype="multipart/form-data" onsubmit="postJustificantesForUser('{{aa.uid}}', this)">
             <input type="hidden" id="userid" value="{{aa.uid}}">
             <div class="form-row form-inline">
                     <input class="form-control" id="justificante" name="justificante" type="file" required>
