@@ -12,6 +12,7 @@ from crud.justificantes import Justificantes
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
 from forms.justificantes import JustificantesForm
+from forms.propuesta_gasto import PropuestaGastoForm
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
@@ -31,7 +32,8 @@ def app_path(path):
 
 all_forms = {
     'datos_profesionales': DatosProfesionalesForm,
-    'admin_datos': DatosProfesionalesForm
+    'admin_datos': DatosProfesionalesForm,
+    'propuesta_gasto': PropuestaGastoForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])
