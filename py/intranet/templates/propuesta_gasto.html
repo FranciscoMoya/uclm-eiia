@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% set active_sec = 'Inicio' %}
+{% block head %}
+
+    {% if not auth %}
+    <meta http-equiv="refresh" content="0; URL={{login_url}}">
+    {% endif %}
+
+{% endblock %}
+{% block content %}
+  <h1>Propuesta de gasto</h1>
+
+  <div class="text-danger" id="errors"></div>
+  <form action="javascript:;" 
+        onsubmit="setPropuestaGasto(this); return false;">
+    {{ form.hidden_tag() }}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="department">Departamento</label> 
+            <input id="department" class="form-control" type="text" disabled>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="area">Área de conocimiento</label> 
+            <input id="area" class="form-control" type="text" disabled>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.descripcion.label(for='descripcion') }} 
+            {{ form.descripcion(class='form-control', id='descripcion') }}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.importe.label(for='importe') }} 
+            {{ form.importe(class='form-control', id='importe',value=0.0) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            {{ form.justificacion.label(for='justificacion') }} 
+            {{ form.justificacion(rows=10, class='col-md-12', id='justificacion', placeholder='Si se considera necesario puede utilizarse marcado de texto en Markdown') }}
+        </div>
+    </div>
+    <button id="actualizar" class="btn btn-primary" type="submit" disabled>
+        Actualizar
+        <span id="pending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
+
+  </form>
+{% endblock %}
