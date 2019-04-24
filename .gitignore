@@ -1,3 +1,7 @@
 py/__pycache__/**
 *.swp
 cv_cfg.py
+*.pyc
+py/intranet/eii.db
+py/intranet/eii.sql
+py/intranet/profesores.json

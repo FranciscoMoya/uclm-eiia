@@ -8,7 +8,6 @@ function pending(v) {
     img.style.display = (dirty ? "block": "none");
 }
 
-
 function getDesiderataForCurrentUser() {
     var userid = args['userid'];
     return getDesiderataForUser(userid);
