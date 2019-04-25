@@ -41,12 +41,13 @@ class Justificantes(Resource):
 
     def delete(self, userid):
         args = self._parser.parse_args()
-        filename = werkzeug.secure_filename(args['justificante'])
+        filename = args['justificante'].replace('..','__').replace('/','_')
         filepath = f"html/static/justificantes/{userid}/{filename}"
+        print('DELETE', filepath)
         if os.path.exists(filepath):
             os.remove(filepath)
             return self.get(userid), 200
-        return {"message": f"Unable to delete {userid}/{filename}."}, 405
+        return {"message": f"Unable to delete {userid}/{filename}"}, 405
 
 # Taken from https://github.com/steveeJ/python-wget/blob/master/wget.py#L72
 def filename_fix_existing(filename):

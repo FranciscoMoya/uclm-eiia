@@ -143,7 +143,7 @@ function fillJustificantes(uid, data) {
       const f = just[i];
       var tr = document.createElement('TR');
       tr.innerHTML = '<td><i class="fa fa-file mr-1"></i>' +
-        '<a href="/static/' + uid + '/' + f[0]  + '">' + f[0] + 
+        '<a href="/static/justificantes/' + uid + '/' + f[0]  + '">' + f[0] + 
         '</a></td><td>' + f[1] + '</td><td>' + 
         '<i class="fa fa-trash text-dark" onclick="deleteJustificanteForUser(\'' + 
         uid + '\', \'' + f[0] + '\')"></i></td>';
