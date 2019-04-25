@@ -35,23 +35,53 @@ class DataLayer(object):
                     [sexenio_vivo] BOOLEAN,
                     [acreditacion] JSON
                 )''')
+            c.execute('''
+                CREATE TABLE IF NOT EXISTS "propuestas_gastos" (
+                    [id] INTEGER PRIMARY KEY NOT NULL, 
+                    [userid] TEXT NOT NULL, 
+                    [timestamp] TEXT DEFAULT CURRENT_TIMESTAMP,
+                    [importe] REAL NOT NULL,
+                    [descripcion] TEXT NOT NULL,
+                    [justificacion] TEXT
+                )''')
+            c.execute('''
+                CREATE TABLE IF NOT EXISTS "gastos" (
+                    [propuesta] INTEGER NOT NULL, 
+                    [timestamp] TEXT DEFAULT CURRENT_TIMESTAMP,
+                    [importe] REAL NOT NULL,
+                    [justificacion] TEXT
+                )''')
+            c.execute('''
+                CREATE TABLE IF NOT EXISTS "areas" (
+                    [areaid] INTEGER PRIMARY KEY NOT NULL, 
+                    [nombre] TEXT NOT NULL UNIQUE, 
+                    [presupuesto] REAL
+                )''')
 
     def tset(self, table, userid, value):
-        _check(table)
-        with self.db as c:
-            c.execute(f"REPLACE INTO {table} VALUES (?, ?)", (userid, value))
+        self.rset(table, (userid, value))
 
     def mset(self, table, userid, value):
-        _check(table)
         row = (userid, *value)
+        self.rset(table, row)
+
+    def rset(self, table, row):
+        _check(table)
         fmt = ','.join('?'*len(row))
         with self.db as c:
             c.execute(f"REPLACE INTO {table} VALUES ({fmt})", row)
 
-    def tget(self, table, userid):
+    def dset(self, table, row):
+        _check(table)
+        keys = ','.join(row.keys())
+        fmt = ','.join('?'*len(row))
+        with self.db as c:
+            c.execute(f"REPLACE INTO {table} ({keys}) VALUES ({fmt})", row.values())
+
+    def tget(self, table, value, key = 'userid'):
         _check(table)
         with self.db as c:
-            for row in c.execute(f"SELECT * FROM {table} WHERE userid = ?", (userid,)):
+            for row in c.execute(f"SELECT * FROM {table} WHERE {key} = ?", (value,)):
                 return _get_value(row)
         return None
 
