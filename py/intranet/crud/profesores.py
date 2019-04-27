@@ -2,13 +2,10 @@ from flask_restful import Api, Resource, reqparse, abort
 from .session import auth_profesor
 import json
 
+
+
 JSON_DB = 'profesores.json'
 ad_keys = ('sn','givenName','department','mail','title','telephoneNumber', 'displayName')
-
-def entry_to_dict(p):
-    ret = { k: str(p[k] if p[k] else '') for k in ad_keys }
-    ret['userid'] = ret['mail'].split('@')[0].lower()
-    return ret
 
 class ProfesoresList(Resource):
     def get(self):
@@ -40,3 +37,8 @@ def getUserId(p):
     if 'userid' in p:
         return p['userid']  
     return p['mail'].split('@')[0].lower()
+
+def entry_to_dict(p):
+    ret = { k: str(p[k] if p[k] else '') for k in ad_keys }
+    ret['userid'] = ret['mail'].split('@')[0].lower()
+    return ret
