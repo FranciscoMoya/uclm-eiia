@@ -1,4 +1,4 @@
-SERVICE_ENDPOINT = "/v1/datos_profesionales/";
+SERVICE_ENDPOINT = "/v2/profesores.expandidos/por_userid/";
 
 function pending(v) {
     const img = document.querySelector("#pending");
@@ -7,25 +7,7 @@ function pending(v) {
     b.disabled = false;
 }
 
-// AD Data
-PROFESOR_ENDPOINT = "/v1/profesor/";
-function getADDataForUser(userid) {
-    var req = new XMLHttpRequest();
-    req.onload  = function() {
-        if (req.status >= 300) {
-            showError(req.responseText);
-            return;
-        }
-        var resp = JSON.parse(req.responseText);
-        for (var key in resp) {
-            fillValue(key, resp[key]);
-        }
-    };
-    req.open('GET', PROFESOR_ENDPOINT + userid, true);
-    req.send();
-}
-
-function getDatosProfesionalesForUser(userid) {
+function getProfesor(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
         if (req.status >= 300) {
@@ -34,22 +16,17 @@ function getDatosProfesionalesForUser(userid) {
         }
         var resp = JSON.parse(req.responseText);
         fillValues(resp);
-        const tel = document.getElementById('telefono');
-        const telAD = document.getElementById('telephoneNumber');
-        if (!tel.value)
-            tel.value = telAD.value;
-        // displayName es inconsistente
         const nombre = document.getElementById('nombre');
         const givenName = document.getElementById('givenName');
         const sn = document.getElementById('sn');
-        nombre.value = givenName.value + ' ' + sn.value;    
+        nombre.value = givenName.value + ' ' + sn.value; 
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     req.send();
 }
 
 
-function setDatosProfesionalesForUser(userid, form) {
+function setProfesor(userid, form) {
     pending(true);
     var req = new XMLHttpRequest();
     req.onload  = function() {
@@ -64,6 +41,10 @@ function setDatosProfesionalesForUser(userid, form) {
 }
 
 function fillValues(data) {
+    resp.acreditacion = [];
+    ["cu","tu","cd","ad"].forEach(function(i){
+        if (data[i]) resp.acreditacion.push(i);
+    });
     for (var key in data) {
         fillValue(key, data[key]);
     }
@@ -112,7 +93,10 @@ function serializeUserData(form) {
     }
     ret.quinquenios = parseInt(ret.quinquenios);
     ret.sexenios = parseInt(ret.sexenios);
-    console.log('formData', JSON.stringify(ret));
+    ['cu','tu','cd','ad'].forEach(function(i){
+        ret[i] = valueInArray(i, ret.acreditacion);
+    });
+    delete ret['acreditacion'];
     return JSON.stringify(ret);
 }
 

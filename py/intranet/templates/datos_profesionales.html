@@ -12,7 +12,7 @@
 
   <div class="text-danger" id="errors"></div>
   <form action="javascript:;" 
-        onsubmit="setDatosProfesionalesForUser('{{aa.uid}}', this); return false;">
+        onsubmit="setProfesor('{{aa.uid}}', this); return false;">
     {{ form.hidden_tag() }}
     <div class="form-group">
         <label for="nombre">Nombre</label> 
@@ -20,8 +20,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="department">Departamento</label> 
-            <input id="department" class="form-control" type="text" disabled>
+            <label for="departamento">Departamento</label> 
+            <input id="departamento" class="form-control" type="text" disabled>
         </div>
         <div class="form-group col-md-6">
             {{ form.area.label(for='area') }} 
@@ -30,12 +30,12 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="title">Categoría</label> 
-            <input id="title" class="form-control" type="text" disabled>
+            <label for="categoria">Categoría</label> 
+            <input id="categoria" class="form-control" type="text" disabled>
         </div>
         <div class="form-group col-md-6">
-            <label for="mail">Correo-e</label> 
-            <input id="mail" class="form-control" type="text" disabled>
+            <label for="email">Correo-e</label> 
+            <input id="email" class="form-control" type="text" disabled>
         </div>
     </div>    
     <div class="form-row">
@@ -74,8 +74,7 @@
   </form>
   <script src="/static/datos_profesionales.js"></script>
   <script>
-    getADDataForUser("{{aa.uid}}");
-    getDatosProfesionalesForUser("{{aa.uid}}");
+    getProfesor("{{aa.uid}}");
     pending(false);
   </script>
 {% endblock %}

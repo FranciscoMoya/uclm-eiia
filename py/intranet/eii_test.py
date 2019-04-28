@@ -13,7 +13,7 @@ from forms.propuesta_gasto import PropuestaGastoForm
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
-api = Api(app, prefix='/v1')
+api = Api(app, prefix='/v2')
 SAML2_SETUP(app)
 
 @app.route('/')
