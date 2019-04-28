@@ -1,9 +1,11 @@
 import sqlite3, json
 from flask import g
 
+
 class DataLayer(object):
     def __init__(self, path = 'eii-ng.db'):
         db = sqlite3.connect(path, detect_types = sqlite3.PARSE_DECLTYPES)
+        db.execute("PRAGMA foreign_keys = 1")
         self.db = db
         self.db.row_factory = sqlite3.Row
         self.profesores = Profesores(db)
@@ -11,17 +13,17 @@ class DataLayer(object):
         self.propuestas_gastos = PropuestasGastos(db)
         self.gastos = Gastos(db)
 
+    def close(self):
+        self.db.close()
 
-class ReadOnlyTable(object):
+
+class ReadOnlyView(object):
     def __init__(self, db):
         self.db = db
-        coldefs = ','.join(f'{name} {typ}' for name,typ,_,_ in self.columns)
-        with self.db as c:
-            c.execute(f'CREATE TABLE IF NOT EXISTS {self.table} ( {coldefs})')
 
     def get(self, value, column = None):
         if not column:
-            column = self.column[0][0]
+            column = self.columns[0][0]
         columns = tuple(c[0] for c in self.columns)
         colnames = ','.join(columns)
         with self.db as c:
@@ -38,14 +40,22 @@ class ReadOnlyTable(object):
                 SELECT {colnames} FROM {self.table} {order_clause}''') ]
 
 
+class ReadOnlyTable(ReadOnlyView):
+    def __init__(self, db):
+        super().__init__(db)
+        coldefs = ',\n    '.join(f'{name} {typ}' for name,typ,_ in self.columns)
+        with self.db as c:
+            c.execute(f'CREATE TABLE IF NOT EXISTS {self.table} (\n    {coldefs}\n)')
+
+
 class ReadWriteTable(ReadOnlyTable):
-    def store(self, record):
+    def store(self, record, replace = True):
+        method = 'REPLACE' if replace else 'INSERT'
         with self.db as c:
             columns = ','.join(record.keys())
             fmt = ','.join('?'*len(record))
-            c.execute(f'''
-                REPLACE INTO {self.table} ({columns}) VALUES ({fmt})
-            ''', record.values())
+            c.execute(f'{method} INTO {self.table} ({columns}) VALUES ({fmt})',
+                    tuple(record.values()))
 
     def delete(self, value, column = None):
         if not column:
@@ -60,38 +70,61 @@ class Profesores(ReadWriteTable):
     table = 'profesores'
     columns = (
         ('userid', 'TEXT PRIMARY KEY NOT NULL', str),
+        ('sn', 'TEXT', str),
+        ('givenName', 'TEXT', str),
+        ('catid', 'INTEGER REFERENCES categorias(catid)', int),
+        ('deptid', 'INTEGER REFERENCES departamentos(deptid)', int),
         ('areaid', 'INTEGER REFERENCES areas(areaid)', int),
+        ('email', 'TEXT', str),
         ('telefono', 'TEXT', str),
         ('despacho', 'TEXT', str),
-        ('quinquenios', 'INTEGER', int),
-        ('sexenios', 'INTEGER DEFAULT FALSE', int),
-        ('sexenio_vivo', 'BOOLEAN DEFAULT FALSE', bool),
-        ('ad', 'BOOLEAN DEFAULT FALSE', bool),
-        ('cd', 'BOOLEAN DEFAULT FALSE', bool),
-        ('tu', 'BOOLEAN DEFAULT FALSE', bool),
-        ('cu', 'BOOLEAN DEFAULT FALSE', bool)
+        ('quinquenios', 'INTEGER DEFAULT 0', int),
+        ('sexenios', 'INTEGER DEFAULT 0', int),
+        ('sexenio_vivo', 'BOOLEAN DEFAULT 0', bool),
+        ('ad', 'BOOLEAN DEFAULT 0', bool),
+        ('cd', 'BOOLEAN DEFAULT 0', bool),
+        ('tu', 'BOOLEAN DEFAULT 0', bool),
+        ('cu', 'BOOLEAN DEFAULT 0', bool)
     )
 
     def __init__(self,db):
         super().__init__(db)
-        self.expandidos = ProfesoresExpandidos(db)
-        self.desiderata = Desiderata(db)
         self.tutorias = Tutorias(db)
         self.areas = Areas(db)
+        self.departamentos = Departamentos(db)
+        self.categorias = Categorias(db)
+        self.desiderata = Desiderata(db)
+        self.expandidos = ProfesoresExpandidos(db)
 
 
 class Areas(ReadWriteTable):
     table = 'areas'
     columns = (
         ('areaid', 'INTEGER PRIMARY KEY NOT NULL', None),
-        ('areaname', 'TEXT UNIQUE NOT NULL', str),
+        ('area', 'TEXT UNIQUE NOT NULL', str),
         ('areabudget', 'REAL DEFAULT 0.0', float)
     )
 
 
-class ProfesoresExpandidos(ReadOnlyTable):
-    table = 'profesores NATURAL JOIN areas'
-    columns = Profesores.columns + Areas.columns[1:]
+class Departamentos(ReadWriteTable):
+    table = 'departamentos'
+    columns = (
+        ('deptid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('departamento', 'TEXT UNIQUE NOT NULL', str)
+    )
+
+
+class Categorias(ReadWriteTable):
+    table = 'categorias'
+    columns = (
+        ('catid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('categoria', 'TEXT UNIQUE NOT NULL', str)
+    )
+
+
+class ProfesoresExpandidos(ReadOnlyView):
+    table = 'profesores NATURAL JOIN areas NATURAL JOIN departamentos NATURAL JOIN categorias'
+    columns = Profesores.columns + Areas.columns[1:] + Departamentos.columns[1:]+ Categorias.columns[1:]
 
 
 class Desiderata(ReadWriteTable):
@@ -143,16 +176,6 @@ class Docencia(object):
         self.por_area = DocenciaPorArea(db)
 
 
-class DocenciaPorProfesor(ReadOnlyTable):
-    table = 'asignaturas NATURAL JOIN profesores_asignaturas'
-    columns = Asignaturas.columns + ('userid',)
-
-
-class DocenciaPorArea(ReadOnlyTable):
-    table = 'asignaturas NATURAL JOIN areas_asignaturas'
-    columns = Asignaturas.columns + ('areaid',)
-
-
 class Titulos(ReadWriteTable):
     table = 'titulos'
     columns = (
@@ -171,6 +194,18 @@ class Asignaturas(ReadWriteTable):
         ('semestre', 'INTEGER NOT NULL', int),
         ('ects', 'INTEGER NOT NULL', int)
     )
+
+
+class DocenciaPorArea(ReadOnlyView):
+    table = 'asignaturas NATURAL JOIN areas_asignaturas'
+    columns = Asignaturas.columns + \
+            (('areaid', 'TEXT REFERENCES areas(areaid)', int),)
+
+
+class DocenciaPorProfesor(ReadOnlyView):
+    table = 'asignaturas NATURAL JOIN profesores_asignaturas'
+    columns = Asignaturas.columns + \
+            (('userid', 'TEXT REFERENCES profesores(userid)', str),)
 
 
 class ProfesoresAsignaturas(ReadWriteTable):

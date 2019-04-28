@@ -4,11 +4,8 @@ from flask_cors import CORS
 import json
 from crud.data_layer import close_db
 from crud.profesores import Profesor, ProfesoresList, ProfesoresQuery
-from crud.desiderata import Desideratum, DesiderataList
-from crud.despachos import Despacho, DespachosList
-from crud.datos_profesionales import DatosProfesionales, DatosProfesionalesList
-from crud.tutorias import Tutoria, TutoriasList
 from crud.justificantes import Justificantes
+from crud.db_resource import DBResource, DBResourceContainer
 from crud.session import get_sp, SAML2_SETUP
 from forms.datos_profesionales import DatosProfesionalesForm
 from forms.justificantes import JustificantesForm
@@ -59,17 +56,20 @@ def send_static(path):
     return send_from_directory('html/static', path)
 
 api.add_resource(ProfesoresQuery, "/buscar_profesores/<string:userid>:<string:password>")
-api.add_resource(ProfesoresList, "/profesores/")
-api.add_resource(DesiderataList, "/desiderata/")
-api.add_resource(DespachosList, "/despachos/")
-api.add_resource(DatosProfesionalesList, "/datos_profesionales/")
-api.add_resource(TutoriasList, "/tutorias/")
 
-api.add_resource(Profesor, "/profesor/<string:userid>")
-api.add_resource(Desideratum, "/desiderata/<string:userid>")
-api.add_resource(Despacho, "/despachos/<string:userid>")
-api.add_resource(DatosProfesionales, "/datos_profesionales/<string:userid>")
-api.add_resource(Tutoria, "/tutorias/<string:userid>")
+for table in (
+        'profesores', 
+        'profesores.expandidos',
+        'profesores.desiderata', 
+        'profesores.tutorias', 
+        'profesores.areas', 
+        'docencia.titulos', 
+        'docencia.asignaturas', 
+        'docencia.por_profesor', 
+        'docencia.por_area'):
+    api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")
+    api.add_resource(DBResourceContainer(table), f"/{table}/por_<string:column>/")
+
 api.add_resource(Justificantes, "/justificantes/<string:userid>")
 
 
