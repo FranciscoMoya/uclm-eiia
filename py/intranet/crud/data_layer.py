@@ -61,9 +61,9 @@ class ReadWriteTable(ReadOnlyTable):
         with self.db as c:
             key = self.columns[0][0]
             columns = tuple(col for col in record.keys() if col != key)
-            fmt = ','.join(f'{col}=?' for col in columns)
+            fmt = ','.join(f'{col} = ?' for col in columns)
             val = tuple(record[col] for col in columns) + (record[key],)
-            c.execute(f"UPDATE {self.table} SET ({fmt}) WHERE {key} = ?", val)
+            c.execute(f"UPDATE {self.table} SET {fmt} WHERE {key} = ?", val)
 
     def delete(self, value, column = None):
         if not column:
@@ -108,7 +108,7 @@ class Profesores(ReadWriteTable):
 class Areas(ReadWriteTable):
     table = 'areas'
     columns = (
-        ('areaid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('areaid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('area', 'TEXT UNIQUE NOT NULL', str),
         ('areabudget', 'REAL DEFAULT 0.0', float)
     )
@@ -117,7 +117,7 @@ class Areas(ReadWriteTable):
 class Departamentos(ReadWriteTable):
     table = 'departamentos'
     columns = (
-        ('deptid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('deptid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('departamento', 'TEXT UNIQUE NOT NULL', str)
     )
 
@@ -125,7 +125,7 @@ class Departamentos(ReadWriteTable):
 class Categorias(ReadWriteTable):
     table = 'categorias'
     columns = (
-        ('catid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('catid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('categoria', 'TEXT UNIQUE NOT NULL', str)
     )
 
@@ -133,7 +133,7 @@ class Categorias(ReadWriteTable):
 class Desiderata(ReadWriteTable):
     table = 'desiderata'
     columns = (
-        ('userid', 'TEXT PRIMARY KEY NOT NULL', None),
+        ('userid', 'TEXT PRIMARY KEY NOT NULL', str),
         ('desideratum', 'JSON', str)
     )
 
@@ -141,7 +141,7 @@ class Desiderata(ReadWriteTable):
 class Tutorias(ReadWriteTable):
     table = 'tutorias'
     columns = (
-        ('userid', 'TEXT PRIMARY KEY NOT NULL', None),
+        ('userid', 'TEXT PRIMARY KEY NOT NULL', str),
         ('tutoria', 'TEXT', str)
     )
 
@@ -154,7 +154,7 @@ class ProfesoresExpandidos(ReadOnlyView):
 class PropuestasGastos(ReadWriteTable):
     table = 'propuestas_gastos'
     columns = (
-        ('pgid', 'INTEGER PRIMARY KEY NOT NULL', None), 
+        ('pgid', 'INTEGER PRIMARY KEY NOT NULL', str), 
         ('userid', 'TEXT REFERENCES profesores(userid)', str), 
         ('timestamp', 'TEXT DEFAULT CURRENT_TIMESTAMP', str),
         ('importe', 'REAL NOT NULL', float),
@@ -187,7 +187,7 @@ class Docencia(object):
 class Titulos(ReadWriteTable):
     table = 'titulos'
     columns = (
-        ('titid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('titid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('titulo', 'TEXT UNIQUE NOT NULL', str),
         ('ects', 'INTEGER NOT NULL', int)
     )
@@ -196,7 +196,7 @@ class Titulos(ReadWriteTable):
 class Asignaturas(ReadWriteTable):
     table = 'asignaturas'
     columns = (
-        ('asigid', 'INTEGER PRIMARY KEY NOT NULL', None),
+        ('asigid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('asignatura', 'TEXT NOT NULL', str),
         ('titid', 'INTEGER REFERENCES titulos(titid)', int),
         ('semestre', 'INTEGER NOT NULL', int),

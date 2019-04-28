@@ -1,5 +1,3 @@
-SERVICE_ENDPOINT = "/v2/profesores.expandidos/por_userid/";
-
 function pending(v) {
     const img = document.querySelector("#pending");
     img.style.display = (v ? "block": "none");
@@ -17,7 +15,7 @@ function getProfesor(userid) {
         var resp = JSON.parse(req.responseText);
         fillValues(resp);
     };
-    req.open('GET', SERVICE_ENDPOINT + userid, true);
+    req.open('GET', '/v2/profesores.expandidos/por_userid/' + userid, true);
     req.send();
 }
 
@@ -31,7 +29,7 @@ function setProfesor(userid, form) {
         }
         pending(false);
     };
-    req.open('PUT', SERVICE_ENDPOINT + userid, true);
+    req.open('PUT', "/v2/profesores/por_userid/", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(serializeUserData(form));
 }
@@ -90,7 +88,7 @@ function showError(msg) {
 }
 
 function serializeUserData(form) {
-    const columns = ["deptid","areaid","catid","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion"];
+    const columns = ["userid","deptid","areaid","catid","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion"];
     var ret = {};
     for (var i=0; i<columns.length; ++i) {
         key = columns[i];
@@ -116,12 +114,19 @@ function getValue(form, name) {
             return input.value;
         }
     }
-    else if (input.tagName == 'SELECT') {
+    else if (input.tagName == 'SELECT' && input.multiple) {
         var ret = [];
         for (var i = 0; i < input.length; ++i) {
             if (input.options[i].selected)
                 ret.push(input.options[i].value);
         }
         return ret;
+    }
+    else if (input.tagName == 'SELECT') {
+        for (var i = 0; i < input.length; ++i) {
+            if (input.options[i].selected)
+                return input.options[i].value;
+        }
+        return null;
     }
 }

@@ -22,28 +22,46 @@ class DBResourceClass(DBResourceBase):
     '''A DB backed resource'''
     
     def get(self, column, value):
-        return self.db().get(value, column)[0]
+        try:
+            ret = self.db().get(value, column)
+            return ret[0] if len(ret) == 1 else ret
+        except:
+            return {"message": f"Unable to get {self.table} where {column} = {value}."}, 400
 
     def delete(self, column, value):
-        self.db().delete(value, column)
-        return {"message": f"Deleted {self.table} where {column} = {value}."}, 200
+        try:
+            self.db().delete(value, column)
+            return {"message": f"Deleted {self.table} where {column} = {value}."}, 200
+        except:
+            return {"message": f"Unable to delete {self.table} where {column} = {value}."}, 400
 
 
 class DBResourceContainerClass(DBResourceBase):
     '''A DB backed resource container (table)'''
 
     def get(self, column = None):
-        return self.db().list(order_by = column)
+        try:
+            return self.db().list(order_by = column)
+        except:
+            return {"message": f"Unable to get {self.table} column {column}."}, 400
 
     def post(self, column = None):
-        args = self.parser.parse_args()
-        self.db().store(args, replace = False)
-        return {"message": f"Added {self.table} record {args}."}, 201
+        try:
+            db = self.db()
+            args = self.parser.parse_args()
+            db.store(args, replace = False)
+            return {"message": f"Added {self.table} record {args}."}, 201
+        except:
+            return {"message": f"Unable to post {self.table} column {column}."}, 400
 
     def put(self, column = None):
-        args = self.parser.parse_args()
-        self.db().update(args)
-        return {"message": f"Updated {self.table} record {args}."}, 202
+        try:
+            db = self.db()
+            args = self.parser.parse_args()
+            db.update(args)
+            return {"message": f"Updated {self.table} record {args}."}, 202
+        except:
+            return {"message": f"Unable to put {self.table} by column {column}."}, 400
 
 def DBResource(tablename):
     return type('DBR_' + tablename.replace('.','_'), (DBResourceClass,), {'table': tablename})

@@ -3,25 +3,21 @@ from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS
 import json
 from crud.data_layer import close_db
-from crud.profesores import Profesor, ProfesoresList, ProfesoresQuery
-from crud.desiderata import Desideratum, DesiderataList
-from crud.despachos import Despacho, DespachosList
-from crud.datos_profesionales import DatosProfesionales, DatosProfesionalesList
-from crud.tutorias import Tutoria, TutoriasList
 from crud.justificantes import Justificantes
+from crud.db_resource import DBResource, DBResourceContainer
 from crud.session import get_sp, SAML2_SETUP
-from forms.datos_profesionales import DatosProfesionalesForm
+from forms.profesores import ProfesoresForm
 
 
 app = Flask(__name__, static_url_path='')
 CORS(app)
-api = Api(app, prefix='/v1')
+api = Api(app, prefix='/v2')
 SAML2_SETUP(app)
 
 
 @app.route('/')
 def index():
-    return redirect('/form/datos_profesionales')
+    return redirect('/form/profesores')
 
 @app.route('/app/<path:path>')
 def app_path(path):
@@ -30,8 +26,8 @@ def app_path(path):
     return render_template(path, auth = auth, logout_url = url_for('flask_saml2_sp.logout'))
 
 all_forms = {
-    'datos_profesionales': DatosProfesionalesForm,
-    'admin_datos': DatosProfesionalesForm
+    'profesores': ProfesoresForm,
+    'admin_profesores': ProfesoresForm
 }
 
 @app.route('/form/<path:path>', methods=['GET', 'POST'])
@@ -41,8 +37,6 @@ def form_path(path):
     form = all_forms[path]()
     if not auth:
         return redirect(url_for('flask_saml2_sp.login'))
-    if form.validate_on_submit():
-        form.store(auth.attributes['uid'])
     return render_template(path + ".html", 
                            auth = auth, 
                            form = form,
@@ -56,18 +50,21 @@ def close_connection(exception):
 def send_static(path):
     return send_from_directory('html/static', path)
 
-api.add_resource(ProfesoresQuery, "/buscar_profesores/<string:userid>:<string:password>")
-api.add_resource(ProfesoresList, "/profesores/")
-api.add_resource(DesiderataList, "/desiderata/")
-api.add_resource(DespachosList, "/despachos/")
-api.add_resource(DatosProfesionalesList, "/datos_profesionales/")
-api.add_resource(TutoriasList, "/tutorias/")
+for table in (
+        'profesores', 
+        'profesores.expandidos',
+        'profesores.desiderata', 
+        'profesores.tutorias', 
+        'profesores.areas', 
+        'profesores.categorias', 
+        'profesores.departamentos', 
+        'docencia.titulos', 
+        'docencia.asignaturas', 
+        'docencia.por_profesor', 
+        'docencia.por_area'):
+    api.add_resource(DBResourceContainer(table), f"/{table}/por_<string:column>/")
+    api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")
 
-api.add_resource(Profesor, "/profesor/<string:userid>")
-api.add_resource(Desideratum, "/desiderata/<string:userid>")
-api.add_resource(Despacho, "/despachos/<string:userid>")
-api.add_resource(DatosProfesionales, "/datos_profesionales/<string:userid>")
-api.add_resource(Tutoria, "/tutorias/<string:userid>")
 api.add_resource(Justificantes, "/justificantes/<string:userid>")
 
 # Impedir cache es una mala práctica. Parece que explorer no actualiza

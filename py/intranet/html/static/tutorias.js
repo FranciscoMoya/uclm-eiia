@@ -1,4 +1,4 @@
-SERVICE_ENDPOINT = "/v2/profesores.tutorias/por_userid";
+SERVICE_ENDPOINT = "/v2/profesores.tutorias/por_userid/";
 var args = getUrlVars();
 var dirty = true;
 
@@ -21,17 +21,12 @@ function getTutoriaForUser(userid) {
         var resp = JSON.parse(req.responseText);
         const input = document.querySelector("#tutoria");
         input.onkeyup = function(){ pending(true); };
-        input.value = resp;
+        input.value = resp.tutoria;
         pending(false);
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     try { req.send(); }
     catch(ex) { pending(false); }
-}
-
-function updateTutoriaForCurrentUser() {
-    var userid = args['userid'];
-    return updateDesiderataForUser(userid)();
 }
 
 function updateTutoriaForUser(userid) {
@@ -42,7 +37,7 @@ function updateTutoriaForUser(userid) {
 
 function setTutoriaForUser(userid) {
     var req = new XMLHttpRequest();
-    req.open('PUT', SERVICE_ENDPOINT + userid, true);
+    req.open('PUT', SERVICE_ENDPOINT, true);
     req.setRequestHeader("Content-Type", "application/json");
     req.onload  = function() { 
         if (req.status >= 300)
@@ -50,7 +45,7 @@ function setTutoriaForUser(userid) {
         pending(false); 
     };
     const input = document.querySelector("#tutoria");
-    req.send(JSON.stringify({ "tutoria": input.value }));
+    req.send(JSON.stringify({ "userid": userid, "tutoria": input.value }));
 }
 
 function getUrlVars() {

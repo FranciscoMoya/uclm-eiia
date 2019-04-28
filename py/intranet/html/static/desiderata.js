@@ -18,7 +18,7 @@ function getDesiderataForUser(userid) {
     req.onload  = function() {
         const table = document.querySelector(".timetable");
         var resp = (req.status < 300 ? JSON.parse(req.responseText) : getDefaultDesiderata(document.querySelector(".headings")));
-        appendTimetable(table, resp);
+        appendTimetable(table, resp.desideratum);
         pending(false);
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
@@ -38,7 +38,7 @@ function updateDesiderataForUser(userid) {
 
 function setDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
-    req.open('PUT', SERVICE_ENDPOINT + userid, true);
+    req.open('PUT', SERVICE_ENDPOINT, true);
     req.setRequestHeader("Content-Type", "application/json");
     req.onload  = function() {
         if (req.status < 300)
@@ -48,7 +48,7 @@ function setDesiderataForUser(userid) {
         dirty = false; // prevent retries if not authorized
     };
     const table = document.querySelector(".timetable");
-    const data = getDataFromTable(table);
+    const data = getDataFromTable(userid,table);
     const payload = JSON.stringify(data);
     req.send(payload);
 }
@@ -87,7 +87,7 @@ function fillWithSelectedColor(cell) {
     }
 }
 
-function getDataFromTable(table) {
+function getDataFromTable(userid,table) {
     var tt = [];
     var tr = table.querySelectorAll('tr');
     var needEvidence = false;
@@ -104,7 +104,8 @@ function getDataFromTable(table) {
     }
     showEvidence(needEvidence);
     return {
-        desideratum: tt
+        'userid': userid,
+        'desideratum': tt
     }
 }
 
@@ -157,7 +158,7 @@ function getJustificantesForUser(userid) {
         var data = (req.status < 300 ? JSON.parse(req.responseText) : { 'justificantes': [] });
         fillJustificantes(userid, data);
     };
-    req.open('GET', '/v1/justificantes/' + userid, true);
+    req.open('GET', '/v2/justificantes/' + userid, true);
     req.send();
 }
 
@@ -168,7 +169,7 @@ function postJustificantesForUser(userid, form) {
             fillJustificantes(userid, JSON.parse(req.responseText));
     };
     var formData = new FormData(form);
-    req.open('POST', '/v1/justificantes/' + userid, true);
+    req.open('POST', '/v2/justificantes/' + userid, true);
     req.send(formData);
     return false;
 }
@@ -181,6 +182,6 @@ function deleteJustificanteForUser(userid, filename) {
     };
     var formData = new FormData();
     formData.append("justificante", filename);
-    req.open('DELETE', '/v1/justificantes/' + userid, true);
+    req.open('DELETE', '/v2/justificantes/' + userid, true);
     req.send(formData);
 }
