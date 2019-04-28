@@ -16,10 +16,6 @@ function getProfesor(userid) {
         }
         var resp = JSON.parse(req.responseText);
         fillValues(resp);
-        const nombre = document.getElementById('nombre');
-        const givenName = document.getElementById('givenName');
-        const sn = document.getElementById('sn');
-        nombre.value = givenName.value + ' ' + sn.value; 
     };
     req.open('GET', SERVICE_ENDPOINT + userid, true);
     req.send();
@@ -41,13 +37,17 @@ function setProfesor(userid, form) {
 }
 
 function fillValues(data) {
-    resp.acreditacion = [];
+    data.acreditacion = [];
     ["cu","tu","cd","ad"].forEach(function(i){
-        if (data[i]) resp.acreditacion.push(i);
+        if (data[i]) data.acreditacion.push(i);
     });
     for (var key in data) {
         fillValue(key, data[key]);
     }
+    const nombre = document.getElementById('nombre');
+    const givenName = document.getElementById('givenName');
+    const sn = document.getElementById('sn');
+    nombre.value = givenName.value + ' ' + sn.value; 
 }
 
 function fillValue(name, val) {
@@ -61,9 +61,14 @@ function fillValue(name, val) {
             input.value = val;
         }
     }
-    else if (input.tagName == 'SELECT') {
+    else if (input.tagName == 'SELECT' && input.multiple) {
         for (var i = 0; i < input.length; ++i) {
             input.options[i].selected = valueInArray(input.options[i].value, val);
+        }
+    }
+    else if (input.tagName == 'SELECT') {
+        for (var i = 0; i < input.length; ++i) {
+            input.options[i].selected = (input.options[i].value == val);
         }
     }
 }
@@ -85,7 +90,7 @@ function showError(msg) {
 }
 
 function serializeUserData(form) {
-    const columns = ["area","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion"];
+    const columns = ["deptid","areaid","catid","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion"];
     var ret = {};
     for (var i=0; i<columns.length; ++i) {
         key = columns[i];

@@ -57,9 +57,17 @@ class ReadWriteTable(ReadOnlyTable):
             c.execute(f'{method} INTO {self.table} ({columns}) VALUES ({fmt})',
                     tuple(record.values()))
 
+    def update(self, record):
+        with self.db as c:
+            key = self.columns[0][0]
+            columns = tuple(col for col in record.keys() if col != key)
+            fmt = ','.join(f'{col}=?' for col in columns)
+            val = tuple(record[col] for col in columns) + (record[key],)
+            c.execute(f"UPDATE {self.table} SET ({fmt}) WHERE {key} = ?", val)
+
     def delete(self, value, column = None):
         if not column:
-            column = self.column[0][0]
+            column = self.columns[0][0]
         with self.db as c:
             c.execute(f'''
                 DELETE FROM {self.table} WHERE {column} = ?
@@ -122,11 +130,6 @@ class Categorias(ReadWriteTable):
     )
 
 
-class ProfesoresExpandidos(ReadOnlyView):
-    table = 'profesores NATURAL JOIN areas NATURAL JOIN departamentos NATURAL JOIN categorias'
-    columns = Profesores.columns + Areas.columns[1:] + Departamentos.columns[1:]+ Categorias.columns[1:]
-
-
 class Desiderata(ReadWriteTable):
     table = 'desiderata'
     columns = (
@@ -141,6 +144,11 @@ class Tutorias(ReadWriteTable):
         ('userid', 'TEXT PRIMARY KEY NOT NULL', None),
         ('tutoria', 'TEXT', str)
     )
+
+
+class ProfesoresExpandidos(ReadOnlyView):
+    table = 'profesores NATURAL JOIN areas NATURAL JOIN departamentos NATURAL JOIN categorias NATURAL join tutorias'
+    columns = Profesores.columns + Areas.columns[1:] + Departamentos.columns[1:] + Categorias.columns[1:] + Tutorias.columns[1:]
 
 
 class PropuestasGastos(ReadWriteTable):

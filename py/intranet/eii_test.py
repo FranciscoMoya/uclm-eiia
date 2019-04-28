@@ -63,6 +63,8 @@ for table in (
         'profesores.desiderata', 
         'profesores.tutorias', 
         'profesores.areas', 
+        'profesores.categorias', 
+        'profesores.departamentos', 
         'docencia.titulos', 
         'docencia.asignaturas', 
         'docencia.por_profesor', 

@@ -18,7 +18,7 @@
         <div class="content" id="content"></div>
 
 <script>
-    SERVICE_ENDPOINT = 'https://intranet.eii-to.uclm.es/v1/';
+    SERVICE_ENDPOINT = '/v2/profesores.expandidos/por_userid/';
     function displayCards(div, data) {
         for (k in data) {
             pdata = data[k];
@@ -26,7 +26,7 @@
             displayCard(div, pdata);
         }
     }
-    labels = ['title', 'office', 'mail', 'department', 'telephoneNumber', 'tutorias'];
+    labels = ['categoria', 'despacho', 'email', 'departamento', 'telefono', 'tutoria'];
     function displayCard(parent, data) {
         var div = document.createElement('div');
         div.setAttribute('class', 'professor');
@@ -37,9 +37,9 @@
         div.appendChild(title);
         var card = document.createElement('div');
         card.setAttribute('class', 'card');
-        for (k in labels) {
-            card.appendChild(createLabelledItem(labels[k], data['id'], data[labels[k]]));
-        }
+        labels.forEach(function(label) {
+            card.appendChild(createLabelledItem(label, data['id'], data[label]));
+        });
         div.appendChild(card);
         parent.appendChild(div);
     }
@@ -59,36 +59,21 @@
     }
     function labelText(key) {
         return {
-            'title':'Categoría',
-            'office':'Despacho',
-            'telephoneNumber':'Teléfono',
-            'mail':'Correo-e',
+            'area':'Área',
+            'categoria':'Categoría',
+            'despacho':'Despacho',
+            'telefono':'Teléfono',
+            'email':'Correo-e',
             'department': 'Departamento',
             'tutorias': 'Horario de tutorías'
         }[key];
-    }
-    function fillData(profes, query, label) {
-        var req = new XMLHttpRequest();
-        req.onload  = function() {
-            data = JSON.parse(req.responseText);
-            for (i in profes) {
-                var e = document.getElementById(label + '_' + i);
-                var id = profes[i]['mail'].split('@')[0].toLowerCase();
-                if (e)
-                    e.innerHTML = data[id];
-            }
-        };
-        req.open('GET', SERVICE_ENDPOINT + query, true);
-        req.send();
     }
     var req = new XMLHttpRequest();
     req.onload  = function() {
         var profes = JSON.parse(req.responseText);
         displayCards(document.querySelector("#content"), profes)
-        fillData(profes, 'tutorias', 'tutorias');
-        fillData(profes, 'despachos', 'office');
     };
-    req.open('GET', SERVICE_ENDPOINT + 'profesores/', true);
+    req.open('GET', SERVICE_ENDPOINT, true);
     req.send();
 </script>    
 

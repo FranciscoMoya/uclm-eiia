@@ -42,7 +42,7 @@ class DBResourceContainerClass(DBResourceBase):
 
     def put(self, column = None):
         args = self.parser.parse_args()
-        self.db().store(args)
+        self.db().update(args)
         return {"message": f"Updated {self.table} record {args}."}, 202
 
 def DBResource(tablename):

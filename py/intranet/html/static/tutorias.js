@@ -1,4 +1,4 @@
-SERVICE_ENDPOINT = "/v1/tutorias/";
+SERVICE_ENDPOINT = "/v2/profesores.tutorias/por_userid";
 var args = getUrlVars();
 var dirty = true;
 

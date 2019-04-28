@@ -13,34 +13,31 @@
   <form onsubmit="postUI(this); return false;">
 
     {{ form.hidden_tag() }}
+    <input id="nombre" type="hidden"></input>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="userid">Usuario</label> 
-            <select id="userid" class="form-control"></select>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="nombre">Nombre</label> 
-            <input id="nombre" class="form-control" type="text" disabled>
+            <label for="chooserid">Usuario</label> 
+            <select id="chooserid" class="form-control"></select>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="department">Departamento</label> 
-            <input id="department" class="form-control" type="text" disabled>
+            {{ form.departamento.label(for='deptid') }} 
+            <select id="deptid" class="form-control"></select>
         </div>
         <div class="form-group col-md-6">
-            {{ form.area.label(for='area') }} 
-            {{ form.area(class='form-control', id='area') }}
+            {{ form.area.label(for='areaid') }} 
+            <select id="areaid" class="form-control"></select>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="title">Categoría</label> 
-            <input id="title" class="form-control" type="text" disabled>
+            {{ form.categoria.label(for='categoria') }} 
+            <select id="catid" class="form-control"></select>
         </div>
         <div class="form-group col-md-6">
-            <label for="mail">Correo-e</label> 
-            <input id="mail" class="form-control" type="text" disabled>
+            {{ form.email.label(for='email') }} 
+            {{ form.email(class='form-control', id='email') }}    
         </div>
     </div>    
     <div class="form-row">
@@ -70,7 +67,7 @@
             {{ form.acreditacion.label(for='acreditacion') }} 
             {{ form.acreditacion(class='form-control', id='acreditacion') }}
         </div>
-    </div>
+    </div>    
     <button id="actualizar" class="btn btn-primary" type="submit" disabled>
         Actualizar
         <span id="pending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -81,33 +78,40 @@
   <script>
         function updateUI() {
             const user = uid.options[uid.selectedIndex].value;
-            getADDataForUser(user);
-            getDatosProfesionalesForUser(user);
+            getProfesor(user);
             pending(false);
         }
 
         function postUI(form) {
             const user = uid.options[uid.selectedIndex].value;
-            setDatosProfesionalesForUser(user, form);
+            setProfesor(user, form);
         }
 
-        function getUsers(uid) {
+        const uid = document.getElementById('chooserid');
+        const areaid = document.getElementById('areaid');
+        const deptid = document.getElementById('deptid');
+        const catid = document.getElementById('catid');
+        uid.onchange = updateUI;
+
+        function getOptions() {
             pending(true);
             var req = new XMLHttpRequest();
             req.onload  = function() {
                 var resp = JSON.parse(req.responseText);
                 for (var i = 0; i < resp.length; ++i) {
                     const p = resp[i];
-                    uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid) );
+                    uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
+                    areaid.options.add(new Option(p.area, p.areaid));
+                    deptid.options.add(new Option(p.departamento, p.deptid));
+                    catid.options.add(new Option(p.categoria, p.catid));
                 }
-                uid.onchange = updateUI;
+                uid.options[0].selected = true;
                 updateUI();
             };
-            req.open('GET', '/v1/profesores/', true);
+            req.open('GET', '/v2/profesores.expandidos/por_sn/', true);
             req.send();
         }
 
-        const uid = document.getElementById('userid');
-        getUsers(uid);
+        getOptions();
   </script>
 {% endblock %}
