@@ -49,8 +49,8 @@ class DBResourceContainerClass(DBResourceBase):
         try:
             db = self.db()
             args = self.parser.parse_args()
-            db.store(args, replace = False)
-            return {"message": f"Added {self.table} record {args}."}, 201
+            db.store(args, replace = True)
+            return {"message": f"Added/replaced {self.table} record."}, 201
         except:
             return {"message": f"Unable to post {self.table} column {column}."}, 400
 

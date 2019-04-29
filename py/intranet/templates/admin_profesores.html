@@ -5,7 +5,6 @@
     {% if not auth or aa.uid != 'francisco.moya' %}
     <meta http-equiv="refresh" content="0; URL={{login_url}}">
     {% endif %}
-
 {% endblock %}
 {% block content %}
 
@@ -18,6 +17,10 @@
         <div class="form-group col-md-6">
             <label for="chooserid">Usuario</label> 
             <select id="chooserid" class="form-control"></select>
+        </div>
+        <div class="form-check bottom-column">
+            <input class="form-check-input" id="head" name="sexenio_vivo" type="checkbox"></input>
+            <label class="form-check-label" for="head">Jefe de área</label>
         </div>
     </div>
     <div class="form-row">

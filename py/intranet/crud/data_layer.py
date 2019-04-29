@@ -102,6 +102,7 @@ class Profesores(ReadWriteTable):
         ('quinquenios', 'INTEGER DEFAULT 0', int),
         ('sexenios', 'INTEGER DEFAULT 0', int),
         ('sexenio_vivo', 'BOOLEAN DEFAULT 0', bool),
+        ('head', 'BOOLEAN DEFAULT 0', bool),
         ('ad', 'BOOLEAN DEFAULT 0', bool),
         ('cd', 'BOOLEAN DEFAULT 0', bool),
         ('tu', 'BOOLEAN DEFAULT 0', bool),
@@ -202,7 +203,7 @@ class Titulos(ReadWriteTable):
     columns = (
         ('titid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('titulo', 'TEXT UNIQUE NOT NULL', str),
-        ('ects', 'INTEGER NOT NULL', int)
+        ('titects', 'INTEGER NOT NULL', int)
     )
 
 
@@ -218,10 +219,10 @@ class Asignaturas(ReadWriteTable):
 
 
 class DocenciaPorArea(ReadOnlyView):
-    table = 'asignaturas NATURAL JOIN areas_asignaturas'
-    columns = Asignaturas.columns + \
-            (('areaid', 'TEXT REFERENCES areas(areaid)', int),)
-
+    table = 'asignaturas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
+    columns = Asignaturas.columns \
+        + (('areaid', 'TEXT REFERENCES areas(areaid)', int),) \
+        + Titulos.columns[1:]
 
 class DocenciaPorProfesor(ReadOnlyView):
     table = 'asignaturas NATURAL JOIN profesores_asignaturas'

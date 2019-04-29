@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% set active_sec = 'Test' %}
+{% block head %}
+
+    {% if not auth %}
+    <meta http-equiv="refresh" content="0; URL={{login_url}}">
+    {% endif %}
+
+{% endblock %}
+{% block content %}
+
+    <h1>Asignación de docencia para {{aa.givenName}} {{aa.sn}}</h1>
+
+    <div class="text-danger" id="errors"></div>
+    <form onsubmit="postUI(this); return false;">
+        <input id="userid" type="hidden"></input>
+        <input id="areaid" type="hidden"></input>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="docencia">Asignaturas del área</label> 
+                <select id="docencia" class="form-control" multiple></select>
+            </div>
+        </div>
+        <button id="actualizar" class="btn btn-primary" type="submit" disabled>
+            Actualizar
+            <span id="pending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+    </form>
+
+    <script>
+        const docencia = document.getElementById('docencia');
+
+        function getOptions(areaid) {
+            pending(true);
+            var req = new XMLHttpRequest();
+            req.onload  = function() {
+                var resp = JSON.parse(req.responseText);
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    docencia.options.add(new Option(p.asignatura + ' (' + p.titulo + ')', p.asigid));
+                }
+                pending(false);
+            };
+            req.open('GET', '/v2/docencia.por_area/por_areaid/' + areaid, true);
+            req.send();
+        }
+
+        function pending(v) {
+            const img = document.querySelector("#pending");
+            img.style.display = (v ? "block": "none");
+            const b = document.querySelector('#actualizar');
+            b.disabled = false;
+        }
+
+        /* El post es un forEach en las options y se manda un post o un delete por cada uno
+        */
+        getOptions('1');
+    </script>
+{% endblock %}

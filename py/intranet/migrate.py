@@ -1,10 +1,10 @@
 from crud.data_layer import DataLayer
 from crud.data_layer_old import DataLayer as DataLayerOld
-from crud.profesores import ProfesoresList
+import json
 
 a = DataLayerOld()
 b = DataLayer()
-profesores = { p['userid']:p for p in ProfesoresList().get() }
+profesores = { p['mail'].split('@')[0].lower():p for p in json.load(open('profesores.json')) }
 
 def indexof(value, table, column):
     cursor = d.execute(f'SELECT * from {table} WHERE {column} = ?', (value,))
@@ -54,7 +54,7 @@ with b.db as d:
         'Ingeniería Eléctrica',
         'Ingeniería en Electrónica Industrial y Automática',
         'Ingeniería Aeroespacial'):
-        d.execute('INSERT INTO titulos(titulo,ects) VALUES (?,?)', (grado, 240))
+        d.execute('INSERT INTO titulos(titulo,titects) VALUES (?,?)', (grado, 240))
 
 ie = (
 (

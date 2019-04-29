@@ -14,6 +14,7 @@
   <form action="javascript:;" 
         onsubmit="setProfesor('{{aa.uid}}', this); return false;">
     {{ form.hidden_tag() }}
+    <input id="head" type="hidden"></input>
     <div class="form-group">
         <label for="nombre">Nombre</label> 
         <input id="nombre" class="form-control" type="text" disabled>
