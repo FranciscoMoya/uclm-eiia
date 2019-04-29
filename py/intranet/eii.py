@@ -60,7 +60,9 @@ for table in (
         'profesores.categorias', 
         'profesores.departamentos', 
         'docencia.titulos', 
-        'docencia.asignaturas', 
+        'docencia.asignaturas',
+        'docencia.profesores_asignaturas',
+        'docencia.areas_asignaturas',
         'docencia.por_profesor', 
         'docencia.por_area'):
     api.add_resource(DBResourceContainer(table), f"/{table}/por_<string:column>/")

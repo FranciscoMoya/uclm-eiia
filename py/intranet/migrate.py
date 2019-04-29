@@ -25,6 +25,14 @@ def transform(ta,tb,filtro=lambda x:x):
 
 
 transform('areas', 'areas', lambda x: x[:-1] + (0.0,))
+new_areas = (
+    'Lenguajes y Sistemas Informáticos',
+    'Mecánica de Medios Continuos y Teoría de Estructuras',
+    'Mecánica de Fluidos'
+)
+with b.db as d:
+    for area in new_areas:
+        d.execute('INSERT INTO areas(area) VALUES (?)', (area,))
 
 with a.db as c:
     with b.db as d:
