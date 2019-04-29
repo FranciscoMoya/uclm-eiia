@@ -1,6 +1,19 @@
 import sqlite3, json
 from flask import g
 
+class DataLayerContext(object):
+    def __init__(self, path = 'eii-ng.db'):
+        self.path = path
+
+    def __enter__(self):
+        db = sqlite3.connect(self.path, detect_types = sqlite3.PARSE_DECLTYPES)
+        db.execute("PRAGMA foreign_keys = 1")
+        self.db = db
+        self.db.row_factory = sqlite3.Row
+        return self.db
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.db.close()
 
 class DataLayer(object):
     def __init__(self, path = 'eii-ng.db'):

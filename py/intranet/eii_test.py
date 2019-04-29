@@ -4,6 +4,7 @@ from flask_cors import CORS
 import json
 from crud.data_layer import close_db
 from crud.justificantes import Justificantes
+from crud.directorio import Directorio
 from crud.db_resource import DBResource, DBResourceContainer
 from crud.session import get_sp, SAML2_SETUP
 from forms.profesores import ProfesoresForm
@@ -68,6 +69,7 @@ for table in (
     api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")
 
 api.add_resource(Justificantes, "/justificantes/<string:userid>")
+api.add_resource(Directorio, "/profesores/update_from_ad/")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9000, debug=True)
