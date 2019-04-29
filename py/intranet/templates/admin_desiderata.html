@@ -96,16 +96,17 @@
                 var resp = JSON.parse(req.responseText);
                 for (var i = 0; i < resp.length; ++i) {
                     const p = resp[i];
-                    uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid) );
+                    uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
                 }
-                uid.onchange = updateUI;
+                uid.options[0].selected = true;
                 updateUI();
             };
-            req.open('GET', '/v1/profesores/', true);
+            req.open('GET', '/v2/profesores.expandidos/por_sn/', true);
             req.send();
         }
 
         const uid = document.getElementById('userid');
+        uid.onchange = updateUI;
         getUsers(uid);
     </script>
 
