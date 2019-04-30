@@ -31,7 +31,9 @@ function setProfesor(userid, form) {
     };
     req.open('PUT', "/v2/profesores/por_userid/", true);
     req.setRequestHeader("Content-Type", "application/json");
-    req.send(serializeUserData(form));
+    var profe = serializeUserData(form);
+    profe.userid = userid;
+    req.send(JSON.stringify(profe));
 }
 
 function fillValues(data) {
@@ -49,7 +51,7 @@ function fillValues(data) {
 }
 
 function fillValue(name, val) {
-    const input = document.querySelector('#' + name);
+    const input = document.getElementById(name);
     if (!input) return;
     if (input.tagName == 'INPUT') {
         if (input.type == 'checkbox') {
@@ -66,7 +68,8 @@ function fillValue(name, val) {
     }
     else if (input.tagName == 'SELECT') {
         for (var i = 0; i < input.length; ++i) {
-            input.options[i].selected = (input.options[i].value == val);
+            if (input.options[i].value == val)
+                input.selectedIndex = i;
         }
     }
 }
@@ -82,13 +85,13 @@ function valueInArray(v, arr) {
 
 function showError(msg) {
     obj = JSON.parse(msg);
-    var err = document.querySelector("#errors");
+    var err = document.getElementById("errors");
     if (err)
         err.innerHTML = obj ? obj.message : msg;
 }
 
 function serializeUserData(form) {
-    const columns = ["userid","deptid","areaid","catid","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion"];
+    const columns = ["userid","deptid","areaid","catid","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion","head"];
     var ret = {};
     for (var i=0; i<columns.length; ++i) {
         key = columns[i];
@@ -100,15 +103,15 @@ function serializeUserData(form) {
         ret[i] = valueInArray(i, ret.acreditacion);
     });
     delete ret['acreditacion'];
-    return JSON.stringify(ret);
+    return ret;
 }
 
 function getValue(form, name) {
-    const input = document.querySelector('#' + name);
+    const input = document.getElementById(name);
     if (!input) return;
     if (input.tagName == 'INPUT') {
         if (input.type == 'checkbox') {
-           return input.checked ? 1 : 0;
+           return input.checked ? true : false;
         }
         else {
             return input.value;
@@ -124,8 +127,7 @@ function getValue(form, name) {
     }
     else if (input.tagName == 'SELECT') {
         for (var i = 0; i < input.length; ++i) {
-            if (input.options[i].selected)
-                return input.options[i].value;
+            return input.options[input.selectedIndex].value;
         }
         return null;
     }

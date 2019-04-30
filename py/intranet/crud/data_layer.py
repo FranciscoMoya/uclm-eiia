@@ -73,9 +73,11 @@ class ReadWriteTable(ReadOnlyTable):
     def update(self, record):
         with self.db as c:
             key = self.columns[0][0]
-            columns = tuple(col for col in record.keys() if col != key)
+            columns = tuple(col for col in record.keys() if col != key and col in record)
             fmt = ','.join(f'{col} = ?' for col in columns)
             val = tuple(record[col] for col in columns) + (record[key],)
+            print('UPDATE', record)
+            print('UPDATE', fmt, val)
             c.execute(f"UPDATE {self.table} SET {fmt} WHERE {key} = ?", val)
 
     def delete(self, value, column = None):

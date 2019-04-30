@@ -39,11 +39,12 @@
 
     <script>
         const docencia = document.getElementById('docencia');
+        const uid = document.getElementById('chooserid');
 
         function pending(v) {
-            const img = document.querySelector("#pending");
+            const img = document.getElementById('pending');
             img.style.display = (v ? "block": "none");
-            const b = document.querySelector('#actualizar');
+            const b = document.getElementById('actualizar');
             b.disabled = false;
         }
 
@@ -76,7 +77,7 @@
                 }
                 uid.options[0].selected = true;
             };
-            req.open('GET', '/v2/profesores.expandidos/por_areaid/' + areaid, true);
+            req.open('GET', '/v2/profesores.expandidos/por_areaid/' + profe.areaid, true);
             req.send();
         }
 
