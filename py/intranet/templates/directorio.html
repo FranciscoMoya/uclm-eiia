@@ -8,22 +8,34 @@
 
 {% block content %}
 
-    {% if auth and aa.userid == 'francisco.moya' %}
-
-    <form method="POST" action="/v2/directorio/update_profesores/">
+    {% if auth and aa.uid == 'francisco.moya' %}
+    <form onsubmit="update_profesores(this); return false;">
         <div class="form-group col-md-6">
             <label for="userid">Usuario</label>
-            <input id="userid" class="form-control">
+            <input id="userid" class="form-control" value="{{aa.uid}}">
         </div>
         <div class="form-group col-md-6">
             <label for="password">Password</label>
-            <input id="password" class="form-control">
+            <input id="password" type="password" class="form-control">
         </div>    
         <button id="actualizar" class="btn btn-primary" type="submit">
             Actualizar
         </button>
     </form>
 
+    <script>
+const userid = document.getElementById('userid');
+const password = document.getElementById('password');
+
+function update_profesores(form) {
+    var req = new XMLHttpRequest();
+    req.onload  = function() {
+    };
+    req.open('POST', "/v2/directorio/update_profesores/", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.send(JSON.stringify({'userid': userid.value, 'password': password.value}));
+}
+    </script>
     {% endif %}
  
 {% endblock %}
