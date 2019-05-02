@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% set active_sec = 'Tutorías' %}
+{% block head %}
+    {% if not auth %}
+        <meta http-equiv="refresh" content="0; URL=/">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if auth and aa.userid == 'francisco.moya' %}
+
+    <form method="POST" action="/v2/directorio/update_profesores/">
+        <div class="form-group col-md-6">
+            <label for="userid">Usuario</label>
+            <input id="userid" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="password">Password</label>
+            <input id="password" class="form-control">
+        </div>    
+        <button id="actualizar" class="btn btn-primary" type="submit">
+            Actualizar
+        </button>
+    </form>
+
+    {% endif %}
+ 
+{% endblock %}
