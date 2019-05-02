@@ -15,7 +15,6 @@ class DBResourceBase(Resource):
         parser = reqparse.RequestParser(bundle_errors=True, trim=True)
         for arg, _, typ in self.data.columns:
             parser.add_argument(arg, type=typ)
-            print('argument', arg, typ)
         self.parser = parser
         return self.data
 
@@ -49,7 +48,6 @@ class DBResourceContainerClass(DBResourceBase):
         try:
             db = self.db()
             args = self.parser.parse_args()
-            print('post', args)
             db.store(args, replace = True)
             return {"message": f"Added/replaced {self.table} record."}, 201
         except:
@@ -59,7 +57,6 @@ class DBResourceContainerClass(DBResourceBase):
         try:
             db = self.db()
             args = self.parser.parse_args()
-            print('put', args)
             db.update(args)
             return {"message": f"Updated {self.table} record {args}."}, 202
         except:
