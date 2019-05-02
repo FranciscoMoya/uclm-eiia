@@ -43,7 +43,6 @@ class Justificantes(Resource):
         args = self._parser.parse_args()
         filename = args['justificante'].replace('..','__').replace('/','_')
         filepath = f"html/static/justificantes/{userid}/{filename}"
-        print('DELETE', filepath)
         if os.path.exists(filepath):
             os.remove(filepath)
             return self.get(userid), 200

@@ -20,21 +20,35 @@
         </div>    
         <button id="actualizar" class="btn btn-primary" type="submit">
             Actualizar
+            <span id="pending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
     </form>
+    <div id="result"></div>
 
     <script>
 const userid = document.getElementById('userid');
 const password = document.getElementById('password');
 
 function update_profesores(form) {
+    pending(true);
     var req = new XMLHttpRequest();
     req.onload  = function() {
+        pending(false);
+        document.getElementById("result").innerHTML = req.responseText;
     };
     req.open('POST', "/v2/directorio/update_profesores/", true);
     req.setRequestHeader("Content-Type", "application/json");
     req.send(JSON.stringify({'userid': userid.value, 'password': password.value}));
 }
+
+function pending(v) {
+    const img = document.querySelector("#pending");
+    img.style.display = (v ? "block": "none");
+    const b = document.querySelector('#actualizar');
+    b.disabled = v;
+}
+
+pending(false);
     </script>
     {% endif %}
  
