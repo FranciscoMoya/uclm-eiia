@@ -25,7 +25,6 @@ class DBResourceClass(DBResourceBase):
     def get(self, column, value):
         try:
             return self.db().get(value, column)
-            #return ret[0] if len(ret) == 1 else ret
         except:
             return {"message": f"Unable to get {self.table} where {column} = {value}."}, 400
 

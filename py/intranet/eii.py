@@ -69,7 +69,7 @@ for table in (
     api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")
 
 api.add_resource(Justificantes, "/justificantes/<string:userid>")
-api.add_resource(Directorio, "/profesores/update_from_ad/")
+api.add_resource(Directorio, "/directorio/update_profesores/")
 
 # Impedir cache es una mala práctica. Parece que explorer no actualiza
 # los resultados JSON.  Debería funcionar ahora que no borra lo cambiado
