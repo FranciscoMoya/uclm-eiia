@@ -124,6 +124,7 @@
                     const p = docencia.options[i];
                     p.selected = valueInArray(p.value, asignaturas, function(x) {return x.asigid;});
                 }
+                sortSelect(docencia); // fixes Edge rendering issue
                 pending(false);
             };
             req.open('GET', '/v2/docencia.por_profesor/por_userid/' + userid, true);
@@ -133,7 +134,7 @@
         function sortSelect(sel) {
             var arr = new Array();
             Array.prototype.forEach.call(sel.options, function(op) {
-                arr.push([op.text, op.value]);
+                arr.push([op.text, op.value, op.selected]);
             });
             arr.sort(function (a,b){
                 return a[0].localeCompare(b[0]);
@@ -142,7 +143,7 @@
                 sel.options[0] = null;
             }
             arr.forEach(function(e) {
-                sel.options.add(new Option(e[0], e[1]));
+                sel.options.add(new Option(e[0], e[1], false, e[2]));
             });
         }
 
