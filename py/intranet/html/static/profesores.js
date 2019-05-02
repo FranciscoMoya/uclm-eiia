@@ -13,7 +13,11 @@ function getProfesor(userid) {
             return;
         }
         var resp = JSON.parse(req.responseText);
-        fillValues(resp);
+        if (resp.length < 1) {
+            showError('Profesor ' + userid + ' no encontrado.');
+            return;
+        }
+        fillValues(resp[0]);
     };
     req.open('GET', '/v2/profesores.expandidos/por_userid/' + userid, true);
     req.send();
@@ -31,7 +35,7 @@ function setProfesor(userid, form) {
     };
     req.open('PUT', "/v2/profesores/por_userid/", true);
     req.setRequestHeader("Content-Type", "application/json");
-    var profe = serializeUserData(form);
+    var profe = getUserData(form);
     profe.userid = userid;
     req.send(JSON.stringify(profe));
 }
@@ -90,7 +94,7 @@ function showError(msg) {
         err.innerHTML = obj ? obj.message : msg;
 }
 
-function serializeUserData(form) {
+function getUserData(form) {
     const columns = ["userid","deptid","areaid","catid","telefono","despacho","quinquenios","sexenios","sexenio_vivo","acreditacion","head"];
     var ret = {};
     for (var i=0; i<columns.length; ++i) {

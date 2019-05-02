@@ -56,7 +56,8 @@ class ReadOnlyView(object):
 class ReadOnlyTable(ReadOnlyView):
     def __init__(self, db):
         super().__init__(db)
-        coldefs = ',\n    '.join(f'{name} {typ}' for name,typ,_ in self.columns)
+        colextra = tuple( (col,'', None) for col in getattr(self, 'post_columns', tuple()) )
+        coldefs = ',\n    '.join(f'{name} {typ}' for name,typ,_ in (self.columns + colextra) )
         with self.db as c:
             c.execute(f'CREATE TABLE IF NOT EXISTS {self.table} (\n    {coldefs}\n)')
 
@@ -73,11 +74,9 @@ class ReadWriteTable(ReadOnlyTable):
     def update(self, record):
         with self.db as c:
             key = self.columns[0][0]
-            columns = tuple(col for col in record.keys() if col != key and col in record)
+            columns = tuple(col for col in record.keys() if col != key and record[col] is not None)
             fmt = ','.join(f'{col} = ?' for col in columns)
             val = tuple(record[col] for col in columns) + (record[key],)
-            print('UPDATE', record)
-            print('UPDATE', fmt, val)
             c.execute(f"UPDATE {self.table} SET {fmt} WHERE {key} = ?", val)
 
     def delete(self, value, column = None):
@@ -238,6 +237,9 @@ class ProfesoresAsignaturas(ReadWriteTable):
         ('userid', 'TEXT REFERENCES profesores(userid)', str),
         ('asigid', 'INTEGER REFERENCES asignaturas(asigid)', int)
     )
+    post_columns = (
+        'UNIQUE(userid,asigid)',
+    )
 
 
 class AreasAsignaturas(ReadWriteTable):
@@ -245,6 +247,9 @@ class AreasAsignaturas(ReadWriteTable):
     columns = (
         ('areaid', 'INTEGER REFERENCES areas(areaid)', int),
         ('asigid', 'INTEGER REFERENCES asignaturas(asigid)', int)
+    )
+    post_columns = (
+        'UNIQUE(areaid,asigid)',
     )
 
 

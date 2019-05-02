@@ -60,7 +60,7 @@ transform('tutorias', 'tutorias')
 with b.db as d:
     for grado in (
         'Ingeniería Eléctrica',
-        'Ingeniería en Electrónica Industrial y Automática',
+        'Ingeniería Electrónica Industrial y Automática',
         'Ingeniería Aeroespacial'):
         d.execute('INSERT INTO titulos(titulo,titects) VALUES (?,?)', (grado, 240))
 

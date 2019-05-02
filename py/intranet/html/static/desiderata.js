@@ -1,4 +1,3 @@
-SERVICE_ENDPOINT = "/v2/profesores.desiderata/por_userid/";
 var args = getUrlVars();
 var dirty = true;
 
@@ -17,11 +16,11 @@ function getDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
         const table = document.querySelector(".timetable");
-        var resp = (req.status < 300 ? JSON.parse(req.responseText) : getDefaultDesiderata(document.querySelector(".headings")));
+        var resp = (req.status < 300 ? JSON.parse(req.responseText)[0] : getDefaultDesiderata(document.querySelector(".headings")));
         appendTimetable(table, resp.desideratum);
         pending(false);
     };
-    req.open('GET', SERVICE_ENDPOINT + userid, true);
+    req.open('GET', '/v2/profesores.desiderata/por_userid/' + userid, true);
     req.send();
 }
 
@@ -38,7 +37,7 @@ function updateDesiderataForUser(userid) {
 
 function setDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
-    req.open('PUT', SERVICE_ENDPOINT, true);
+    req.open('PUT', '/v2/profesores.desiderata/por_userid/', true);
     req.setRequestHeader("Content-Type", "application/json");
     req.onload  = function() {
         if (req.status < 300)
@@ -105,7 +104,7 @@ function getDataFromTable(userid,table) {
     showEvidence(needEvidence);
     return {
         'userid': userid,
-        'desideratum': tt
+        'desideratum': JSON.stringify(tt)
     }
 }
 
