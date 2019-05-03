@@ -41,7 +41,7 @@ else:
     def auth_profesor(func, unrestricted=('get',)):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            //print(func.__name__, args, kwargs)
+            #print(func.__name__, args, kwargs)
             if func.__name__ not in unrestricted:
                 sp = get_sp()
                 if not sp.is_user_logged_in():

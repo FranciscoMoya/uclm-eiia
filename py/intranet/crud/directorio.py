@@ -6,15 +6,33 @@ from .ad import DirectorioActivo
 parser = reqparse.RequestParser(bundle_errors=True, trim=True)
 parser.add_argument('userid')
 parser.add_argument('password')
+parser.add_argument('name')
+parser.add_argument('campus', default='Toledo')
 
 class Directorio(Resource):
     method_decorators = [auth_profesor] 
 
     def post(self):
         args = parser.parse_args()
-        with DirectorioActivo(args['userid'], args['password']) as da:
+        self.userid = args['userid']
+        self.password = args['password']
+        name, campus = args['name'], args['campus']
+        if name:
+            return self.append_profesor(name, campus)
+        return self.update_profesores()
+
+    def append_profesor(self, name, campus):
+        with DirectorioActivo(self.userid, self.password) as da:
+            profes = [ entry_to_dict(p) for p in da.profesor(name=name,ou=campus) ]
+        return self.update_database(profes)
+
+    def update_profesores(self):
+        with DirectorioActivo(self.userid, self.password) as da:
             profes = [ entry_to_dict(p) for p in da.profesores('ESCUELA DE INGENIERÍA INDUSTRIAL TOLEDO') ]
-        ret = []
+        return self.update_database(profes)
+
+    def update_database(self, profes):
+        nuevos = []
         with DataLayerContext() as db:
             profesores = Profesores(db)
             for p in profes:
@@ -25,8 +43,9 @@ class Directorio(Resource):
                 else:
                     p['areaid'] = 1
                     profesores.store(p)
-                    ret.append(p)
-        return ret
+                    nuevos.append(p)
+        return nuevos
+
 
 ad_keys = ('sn','givenName','department','mail','title','telephoneNumber','displayName')
 db_keys = ('sn','givenName','departamento','email','categoria','telefono')
