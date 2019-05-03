@@ -11,82 +11,62 @@ function pending(v) {
     actualizar.disabled = v;
 }
 
-function getProfesor(userid) {
+function getData(url, func, data) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
         if (req.status >= 300) {
             showError(req.responseText);
             return;
         }
-        const profes = JSON.parse(req.responseText);
+        var resp = JSON.parse(req.responseText);
+        func(resp, data);
+    };
+    req.open('GET', url, true);
+    req.send();
+}
+
+function getProfesor(userid) {
+    pending(true);
+    getData('/v2/profesores.expandidos/por_userid/' + userid, function (profes) {
         if (profes.length < 1) {
             showError('Profesor ' + userid + ' no encontrado.');
             return;
         }
-        const profe = profes[0];
+        var profe = profes[0];
         fillValues(profe);
         actualizar.style.display = (profe.head ? 'block': 'none');
-        getProfesoresArea(profe);
-        getAsignaturasArea(profe);
         docencia.disabled = !profe.head;
-    };
-    req.open('GET', '/v2/profesores.expandidos/por_userid/' + userid, true);
-    req.send();
-}
-
-function getProfesoresArea(profe) {
-    var req = new XMLHttpRequest();
-    req.onload  = function() {
-        if (req.status >= 300) {
-            showError(req.responseText);
-            return;
-        }
-        var resp = JSON.parse(req.responseText);
-        for (var i = 0; i < resp.length; ++i) {
-            const p = resp[i];
-            uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
-            if (p.userid == profe.userid)
-                uid.options[i].selected = true;
-        }
-    };
-    req.open('GET', '/v2/profesores.expandidos/por_areaid/' + profe.areaid, true);
-    req.send();
-}
-
-function getAsignaturasArea(profe) {
-    pending(true);
-    var req = new XMLHttpRequest();
-    req.onload  = function() {
-        var resp = JSON.parse(req.responseText);
-        for (var i = 0; i < resp.length; ++i) {
-            const p = resp[i];
-            docencia.options.add(new Option(
-                Math.floor(p.semestre/2 + 0.5) + 'º. ' 
-                    + p.titulo + '. ' + p.asignatura, 
-                p.asigid));
-        }
-        sortSelect(docencia);
-        getAsignaturasProfe(profe.userid);
-        pending(false);
-    };
-    req.open('GET', '/v2/docencia.por_area/por_areaid/' + profe.areaid, true);
-    req.send();
+        getData('/v2/profesores.expandidos/por_sareaid/' + profe.sareaid, function (resp,profe) {
+            console.log(resp, profe);
+            for (var i = 0; i < resp.length; ++i) {
+                const p = resp[i];
+                uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
+                if (p.userid == profe.userid)
+                    uid.options[i].selected = true;
+            }
+            getData('/v2/docencia.por_area/por_areaid/' + profe.areaid, function (resp, profe){
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    docencia.options.add(new Option(
+                        Math.floor(p.semestre/2 + 0.5) + 'º. ' 
+                            + p.titulo + '. ' + p.asignatura, 
+                        p.asigid));
+                }
+                getAsignaturasProfe(profe.userid);
+            }, profe);
+        }, profe);
+    });
 }
 
 function getAsignaturasProfe(userid) {
-    pending(true);
-    var req = new XMLHttpRequest();
-    req.onload  = function() {
-        var asignaturas = JSON.parse(req.responseText);
+    getData('/v2/docencia.por_profesor/por_userid/' + userid, function (asignaturas, profe){
         for (var i = 0; i < docencia.options.length; ++i) {
             const p = docencia.options[i];
             p.selected = valueInArray(p.value, asignaturas, function(x) {return x.asigid;});
         }
         sortSelect(docencia); // fixes Edge rendering issue
         pending(false);
-    };
-    req.open('GET', '/v2/docencia.por_profesor/por_userid/' + userid, true);
-    req.send();
+    });
 }
 
 function sortSelect(sel) {
@@ -140,6 +120,7 @@ function fillValue(name, val) {
 
 function postUI() {
     const userid = uid.options[uid.selectedIndex].value;
+    if (!userid) return;
     pending(true);
     var req = new XMLHttpRequest();
     req.onload  = function() { 

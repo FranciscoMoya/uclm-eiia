@@ -57,6 +57,7 @@ for table in (
         'profesores.desiderata', 
         'profesores.tutorias', 
         'profesores.areas', 
+        'profesores.superareas', 
         'profesores.categorias', 
         'profesores.departamentos', 
         'docencia.titulos', 
