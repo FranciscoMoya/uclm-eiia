@@ -99,64 +99,46 @@
         const catid = document.getElementById('catid');
         uid.onchange = updateUI;
 
-        function getUsers() {
-            pending(true);
+        function getData(url, func) {
             var req = new XMLHttpRequest();
             req.onload  = function() {
                 var resp = JSON.parse(req.responseText);
+                func(resp);
+            };
+            req.open('GET', url, true);
+            req.send();
+        }
+
+        function getOptions() {
+            pending(true);
+            getData('/v2/profesores.expandidos/por_sn/', function (resp) {
                 for (var i = 0; i < resp.length; ++i) {
                     const p = resp[i];
                     uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
                 }
                 uid.options[0].selected = true;
-                getAreas();
-            };
-            req.open('GET', '/v2/profesores.expandidos/por_sn/', true);
-            req.send();
+                getData('/v2/profesores.areas/por_area/', function (resp){
+                    for (var i = 0; i < resp.length; ++i) {
+                        const p = resp[i];
+                        areaid.options.add(new Option(p.area, p.areaid));
+                    }
+                    getData('/v2/profesores.departamentos/por_departamento/', function (resp){
+                        for (var i = 0; i < resp.length; ++i) {
+                            const p = resp[i];
+                            deptid.options.add(new Option(p.departamento, p.deptid));
+                        }
+                        getData('/v2/profesores.categorias/por_categoria/', function (resp){
+                            for (var i = 0; i < resp.length; ++i) {
+                                const p = resp[i];
+                                catid.options.add(new Option(p.categoria, p.catid));
+                            }
+                            updateUI();
+                        });
+                    });
+                });
+            });
         }
 
-        function getAreas() {
-            var req = new XMLHttpRequest();
-            req.onload  = function() {
-                var resp = JSON.parse(req.responseText);
-                for (var i = 0; i < resp.length; ++i) {
-                    const p = resp[i];
-                    areaid.options.add(new Option(p.area, p.areaid));
-                }
-                getDepartamentos();
-            };
-            req.open('GET', '/v2/profesores.areas/por_area/', true);
-            req.send();
-        }
-
-        function getDepartamentos() {
-            var req = new XMLHttpRequest();
-            req.onload  = function() {
-                var resp = JSON.parse(req.responseText);
-                for (var i = 0; i < resp.length; ++i) {
-                    const p = resp[i];
-                    deptid.options.add(new Option(p.departamento, p.deptid));
-                }
-                getCategorias();
-            };
-            req.open('GET', '/v2/profesores.departamentos/por_departamento/', true);
-            req.send();
-        }
-
-        function getCategorias() {
-            var req = new XMLHttpRequest();
-            req.onload  = function() {
-                var resp = JSON.parse(req.responseText);
-                for (var i = 0; i < resp.length; ++i) {
-                    const p = resp[i];
-                    catid.options.add(new Option(p.categoria, p.catid));
-                }
-                updateUI();
-            };
-            req.open('GET', '/v2/profesores.categorias/por_categoria/', true);
-            req.send();
-        }
-
-        getUsers();
+        getOptions();
   </script>
 {% endblock %}

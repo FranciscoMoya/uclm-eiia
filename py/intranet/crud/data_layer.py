@@ -114,6 +114,7 @@ class Profesores(ReadWriteTable):
         super().__init__(db)
         self.tutorias = Tutorias(db)
         self.areas = Areas(db)
+        self.superareas = SuperAreas(db)
         self.departamentos = Departamentos(db)
         self.categorias = Categorias(db)
         self.desiderata = Desiderata(db)
@@ -125,7 +126,16 @@ class Areas(ReadWriteTable):
     columns = (
         ('areaid', 'INTEGER PRIMARY KEY NOT NULL', int),
         ('area', 'TEXT UNIQUE NOT NULL', str),
-        ('areabudget', 'REAL DEFAULT 0.0', float)
+        ('areabudget', 'REAL DEFAULT 0.0', float),
+        ('sareaid', 'INTEGER REFERENCES superareas(sareaid)', int)
+    )
+
+
+class SuperAreas(ReadWriteTable):
+    table = 'superareas'
+    columns = (
+        ('sareaid', 'INTEGER PRIMARY KEY NOT NULL', int),
+        ('sarea', 'TEXT UNIQUE NOT NULL', str)
     )
 
 
@@ -162,8 +172,8 @@ class Tutorias(ReadWriteTable):
 
 
 class ProfesoresExpandidos(ReadOnlyView):
-    table = 'profesores NATURAL JOIN areas NATURAL JOIN departamentos NATURAL JOIN categorias NATURAL join tutorias'
-    columns = Profesores.columns + Areas.columns[1:] + Departamentos.columns[1:] + Categorias.columns[1:] + Tutorias.columns[1:]
+    table = 'profesores NATURAL JOIN areas NATURAL JOIN superareas NATURAL JOIN departamentos NATURAL JOIN categorias NATURAL join tutorias'
+    columns = Profesores.columns + Areas.columns[1:] + SuperAreas.columns[1:] + Departamentos.columns[1:] + Categorias.columns[1:] + Tutorias.columns[1:]
 
 
 class PropuestasGastos(ReadWriteTable):
