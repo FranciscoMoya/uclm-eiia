@@ -20,32 +20,32 @@ class DirectorioActivo(object):
                     attributes=attr)
         return [e for e in self.conn.entries if 'PERSONAL' not in str(e['title'])]
 
-    def profesor(self, name=None, nif=None, attr='*'):
+    def profesor(self, name=None, nif=None, attr='*', ou='Toledo'):
         filter=''
-        if nif: filter += '(UCLMnif={})'.format(nif)
-        if name: filter += '(displayName=*{}*)'.format(name)
-        self.conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', 
-                         '(&(objectclass=person){})'.format(filter), 
+        if nif: filter += f'(UCLMnif={nif})'
+        if name: filter += f'(displayName=*{name}*)'
+        self.conn.search(f'ou={ou},ou=PDI,dc=uclm,dc=es', 
+                         f'(&(objectclass=person){filter})', 
                          attributes = attr)
         return self.conn.entries
 
-    def alumno(self, name=None, nif=None, attr='*'):
+    def alumno(self, name=None, nif=None, attr='*', ou='Toledo'):
         filter=''
-        if nif: filter += '(UCLMnif={})'.format(nif)
-        if name: filter += '(displayName=*{}*)'.format(name)
-        self.conn.search('ou=Toledo,ou=Alumnos,dc=uclm,dc=es', 
-                         '(&(objectclass=person){})'.format(filter), 
+        if nif: filter += f'(UCLMnif={nif})'
+        if name: filter += f'(displayName=*{name}*)'
+        self.conn.search(f'ou={ou},ou=Alumnos,dc=uclm,dc=es', 
+                         f'(&(objectclass=person){filter})', 
                          attributes = attr)
         return self.conn.entries
 
-    def correos_profesores(self, escuela):
-        self.conn.search('ou=Toledo,ou=PDI,dc=uclm,dc=es', 
-                    '(&(objectClass=person)(physicalDeliveryOfficeName={}))'.format(escuela), 
+    def correos_profesores(self, escuela, ou='Toledo'):
+        self.conn.search(f'ou={ou},ou=PDI,dc=uclm,dc=es', 
+                    f'(&(objectClass=person)(physicalDeliveryOfficeName={escuela}))', 
                     attributes=['department','mail'])
         return self.conn.entries
 
-    def alumnos_displayNames(self, escuela, attr=['sn', 'givenName', 'displayName']):
-        self.conn.search('ou={},ou=Toledo,ou=Alumnos,dc=uclm,dc=es'.format(escuela), 
+    def alumnos_displayNames(self, escuela, attr=['sn', 'givenName', 'displayName'], ou='Toledo'):
+        self.conn.search(f'ou={escuela},ou={ou},ou=Alumnos,dc=uclm,dc=es', 
                          '(objectclass=person)', 
                          attributes=attr)
         return { (str(p['sn']), str(p['givenName'])): str(p['displayName'])  for p in self.conn.entries }
