@@ -99,7 +99,7 @@
         const catid = document.getElementById('catid');
         uid.onchange = updateUI;
 
-        function getOptions() {
+        function getUsers() {
             pending(true);
             var req = new XMLHttpRequest();
             req.onload  = function() {
@@ -107,17 +107,56 @@
                 for (var i = 0; i < resp.length; ++i) {
                     const p = resp[i];
                     uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
-                    areaid.options.add(new Option(p.area, p.areaid));
-                    deptid.options.add(new Option(p.departamento, p.deptid));
-                    catid.options.add(new Option(p.categoria, p.catid));
                 }
                 uid.options[0].selected = true;
-                updateUI();
+                getAreas();
             };
             req.open('GET', '/v2/profesores.expandidos/por_sn/', true);
             req.send();
         }
 
-        getOptions();
+        function getAreas() {
+            var req = new XMLHttpRequest();
+            req.onload  = function() {
+                var resp = JSON.parse(req.responseText);
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    areaid.options.add(new Option(p.area, p.areaid));
+                }
+                getDepartamentos();
+            };
+            req.open('GET', '/v2/profesores.areas/por_area/', true);
+            req.send();
+        }
+
+        function getDepartamentos() {
+            var req = new XMLHttpRequest();
+            req.onload  = function() {
+                var resp = JSON.parse(req.responseText);
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    deptid.options.add(new Option(p.departamento, p.deptid));
+                }
+                getCategorias();
+            };
+            req.open('GET', '/v2/profesores.departamentos/por_departamento/', true);
+            req.send();
+        }
+
+        function getCategorias() {
+            var req = new XMLHttpRequest();
+            req.onload  = function() {
+                var resp = JSON.parse(req.responseText);
+                for (var i = 0; i < resp.length; ++i) {
+                    const p = resp[i];
+                    catid.options.add(new Option(p.categoria, p.catid));
+                }
+                updateUI();
+            };
+            req.open('GET', '/v2/profesores.categorias/por_categoria/', true);
+            req.send();
+        }
+
+        getUsers();
   </script>
 {% endblock %}
