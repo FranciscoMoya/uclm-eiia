@@ -1,6 +1,6 @@
 from flask_restful import Api, Resource, reqparse, abort
 from .session import auth_profesor
-from .data_layer import DataLayerContext, Profesores
+from .data_layer import DataLayerContext, Profesores, Tutorias
 from .ad import DirectorioActivo
 
 parser = reqparse.RequestParser(bundle_errors=True, trim=True)
@@ -35,6 +35,7 @@ class Directorio(Resource):
         nuevos = []
         with DataLayerContext() as db:
             profesores = Profesores(db)
+            tutorias = Tutorias(db)
             for p in profes:
                 normalizeProfesor(p,db)
                 prev = profesores.get(p['userid'])
@@ -43,6 +44,7 @@ class Directorio(Resource):
                 else:
                     p['areaid'] = 1
                     profesores.store(p)
+                    tutorias.store({'tutoria': '', 'userid': p['userid']})
                     nuevos.append(p)
         return nuevos
 
