@@ -1,19 +1,13 @@
 import platform
-from .data_layer import es_profesor
+from .data_layer import es_profesor, es_jefe_area
+
 if platform.system() == 'Windows':
     from functools import wraps
-
-    def auth_profesor(func, unrestricted=('get',)):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            return func(*args, **kwargs)
-        return wrapper
-
 
     class FakeAuthData(object):
         def __init__(self):
             self.attributes = {
-                'uid': 'francisco.moya',
+                'uid': 'fuensanta.andres',
                 'sn':  'MOYA FERNÁNDEZ',
                 'givenName': 'FRANCISCO',
                 'eduPersonAffiliation': 'faculty'
@@ -37,33 +31,6 @@ else:
     from flask import g, url_for, abort, redirect
     from functools import wraps
     from flask_saml2.utils import certificate_from_file, private_key_from_file
-
-
-    def auth_profesor(func, unrestricted=('get',)):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            #print(func.__name__, args, kwargs)
-            def tiene_permiso(uid, kwargs):
-                if uid == 'francisco.moya':
-                    return True
-                if not es_profesor(uid):
-                    return False
-                if 'userid' in kwargs and kwargs['userid'] != uid:
-                    return False
-                return True
-
-            if func.__name__ not in unrestricted:
-                sp = get_sp()
-                if not sp.is_user_logged_in():
-                    return redirect('/')
-                auth = sp.get_auth_data_in_session()
-                aa = auth.attributes
-                if not tiene_permiso(aa['uid'], kwargs):
-                    return abort(401)                   
-            return func(*args, **kwargs)
-        return wrapper
-
-
 
     class EIIServiceProvider(ServiceProvider):
         def get_logout_return_url(self):
@@ -99,6 +66,33 @@ else:
             },
         ]
         app.register_blueprint(create_blueprint(sp), url_prefix='/saml/')
+
+
+def auth_profesor(func, unrestricted=('get',)):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        #print(func.__name__, args, kwargs)
+        def tiene_permiso(uid, kwargs):
+            if uid == 'francisco.moya':
+                return True
+            if not es_profesor(uid):
+                return False
+            if es_jefe_area(uid):
+                return True
+            if 'userid' in args and uid in args:
+                return True
+            return False
+
+        if func.__name__ not in unrestricted:
+            sp = get_sp()
+            if not sp.is_user_logged_in():
+                return redirect('/')
+            auth = sp.get_auth_data_in_session()
+            aa = auth.attributes
+            if not tiene_permiso(aa['uid'], kwargs):
+                return abort(401)                   
+        return func(*args, **kwargs)
+    return wrapper
 
 # SAML Session singleton
 sp_ = None

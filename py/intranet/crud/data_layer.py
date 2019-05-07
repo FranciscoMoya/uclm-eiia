@@ -294,6 +294,14 @@ def close_db():
 
 all_profesores = None
 def es_profesor(uid):
+    global all_profesores
     if not all_profesores:
-        all_profesores = set(p.userid for p in get_db().profesores.list())
+        all_profesores = set(p['userid'] for p in get_db().profesores.list())
     return uid in all_profesores
+
+all_jefes_area = None
+def es_jefe_area(uid):
+    global all_jefes_area
+    if not all_jefes_area:
+        all_jefes_area = set(p['userid'] for p in get_db().profesores.list() if p['head'])
+    return uid in all_jefes_area
