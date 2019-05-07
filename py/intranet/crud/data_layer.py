@@ -290,3 +290,10 @@ def close_db():
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
+
+
+all_profesores = None
+def es_profesor(uid):
+    if not all_profesores:
+        all_profesores = set(p.userid for p in get_db().profesores.list())
+    return uid in all_profesores

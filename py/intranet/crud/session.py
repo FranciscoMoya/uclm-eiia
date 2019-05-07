@@ -1,4 +1,5 @@
 import platform
+from .data_layer import es_profesor
 if platform.system() == 'Windows':
     from functools import wraps
 
@@ -42,17 +43,26 @@ else:
         @wraps(func)
         def wrapper(*args, **kwargs):
             #print(func.__name__, args, kwargs)
+            def tiene_permiso(uid, kwargs):
+                if uid == 'francisco.moya':
+                    return True
+                if not es_profesor(uid):
+                    return False
+                if 'userid' in kwargs and kwargs['userid'] != uid:
+                    return False
+                return True
+
             if func.__name__ not in unrestricted:
                 sp = get_sp()
                 if not sp.is_user_logged_in():
                     return redirect('/')
                 auth = sp.get_auth_data_in_session()
                 aa = auth.attributes
-                if  aa['uid'] != 'francisco.moya' and \
-                    ( aa['uid'] != kwargs['userid'] or 'faculty' != aa['eduPersonAffiliation'] ):
-                    return abort(401)
+                if not tiene_permiso(aa['uid'], kwargs):
+                    return abort(401)                   
             return func(*args, **kwargs)
         return wrapper
+
 
 
     class EIIServiceProvider(ServiceProvider):
