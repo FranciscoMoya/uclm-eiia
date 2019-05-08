@@ -37,7 +37,6 @@ function getProfesor(userid) {
         actualizar.style.display = (profe.head ? 'block': 'none');
         docencia.disabled = !profe.head;
         getData('/v2/profesores.expandidos/por_sareaid/' + profe.sareaid, function (resp,profe) {
-            console.log(resp, profe);
             for (var i = 0; i < resp.length; ++i) {
                 const p = resp[i];
                 uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
@@ -45,12 +44,29 @@ function getProfesor(userid) {
                     uid.options[i].selected = true;
             }
             getData('/v2/docencia.por_area/por_areaid/' + profe.areaid, function (resp, profe){
+                docencia.innerHTML = 
+                '<table class="table">\
+                    <thead>\
+                        <tr>\
+                            <th scope="col">Curso</th>\
+                            <th scope="col">Título</th>\
+                            <th scope="col">Asignatura</th>\
+                            <th scope="col">Teoría</th>\
+                            <th scope="col">Lab.</th>\
+                        </tr>\
+                    </thead>\
+                    <tbody id="docenciaRows"></tbody>\
+                </table>';
+                resp.sort(function (a,b){
+                    if (a.semestre < b.semestre) return -1;
+                    if (a.semestre > b.semestre) return 1;
+                    const t = a.titulo.localeCompare(b.titulo);
+                    if (t) return t;
+                    return a.asignatura.localeCompare(b.asignatura);
+                });
+                const rows = document.getElementById('docenciaRows');
                 for (var i = 0; i < resp.length; ++i) {
-                    const p = resp[i];
-                    docencia.options.add(new Option(
-                        Math.floor(p.semestre/2 + 0.5) + 'º. ' 
-                            + p.titulo + '. ' + p.asignatura, 
-                        p.asigid));
+                    createRowAsignatura(rows, resp[i]);
                 }
                 getAsignaturasProfe(profe.userid);
             }, profe);
@@ -58,30 +74,46 @@ function getProfesor(userid) {
     });
 }
 
-function getAsignaturasProfe(userid) {
-    getData('/v2/docencia.por_profesor/por_userid/' + userid, function (asignaturas, profe){
-        for (var i = 0; i < docencia.options.length; ++i) {
-            const p = docencia.options[i];
-            p.selected = valueInArray(p.value, asignaturas, function(x) {return x.asigid;});
-        }
-        sortSelect(docencia); // fixes Edge rendering issue
-        pending(false);
-    });
+function createRowAsignatura(rows, p) {
+    const tr = document.createElement('tr');
+    rows.appendChild(tr);
+
+    const curso = document.createElement('td');
+    curso.innerHTML = Math.floor(p.semestre/2 + 0.5) + 'º';
+    tr.appendChild(curso);
+
+    const titulo = document.createElement('td');
+    titulo.innerHTML = p.titulo;
+    tr.appendChild(titulo);
+
+    const asig = document.createElement('td');
+    asig.innerHTML = p.asignatura;
+    tr.appendChild(asig);
+
+    const teo = document.createElement('td');
+    teo.setAttribute('align', 'center');
+    teo.innerHTML = '<input class="form-check-input" type="checkbox" id="T' + p.asigid + '">';
+    tr.appendChild(teo);
+
+    const lab = document.createElement('td');
+    lab.setAttribute('align', 'center');
+    lab.innerHTML = '<input class="form-check-input" type="checkbox" id="L' + p.asigid + '">';
+    tr.appendChild(lab);
 }
 
-function sortSelect(sel) {
-    var arr = new Array();
-    Array.prototype.forEach.call(sel.options, function(op) {
-        arr.push([op.text, op.value, op.selected]);
-    });
-    arr.sort(function (a,b){
-        return a[0].localeCompare(b[0]);
-    });
-    while (sel.options.length > 0) {
-        sel.options[0] = null;
-    }
-    arr.forEach(function(e) {
-        sel.options.add(new Option(e[0], e[1], false, e[2]));
+function getAsignaturasProfe(userid) {
+    getData('/v2/docencia.por_profesor/por_userid/' + userid, function (asignaturas) {
+        const cb = document.querySelectorAll('input[type="checkbox"]');
+        for (var i=0; i<cb.length; ++i) {
+            cb[i].checked = false;
+        }
+        asignaturas.forEach(function (a) {
+            const teo = document.getElementById('T' + a.asigid);
+            teo.checked = (a.teoria != 0);    
+            const lab = document.getElementById('L' + a.asigid);
+            lab.checked = (a.laboratorio != 0);    
+        });
+        pending(false);
     });
 }
 
@@ -118,22 +150,28 @@ function fillValue(name, val) {
     }
 }
 
+
 function postUI() {
     const userid = uid.options[uid.selectedIndex].value;
     if (!userid) return;
     pending(true);
-    var req = new XMLHttpRequest();
-    req.onload  = function() { 
-        Array.prototype.forEach.call(docencia.selectedOptions, function(asig) {
-            var req = new XMLHttpRequest();
-            req.open('POST', '/v2/docencia.profesores_asignaturas/por_userid/', true);
-            req.setRequestHeader("Content-Type", "application/json");
-            req.send(JSON.stringify({ 'userid': userid, 'asigid': parseInt(asig.value) }));
-        });        
-        pending(false);
-    };
-    req.open('DELETE', '/v2/docencia.profesores_asignaturas/por_userid/' + userid, true);
-    req.send();
+    const rows = document.getElementById('docenciaRows')
+    Array.prototype.forEach.call(rows.children, function(row) {
+        const v = row.querySelectorAll('input');
+        const asigid = parseInt(v[0].id.substr(1));
+        const teoria = v[0].checked;
+        const laboratorio = v[1].checked;
+        var req = new XMLHttpRequest();
+        req.open('POST', '/v2/docencia.profesores_asignaturas/por_userid/', true);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.send(JSON.stringify({ 
+            'userid': userid, 
+            'asigid': asigid,
+            'teoria': teoria,
+            'laboratorio': laboratorio
+        }));
+    });        
+    pending(false);
 }
 
 function valueInArray(v, arr, accessor) {

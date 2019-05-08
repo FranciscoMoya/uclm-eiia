@@ -5,15 +5,6 @@ import json
 a = DataLayerOld()
 b = DataLayer(path="eii-ng-2.db")
 
-def indexof(value, table, column):
-    cursor = d.execute(f'SELECT * from {table} WHERE {column} = ?', (value,))
-    if len(cursor.fetchall()) == 0:
-        d.execute(f'REPLACE INTO {table}({column}) VALUES (?)', 
-                    (value,))
-    cursor = d.execute(f'SELECT * from {table} WHERE {column} = ?', 
-                    (value,))
-    return next(cursor)[0]
-
 def transform(ta,tb,filtro=lambda x:x):
     with a.db as c:
         with b.db as d:
@@ -25,8 +16,8 @@ def transform(ta,tb,filtro=lambda x:x):
 
 transform('departamentos', 'departamentos')
 transform('categorias', 'categorias')
-transform('areas', 'superareas', lambda x: x[:2])
-transform('areas', 'areas', lambda x: list(x) + [x[0]])
+transform('superareas', 'superareas')
+transform('areas', 'areas')
 transform('profesores', 'profesores')
 transform('desiderata', 'desiderata')
 transform('tutorias', 'tutorias')
@@ -34,5 +25,5 @@ transform('propuestas_gastos', 'propuestas_gastos')
 transform('gastos', 'gastos')
 transform('titulos', 'titulos')
 transform('asignaturas', 'asignaturas')
-transform('profesores_asignaturas', 'profesores_asignaturas')
+transform('profesores_asignaturas', 'profesores_asignaturas', lambda x: tuple(x) + (True, True))
 transform('areas_asignaturas', 'areas_asignaturas')
