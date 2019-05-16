@@ -4,4 +4,6 @@ cv_cfg.py
 *.pyc
 py/intranet/eii.db
 py/intranet/eii.sql
+py/intranet/eii-ng.db
+py/intranet/eii-ng.sql
 py/intranet/profesores.json
