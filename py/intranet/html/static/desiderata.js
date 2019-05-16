@@ -55,9 +55,9 @@ function setDesiderataForUser(userid) {
 function getDefaultDesiderata(table) {
     var tr = table.querySelector('tr');
     var td = tr.querySelectorAll('th')
-    return ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'].map(function(d){ 
+    return { 'desideratum': ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'].map(function(d){ 
         return [d].concat(Array.apply(null, new Array(td.length - 1)).map(Number.prototype.valueOf, 0));
-    });
+    })};
 }
 
 function appendTimetable(table, tt) {
