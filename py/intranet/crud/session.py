@@ -95,6 +95,7 @@ def auth_profesor(func, unrestricted=('get',)):
                     return True
             except:
                 pass
+            return False
 
         if func.__name__ not in unrestricted:
             sp = get_sp()
