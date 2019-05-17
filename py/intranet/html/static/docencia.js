@@ -1,11 +1,18 @@
 const docencia = document.getElementById('docencia');
 const uid = document.getElementById('chooserid');
 const actualizar = document.getElementById('actualizar');
+const profesor = document.getElementById('profesor');
 const all_profes = {};
 
 uid.onchange = function() {
     getAsignaturasProfe(uid.options[uid.selectedIndex].value);
 };
+
+if (profesor) {
+    profesor.onchange = function() {
+        getProfesor(profesor.options[profesor.selectedIndex].value);
+    }
+}
 
 function pending(v) {
     const img = document.getElementById('pending');
@@ -27,6 +34,18 @@ function getData(url, func, data) {
     req.send();
 }
 
+function getAllProfesores(userid) {
+    pending(true);
+    getData('/v2/profesores.expandidos/por_sn/', function (profes) {
+        for (var i = 0; i < profes.length; ++i) {
+            const p = profes[i];
+            profesor.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
+            if (p.userid == userid)
+                profesor.options[i].selected = true;
+        }
+    });
+}
+
 function getProfesor(userid) {
     pending(true);
     getData('/v2/profesores.expandidos/por_userid/' + userid, function (profes) {
@@ -39,9 +58,10 @@ function getProfesor(userid) {
         actualizar.style.display = (profe.head ? 'block': 'none');
         docencia.disabled = !profe.head;
         getData('/v2/profesores.expandidos/por_sareaid/' + profe.sareaid, function (resp,profe) {
+            uid.innerHTML = '';
             for (var i = 0; i < resp.length; ++i) {
                 const p = resp[i];
-                all_profes[p.userid] = p;    
+                all_profes[p.userid] = p;
                 uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
                 if (p.userid == profe.userid)
                     uid.options[i].selected = true;
