@@ -5,7 +5,7 @@ import json
 from crud.data_layer import close_db
 from crud.justificantes import Justificantes
 from crud.directorio import Directorio
-from crud.db_resource import DBResource, DBResourceContainer
+from crud.db_resource import DBResource, DBResourceContainer, DBSchema
 from crud.session import get_sp, SAML2_SETUP
 from forms.profesores import ProfesoresForm
 from forms.propuesta_gasto import PropuestaGastoForm
@@ -66,6 +66,7 @@ for table in (
         'docencia.areas_asignaturas', 
         'docencia.por_profesor', 
         'docencia.por_area'):
+    api.add_resource(DBSchema(table), f"/{table}/schema")
     api.add_resource(DBResourceContainer(table), f"/{table}/por_<string:column>/")
     api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")
 

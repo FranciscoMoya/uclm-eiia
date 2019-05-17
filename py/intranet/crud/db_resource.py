@@ -18,6 +18,16 @@ class DBResourceBase(Resource):
         self.parser = parser
         return self.data
 
+class DBSchemaClass(DBResourceBase):
+    '''Schema resource for a DB backed resource'''
+    
+    def get(self):
+        try:
+            return [ {'column': c[0], 'type': c[2].__name__} for c in self.db().columns ]
+        except:
+            return {"message": f"Unable to get {self.table} schema."}, 400
+
+
 class DBResourceClass(DBResourceBase):
     '''A DB backed resource'''
     
@@ -61,6 +71,10 @@ class DBResourceContainerClass(DBResourceBase):
             return {"message": f"Updated {self.table} record {args}."}, 202
         except:
             return {"message": f"Unable to put {self.table} by column {column}."}, 400
+
+
+def DBSchema(tablename):
+    return type('DBS_' + tablename.replace('.','_'), (DBSchemaClass,), {'table': tablename})
 
 def DBResource(tablename):
     return type('DBR_' + tablename.replace('.','_'), (DBResourceClass,), {'table': tablename})
