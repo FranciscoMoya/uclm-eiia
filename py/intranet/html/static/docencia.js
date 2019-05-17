@@ -84,7 +84,7 @@ function getAsignaturasSuperArea(profe) {
 function createRowAsignatura(rows, p) {
     const tr = document.createElement('tr');
     tr.setAttribute('class', 'area' + p.areaid);
-    tr.setAttribute('id', 'A' + p.asigid);
+    tr.setAttribute('id', asig_id('A', p.areaid, p.asigid));
     rows.appendChild(tr);
 
     const curso = document.createElement('td');
@@ -99,15 +99,32 @@ function createRowAsignatura(rows, p) {
     asig.innerHTML = p.asignatura;
     tr.appendChild(asig);
 
-    const teo = document.createElement('td');
-    teo.setAttribute('align', 'center');
-    teo.innerHTML = '<input class="form-check-input" type="checkbox" id="T' + p.asigid + '" disabled>';
+    const teo = checkbox(asig_id('T', p.areaid, p.asigid));
     tr.appendChild(teo);
 
-    const lab = document.createElement('td');
-    lab.setAttribute('align', 'center');
-    lab.innerHTML = '<input class="form-check-input" type="checkbox" id="L' + p.asigid + '" disabled>';
+    const lab = checkbox(asig_id('L', p.areaid, p.asigid));
     tr.appendChild(lab);
+}
+
+function checkbox(id) {
+    const td = document.createElement('td');
+    td.setAttribute('align', 'center');
+    td.innerHTML = '<input class="form-check-input" type="checkbox" id="' 
+        + id + '"' 
+        + (isaAreaHead()? '>':' disabled>');
+    return td;
+}
+
+function asig_id(prefix, areaid, asigid) {
+    return prefix + '_' + areaid + '_' + asigid
+}
+
+function asigid_from_id(id) {
+    const r = id.split('_');
+    if (r.length > 2) {
+        return parseInt(r[2]);
+    }
+    return -1;
 }
 
 function getAsignaturasProfe(userid) {
@@ -127,9 +144,9 @@ function getAsignaturasProfe(userid) {
             cb[i].checked = false;
         }
         asignaturas.forEach(function (a) {
-            const teo = document.getElementById('T' + a.asigid);
+            const teo = document.getElementById(asig_id('T', profe.areaid, a.asigid));
             teo.checked = (a.teoria != 0);    
-            const lab = document.getElementById('L' + a.asigid);
+            const lab = document.getElementById(asig_id('L', profe.areaid, a.asigid));
             lab.checked = (a.laboratorio != 0);    
         });
         pending(false);
@@ -169,6 +186,11 @@ function fillValue(name, val) {
     }
 }
 
+function isaAreaHead() {
+    const userid = uid.options[uid.selectedIndex].value;
+    const profe = all_profes[userid];
+    return profe.head;
+}
 
 function postUI() {
     const userid = uid.options[uid.selectedIndex].value;
@@ -178,7 +200,7 @@ function postUI() {
     const rows = document.querySelectorAll('#docenciaRows>tr[class="area' + profe.areaid + '"]')
     Array.prototype.forEach.call(rows, function(row) {
         const v = row.querySelectorAll('input');
-        const asigid = parseInt(v[0].id.substr(1));
+        const asigid = asigid_from_id(v[0].id);
         const teoria = v[0].checked;
         const laboratorio = v[1].checked;
         var req = new XMLHttpRequest();
