@@ -2,7 +2,8 @@ from ldap3 import Server, Connection, ALL
 
 class DirectorioActivo(object):
     def __init__(self, user, passwd):
-        self.server = Server('dcto03.uclm.es', get_info=ALL)
+        #self.server = Server('dcto03.uclm.es', get_info=ALL)
+        self.server = Server('dccpd02.uclm.es', get_info=ALL)
         try:
             self.conn = Connection(self.server, 'cn={},ou=Toledo,ou=PDI,dc=uclm,dc=es'.format(user), passwd, auto_bind=True)
         except Exception:

@@ -53,7 +53,7 @@ ad_keys = ('sn','givenName','department','mail','title','telephoneNumber','displ
 db_keys = ('sn','givenName','departamento','email','categoria','telefono')
 
 def entry_to_dict(p):
-    ret = { b: str(p[a] if p[a] else '') for a,b in zip(ad_keys,db_keys) }
+    ret = { b: str(p[a] if a in p and p[a] else '') for a,b in zip(ad_keys,db_keys) }
     return ret
 
 def normalizeProfesor(p, db):
