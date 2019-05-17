@@ -65,7 +65,8 @@ for table in (
         'docencia.profesores_asignaturas',
         'docencia.areas_asignaturas', 
         'docencia.por_profesor', 
-        'docencia.por_area'):
+        'docencia.por_area',
+        'docencia.por_superarea'):
     api.add_resource(DBSchema(table), f"/{table}/schema")
     api.add_resource(DBResourceContainer(table), f"/{table}/por_<string:column>/")
     api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")

@@ -215,6 +215,7 @@ class Docencia(object):
         self.areas_asignaturas = AreasAsignaturas(db)
         self.por_profesor = DocenciaPorProfesor(db)
         self.por_area = DocenciaPorArea(db)
+        self.por_superarea = DocenciaPorSuperArea(db)
 
 
 class Titulos(ReadWriteTable):
@@ -264,6 +265,14 @@ class ProfesoresAsignaturas(ReadWriteTable):
 class DocenciaPorArea(ReadOnlyView):
     table = 'asignaturas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
     columns = Asignaturas.columns \
+        + join_columns(AreasAsignaturas, 'asigid') \
+        + join_columns(Titulos, 'titid')
+
+
+class DocenciaPorSuperArea(ReadOnlyView):
+    table = 'asignaturas NATURAL JOIN areas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
+    columns = Asignaturas.columns \
+        + join_columns(Areas, 'areaid') \
         + join_columns(AreasAsignaturas, 'asigid') \
         + join_columns(Titulos, 'titid')
 
