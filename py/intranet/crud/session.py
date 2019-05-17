@@ -78,18 +78,23 @@ def auth_profesor(func, unrestricted=('get',)):
                 return False
             if es_jefe_area(uid):
                 return True
-            if 'column' in kwargs and kwargs['column'] == 'userid':
-                if 'value' in kwargs and kwargs['value'] == uid:
-                    return True
-                try:
-                    func.__self__.db() # Required to build parser
-                    reqargs = func.__self__.parser.parse_args()
-                    if 'userid' in reqargs and reqargs['userid'] == uid:
-                        return True
-                except:
-                    pass
+            if es_propio_usuario(uid):
+                return True
             print('auth_profesor: not authorized', uid, args, kwargs)
             return False
+
+        def es_propio_usuario(uid):
+            if not 'column' in kwargs or kwargs['column'] != 'userid':
+                return False
+            if 'value' in kwargs and kwargs['value'] == uid:
+                return True
+            try:
+                func.__self__.db() # Required to build parser
+                reqargs = func.__self__.parser.parse_args()
+                if 'userid' in reqargs and reqargs['userid'] == uid:
+                    return True
+            except:
+                pass
 
         if func.__name__ not in unrestricted:
             sp = get_sp()
