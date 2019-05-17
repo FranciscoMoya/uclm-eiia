@@ -1,6 +1,8 @@
 const docencia = document.getElementById('docencia');
 const uid = document.getElementById('chooserid');
 const actualizar = document.getElementById('actualizar');
+const all_profes = {};
+
 uid.onchange = function() {
     getAsignaturasProfe(uid.options[uid.selectedIndex].value);
 };
@@ -39,43 +41,50 @@ function getProfesor(userid) {
         getData('/v2/profesores.expandidos/por_sareaid/' + profe.sareaid, function (resp,profe) {
             for (var i = 0; i < resp.length; ++i) {
                 const p = resp[i];
+                all_profes[p.userid] = p;    
                 uid.options.add(new Option(p.sn + ', ' + p.givenName, p.userid));
                 if (p.userid == profe.userid)
                     uid.options[i].selected = true;
             }
-            getData('/v2/docencia.por_area/por_areaid/' + profe.areaid, function (resp, profe){
-                docencia.innerHTML = 
-                '<table class="table">\
-                    <thead>\
-                        <tr>\
-                            <th scope="col">Curso</th>\
-                            <th scope="col">Título</th>\
-                            <th scope="col">Asignatura</th>\
-                            <th scope="col">Teoría</th>\
-                            <th scope="col">Lab.</th>\
-                        </tr>\
-                    </thead>\
-                    <tbody id="docenciaRows"></tbody>\
-                </table>';
-                resp.sort(function (a,b){
-                    if (a.semestre < b.semestre) return -1;
-                    if (a.semestre > b.semestre) return 1;
-                    const t = a.titulo.localeCompare(b.titulo);
-                    if (t) return t;
-                    return a.asignatura.localeCompare(b.asignatura);
-                });
-                const rows = document.getElementById('docenciaRows');
-                for (var i = 0; i < resp.length; ++i) {
-                    createRowAsignatura(rows, resp[i]);
-                }
-                getAsignaturasProfe(profe.userid);
-            }, profe);
+            getAsignaturasSuperArea(profe);
         }, profe);
     });
 }
 
+function getAsignaturasSuperArea(profe) {
+    getData('/v2/docencia.por_superarea/por_sareaid/' + profe.sareaid, function (resp, profe){
+        docencia.innerHTML = 
+        '<table class="table">\
+            <thead>\
+                <tr class="headings">\
+                    <th scope="col">Curso</th>\
+                    <th scope="col">Título</th>\
+                    <th scope="col">Asignatura</th>\
+                    <th scope="col">Teoría</th>\
+                    <th scope="col">Lab.</th>\
+                </tr>\
+            </thead>\
+            <tbody id="docenciaRows"></tbody>\
+        </table>';
+        resp.sort(function (a,b){
+            if (a.semestre < b.semestre) return -1;
+            if (a.semestre > b.semestre) return 1;
+            const t = a.titulo.localeCompare(b.titulo);
+            if (t) return t;
+            return a.asignatura.localeCompare(b.asignatura);
+        });
+        const rows = document.getElementById('docenciaRows');
+        for (var i = 0; i < resp.length; ++i) {
+            createRowAsignatura(rows, resp[i]);
+        }
+        getAsignaturasProfe(profe.userid);
+    }, profe);
+}
+
 function createRowAsignatura(rows, p) {
     const tr = document.createElement('tr');
+    tr.setAttribute('class', 'area' + p.areaid);
+    tr.setAttribute('id', 'A' + p.asigid);
     rows.appendChild(tr);
 
     const curso = document.createElement('td');
@@ -92,17 +101,27 @@ function createRowAsignatura(rows, p) {
 
     const teo = document.createElement('td');
     teo.setAttribute('align', 'center');
-    teo.innerHTML = '<input class="form-check-input" type="checkbox" id="T' + p.asigid + '">';
+    teo.innerHTML = '<input class="form-check-input" type="checkbox" id="T' + p.asigid + '" disabled>';
     tr.appendChild(teo);
 
     const lab = document.createElement('td');
     lab.setAttribute('align', 'center');
-    lab.innerHTML = '<input class="form-check-input" type="checkbox" id="L' + p.asigid + '">';
+    lab.innerHTML = '<input class="form-check-input" type="checkbox" id="L' + p.asigid + '" disabled>';
     tr.appendChild(lab);
 }
 
 function getAsignaturasProfe(userid) {
+    const profe = all_profes[userid];
+    if (!profe) alert(JSON.stringify(profe));
     getData('/v2/docencia.por_profesor/por_userid/' + userid, function (asignaturas) {
+        const trh = document.querySelectorAll('tr:not(.headings):not(.area' + profe.areaid + ')');
+        for (var i=0; i<trh.length; ++i) {
+            trh[i].style.display = 'none';
+        }
+        const tr = document.querySelectorAll('tr.area' + profe.areaid );
+        for (var i=0; i<tr.length; ++i) {
+            tr[i].style.display = null;
+        }
         const cb = document.querySelectorAll('input[type="checkbox"]');
         for (var i=0; i<cb.length; ++i) {
             cb[i].checked = false;
@@ -153,10 +172,11 @@ function fillValue(name, val) {
 
 function postUI() {
     const userid = uid.options[uid.selectedIndex].value;
+    const profe = all_profes[userid];
     if (!userid) return;
     pending(true);
-    const rows = document.getElementById('docenciaRows')
-    Array.prototype.forEach.call(rows.children, function(row) {
+    const rows = document.querySelectorAll('#docenciaRows>tr[class="area' + profe.areaid + '"]')
+    Array.prototype.forEach.call(rows, function(row) {
         const v = row.querySelectorAll('input');
         const asigid = parseInt(v[0].id.substr(1));
         const teoria = v[0].checked;
