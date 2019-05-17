@@ -17,7 +17,7 @@ function getTutoriaForCurrentUser() {
 function getTutoriaForUser(userid) {
     var req = new XMLHttpRequest();
     req.onload  = function() {
-        if (req.status >= 400) return;
+        if (req.status >= 300) return;
         var resp = JSON.parse(req.responseText)[0];
         const input = document.querySelector("#tutoria");
         input.onkeyup = function(){ pending(true); };

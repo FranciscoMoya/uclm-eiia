@@ -1,13 +1,14 @@
 import platform
 from .data_layer import es_profesor, es_jefe_area
+from flask import g, url_for, abort, redirect
+from flask_restful import reqparse
+from functools import wraps
 
 if platform.system() == 'Windows':
-    from functools import wraps
-
     class FakeAuthData(object):
         def __init__(self):
             self.attributes = {
-                'uid': 'francisco.moya',
+                'uid': 'alberto.rico',
                 'sn':  'MOYA FERNÁNDEZ',
                 'givenName': 'FRANCISCO',
                 'eduPersonAffiliation': 'faculty'
@@ -28,8 +29,6 @@ if platform.system() == 'Windows':
 
 else:
     from flask_saml2.sp import ServiceProvider, create_blueprint
-    from flask import g, url_for, abort, redirect
-    from functools import wraps
     from flask_saml2.utils import certificate_from_file, private_key_from_file
 
     class EIIServiceProvider(ServiceProvider):
@@ -72,15 +71,24 @@ def auth_profesor(func, unrestricted=('get',)):
     @wraps(func)
     def wrapper(*args, **kwargs):
         #print(func.__name__, args, kwargs)
-        def tiene_permiso(uid, kwargs):
+        def tiene_permiso(uid):
             if uid == 'francisco.moya':
                 return True
             if not es_profesor(uid):
                 return False
             if es_jefe_area(uid):
                 return True
-            if 'userid' in args and uid in args:
-                return True
+            if 'column' in kwargs and kwargs['column'] == 'userid':
+                if 'value' in kwargs and kwargs['value'] == uid:
+                    return True
+                try:
+                    func.__self__.db() # Required to build parser
+                    reqargs = func.__self__.parser.parse_args()
+                    if 'userid' in reqargs and reqargs['userid'] == uid:
+                        return True
+                except:
+                    pass
+            print('auth_profesor: not authorized', uid, args, kwargs)
             return False
 
         if func.__name__ not in unrestricted:
@@ -89,7 +97,7 @@ def auth_profesor(func, unrestricted=('get',)):
                 return redirect('/')
             auth = sp.get_auth_data_in_session()
             aa = auth.attributes
-            if not tiene_permiso(aa['uid'], kwargs):
+            if not tiene_permiso(aa['uid']):
                 return abort(401)                   
         return func(*args, **kwargs)
     return wrapper
