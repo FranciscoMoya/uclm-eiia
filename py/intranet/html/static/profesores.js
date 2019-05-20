@@ -33,7 +33,7 @@ function setProfesor(userid, form) {
         }
         pending(false);
     };
-    req.open('PUT', "/v2/profesores/por_userid/", true);
+    req.open('POST', "/v2/profesores/por_userid/", true);
     req.setRequestHeader("Content-Type", "application/json");
     var profe = getUserData(form);
     profe.userid = userid;

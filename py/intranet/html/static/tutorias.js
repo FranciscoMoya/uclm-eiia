@@ -37,7 +37,7 @@ function updateTutoriaForUser(userid) {
 
 function setTutoriaForUser(userid) {
     var req = new XMLHttpRequest();
-    req.open('PUT', SERVICE_ENDPOINT, true);
+    req.open('POST', SERVICE_ENDPOINT, true);
     req.setRequestHeader("Content-Type", "application/json");
     req.onload  = function() { 
         if (req.status >= 300)

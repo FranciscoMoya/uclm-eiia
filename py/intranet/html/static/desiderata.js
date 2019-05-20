@@ -39,7 +39,7 @@ function updateDesiderataForUser(userid) {
 
 function setDesiderataForUser(userid) {
     var req = new XMLHttpRequest();
-    req.open('PUT', '/v2/profesores.desiderata/por_userid/', true);
+    req.open('POST', '/v2/profesores.desiderata/por_userid/', true);
     req.setRequestHeader("Content-Type", "application/json");
     req.onload  = function() {
         if (req.status < 300)
