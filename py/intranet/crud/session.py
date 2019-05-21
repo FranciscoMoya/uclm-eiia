@@ -84,10 +84,7 @@ def auth_profesor(func, unrestricted=('get',)):
             return False
 
         def es_propio_usuario(uid):
-            if not 'column' in kwargs or kwargs['column'] != 'userid':
-                return False
-            if 'value' in kwargs and kwargs['value'] == uid:
-                return True
+            # Si está en formdata
             try:
                 func.__self__.db() # Required to build parser
                 reqargs = func.__self__.parser.parse_args()
@@ -95,6 +92,13 @@ def auth_profesor(func, unrestricted=('get',)):
                     return True
             except:
                 pass
+            # Si está en la URL directamente
+            if 'userid' in kwargs and kwargs['userid'] == uid:
+                return True
+            # Si está en la URL como filtro
+            if 'column' in kwargs and kwargs['column'] == 'userid' and \
+                'value' in kwargs and kwargs['value']  == uid:
+                return True
             return False
 
         if func.__name__ not in unrestricted:
