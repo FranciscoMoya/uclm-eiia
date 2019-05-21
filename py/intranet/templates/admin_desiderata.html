@@ -62,11 +62,10 @@
 
     <div id="evidenceUI"></div>
     <h2 class="mt-5">Justificantes</h2>
-    <form id="justificanteForm" action="javascript:;" method="POST" enctype="multipart/form-data" onsubmit="postJustificantesForUser('{{aa.uid}}', this)">
-        <input type="hidden" id="userid" value="{{aa.uid}}">
+    <form id="justificanteForm" action="javascript:;" method="POST" enctype="multipart/form-data" onsubmit="postJustificantesForSelection(this)">
         <div class="form-row form-inline">
-                <input class="form-control" id="justificante" name="justificante" type="file" required>
-                <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Añadir">
+            <input class="form-control" id="justificante" name="justificante" type="file" required>
+            <input class="btn btn-primary" id="submit" name="submit" type="submit" value="Añadir">
         </div>
     </form>
     <table class="table table-hover mt-4">
@@ -103,6 +102,11 @@
             };
             req.open('GET', '/v2/profesores.expandidos/por_sn/', true);
             req.send();
+        }
+
+        function postJustificantesForSelection(form) {
+            const user = uid.options[uid.selectedIndex].value;
+            postJustificantesForUser(user, form);
         }
 
         const uid = document.getElementById('userid');
