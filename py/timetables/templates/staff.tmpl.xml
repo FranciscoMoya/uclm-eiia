@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/Staff.dtd">
+
+{% set profes = data %}
+
+<staff campus="UCLM" term="Primer semestre" year="2019">
+
+  {% for p in profes %}
+    <staffMember 
+        externalId="{{ p['extid'] }}" 
+        firstName="{{ p['givenName'] }}" 
+        middleName="" 
+        lastName="{{ p['sn'] }}" 
+        acadTitle="" 
+        positionType="{{ p['pos_type'] }}" 
+        department="Acad" email="{{ p['email'] }}"/>
+  {% endfor %}
+
+</staff>

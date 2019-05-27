@@ -1,5 +1,9 @@
 import requests, json
 
+'''
+Este script debería ser razonablemente seguro con la base de datos.
+'''
+
 r = requests.get('https://intranet.eii-to.uclm.es/v2/profesores.expandidos/por_sn/')
 assert r.status_code <= 300
 profes = json.loads(r.text)
@@ -47,7 +51,7 @@ print(f'''
 
 LOCK TABLES `departmental_instructor` WRITE;
 /*!40000 ALTER TABLE `departmental_instructor` DISABLE KEYS */;
-INSERT INTO `departmental_instructor` VALUES {','.join(instructors())};
+REPLACE INTO `departmental_instructor` VALUES {','.join(instructors())};
 /*!40000 ALTER TABLE `departmental_instructor` ENABLE KEYS */;
 UNLOCK TABLES;
 

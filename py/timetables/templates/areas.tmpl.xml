@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/SubjectArea.dtd">
+
+{% set areas = data %}
+
+<subjectAreas campus="UCLM" term="Primer semestre" year="2019">
+
+  {% for a in areas %}
+    <subjectArea 
+        externalId="{{ a['subject'] }}" 
+        abbreviation="{{ a['subject'] }}" 
+        title="{{ a['sarea'] }}" 
+        schedBookOnly="false" 
+        pseudoSubjArea="false" 
+        department="Acad"/>
+  {% endfor %}
+
+</subjectAreas>

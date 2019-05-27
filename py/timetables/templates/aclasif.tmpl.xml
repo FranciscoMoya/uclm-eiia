@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/AcademicClassification.dtd">
+
+<academicClassifications campus="UCLM" term="Primer semestre" year="2019">
+    <academicClassification externalId="01" code="01" name="Primero"/>
+    <academicClassification externalId="02" code="02" name="Segundo"/>
+    <academicClassification externalId="03" code="03" name="Tercero"/>
+    <academicClassification externalId="04" code="04" name="Cuarto"/>
+</academicClassifications>
