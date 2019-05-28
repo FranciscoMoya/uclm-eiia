@@ -6,15 +6,15 @@
 <offerings campus="UCLM" year="2019" term="Primer semestre" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Mon May 27 13:19:05 CEST 2019" includeExams="none">
 
   {% for c in cursos %}
-  <offering id="{{ 100000 + c['asigid'] }}" offered="true" action="insert">
-    <course id="{{ 110000 + c['asigid'] }}" subject="{{ c['subject'] }}" courseNbr="{{ c['nr'] }}" controlling="true" title="{{ c['asignatura'] }}" scheduleBookNote="">
+  <offering id="{{ 100000 + c['sareaid']*1000 + c['nr'] }}" offered="true" action="insert">
+    <course id="{{ 110000 + c['sareaid']*1000 + c['nr'] }}" subject="{{ c['subject'] }}" courseNbr="{{ c['nr'] }}" controlling="true" title="{{ c['asignatura'] }}" scheduleBookNote="">
       <courseCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="4.0"/>
     </course>
     <config name="1" limit="50" durationType="MIN_PER_WEEK">
       <subpart type="Lec" suffix="" minPerWeek="150">
-        <subpartCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="3.0"/>
+        <!--subpartCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="3.0"/-->
         <subpart type="Lab" suffix="" minPerWeek="100">
-          <subpartCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="1.0"/>
+          <!--subpartCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="1.0"/-->
         </subpart>
       </subpart>
       <class id="{{ c['subject'] }} {{ c['nr'] }} Lec 1" type="Lec" suffix="1" limit="50" studentScheduling="true" displayInScheduleBook="true" cancelled="false">

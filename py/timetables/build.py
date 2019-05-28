@@ -58,7 +58,7 @@ def apply_template(name):
     sec = sections[name]
     template = env.get_template(sec['jinja_template'])
     date = datetime.date.today().isoformat()
-    with open(f'{name}-{date}.xml', 'w') as f:
+    with open(f'{name}-{date}.xml', 'w', encoding='utf-8') as f:
         f.write(template.render(data = sec['data']()))
 
 if args.sec != 'all':

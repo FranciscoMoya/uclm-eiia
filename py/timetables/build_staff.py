@@ -3,6 +3,7 @@ import json, requests
 def get_staff():
     r = requests.get('https://intranet.eii-to.uclm.es/v2/profesores.expandidos/por_sn/')
     assert r.status_code <= 300
+    r.encoding = 'utf-8'
     profes = json.loads(r.text)
     fill_pos_type(profes)
     return profes
