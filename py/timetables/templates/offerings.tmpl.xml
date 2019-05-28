@@ -10,7 +10,7 @@
     <course id="{{ 110000 + c['asigid'] }}" subject="{{ c['subject'] }}" courseNbr="{{ c['nr'] }}" controlling="true" title="{{ c['asignatura'] }}" scheduleBookNote="">
       <courseCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="4.0"/>
     </course>
-    <config name="1" limit="50">
+    <config name="1" limit="50" durationType="MIN_PER_WEEK">
       <subpart type="Lec" suffix="" minPerWeek="150">
         <subpartCredit creditType="collegiate" creditUnitType="semesterHours" creditFormat="fixedUnit" fixedCredit="3.0"/>
         <subpart type="Lab" suffix="" minPerWeek="100">

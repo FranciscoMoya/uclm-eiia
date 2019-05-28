@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/BuildingRoom.dtd">
+
+<buildingsRooms campus="UCLM" term="Primer semestre" year="2019">
+    <building externalId="10" abbreviation="10" locationX="-4.042242" locationY="39.864718" name="Edificio 10">
+        {% for n,cap in zip((1,2,3,5,6),(60,60,60,78,140)) %}
+        <room externalId="10.{{n}}" roomNumber="{{n}}" roomClassification="classroom" capacity="{{cap}}" instructional="True" scheduledRoomType="genClassroom">
+            <roomDepartments>
+                <assigned departmentNumber="Acad" percent="100"/>
+            </roomDepartments>
+            <roomFeatures>
+                <roomFeature feature="seatingType" value="Tablet Arm Chairs"/>
+                <roomFeature feature="computerProjection" value="Computer Projection"/>
+                <roomFeature feature="puccComputer" value="Computer"/>
+                <roomFeature feature="feetOfChalkboard" value="20"/>
+            </roomFeatures>
+        </room>    
+        {% endfor %}
+    </building>
+
+    <building externalId="19" abbreviation="19" locationX="-4.040708" locationY="39.864699" name="Edificio 19">
+        {% for n,cap,use,area in zip(
+                (1,2,3,4,5,6,7,8),
+                (25,25,30,25,25,30,25,25),
+                ('specialUse','specialUse','computingLab','specialUse','specialUse','computingLab','specialUse','specialUse'),
+                ('IE','IE','INF','QUI','FIS','INF','ISA','TE')) %}
+        <room externalId="19.{{n}}" roomNumber="{{n}}" roomClassification="lab {{area}}" capacity="{{cap}}" instructional="True" scheduledRoomType="{{use}}">
+            <roomDepartments>
+                <assigned departmentNumber="Acad" percent="100"/>
+            </roomDepartments>
+            <roomFeatures>
+                <roomFeature feature="seatingType" value="Tablet Arm Chairs"/>
+                <roomFeature feature="computerProjection" value="Computer Projection"/>
+                <roomFeature feature="puccComputer" value="Computer"/>
+                <roomFeature feature="feetOfChalkboard" value="20"/>
+            </roomFeatures>
+        </room>    
+        {% endfor %}
+    </building>
+
+</buildingsRooms>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/AcademicClassification.dtd">
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/PosMajor.dtd">
 
 <posMajors campus="UCLM" term="Primer semestre" year="2019">
     <posMajor externalId="IE" code="IE" name="Ingeniería Eléctrica" academicArea="Acad"/>
