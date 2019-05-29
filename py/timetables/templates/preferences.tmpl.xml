@@ -4,7 +4,7 @@
 {% set profes = data['profes'] %}
 {% set cursos = data['cursos'] %}
 
-<preferences campus="UCLM" term="Primer semestre" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
+<preferences campus="UCLM" term="{{term}}" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
 
     {% for p in profes %}
     <instructor externalId="{{ p['extid'] }}" firstName="{{ p['givenName'] }}" lastName="{{ p['sn'] }}" department="Acad">
@@ -19,27 +19,16 @@
     {% endfor %}
 
     {% for c in cursos %}
-    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="">
-        <subpart type="Lab" suffix="">
-        </subpart>
-    </subpart>
-
-    <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1">
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
         <groupPref group="classroom" level="R"/>
         <timePref pattern="EIIA 3x50" level="R"/>
-        <datePref pattern="Semestre completo" level="R"/>
+    </subpart>
 
-        <class type="Lab" suffix="1">
-            <groupPref group="lab {{c['subject']}}" level="R"/>
-            <timePref pattern="EIIA 1x100" level="R"/>
-            <datePref pattern="Semanas impares" level="R"/>
-        </class>
-        <class type="Lab" suffix="2">
-            <groupPref group="lab {{c['subject']}}" level="R"/>
-            <timePref pattern="EIIA 1x100" level="R"/>
-            <datePref pattern="Semanas pares" level="R"/>
-        </class>
-    </class>
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" pattern="Semanas impares">
+        <groupPref group="lab {{c['subject']}}" level="R"/>
+        <timePref pattern="EIIA 1x100" level="R"/>
+    </subpart>
+    <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2" pattern="Semanas pares"/>
     {% endfor %}
 
 </preferences>

@@ -3,7 +3,7 @@
 
 {% set profes = data %}
 
-<staff campus="UCLM" term="Primer semestre" year="2019">
+<staff campus="UCLM" term="{{term}}" year="2019">
 
   {% for p in profes %}
     <staffMember 

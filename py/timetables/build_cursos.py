@@ -1,12 +1,20 @@
 import json, requests
 
-def get_cursos():
+def get_cursos(term):
     r = requests.get('https://intranet.eii-to.uclm.es/v2/docencia.por_superarea/por_semestre/')
     assert r.status_code <= 300
-    cursos = json.loads(r.text)
+    cursos = [ c for c in json.loads(r.text) if course_in_term(c,term) ]
     fill_subject_area(cursos)
     fill_course_nr(cursos)
     return cursos
+
+
+def course_in_term(c, term):
+    if c['semestre'] & 1 == term & 1:
+        return True
+    # Aunque no sea del semestre puede que sea anual
+    return c['ects'] == 12
+
 
 subject_area = {
     1: 'INF',

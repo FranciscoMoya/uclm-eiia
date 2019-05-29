@@ -3,7 +3,7 @@
 
 {% set cursos = data %}
 
-<offerings campus="UCLM" year="2019" term="Primer semestre" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Mon May 27 13:19:05 CEST 2019" includeExams="none">
+<offerings campus="UCLM" year="2019" term="{{term}}" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Mon May 27 13:19:05 CEST 2019" includeExams="none">
 
   {% for c in cursos %}
   <offering id="{{ 100000 + c['sareaid']*1000 + c['nr'] }}" offered="true" action="insert">

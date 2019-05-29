@@ -1,6 +1,6 @@
 import json, requests
 
-def get_staff():
+def get_staff(term):
     r = requests.get('https://intranet.eii-to.uclm.es/v2/profesores.expandidos/por_sn/')
     assert r.status_code <= 300
     r.encoding = 'utf-8'

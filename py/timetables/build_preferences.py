@@ -2,10 +2,10 @@ import json, requests
 from build_staff import get_staff
 from build_cursos import get_cursos
 
-def get_preferences():
-    profes = get_staff()
+def get_preferences(term):
+    profes = get_staff(term)
     fill_desiderata(profes)
-    cursos = get_cursos()
+    cursos = get_cursos(term)
     return {
         'profes': profes,
         'cursos': cursos,

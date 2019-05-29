@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/BuildingRoom.dtd">
 
-<buildingsRooms campus="UCLM" term="Primer semestre" year="2019">
+<buildingsRooms campus="UCLM" term="{{term}}" year="2019">
 
     <building externalId="10" abbreviation="10" locationX="-4.042242" locationY="39.864718" name="Edificio 10">
         {% for n,cap in zip((1,2,3,5,6),(60,60,60,78,140)) %}
