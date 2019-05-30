@@ -1,9 +1,16 @@
 import json, requests
 
 def get_cursos(term):
+    all_courses = set()
+    def course_repeated(aid):
+        if aid in all_courses:
+            return True
+        all_courses.add(aid)
+        return False
+
     r = requests.get('https://intranet.eii-to.uclm.es/v2/docencia.por_superarea/por_semestre/')
     assert r.status_code <= 300
-    cursos = [ c for c in json.loads(r.text) if course_in_term(c,term) ]
+    cursos = [ c for c in json.loads(r.text) if course_in_term(c,term) and not course_repeated(c['asigid']) ]
     fill_subject_area(cursos)
     fill_course_nr(cursos)
     fill_instructors(cursos)

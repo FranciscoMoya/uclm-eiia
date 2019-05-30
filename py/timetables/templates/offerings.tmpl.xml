@@ -18,17 +18,17 @@
         </subpart>
       </subpart>
       <class id="{{ c['subject'] }} {{ c['nr'] }} Lec 1" type="Lec" suffix="1" limit="50" studentScheduling="true" displayInScheduleBook="true" cancelled="false">
-        {% for n,i in enumerate(c['teoria']) %}
+        {% for i in c['teoria'] %}
         <instructor id="{{i}}" share="1"/>
         {% endfor %}
         <!-- Instructors for lab classes are currently shared on both lab classes.  Edit by hand if this is not the case -->
         <class id="{{ c['subject'] }} {{ c['nr'] }} Lab 1" type="Lab" suffix="1" limit="25" studentScheduling="true" displayInScheduleBook="true" cancelled="false">
-          {% for n,i in enumerate(c['laboratorio']) %}
+          {% for i in c['laboratorio'] %}
           <instructor id="{{i}}" share="1"/>
           {% endfor %}
         </class>
         <class id="{{ c['subject'] }} {{ c['nr'] }} Lab 2" type="Lab" suffix="2" limit="25" studentScheduling="true" displayInScheduleBook="true" cancelled="false">
-          {% for n,i in enumerate(c['laboratorio']) %}
+          {% for i in c['laboratorio'] %}
           <instructor id="{{i}}" share="1"/>
           {% endfor %}
         </class>
