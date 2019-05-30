@@ -7,7 +7,7 @@
 <preferences campus="UCLM" term="{{term}}" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
 
     {% for p in profes %}
-    <instructor externalId="{{ p['extid'] }}" firstName="{{ p['givenName'] }}" lastName="{{ p['sn'] }}" department="Acad">
+    <instructor externalId="{{ p['userid'] }}" firstName="{{ p['givenName'] }}" lastName="{{ p['sn'] }}" department="Acad">
         <timePref level="R">
         {% for day,d in zip('MTWRF',p['desideratum']) %}
             {% for lev,start in zip(d[1:],(830,930,1030,1130,1230,1330,1430,1530,1630,1730,1830,1930)) %}

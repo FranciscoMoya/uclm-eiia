@@ -6,8 +6,8 @@ def get_cursos(term):
     cursos = [ c for c in json.loads(r.text) if course_in_term(c,term) ]
     fill_subject_area(cursos)
     fill_course_nr(cursos)
+    fill_instructors(cursos)
     return cursos
-
 
 def course_in_term(c, term):
     if c['semestre'] & 1 == term & 1:
@@ -53,3 +53,22 @@ def fill_course_nr(cursos):
     for c in cursos:
         year = (c['semestre'] - 1) // 2
         c['nr'] = next_nr(year, c['subject'])
+
+def fill_instructors(cursos):
+    r = requests.get('https://intranet.eii-to.uclm.es/v2/docencia.por_profesor/por_asigid/')
+    assert r.status_code <= 300
+    assigned = json.loads(r.text)
+    teo, lab = {}, {}
+    for a in assigned:
+        aid = a['asigid']
+        teo[aid], lab[aid] = [], []
+    for a in assigned:
+        aid = a['asigid']
+        if a['teoria']:
+            teo[aid].append(a['userid'])
+        if a['laboratorio']:
+            lab[aid].append(a['userid'])
+    for c in cursos:
+        aid = c['asigid']
+        c['teoria'] = teo[aid] if aid in teo else []
+        c['laboratorio'] = lab[aid] if aid in lab else []

@@ -7,7 +7,7 @@
 
   {% for p in profes %}
     <staffMember 
-        externalId="{{ p['extid'] }}" 
+        externalId="{{ p['userid'] }}" 
         firstName="{{ p['givenName'] }}" 
         middleName="" 
         lastName="{{ p['sn'] }}" 

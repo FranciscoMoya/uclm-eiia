@@ -18,7 +18,7 @@ env = Environment(
     autoescape=select_autoescape(['html', 'xml'])
 )
 
-env.globals.update(zip=zip,enumerate=enumerate)
+env.globals.update(zip=zip,enumerate=enumerate,len=len)
 
 sections = {
     'aareas': {
