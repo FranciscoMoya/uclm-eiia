@@ -45,7 +45,7 @@ Los recursos disponibles son los siguientes:
 
 
 | Tabla | Descripción |
-|---|---|---|
+|---|-----|
 |`profesores`| Tabla de profesores con datos básicos |
 |`profesores.expandidos`| Vista expandida con muchos datos de los profesores |
 |`profesores.desiderata`| Desiderata de los profesores |
