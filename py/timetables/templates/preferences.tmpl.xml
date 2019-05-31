@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/Preferences.dtd">
+
+{% set profes = data['profes'] %}
+{% set cursos = data['cursos'] %}
+
+<preferences campus="UCLM" term="{{term}}" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
+
+    {% for p in profes %}
+    <instructor externalId="{{ p['userid'] }}" firstName="{{ p['givenName'] }}" lastName="{{ p['sn'] }}" department="Acad">
+        <timePref level="R">
+        {% for day,d in zip('MTWRF',p['desideratum']) %}
+            {% for lev,start in zip(d[1:],(830,930,1030,1130,1230,1330,1430,1530,1630,1730,1830,1930)) %}
+            <pref level="{{ p['level'](lev) }}" day="{{day}}" start="{{start}}" stop="{{start + 100}}"/>
+            {% endfor %}
+        {% endfor %}
+        </timePref>
+    </instructor>
+    {% endfor %}
+
+    {% for c in cursos %}
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
+        <groupPref group="classroom" level="R"/>
+        <timePref pattern="EIIA 3x50" level="R"/>
+    </subpart>
+
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" pattern="Semanas impares">
+        <groupPref group="lab {{c['subject']}}" level="R"/>
+        <timePref pattern="EIIA 1x100" level="R"/>
+    </subpart>
+    <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2" pattern="Semanas pares"/>
+    {% endfor %}
+
+</preferences>

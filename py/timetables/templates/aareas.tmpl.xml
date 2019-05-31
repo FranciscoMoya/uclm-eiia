@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/AcademicArea.dtd">
+
+<academicAreas campus="UCLM" term="{{term}}" year="2019">
+    <academicArea externalId="Acad" abbreviation="Acad" title="Planificación académica"/>
+</academicAreas>

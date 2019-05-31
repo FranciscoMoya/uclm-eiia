@@ -1,4 +1,4 @@
-const docencia = document.getElementById('docencia');
+const docencia = document.getElementById('docenciaRows');
 const uid = document.getElementById('chooserid');
 const actualizar = document.getElementById('actualizar');
 const profesor = document.getElementById('profesor');
@@ -73,19 +73,7 @@ function getProfesor(userid) {
 
 function getAsignaturasSuperArea(profe) {
     getData('/v2/docencia.por_superarea/por_sareaid/' + profe.sareaid, function (resp, profe){
-        docencia.innerHTML = 
-        '<table class="table">\
-            <thead>\
-                <tr class="headings">\
-                    <th scope="col">Curso</th>\
-                    <th scope="col">Título</th>\
-                    <th scope="col">Asignatura</th>\
-                    <th scope="col">Teoría</th>\
-                    <th scope="col">Lab.</th>\
-                </tr>\
-            </thead>\
-            <tbody id="docenciaRows"></tbody>\
-        </table>';
+        docencia.innerHTML = '';
         resp.sort(function (a,b){
             if (a.semestre < b.semestre) return -1;
             if (a.semestre > b.semestre) return 1;
@@ -93,9 +81,8 @@ function getAsignaturasSuperArea(profe) {
             if (t) return t;
             return a.asignatura.localeCompare(b.asignatura);
         });
-        const rows = document.getElementById('docenciaRows');
         for (var i = 0; i < resp.length; ++i) {
-            createRowAsignatura(rows, resp[i]);
+            createRowAsignatura(docencia, resp[i]);
         }
         getAsignaturasProfe(profe.userid);
     }, profe);

@@ -8,7 +8,7 @@ if platform.system() == 'Windows':
     class FakeAuthData(object):
         def __init__(self):
             self.attributes = {
-                'uid': 'alberto.rico',
+                'uid': 'francisco.moya',
                 'sn':  'MOYA FERNÁNDEZ',
                 'givenName': 'FRANCISCO',
                 'eduPersonAffiliation': 'faculty'

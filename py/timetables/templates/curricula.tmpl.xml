@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/Curricula_3_2.dtd">
+
+{% set curricula = data %}
+
+<curricula campus="UCLM" term="{{term}}" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
+    {% for curr in curricula %}
+    <curriculum abbreviation="{{curr['extid']}}" name="{{curr['titulo']}}">
+        <academicArea abbreviation="Acad"/>
+        <department code="Acad"/>
+        <major code="{{curr['extid']}}"/>
+
+        {% for n,year in zip((1,2,3,4), curr['años']) %}
+        <classification enrollment="50">
+            <academicClassification externalId="0{{n}}" code="0{{n}}"/>
+            {% for c in year %}
+            <course subject="{{c['subject']}}" courseNbr="{{c['nr']}}" share="1.0000"/>
+            {% endfor %}
+        </classification>
+        {% endfor %}
+    </curriculum>
+    {% endfor %}
+</curricula>
