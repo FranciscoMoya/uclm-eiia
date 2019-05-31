@@ -270,11 +270,12 @@ class DocenciaPorArea(ReadOnlyView):
 
 
 class DocenciaPorSuperArea(ReadOnlyView):
-    table = 'asignaturas NATURAL JOIN areas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
+    table = 'asignaturas NATURAL JOIN areas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos NATURAL JOIN superareas'
     columns = Asignaturas.columns \
         + join_columns(Areas, 'areaid') \
         + join_columns(AreasAsignaturas, 'asigid') \
-        + join_columns(Titulos, 'titid')
+        + join_columns(Titulos, 'titid') \
+        + join_columns(SuperAreas, 'sareaid')
 
 
 class DocenciaPorProfesor(ReadOnlyView):
