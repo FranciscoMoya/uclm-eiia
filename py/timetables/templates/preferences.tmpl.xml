@@ -3,8 +3,44 @@
 
 {% set profes = data['profes'] %}
 {% set cursos = data['cursos'] %}
+{% set curricula = data['curricula'] %}
 
 <preferences campus="UCLM" term="{{term}}" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
+
+    <department code="Acad">
+    {% for curr in curricula %}
+        {% for year in curr['años'] %}
+        <distributionPref type="SAME_STUDENTS" structure="AllClasses" level="R">
+            {% for c in year %}
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lab 1"/>
+            {% endfor %}
+        </distributionPref>
+        <distributionPref type="SAME_STUDENTS" structure="AllClasses" level="R">
+            {% for c in year %}
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2"/>
+            {% endfor %}
+        </distributionPref>
+        {% endfor %}
+    {% endfor %}
+    {% for curr in curricula %}
+        {% for year in curr['años'] %}
+        <distributionPref type="BTB" structure="AllClasses" level="-2">
+            {% for c in year %}
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lab 1"/>
+            {% endfor %}
+        </distributionPref>
+        <distributionPref type="BTB" structure="AllClasses" level="-2">
+            {% for c in year %}
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2"/>
+            {% endfor %}
+        </distributionPref>
+        {% endfor %}
+    {% endfor %}
+    </department>
 
     {% for p in profes %}
     <instructor externalId="{{ p['userid'] }}" firstName="{{ p['givenName'] }}" lastName="{{ p['sn'] }}" department="Acad">

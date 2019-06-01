@@ -1,14 +1,17 @@
 import json, requests
 from build_staff import get_staff
 from build_cursos import get_cursos
+from build_curricula import get_curricula
 
 def get_preferences(term):
     profes = get_staff(term)
     fill_desiderata(profes)
     cursos = get_cursos(term)
+    curricula = get_curricula(term)
     return {
         'profes': profes,
         'cursos': cursos,
+        'curricula': curricula
     }
 
 
