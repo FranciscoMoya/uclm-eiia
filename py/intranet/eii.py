@@ -66,7 +66,11 @@ for table in (
         'docencia.areas_asignaturas', 
         'docencia.por_profesor', 
         'docencia.por_area',
-        'docencia.por_superarea'):
+        'docencia.por_superarea',
+        'docencia.pref',
+        'docencia.pref.preferencias',
+        'docencia.pref.preferencias.time_patterns',
+        'docencia.pref.preferencias.date_patterns'):
     api.add_resource(DBSchema(table), f"/{table}/schema")
     api.add_resource(DBResourceContainer(table), f"/{table}/por_<string:column>/")
     api.add_resource(DBResource(table), f"/{table}/por_<string:column>/<string:value>")

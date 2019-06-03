@@ -44,7 +44,7 @@
 
     {% for p in profes %}
     <instructor externalId="{{ p['userid'] }}" firstName="{{ p['givenName'] }}" lastName="{{ p['sn'] }}" department="Acad">
-        <timePref level="R">
+        <timePref level="-2">
         {% for day,d in zip('MTWRF',p['desideratum']) %}
             {% for lev,start in zip(d[1:],(830,930,1030,1130,1230,1330,1430,1530,1630,1730,1830,1930)) %}
             <pref level="{{ p['level'](lev) }}" day="{{day}}" start="{{start}}" stop="{{start + 100}}"/>
@@ -55,16 +55,25 @@
     {% endfor %}
 
     {% for c in cursos %}
-    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
-        <groupPref group="classroom" level="R"/>
-        <timePref pattern="EIIA 3x50" level="R"/>
-    </subpart>
-
-    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" pattern="Semanas impares">
-        <groupPref group="lab {{c['subject']}}" level="R"/>
-        <timePref pattern="EIIA 1x100" level="R"/>
-    </subpart>
-    <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2" pattern="Semanas pares"/>
+        {% if c.timePref == '111' %}
+        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
+            <groupPref group="classroom" level="R"/>
+            <timePref pattern="3x50" level="R"/>
+        </subpart>
+        {% elif c.timePref == '21' %}
+        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
+            <groupPref group="classroom" level="R"/>
+            <timePref pattern="1x100" level="R"/>
+        </subpart>
+        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="a" pattern="Semestre completo">
+            <timePref pattern="1x50" level="R"/>
+        </subpart>
+        {% endif %}
+        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" pattern="Semanas impares">
+            <groupPref group="lab {{c['subject']}}" level="R"/>
+            <timePref pattern="1x100" level="R"/>
+        </subpart>
+        <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2" pattern="Semanas pares"/>
     {% endfor %}
 
 </preferences>
