@@ -88,6 +88,9 @@ class ReadWriteTable(ReadOnlyTable):
                 ''', (value,))
 
 
+def join_columns(Table, key):
+    return tuple(x for x in Table.columns if x[0] != key)
+
 class Profesores(ReadWriteTable):
     table = 'profesores'
     columns = (
@@ -173,7 +176,12 @@ class Tutorias(ReadWriteTable):
 
 class ProfesoresExpandidos(ReadOnlyView):
     table = 'profesores NATURAL JOIN areas NATURAL JOIN superareas NATURAL JOIN departamentos NATURAL JOIN categorias NATURAL join tutorias'
-    columns = Profesores.columns + Areas.columns[1:] + SuperAreas.columns[1:] + Departamentos.columns[1:] + Categorias.columns[1:] + Tutorias.columns[1:]
+    columns = Profesores.columns \
+        + join_columns(Areas, 'areaid') \
+        + join_columns(SuperAreas, 'sareaid') \
+        + join_columns(Departamentos, 'deptid') \
+        + join_columns(Categorias, 'catid') \
+        + join_columns(Tutorias, 'userid')
 
 
 class PropuestasGastos(ReadWriteTable):
@@ -207,6 +215,7 @@ class Docencia(object):
         self.areas_asignaturas = AreasAsignaturas(db)
         self.por_profesor = DocenciaPorProfesor(db)
         self.por_area = DocenciaPorArea(db)
+        self.por_superarea = DocenciaPorSuperArea(db)
 
 
 class Titulos(ReadWriteTable):
@@ -229,29 +238,6 @@ class Asignaturas(ReadWriteTable):
     )
 
 
-class DocenciaPorArea(ReadOnlyView):
-    table = 'asignaturas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
-    columns = Asignaturas.columns \
-        + (('areaid', 'TEXT REFERENCES areas(areaid)', int),) \
-        + Titulos.columns[1:]
-
-class DocenciaPorProfesor(ReadOnlyView):
-    table = 'asignaturas NATURAL JOIN profesores_asignaturas'
-    columns = Asignaturas.columns + \
-            (('userid', 'TEXT REFERENCES profesores(userid)', str),)
-
-
-class ProfesoresAsignaturas(ReadWriteTable):
-    table = 'profesores_asignaturas'
-    columns = (
-        ('userid', 'TEXT REFERENCES profesores(userid)', str),
-        ('asigid', 'INTEGER REFERENCES asignaturas(asigid)', int)
-    )
-    post_columns = (
-        'UNIQUE(userid,asigid)',
-    )
-
-
 class AreasAsignaturas(ReadWriteTable):
     table = 'areas_asignaturas'
     columns = (
@@ -261,6 +247,40 @@ class AreasAsignaturas(ReadWriteTable):
     post_columns = (
         'UNIQUE(areaid,asigid)',
     )
+
+
+class ProfesoresAsignaturas(ReadWriteTable):
+    table = 'profesores_asignaturas'
+    columns = (
+        ('userid', 'TEXT REFERENCES profesores(userid)', str),
+        ('asigid', 'INTEGER REFERENCES asignaturas(asigid)', int),
+        ('teoria', 'BOOLEAN DEFAULT 0', int),
+        ('laboratorio', 'BOOLEAN DEFAULT 0', int)
+    )
+    post_columns = (
+        'UNIQUE(userid,asigid)',
+    )
+
+
+class DocenciaPorArea(ReadOnlyView):
+    table = 'asignaturas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
+    columns = Asignaturas.columns \
+        + join_columns(AreasAsignaturas, 'asigid') \
+        + join_columns(Titulos, 'titid')
+
+
+class DocenciaPorSuperArea(ReadOnlyView):
+    table = 'asignaturas NATURAL JOIN areas NATURAL JOIN areas_asignaturas NATURAL JOIN titulos'
+    columns = Asignaturas.columns \
+        + join_columns(Areas, 'areaid') \
+        + join_columns(AreasAsignaturas, 'asigid') \
+        + join_columns(Titulos, 'titid')
+
+
+class DocenciaPorProfesor(ReadOnlyView):
+    table = 'asignaturas NATURAL JOIN profesores_asignaturas'
+    columns = Asignaturas.columns \
+        + join_columns(ProfesoresAsignaturas, 'asigid')
 
 
 

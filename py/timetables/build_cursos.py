@@ -14,19 +14,8 @@ def get_cursos(term):
     fill_subject_area(cursos)
     fill_course_nr(cursos)
     fill_instructors(cursos)
-    fill_time_pref(cursos)
+    fill_pref(cursos)
     return cursos
-
-especiales_timePref = {
-    'MECÁNICA DE FLUIDOS': '21',
-    'TECNOLOGÍA ELÉCTRICA': '21',
-    'INSTALACIONES ELÉCTRICAS DE BAJA TENSIÓN': '21',
-}
-
-def fill_time_pref(cursos):
-    for c in cursos:
-        a = c['asignatura']
-        c['timePref'] = especiales_timePref[a] if a in especiales_timePref else '111'
 
 
 def course_in_term(c, term):
@@ -88,6 +77,34 @@ def fill_instructors(cursos):
         aid = c['asigid']
         c['teoria'] = teo[aid] if aid in teo else []
         c['laboratorio'] = lab[aid] if aid in lab else []
+
+
+def fill_pref(cursos):
+    r = requests.get('https://intranet.eii-to.uclm.es/v2/docencia.pref/por_asigid/')
+    assert r.status_code <= 300
+    pref = json.loads(r.text)
+    teo, lab = {}, {}
+    for a in pref:
+        aid = a['asigid']
+        teo[aid], lab[aid] = [], []
+    for a in pref:
+        aid = a['asigid']
+        if a['es_lab']:
+            lab[aid].append((a['tpattern'], a['dpattern'], a['lim']))
+        else:
+            teo[aid].append((a['tpattern'], a['dpattern'], a['lim']))
+    for c in cursos:
+        aid = c['asigid']
+        c['tclass'] = teo[aid] if aid in teo else [('3x50','Semestre completo',50)]
+        c['lclass'] = lab[aid] if aid in lab else [('1x100','Semanas impares',25), ('1x100','Semanas pares',25)]
+    fill_subparts(cursos)
+
+def fill_subparts(cursos):
+    for c in cursos:
+        aid = c['asigid']
+        c['tsubpart'] = infer_subparts(c['tclass'])
+        c['lsubpart'] = infer_subparts(c['lclass'])
+    
 
 
 if __name__ == '__main__':

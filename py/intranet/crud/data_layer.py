@@ -236,7 +236,8 @@ class Asignaturas(ReadWriteTable):
         ('asignatura', 'TEXT NOT NULL', str),
         ('titid', 'INTEGER REFERENCES titulos(titid)', int),
         ('semestre', 'INTEGER NOT NULL', int),
-        ('ects', 'INTEGER NOT NULL', int)
+        ('ects', 'INTEGER NOT NULL', int),
+        ('lim', 'INTEGER NOT NULL', int)
     )
 
 
@@ -289,7 +290,7 @@ class Preferencias(ReadWriteTable):
         ('dateid', 'INTEGER REFERENCES date_patterns(dateid)', int)
     )
     post_columns = (
-        'UNIQUE(asigid,lab,timeid,dateid)',
+        'UNIQUE(asigid,es_lab,timeid,dateid)',
     )
 
     def __init__(self, db):
@@ -299,10 +300,12 @@ class Preferencias(ReadWriteTable):
 
 
 class PreferenciasPorAsignatura(ReadOnlyView):
-    table = 'preferencias NATURAL JOIN asignaturas NATURAL JOIN titulos'
+    table = 'preferencias NATURAL JOIN asignaturas NATURAL JOIN titulos NATURAL JOIN time_patterns NATURAL JOIN date_patterns'
     columns = Preferencias.columns \
         + join_columns(Asignaturas, 'asigid') \
-        + join_columns(Titulos, 'titid')
+        + join_columns(Titulos, 'titid') \
+        + join_columns(TimePatterns, 'timeid') \
+        + join_columns(DatePatterns, 'dateid')
 
     def __init__(self, db):
         super().__init__(db)
