@@ -24,8 +24,8 @@ class DBSchemaClass(DBResourceBase):
     def get(self):
         try:
             return [ {'column': c[0], 'type': c[2].__name__} for c in self.db().columns ]
-        except:
-            return {"message": f"Unable to get {self.table} schema."}, 400
+        except Exception as ex:
+            return {"message": f"Unable to get {self.table} schema.\n{ex}"}, 400
 
 
 class DBResourceClass(DBResourceBase):
@@ -34,15 +34,15 @@ class DBResourceClass(DBResourceBase):
     def get(self, column, value):
         try:
             return self.db().get(value, column)
-        except:
-            return {"message": f"Unable to get {self.table} where {column} = {value}."}, 400
+        except Exception as ex:
+            return {"message": f"Unable to get {self.table} where {column} = {value}.\n{ex}"}, 400
 
     def delete(self, column, value):
         try:
             self.db().delete(value, column)
             return {"message": f"Deleted {self.table} where {column} = {value}."}, 200
-        except:
-            return {"message": f"Unable to delete {self.table} where {column} = {value}."}, 400
+        except Exception as ex:
+            return {"message": f"Unable to delete {self.table} where {column} = {value}.\n{ex}"}, 400
 
 
 class DBResourceContainerClass(DBResourceBase):
@@ -51,8 +51,8 @@ class DBResourceContainerClass(DBResourceBase):
     def get(self, column = None):
         try:
             return self.db().list(order_by = column)
-        except:
-            return {"message": f"Unable to get {self.table} column {column}."}, 400
+        except Exception as ex:
+            return {"message": f"Unable to get {self.table} ordered by column {column}.\n{ex}"}, 400
 
     def post(self, column = None):
         try:
@@ -60,8 +60,8 @@ class DBResourceContainerClass(DBResourceBase):
             args = self.parser.parse_args()
             db.store(args, replace = True)
             return {"message": f"Added/replaced {self.table} record."}, 201
-        except:
-            return {"message": f"Unable to post {self.table} column {column}."}, 400
+        except Exception as ex:
+            return {"message": f"Unable to post {self.table} column {column}.\n{ex}"}, 400
 
     def put(self, column = None):
         try:
@@ -69,8 +69,8 @@ class DBResourceContainerClass(DBResourceBase):
             args = self.parser.parse_args()
             db.update(args)
             return {"message": f"Updated {self.table} record {args}."}, 202
-        except:
-            return {"message": f"Unable to put {self.table} by column {column}."}, 400
+        except Exception as ex:
+            return {"message": f"Unable to put {self.table} by column {column}.\n{ex}"}, 400
 
 
 def DBSchema(tablename):

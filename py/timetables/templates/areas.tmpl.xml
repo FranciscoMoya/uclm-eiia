@@ -7,9 +7,9 @@
 
   {% for a in areas %}
     <subjectArea 
-        externalId="{{ a['subject'] }}" 
-        abbreviation="{{ a['subject'] }}" 
-        title="{{ a['sarea'] }}" 
+        externalId="{{ a['aid'] }}" 
+        abbreviation="{{ a['aid'] }}" 
+        title="{{ a['area'] }}" 
         schedBookOnly="false" 
         pseudoSubjArea="false" 
         department="Acad"/>

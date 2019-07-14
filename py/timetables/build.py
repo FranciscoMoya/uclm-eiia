@@ -7,12 +7,6 @@ from build_areas import get_areas
 from build_preferences import get_preferences
 from build_curricula import get_curricula
 
-parser = argparse.ArgumentParser(description='Generate XML data for UniTime')
-parser.add_argument('--sec', default='all', help='Sección XML a generar (e.g. offerings)')
-parser.add_argument('--term', default=1, type=int, help='Semestre a generar (1 o 2)')
-args = parser.parse_args()
-
-
 env = Environment(
     loader=FileSystemLoader('templates'),
     autoescape=select_autoescape(['html', 'xml'])
@@ -58,6 +52,12 @@ sections = {
         'data': get_curricula
     },
 }
+
+parser = argparse.ArgumentParser(description='Generate XML data for UniTime')
+parser.add_argument('--sec', default='all', help=f'Sección XML a generar (all,{", ".join(sections.keys())})')
+parser.add_argument('--term', default=1, type=int, help='Semestre a generar (1 o 2)')
+args = parser.parse_args()
+
 
 tname = {
     1: 'Primer semestre',

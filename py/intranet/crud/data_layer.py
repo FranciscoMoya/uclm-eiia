@@ -216,6 +216,8 @@ class Docencia(object):
         self.por_profesor = DocenciaPorProfesor(db)
         self.por_area = DocenciaPorArea(db)
         self.por_superarea = DocenciaPorSuperArea(db)
+        self.pref = PreferenciasPorAsignatura(db)
+
 
 
 class Titulos(ReadWriteTable):
@@ -234,7 +236,8 @@ class Asignaturas(ReadWriteTable):
         ('asignatura', 'TEXT NOT NULL', str),
         ('titid', 'INTEGER REFERENCES titulos(titid)', int),
         ('semestre', 'INTEGER NOT NULL', int),
-        ('ects', 'INTEGER NOT NULL', int)
+        ('ects', 'INTEGER NOT NULL', int),
+        ('lim', 'INTEGER NOT NULL', int)
     )
 
 
@@ -260,6 +263,53 @@ class ProfesoresAsignaturas(ReadWriteTable):
     post_columns = (
         'UNIQUE(userid,asigid)',
     )
+
+
+class TimePatterns(ReadWriteTable):
+    table = 'time_patterns'
+    columns = (
+        ('timeid', 'INTEGER PRIMARY KEY NOT NULL', int),
+        ('tpattern', 'TEXT NOT NULL', str)
+    )
+
+
+class DatePatterns(ReadWriteTable):
+    table = 'date_patterns'
+    columns = (
+        ('dateid', 'INTEGER PRIMARY KEY NOT NULL', int),
+        ('dpattern', 'TEXT NOT NULL', str)
+    )
+
+
+class Preferencias(ReadWriteTable):
+    table = 'preferencias'
+    columns = (
+        ('asigid', 'INTEGER REFERENCES asignaturas(asigid)', int),
+        ('es_lab', 'BOOLEAN DEFAULT 0', int),
+        ('timeid', 'INTEGER REFERENCES time_patterns(timeid)', int),
+        ('dateid', 'INTEGER REFERENCES date_patterns(dateid)', int)
+    )
+    post_columns = (
+        'UNIQUE(asigid,es_lab,timeid,dateid)',
+    )
+
+    def __init__(self, db):
+        super().__init__(db)
+        self.time_patterns = TimePatterns(db)
+        self.date_patterns = DatePatterns(db)
+
+
+class PreferenciasPorAsignatura(ReadOnlyView):
+    table = 'preferencias NATURAL JOIN asignaturas NATURAL JOIN titulos NATURAL JOIN time_patterns NATURAL JOIN date_patterns'
+    columns = Preferencias.columns \
+        + join_columns(Asignaturas, 'asigid') \
+        + join_columns(Titulos, 'titid') \
+        + join_columns(TimePatterns, 'timeid') \
+        + join_columns(DatePatterns, 'dateid')
+
+    def __init__(self, db):
+        super().__init__(db)
+        self.preferencias = Preferencias(db)
 
 
 class DocenciaPorArea(ReadOnlyView):

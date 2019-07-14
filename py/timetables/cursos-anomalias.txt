@@ -1,0 +1,102 @@
+* Dos turnos de lab de química en la misma semana.
+
+El segundo turno es uno compartido por las tardes.  Se ha creado otra subparte de laboratorio en cada oferta de química con un room ratio del 10%.
+Las tres clases resultantes se han juntado con distribución meet together.
+
+Afecta a las restricciones same students.
+
+* Física en lab 19.5 y aula 10.1 a la vez.
+
+Puesto como un extra de teoría en todas las de física con una distribución SameTime and SameDays que la del laboratorio.  
+Con el instructor puesto a Amadeo sin checkeo de conflictos.
+
+Afecta a restricciones same students.
+
+* Los turnos de lab de álgebra y cálculo son ambos de ambas asignaturas.
+
+Puesto como 2x100 el lab de ambas y distribucion meet together.
+
+* Doblete en cálculo 1
+
+Puesto como dos lecciones 1x50 y 1x100 con distribución same day prohibida.
+
+
+* Prácticas de gestión en 12h? 1x200 y empieza a las 16
+
+Puesto como nuevo time/date pattern
+
+* Lab de tecnología eléctrica 2 días a la semana de 16 a 19 (2x150???)
+
+Está todo el semestre, no creo que deba ser así.
+
+* Tecnología Eléctrica en 2+1
+
+
+
+
+
+
+
+* Lab de ampliación de matemáticas, 2 días a la semana 2x100??
+
+Parece una errata. Consulta por email
+
+
+* Lab de ciencia de materiales a partir de 15 de octubre y 9:30 a 14:30? solapa con gestión empresarial?  Y mezclado con el de IE y IEIA
+
+De momento no lo pongo
+
+Mecánica de fluidos en 2+1
+¿Dónde va el lab de mecánica de fluidos?
+Instalaciones eléctricas de bt en 2+1
+Regulación automática en 2+1+1 y lab de 1x150
+Electrónica de potencia en 2+1
+Máquinas eléctricas en 2+1. El lab lo tiene en aula 10.1 y en 19.2
+Líneas eléctricas en 2+1
+Robótica industrial tiene 4x50 y lab de 1x150 ???
+Electrónica analógica es 2+1
+Electrónica digital es 2+1
+PCIE es 1x100 + 1x100
+Sis. Ener. Conv es 2+1 pero no parece que tenga lab.
+Sis. Ener. Emerg. es 2+1 pero no parece que tenga lab.
+Aprov. Energ. Biomasa es 2+1 pero no parece que tenga lab.
+P. Ingenieria es 2+1 pero parece que una semana en clase y otra en lab.
+Dis. Proy. Instal. es 2x100 en lab ???
+Fund. de telecomunicaciones es 2x100 pero una semana en lab y otra en aula
+Instr. elec. avanzada es 2x100 pero una semana en lab y otra en aula
+Modelado sistemas de potencia es 2x150 en el mismo día y 1x50 en otro día y todo en el mismo lab
+Simulación sist. elec. es 2x150
+
+
+--------------------- 2o semestre
+Expr. grafica es 2+1
+TMA reserva 2 labs por la mañana y por la tarde.  El de la tarde es compartido con otros
+lab de estadística en en aula 10.1
+Electrónica es 2+1
+Física en lab 19.5 y aula 10.1 a la vez.
+Sistemas de fabricación tiene lab de 16 a 20, se desconoce lab y fechas
+T. mecanismos y estructuras es 2+1 pero no dice nada del lab
+termo técnica no dice nada del lab
+
+Tecnología electrónica 2+1 y lab es 1x150
+Sistemas de fabricación tiene prácticas en aula de 16 a 20
+Energías renovables es 2+1+1 y no parece que haya lab
+Centrales electricas es 2+1
+Control discreto es 2+2 y lab de 3h???
+Inst. electricas de AT es 2+1
+Control de máquinas es 2+1 
+Automatiz industrial es 4x100 ????
+E. digital II es 2+1 
+E. potencia es 2+1
+Prev. Riesgos Lab es 2x100, sin lab
+Sist. E. Solar es 2x100, sin lab
+Obra civil en instalaciones parece 2x100 y alterna en lab y aula
+Instalaciones eléctricas es 2x100 pero una de las clases se alterna con el lab
+Microtecnología es 2x100 y alterna una de las clases con el lab
+Optoelectrónica es 2x100 y alterna en lab y aula
+
+
+Teoria de circuitos es 2+1+1, sin lab
+Análisis de redes es 2+1+1, con lab
+4h/semana hasta después de semana santa. Después de semana santa solo pácticas
+10semanas a 4h/sem y el resto solo lab.
