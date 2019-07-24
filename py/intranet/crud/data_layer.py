@@ -237,7 +237,7 @@ class Asignaturas(ReadWriteTable):
         ('titid', 'INTEGER REFERENCES titulos(titid)', int),
         ('semestre', 'INTEGER NOT NULL', int),
         ('ects', 'INTEGER NOT NULL', int),
-        ('lim', 'INTEGER NOT NULL', int)
+#        ('lim', 'INTEGER NOT NULL', int)
     )
 
 
