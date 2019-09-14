@@ -61,11 +61,13 @@ def hora2str(h):
     return f'{hh}:{mm:02d}'
 
 def abreviaProf(prof):
-    return '\\\\'.join(abreviaP(prof.split(';')))
+    return '\\\\'.join(abreviaP(prof.split(';'))).replace('\\\\...',', \ldots')
 
 def abreviaP(L):
     for p in L[:2]:
         yield abreviaNombre(p)
+    if len(L) > 2:
+        yield '...'
 
 def abreviaNombre(fn):
     if fn == '':
@@ -97,7 +99,7 @@ def gen_calendar(curr, curso, params):
 
     names = Counter(event.name for day in days for event in day.values() )
     names = [x[0] for x in names.most_common()]
-    colors = ['red', 'green', 'blue', 'orange', 'purple', 'brown', 'gray']
+    colors = ['red', 'green', 'blue', 'yellow', 'orange', 'brown', 'purple', 'gray']
 
     term , name = params['term'][:-8], params['name']
     fname = f'{term}_{name}.tex'.replace(' ','_')
