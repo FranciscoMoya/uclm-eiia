@@ -8,38 +8,45 @@
 <preferences campus="UCLM" term="{{term}}" year="2019" dateFormat="yyyy/M/d" timeFormat="HHmm" created="Wed Mar 08 08:56:15 CET 2017">
 
     <department code="Acad">
+    <!-- Probemos sin same students, solo el curriculum debería bastar
     {% for curr in curricula %}
         {% for year in curr['años'] %}
         <distributionPref type="SAME_STUDENTS" structure="AllClasses" level="R">
             {% for c in year %}
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lab 1"/>
-            {% endfor %}
-        </distributionPref>
-        <distributionPref type="SAME_STUDENTS" structure="AllClasses" level="R">
-            {% for c in year %}
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="a"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="b"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab"/>
             {% endfor %}
         </distributionPref>
         {% endfor %}
     {% endfor %}
+    -->
     {% for curr in curricula %}
         {% for year in curr['años'] %}
         <distributionPref type="BTB" structure="AllClasses" level="-2">
             {% for c in year %}
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lab 1"/>
-            {% endfor %}
-        </distributionPref>
-        <distributionPref type="BTB" structure="AllClasses" level="-2">
-            {% for c in year %}
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1" externalId="{{c['subject']}} {{c['nr']}} Lec 1"/>
-            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="a"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="b"/>
+            <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab"/>
             {% endfor %}
         </distributionPref>
         {% endfor %}
     {% endfor %}
+
+    {% for curr in curricula %}
+        {% for year in curr['años'] %}
+            {% for c in year %}
+        <distributionPref type="SAME_DAYS" structure="AllClasses" level="P">
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1"/>
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1a"/>
+            <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="1b"/>
+        </distributionPref>
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+
     </department>
 
     {% for p in profes %}
@@ -55,25 +62,23 @@
     {% endfor %}
 
     {% for c in cursos %}
-        {% if c.timePref == '111' %}
-        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
-            <groupPref group="classroom" level="R"/>
-            <timePref pattern="3x50" level="R"/>
-        </subpart>
-        {% elif c.timePref == '21' %}
-        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
-            <groupPref group="classroom" level="R"/>
-            <timePref pattern="1x100" level="R"/>
-        </subpart>
-        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="a" pattern="Semestre completo">
-            <timePref pattern="1x50" level="R"/>
-        </subpart>
-        {% endif %}
-        <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" pattern="Semanas impares">
-            <groupPref group="lab {{c['subject']}}" level="R"/>
-            <timePref pattern="1x100" level="R"/>
-        </subpart>
-        <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" externalId="{{c['subject']}} {{c['nr']}} Lab 2" pattern="Semanas pares"/>
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" pattern="Semestre completo">
+        <groupPref group="classroom" level="R"/>
+        <timePref pattern="1x50 comida 1430" level="R"/>
+    </subpart>
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="a" pattern="Semestre completo">
+        <groupPref group="classroom" level="R"/>
+        <timePref pattern="1x50 comida 1430" level="R"/>
+    </subpart>
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lec" suffix="b" pattern="Semestre completo">
+        <groupPref group="classroom" level="R"/>
+        <timePref pattern="1x50 comida 1430" level="R"/>
+    </subpart>
+    <subpart subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" pattern="Semanas impares">
+        <groupPref group="lab {{c['subject']}}" level="R"/>
+        <timePref pattern="1x100 comida 1430" level="R"/>
+    </subpart>
+    <class subject="{{c['subject']}}" course="{{c['nr']}}" type="Lab" suffix="2" pattern="Semanas pares"/>
     {% endfor %}
 
 </preferences>

@@ -80,6 +80,7 @@ def fill_instructors(cursos):
 
 
 def fill_pref(cursos):
+    return
     r = requests.get('https://intranet.eii-to.uclm.es/v2/docencia.pref/por_asigid/')
     assert r.status_code <= 300
     pref = json.loads(r.text)

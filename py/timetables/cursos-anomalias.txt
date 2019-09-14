@@ -7,8 +7,8 @@ Afecta a las restricciones same students.
 
 * Física en lab 19.5 y aula 10.1 a la vez.
 
-Puesto como un extra de teoría en todas las de física con una distribución SameTime and SameDays que la del laboratorio.  
-Con el instructor puesto a Amadeo sin checkeo de conflictos.
+Puesto como un extra de teoría en todas las de física con una distribución SameTime and SameDays 
+que la del laboratorio.  Con el instructor puesto a Amadeo sin checkeo de conflictos.
 
 Afecta a restricciones same students.
 
@@ -20,7 +20,6 @@ Puesto como 2x100 el lab de ambas y distribucion meet together.
 
 Puesto como dos lecciones 1x50 y 1x100 con distribución same day prohibida.
 
-
 * Prácticas de gestión en 12h? 1x200 y empieza a las 16
 
 Puesto como nuevo time/date pattern
@@ -31,41 +30,83 @@ Está todo el semestre, no creo que deba ser así.
 
 * Tecnología Eléctrica en 2+1
 
+Puesto como dos lecciones 1x50 y 1x100 con distribución same day prohibida.
 
+* Mecánica de fluidos en 2+1
 
+Puesto como dos lecciones 1x50 y 1x100 con distribución same day prohibida.
 
+* ¿Dónde va el lab de mecánica de fluidos?
 
+Eliminado el laboratorio de MF
 
+* Instalaciones eléctricas de bt en 2+1
 
-* Lab de ampliación de matemáticas, 2 días a la semana 2x100??
+Puesto como dos lecciones 1x50 y 1x100 con distribución same day prohibida.
 
-Parece una errata. Consulta por email
+* Regulación automática en 2+1+1 y lab de 1x150
 
+Puesto como dos lecciones 2x50 y 1x100 con distribución same day prohibida.
+Laboratorio como 1x150.  Probablemente debamos cambiar date a semanas1-10 y 11-15
+
+* Electrónica de potencia en 2+1
+
+Puesto como dos lecciones 2x50 y 1x100 con distribución same day prohibida.
+
+* Máquinas eléctricas en 2+1. El lab lo tiene en aula 10.1 y en 19.2
+
+Puesto como dos lecciones 2x50 y 1x100 con distribución same day prohibida.
+Laboratorio con una lección extra de 1x100 same time and same days con el lab
+
+* Líneas eléctricas en 2+1
+* Electrónica analógica es 2+1
+* Electrónica digital es 2+1
+
+Puesto como dos lecciones 2x50 y 1x100 con distribución same day prohibida.
+
+* Robótica industrial tiene 4x50 y lab de 1x150 ???
+
+Puesto como 4x50 en semanas 1-10 + 1x150 en semanas 11-15
+
+* PCIE es 1x100 + 1x100
+* Proyectos en ingenieria es 1x100 + 1x100
+
+Solo un grupo de lab, máximo a 30 (este curso fueron 12)
+
+* Sis. Ener. Conv es 2+1 pero no parece que tenga lab.
+* Sis. Ener. Emerg. es 2+1 pero no parece que tenga lab.
+* Aprov. Energ. Biomasa es 2+1 pero no parece que tenga lab.
+
+1x100 + 1x50 con same day prohibido
+
+* P. Ingenieria es 2+1 pero parece que una semana en clase y otra en lab.
+
+Está en semanas alternas, pero Comprobar!!! ------------------------------
+
+* Dis. Proy. Instal. es 2x100 en lab ???
+
+Done
+
+* Fund. de telecomunicaciones es 2x100 pero una semana en lab y otra en aula
+
+Comprobar para no ocupar aula
+
+* Instr. elec. avanzada es 2x100 pero una semana en lab y otra en aula
+
+Comprobar para no ocupar aula
+
+* Modelado sistemas de potencia es 2x150 en el mismo día y 1x50 en otro día y todo en el mismo lab
+
+Done
+
+* Simulación sist. elec. es 2x150 en lab
+
+Puesto en todo el semestre (???)
 
 * Lab de ciencia de materiales a partir de 15 de octubre y 9:30 a 14:30? solapa con gestión empresarial?  Y mezclado con el de IE y IEIA
 
 De momento no lo pongo
 
-Mecánica de fluidos en 2+1
-¿Dónde va el lab de mecánica de fluidos?
-Instalaciones eléctricas de bt en 2+1
-Regulación automática en 2+1+1 y lab de 1x150
-Electrónica de potencia en 2+1
-Máquinas eléctricas en 2+1. El lab lo tiene en aula 10.1 y en 19.2
-Líneas eléctricas en 2+1
-Robótica industrial tiene 4x50 y lab de 1x150 ???
-Electrónica analógica es 2+1
-Electrónica digital es 2+1
-PCIE es 1x100 + 1x100
-Sis. Ener. Conv es 2+1 pero no parece que tenga lab.
-Sis. Ener. Emerg. es 2+1 pero no parece que tenga lab.
-Aprov. Energ. Biomasa es 2+1 pero no parece que tenga lab.
-P. Ingenieria es 2+1 pero parece que una semana en clase y otra en lab.
-Dis. Proy. Instal. es 2x100 en lab ???
-Fund. de telecomunicaciones es 2x100 pero una semana en lab y otra en aula
-Instr. elec. avanzada es 2x100 pero una semana en lab y otra en aula
-Modelado sistemas de potencia es 2x150 en el mismo día y 1x50 en otro día y todo en el mismo lab
-Simulación sist. elec. es 2x150
 
 
 --------------------- 2o semestre
