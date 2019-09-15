@@ -61,7 +61,7 @@ def hora2str(h):
     return f'{hh}:{mm:02d}'
 
 def abreviaProf(prof):
-    return '\\\\'.join(abreviaP(prof.split(';'))).replace('\\\\...',', \ldots')
+    return '\\\\'.join(abreviaP(prof.split(';'))).replace('\\\\...',', \\ldots')
 
 def abreviaP(L):
     for p in L[:2]:
@@ -86,7 +86,7 @@ from collections import Counter
 
 def gen_calendar(curr, curso, params):
     env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template('cal.tpl')
+    template = env.get_template('horario.tpl')
 
     days = [dict() for i in range(5)] 
     for event in get_events(params):
