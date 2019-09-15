@@ -5,6 +5,7 @@ import json
 from crud.data_layer import close_db
 from crud.justificantes import Justificantes
 from crud.directorio import Directorio
+from crud.pdfpages import PdfPages
 from crud.db_resource import DBResource, DBResourceContainer, DBSchema
 from crud.session import get_sp, SAML2_SETUP
 from forms.profesores import ProfesoresForm
@@ -77,6 +78,7 @@ for table in (
 
 api.add_resource(Justificantes, "/justificantes/<string:userid>")
 api.add_resource(Directorio, "/directorio/update_profesores/")
+api.add_resource(PdfPages, "/horario/<string:userid>")
 
 # Impedir cache es una mala práctica. Parece que explorer no actualiza
 # los resultados JSON.  Debería funcionar ahora que no borra lo cambiado
