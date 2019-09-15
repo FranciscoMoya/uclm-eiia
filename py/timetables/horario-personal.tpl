@@ -7,7 +7,7 @@
 \renewcommand*\familydefault{\sfdefault}
 \usepackage[spanish]{babel}
 
-\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{positioning,shapes,shapes.multipart}
 
 %Options for timetable contents
 \def\firsthour{8}
@@ -23,7 +23,10 @@
 
 \begin{document}
 
-\input{horario-personal-semestre1.tex}
-\input{horario-personal-semestre2.tex}
+{% for id,sn,fn in profesores %}
+{%- set sid = id.replace('.','_') -%}
+\input{Primer_semestre_{{ sid }}.tex}
+\input{Segundo_semestre_{{ sid }}.tex}
+{% endfor %}
 
 \end{document}

@@ -10,8 +10,6 @@ params = {
     'term':   'Primer semestre2019UCLM',
 }
 
-profesores = ['francisco.moya']
-
 curricula = {
     'I. Eléctrica': set((
         'ALG 101',
@@ -34,7 +32,27 @@ curricula = {
         'PCIE 401',
         'PI 401',
         'SEC 401',
-        'SEE 401'
+        'SEE 401',
+        'CAL 104',
+        'EG 101',
+        'EST 101',
+        'FIS 101',
+        'TMA 101',
+        'EL 201',
+        'SFOI 201',
+        'TC 201',
+        'TME 201',
+        'TT 201',
+        'CD 301',
+        'CE 301',
+        'CME 301',
+        'ER 301',
+        'IEAT 301',
+        'IA 401',
+        'OCI 401',
+        'PRL 401',
+        'SEO 401',
+        'SES 401',
     )),
     'I. Electrónica': set((
         'ALG 102',
@@ -57,18 +75,48 @@ curricula = {
         'MSP 401',
         'PI 401',
         'SSE 401',
+        'CAL 105',
+        'EG 102',
+        'EST 102',
+        'FIS 102',
+        'TMA 102',
+        'AR 201',
+        'SFOI 202',
+        'TEL 201',
+        'TME 202',
+        'TT 202',
+        'AI 301',
+        'CD 302',
+        'ED 302',
+        'EP 302',
+        'IE 301',
+        'IEL 401',
+        'MIC 401',
+        'OPT 401',
+        'PRL 401',
     )),
     'I. Aeroespacial': set((
         'ALG 103',
         'CAL 103',
         'FIS 103',
+        'FIS 104',
         'QUI 103',
         'TA 101',
         'CM 203',
         'INF 201',
         'MM 201',
         'RM 201',
-        'TTTC 201'
+        'TTTC 201',
+        'CAL 106',
+        'EG 103',
+        'EST 103',
+        'FIS 104',
+        'TMA 103',
+        'EAU 201',
+        'ELE 201',
+        'GE 203',
+        'MF 203',
+        'MSD 201',
     ))
 }
 
@@ -205,11 +253,24 @@ def abrevia(asig):
 
 
 def gen_calendar_all():
-    for term in ('Primer semestre', 'Segundo semestre'):
-        params['term'] = term + '2019UCLM'
-        for prof in profesores:
-            params['id'] = prof
-            gen_calendar(get_events(params), params)
+    url = 'https://intranet.eii-to.uclm.es/v2/profesores/por_userid/'
+    r = requests.get(url)
+
+    profesores = [(p['userid'],p['sn'],p['givenName']) for p in json.loads(r.text)]
+    for id,sn,givenName in profesores:
+        params['id'] = id
+        params['prof'] = f'{givenName} {sn}'
+        for term in ('Primer semestre', 'Segundo semestre'):
+            params['term'] = term + '2019UCLM'
+            try:
+                ev = get_events(params)
+            except:
+                ev = []
+            gen_calendar(ev, params)
+
+    env = Environment(loader=FileSystemLoader('.'))
+    template = env.get_template('horario-personal.tpl')
+    with open('horario-personal.tex', "wt", encoding='utf-8') as f:
+        f.write(template.render(profesores = profesores))
 
 gen_calendar_all()
-#gen_calendar('Ingeniería Eléctrica', 2, params)
