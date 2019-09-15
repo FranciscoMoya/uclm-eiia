@@ -34,9 +34,14 @@
                 <label for="chooserid">Profesor</label> 
                 <select id="chooserid" class="form-control"></select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="sarea">Area o agrupación</label> 
                 <input id="sarea" class="form-control" disabled></input>
+            </div>
+            <div class="form-group col-md-2">
+                {% if auth %}
+                <a href="/v2/horario/{{aa.uid}}" class="btn btn-primary" role="button">Horario</a>
+                {% endif %}
             </div>
         </div>
         <div class="form-row">
