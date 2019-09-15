@@ -13,6 +13,7 @@ def api_is_available():
         pass
     return False
 
+print('tomcat check')
 if not api_is_available():
     print('Restarting tomcat')
     os.system('sudo systemctl stop tomcat')

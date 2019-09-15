@@ -13,7 +13,7 @@ class PdfPages(Resource):
     method_decorators = [auth_profesor]
 
     def get(self, userid):
-        prof = dict((p['userid'],i) for i,p in enumerate(get_db().profesores.list()))
+        prof = dict((p['userid'],i) for i,p in enumerate(get_db().profesores.list(order_by='userid')))
         pag = 2*prof[userid]
         # sacar las dos páginas a partir de indice*2 de fpath
         with open(fpath, 'rb') as f:
