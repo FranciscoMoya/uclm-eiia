@@ -10,7 +10,7 @@ import PyPDF2, io
 fpath = 'html/Horario_personal_2019_2020.pdf'
 
 class PdfPages(Resource):
-    method_decorators = [auth_profesor]
+    method_decorators = [lambda func: auth_profesor(func,tuple())]
 
     def get(self, userid):
         prof = dict((p['userid'],i) for i,p in enumerate(get_db().profesores.list(order_by='userid')))
