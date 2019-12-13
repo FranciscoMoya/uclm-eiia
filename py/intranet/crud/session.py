@@ -28,11 +28,14 @@ if platform.system() == 'Windows':
         app.secret_key = 'not a secret'
 
 else:
-    from flask_saml2.sp import ServiceProvider, create_blueprint
+    from flask_saml2.sp import ServiceProvider
     from flask_saml2.utils import certificate_from_file, private_key_from_file
 
     class EIIServiceProvider(ServiceProvider):
         def get_logout_return_url(self):
+            return url_for('index', _external=True)
+
+        def get_default_login_return_url(self):
             return url_for('index', _external=True)
 
     SP_CERTIFICATE = certificate_from_file('cert/sp-certificate.pem')
@@ -64,7 +67,7 @@ else:
                 },
             },
         ]
-        app.register_blueprint(create_blueprint(sp), url_prefix='/saml/')
+        app.register_blueprint(sp.create_blueprint(), url_prefix='/saml/')
 
 
 def auth_profesor(func, unrestricted=('get',)):

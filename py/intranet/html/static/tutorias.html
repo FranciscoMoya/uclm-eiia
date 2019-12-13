@@ -53,7 +53,7 @@
         var v = document.createElement('div');
         v.setAttribute('class', 'value');
         v.setAttribute('id', key + '_' + id);
-        v.innerHTML = value.replace(/\n/g, '<br>');
+        v.innerHTML = value? value.replace(/\n/g, '<br>'): '';
         div.appendChild(v);
         return div;
     }

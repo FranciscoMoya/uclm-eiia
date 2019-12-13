@@ -25,7 +25,7 @@ def index():
 def app_path(path):
     sp = get_sp()
     auth = sp.get_auth_data_in_session() if sp.is_user_logged_in() else None        
-    return render_template(path, auth = auth, logout_url = url_for('flask_saml2_sp.logout'))
+    return render_template(path, auth = auth, logout_url = url_for('flask_saml2_sp.logout', _external=True))
 
 all_forms = {
     'profesores': ProfesoresForm,
@@ -38,11 +38,11 @@ def form_path(path):
     auth = sp.get_auth_data_in_session() if sp.is_user_logged_in() else None
     form = all_forms[path]()
     if not auth:
-        return redirect(url_for('flask_saml2_sp.login'))
+        return redirect(url_for('flask_saml2_sp.login', _external=True))
     return render_template(path + ".html", 
                            auth = auth, 
                            form = form,
-                           logout_url = url_for('flask_saml2_sp.logout'))
+                           logout_url = url_for('flask_saml2_sp.logout', _external=True))
 
 @app.teardown_appcontext
 def close_connection(exception):
