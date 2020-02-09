@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE offerings PUBLIC "-//UniTime//DTD University Course Timetabling/EN" "https://www.unitime.org/interface/PosMajor.dtd">
-
-<posMajors campus="UCLM" term="{{term}}" year="2019">
-    <posMajor externalId="IE" code="IE" name="Ingeniería Eléctrica" academicArea="Acad"/>
-    <posMajor externalId="IEIA" code="IEIA" name="Ingeniería Eléctrónica Industrial y Automática" academicArea="Acad"/>
-    <posMajor externalId="IA" code="IA" name="Ingeniería Aeroespacial" academicArea="Acad"/>
-</posMajors>
