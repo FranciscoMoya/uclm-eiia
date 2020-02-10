@@ -29,11 +29,6 @@ PASSWORD = 'Tu contraseña de la UCLM'
 
 * Ten paciencia.  Uso un framework de prueba de aplicaciones web que no es precisamente rápido.  Las aplicaciones terminarán funcionando
 
-## Tutorías
-
-Esta aplicación ya es obsoleta.  Su funcionalidad se ha sustituido por la página dinámica
-`intranet/html/static/tutorias.html` que se construye con los datos extraídos de la Intranet.
-
 ## Actas
 
 La aplicación `actas.py` permite actualizar las actas de una asignatura con las calificaciones de Campus Virtual.  Un pequeño resumen de las opciones disponibles puede obtenerse ejecutando:
@@ -71,8 +66,3 @@ El script permite otras opciones, como considerar *no presentado* al alumno que 
 python actas.py --fetch INFORMÁTICA --cv informatica-18-19.xlsx --actas A.xlsx B.xlsx C.xlsx --out-prefix inf-18-19- --upload --ceil --scale 10 --require "Examen ordinario"
 ```
 
-## Disclaimer
-
-En este corto periodo de tiempo en el que estoy intentando modernizar los procesos de la Escuela ya he tenido que aguantar a uno que entra insultándome en el despacho y que, encima, suelta sin ruborizarse una idiotez sin la más leve intención de que resulte útil (ni para él ni para la Escuela).  Yo sigo convencido de que la inmensa mayoría del PDI de la Escuela son excelentes personas y por eso sigo empeñado en evitar que dilapiden su tiempo con procesos mecánicos.
-
-Pero aprovecho la ocasión para avisar. **No tengo paciencia con este tipo de comportamientos infantiles**, tengo bastante con un niño de cinco años.  De todas formas si has llegado hasta aquí no debes asustarte, todo el que quiera mejorar la Escuela, sus procesos, o sus resultados tendrá toda mi atención.

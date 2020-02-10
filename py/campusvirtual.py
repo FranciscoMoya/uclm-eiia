@@ -12,7 +12,7 @@ class CampusVirtual(object):
     def __init__(self, user, passwd, driver=None):
         self.user, self.passwd = user, passwd
         if not driver:
-            driver = webdriver.Chrome('g:/GitHub/challenges-private/eval/chromedriver.exe')
+            driver = webdriver.Chrome('g:/GitHub/uclm-eii/py/chromedriver.exe')
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
         driver.implicitly_wait(10)
@@ -29,16 +29,18 @@ class CampusVirtual(object):
         driver.get('https://campusvirtual.uclm.es/')
         driver.find_element_by_name('adAS_username').send_keys(USERNAME)
         driver.find_element_by_name('adAS_password').send_keys(PASSWORD)
-        driver.find_element_by_id('submit_ok_uclm').click()
+        driver.find_element_by_id('submit_ok').click()
 
     def tareas(self, course):
         driver = self.driver
         driver.get('https://campusvirtual.uclm.es/my/')
-        a = driver.find_element_by_xpath('//a[normalize-space(text())="{}"]'.format(course))
-        driver.get(a.get_attribute('href'))
-        tareasXpath = "//span[contains(@class,'accesshide') and text()=' Tarea']/parent::span/parent::a[contains(@class,'conditionalhidden') or not(contains(@class,'dimmed'))]"
-        tareas = driver.find_elements_by_xpath(tareasXpath)
-        return tuple((t.text, t.get_attribute('href')) for t in tareas)
+        todas = tuple()
+        for a in driver.find_elements_by_xpath('//a[contains(@title,"{}")]'.format(course)):
+            driver.get(a.get_attribute('href'))
+            tareasXpath = "//span[contains(@class,'accesshide') and text()=' Tarea']/parent::span/parent::a[not(contains(@class,'conditionalhidden') or contains(@class,'dimmed'))]"
+            tareas = driver.find_elements_by_xpath(tareasXpath)
+            todas += tuple((t.find_element_by_class_name("instancename").text, t.get_attribute('href')) for t in tareas)
+        return todas
 
     def pendientes_calificar(self, tarea):
         driver, wait = self.driver, self.wait
@@ -72,9 +74,10 @@ def get_element_value(e):
     return e.get_attribute('value')
 
 if __name__ == '__main__':
-    os.chdir(os.path.dirname(__file__))
+    try: os.chdir(os.path.dirname(__file__))
+    except: pass
     with CampusVirtual(USERNAME, PASSWORD) as cv:
         cv.authenticate()
-        for t in cv.tareas('29185'):
+        for t in cv.tareas('36588'):
             print('Pendientes en {}: {}'.format(t[0], cv.pendientes_calificar(t)))
 
