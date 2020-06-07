@@ -3,61 +3,51 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import os
+import os, time, pathlib
 from selenium_utils import *
 from cv_cfg import USERNAME, PASSWORD
 
 class ActasCalificacion(object):
 
-    def __init__(self, user, passwd, driver=None):
-        self.user, self.passwd = user, passwd
-        if not driver:
-            driver = webdriver.Chrome('g:/GitHub/challenges-private/eval/chromedriver.exe')
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
-        driver.implicitly_wait(10)
-
-    def __enter__(self):
-        self.driver.__enter__()
-        return self
-    
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.driver.__exit__(exc_type, exc_value, traceback)
+    def __init__(self, chrome):
+        self.chrome = chrome
+        self.driver = chrome.driver
+        self.wait = WebDriverWait(self.driver, 10)
+        self.nfiles = 0
+        self.base = 'https://actascalificacion.uxxi.uclm.es/actas'
 
     def authenticate(self):
         driver = self.driver
-        driver.get('https://actascalificacion.uclm.es/')
+        driver.get(self.base)
         driver.find_element_by_name('username').send_keys(USERNAME)
         driver.find_element_by_name('password').send_keys(PASSWORD)
         driver.find_element_by_name('submit').click()
         driver.find_element_by_xpath('//a[@class="vpopup"]').click()
 
-    def download_acta(self, course, i):
-        postdata = self._get_postdata_excel(course, i)
-        postdata['accion'] = 'DX'
-        postdata['enviar'] = None
-        postdata['descargar'] = 'Descargar fichero xlsx'
-        return download_post_file(
-            'https://actascalificacion.uclm.es/actas/calificacionExcel.do',
-            self.driver.get_cookies(),
-            postdata,
-            {'fichero': ('', '', 'application/octet-stream')})
+    def download_acta(self, course, i = 0):
+        driver = self.driver
+        driver.get(self.base + '/actas.do')
+        actas = driver.find_elements_by_xpath('//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
+        actas[i].click()
+        driver.find_element_by_id('lbOn0').click()
+        driver.find_elements_by_name('descargar')[1].click()
+        self.chrome.download_file()
 
-    def upload_acta(self, course, i, fname):
+    def upload_acta(self, fname, course, i = 0):
         postdata = self._get_postdata_excel(course, i)
         postdata['accion'] = 'U'
         postdata['descargar'] = None
         postdata['enviar'] = 'Calificar'
         with open(fname, 'rb') as fd:
             upload_post_file(
-                'https://actascalificacion.uclm.es/actas/calificacionExcel.do',
+                self.base + '/calificacionExcel.do',
                 self.driver.get_cookies(),
                 postdata,
                 {'fichero': ('data.xlsx', fd, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')})
 
     def _get_postdata_excel(self, course, i):        
         driver = self.driver
-        driver.get('https://actascalificacion.uclm.es/actas/actas.do')
+        driver.get(self.base + '/actas.do')
         actas = driver.find_elements_by_xpath('//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
         actas[i].click()
         driver.find_element_by_id('lbOn0').click()
@@ -69,3 +59,11 @@ class ActasCalificacion(object):
             postdata[b] = str(formPadre.find_element_by_name(a).get_attribute('value'))
         return postdata
 
+
+if __name__ == '__main__':
+    from chrome import Chrome
+    with Chrome() as b:
+        actas = ActasCalificacion(b)
+        actas.authenticate()
+        with open('redes1.xlsx', 'wb+') as f:
+            actas.download_acta('REDES DE COMPUTADORES I')
