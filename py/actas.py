@@ -1,11 +1,28 @@
 from openpyxl import load_workbook
-from chrome import Chrome
 from campusvirtual import CampusVirtual
 from actascalificacion import ActasCalificacion
-from ad import DirectorioActivo
 import argparse, os, requests, re, sys
 import re, pathlib
 from selenium import webdriver
+from pathlib import Path
+
+def Chrome():
+    download_dir = str(Path().absolute() / 'out')
+
+    options = webdriver.EdgeOptions()
+    prefs = {
+        "download.default_directory": download_dir,
+        "download.prompt_for_download": False,
+        "download.directory_upgrade": True,
+        "safebrowsing.enabled": True
+    }
+    options.add_experimental_option("prefs", prefs)
+    options.use_chromium = True
+
+    service = webdriver.EdgeService(executable_path=r'D:\git\uclm-eiia\py\msedgedriver.exe')
+    driver = webdriver.Edge(service=service, options=options)
+    return driver
+
 
 def calificar_actas(notas, actas, prefijo, requisito, scale = 1., corte = 5.0, columna_total='Total del curso (Real)'):
     wb = load_workbook(filename=notas, read_only=True)
@@ -138,7 +155,8 @@ if __name__ == '__main__':
     
 
     if args.fetch:
-        with Chrome() as b:
+        b = Chrome()
+        try:
             print('La descarga/subida de archivos con Selenium es lenta, ten paciencia')
             actas = ActasCalificacion(b)
             actas.authenticate()
@@ -153,6 +171,8 @@ if __name__ == '__main__':
 
             print('Descargando calificaciones de', args.fetch)
             cv.calificaciones(args.fetch)
+        finally:
+            b.quit()
 
     if args.fetch:
         print('Renombrando actas descargadas')
@@ -195,9 +215,12 @@ if __name__ == '__main__':
             exit()
 
         print("Subiendo actas de", course)
-        with Chrome() as b:
+        b = Chrome()
+        try:
             actas = ActasCalificacion(b)
             actas.authenticate()
             for i, fname in enumerate(args.actas):
                 print("Subiendo", args.out_prefix + fname)
                 actas.upload_acta(args.out_prefix + fname, course, i)
+        finally:
+            b.quit()

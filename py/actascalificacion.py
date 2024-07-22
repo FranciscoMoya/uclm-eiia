@@ -1,17 +1,17 @@
+import os
+import time
+from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import os, time, pathlib
 from selenium_utils import *
 from cv_cfg import USERNAME, PASSWORD
 
 class ActasCalificacion(object):
 
-    def __init__(self, chrome):
-        self.chrome = chrome
-        self.driver = chrome.driver
+    def __init__(self, driver):
+        self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
         self.nfiles = 0
         self.base = 'https://actascalificacion.uxxi.uclm.es/actas'
@@ -19,21 +19,42 @@ class ActasCalificacion(object):
     def authenticate(self):
         driver = self.driver
         driver.get(self.base)
-        driver.find_element_by_name('username').send_keys(USERNAME)
-        driver.find_element_by_name('password').send_keys(PASSWORD)
-        driver.find_element_by_name('submit').click()
-        driver.find_element_by_xpath('//a[@class="vpopup"]').click()
+        driver.implicitly_wait(5)
+        driver.find_element(by=By.ID, value='saml2_module-Office365').click()
+        driver.implicitly_wait(10)
+        driver.find_element(by=By.XPATH, value='//a[@class="vpopup" and normalize-space(text())="Entrar en Calificación de Actas Web"]').click()
+        driver.find_element(by=By.XPATH, value='//a[@class="vMenuPrincipal" and normalize-space(text())="Calificación de actas"]').click()
 
-    def download_acta(self, course, i = 0):
+    def download_acta(self, course, i=0):
         driver = self.driver
         driver.get(self.base + '/actas.do')
-        actas = driver.find_elements_by_xpath('//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
+        actas = driver.find_elements(by=By.XPATH, value='//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
         actas[i].click()
-        driver.find_element_by_id('lbOn0').click()
-        driver.find_elements_by_name('descargar')[1].click()
-        self.chrome.download_file()
+        driver.find_element(by=By.ID, value='lbOn0').click()
+        driver.find_elements(by=By.NAME, value='descargar')[1].click()
+        self._wait_for_download_and_rename(course)
 
-    def upload_acta(self, fname, course, i = 0):
+    def _wait_for_download_and_rename(self, course):
+        download_dir = Path.cwd() / 'out'
+        target_filename = f'{course}.xlsx'
+        temp_filename = None
+
+        # Wait for the download to complete
+        while True:
+            time.sleep(1)
+            files = list(download_dir.glob('*.crdownload'))  # Edge may use .crdownload extension for in-progress downloads
+            if not files:
+                files = list(download_dir.glob('*.xlsx'))
+                if files:
+                    temp_filename = files[0]
+                    break
+
+        # Rename the file
+        if temp_filename:
+            target_path = download_dir / target_filename
+            temp_filename.rename(target_path)
+
+    def upload_acta(self, fname, course, i=0):
         postdata = self._get_postdata_excel(course, i)
         postdata['accion'] = 'U'
         postdata['descargar'] = None
@@ -48,22 +69,37 @@ class ActasCalificacion(object):
     def _get_postdata_excel(self, course, i):        
         driver = self.driver
         driver.get(self.base + '/actas.do')
-        actas = driver.find_elements_by_xpath('//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
+        actas = driver.find_elements(by=By.XPATH, value='//a[@class="vActas" and normalize-space(text())="{}"]'.format(course))
         actas[i].click()
-        driver.find_element_by_id('lbOn0').click()
-        formulario = driver.find_element_by_name('calificacionExcelAtionForm')
-        formPadre = driver.find_element_by_name('generico')
-        postdata = { str(i.get_attribute('name')): str(i.get_attribute('value')) for i in formulario.find_elements_by_tag_name('input') }
-        for a,b in zip(('anioAct', 'asignaturaAct', 'idAsignaturaAct', 'grupoAct', 'ordenAct', 'convAct'),
+        driver.find_element(by=By.ID, value='lbOn0').click()
+        formulario = driver.find_element(by=By.NAME, value='calificacionExcelAtionForm')
+        formPadre = driver.find_element(by=By.NAME, value='generico')
+        postdata = { str(i.get_attribute('name')): str(i.get_attribute('value')) for i in formulario.find_elements(By.TAG_NAME, 'input') }
+        for a, b in zip(('anioAct', 'asignaturaAct', 'idAsignaturaAct', 'grupoAct', 'ordenAct', 'convAct'),
                         ('anyAnyaca','assCodnum','idAss','gasCodnum','actNumord','tcoCodalf')):
-            postdata[b] = str(formPadre.find_element_by_name(a).get_attribute('value'))
+            postdata[b] = str(formPadre.find_element(By.NAME, a).get_attribute('value'))
         return postdata
 
 
 if __name__ == '__main__':
-    from chrome import Chrome
-    with Chrome() as b:
-        actas = ActasCalificacion(b)
+    download_dir = str(Path().absolute() / 'out')
+
+    options = webdriver.EdgeOptions()
+    prefs = {
+        "download.default_directory": download_dir,
+        "download.prompt_for_download": False,
+        "download.directory_upgrade": True,
+        "safebrowsing.enabled": True
+    }
+    options.add_experimental_option("prefs", prefs)
+    options.use_chromium = True
+
+    service = webdriver.EdgeService(executable_path=r'D:\git\uclm-eiia\py\msedgedriver.exe')
+    driver = webdriver.Edge(service=service, options=options)
+
+    try:
+        actas = ActasCalificacion(driver)
         actas.authenticate()
-        with open('redes1.xlsx', 'wb+') as f:
-            actas.download_acta('REDES DE COMPUTADORES I')
+        actas.download_acta('EVALUACIÓN EN CAA')
+    finally:
+        driver.quit()
